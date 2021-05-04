@@ -1,0 +1,507 @@
+/*MOBILE FIRST*/
+/********************************************************
+CSS COMMUM
+********************************************************/
+
+/* déclaration de variables CSS */
+:root {
+    --white: #fff;
+    --black: #000;
+    --dark-grey: #565656;
+    --soft-grey: #e5e2e2;
+    --green: #009641;
+    --soft-green: #20a459;
+    --blue: #0375be;
+    --soft-blue: #2187c6;
+    --cocktail: #002136;
+}
+/* fin de déclaration de variables CSS */
+
+/* déclaration font */
+@font-face{
+    font-family: "Din-Black";
+    src:url("font/DIN-Black.ttf");
+}
+
+* {
+	box-sizing: border-box; /* On spécifie que la largeur (width) de chaque boîte comprend le padding et la bordure (par défaut, c'est seulement la largeur du contenu) */
+}
+html {
+	font-size: 62.5%; /* 1rem = 10px */
+    /* scroll-behavior: "smooth"; */
+}
+body{
+    background-color: var(--soft-grey);
+    /* font-family: DIN-Black; */
+    font-size:1.4rem;
+    color:var(--white);
+    text-align:justify;
+    line-height: 1.5;
+}
+main{
+    max-width:1400px;
+    margin:0 auto;
+}
+section{
+    padding:1.5rem
+}
+img{
+    max-width:100%;
+}
+h1, h2, h3, a{
+    text-transform: uppercase;
+}
+h1{
+    font-size: 2.5rem;
+    margin-top: 0;
+}
+h2{
+    font-size: 3.6rem;
+    text-align: center;
+    margin-top:0;
+    /* margin-bottom: 1.5rem; */
+    padding: 0.5rem;
+}
+h3{
+    font-size: 2rem;
+    margin-top:0;
+}
+.price{
+    margin-bottom: 2rem;
+}
+.price h3{
+    margin-bottom: 1rem;
+    padding:0.5rem 1rem;
+}
+.price p:first-child{
+    margin-top: 0.5rem;
+}
+a{
+    text-decoration:none;
+}
+ul{
+    list-style:none;
+    padding-left: 0;
+}
+table{
+    border-collapse:collapse;
+    text-align: left;
+    width:100%;
+}
+th{
+    border-bottom: 2px solid #fff;
+    padding: 0.5em;
+}
+td{
+    border-top: 1px solid #fff;
+    padding: 0.5em;
+}
+.button{
+    display:flex;
+    justify-content: space-around;
+    margin: 1rem auto;
+}
+.button a, .home a{
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    width:20rem;
+    text-align: center;
+    padding: 1rem;
+    margin:1rem;
+    transition: transform 1s;
+}
+.button a:hover{
+    transform:scale(1.1);
+}
+.desktop-button{
+    display:none;
+}
+section{
+    margin-top:-1rem;
+}
+.transition{
+    margin-top:-0.5rem;
+}
+.green{
+    background-color: var(--green);
+}
+.blue{
+    background-color: var(--blue);
+}
+.dark-grey{
+    background-color: var(--dark-grey);
+}
+.roc{
+    background-color: var(--cocktail);
+}
+.roc span:nth-child(3n+1){
+    color:var(--dark-grey);
+}
+.roc span:nth-child(3n+2){
+    color:var(--green);
+}
+.roc span:nth-child(3n+3){
+    color:var(--blue);
+}
+/********************************************************
+FIN CSS COMMUM
+********************************************************/
+
+/********************************************************
+CSS HEADER
+********************************************************/
+
+header{
+    text-align:center;
+    background: url("../img/header_border.png") bottom repeat-x;
+}
+.menu li{
+    padding: 1rem;
+}
+.menu a{
+    color: var(--black);
+    transition: color 0.5s;
+}
+.menu a:hover{
+    color: var(--green);
+}
+.menu ul > li ul{
+	max-height: 0;
+    overflow: hidden;
+    transition: max-height 1.5s;
+}
+.menu > ul > li:hover ul {
+	max-height: 20em;
+}
+/********************************************************
+FIN CSS HEADER
+********************************************************/
+
+
+/********************************************************
+CSS MAIN INDEX
+********************************************************/
+/* section home */
+.home{
+    text-align:center;
+    background: url("../img/mountain.png") center;
+}
+.home h1{
+    color: var(--black);
+}
+.home h1 span{
+    color: var(--blue);
+}
+.home p{
+    color: var(--dark-grey);
+    width: 70%;
+    margin: auto; 
+}
+.home ul{
+    display:none;
+}
+
+/* section bike */
+.bike h2{
+    margin-bottom: 0.5rem;
+}
+.bike h3{
+    text-align: center;
+}
+.bike span{
+    text-transform: lowercase;
+}    
+.bike .price h3{
+    background-color: #fff;
+    color: var(--green);
+}
+.bike .button a{
+    color:var(--white);
+    border: 2px solid var(--white);
+}
+
+/* section paddle */
+.paddle{
+    color:var(--dark-grey);
+}
+.paddle h2, .paddle h3{
+    color:var(--blue);
+}
+.paddle .price{
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 1rem;
+}
+.paddle .price h3{
+    background-color: #fff;
+}
+.paddle .button a{
+    color:var(--blue);
+    border: 2px solid var(--blue);
+}
+
+/* section climbing */
+.climbing h3{
+    color:var(--green);
+}
+.climbing .price h3{
+    color:var(--dark-grey);
+    background-color: #fff;
+}
+.climbing .button a{
+    color:var(--white);
+    border: 2px solid var(--white);
+}
+
+/* section archery */
+.archery{
+    color:var(--dark-grey);
+}
+.archery h2{
+    color:var(--green);
+}
+.archery .price{
+    background-color: var(--green);
+    color: var(--white);
+    padding: 1rem;
+}
+.archery .price h3{
+    background-color: #fff;
+    color: var(--green);
+}
+.archery .button a{
+    color:var(--green);
+    border: 2px solid var(--green);
+}
+
+/* section snowboard */
+.snowboard h3{
+    background-color: #fff;
+    color: var(--blue);
+}
+.snowboard .button a{
+    color:var(--white);
+    border: 2px solid var(--white);
+}
+
+/* section cocktail */
+.cocktail .price{
+    background-color: #fff;
+    color: var(--dark-grey);
+    padding: 1rem;
+}
+.cocktail h3{
+    background-color: var(--cocktail);
+    color: var(--white);
+}
+.cocktail .button a{
+    background: linear-gradient(90deg, var(--dark-grey) 30%, var(--green)50%, var(--blue)60%);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    border: 2px solid var(--green);
+}
+.roc .table th{
+    color: var(--dark-grey);
+    border-bottom: 2px solid var(--dark-grey);
+}
+.roc .table td{
+    border-bottom: 2px solid var(--green);
+} 
+.roc .table td span{
+    color: var(--green);
+}
+.roc .table tr:last-of-type td{
+    border-bottom: 2px solid var(--blue);
+} 
+.roc .table tr:last-of-type td span{
+    color: var(--blue);
+}
+
+/********************************************************
+FIN CSS MAIN INDEX
+********************************************************/
+
+/********************************************************
+CSS BOOKING
+********************************************************/
+.booking{
+    color:var(--black);
+}
+fieldset{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.hide{
+    display:none;
+}
+/********************************************************
+CSS FOOTER
+********************************************************/
+footer{
+    color: var(--dark-grey);
+    text-align: center;
+}
+footer a{
+    color: var(--dark-grey);
+    text-transform: lowercase;
+}
+footer .network a{
+    font-size: 5rem;
+    margin:0 2rem;
+}
+/********************************************************
+FIN CSS FOOTER
+********************************************************/
+
+
+/********************************************************
+CSS MEDIA QUERIES
+********************************************************/
+
+
+/********************************************************
+SMALL MOBILE (max-width: 450px)
+********************************************************/
+@media screen and (max-width: 450px) {
+    .button{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/********************************************************
+MOBILE (max-width: 780px)
+********************************************************/
+@media screen and (max-width: 780px) {
+    .home img,
+    .home li div > a:last-child,
+    .home li:last-child div:first-child{
+        display: none;
+    }
+    .paddle th,
+    .climbing th,
+    .archery th{
+        display: none;
+    }
+}
+/********************************************************
+TABLET (min-width: 780px)
+********************************************************/
+@media screen and (min-width:780px){
+    .description{
+        display:flex;
+        flex-direction: column;
+    }
+    .price{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .price h3{
+        width: 100%;
+    }.price div{
+        max-width: 48%;
+    }
+    .price .table{
+        order: 3;
+    }
+}
+
+/********************************************************
+DESKTOP (min-width: 980px)
+********************************************************/
+@media screen and (min-width:980px){
+    .home ul{
+        display:flex;
+        justify-content: space-between;
+        margin: 3rem 5rem;
+        height:50vh;
+    }
+    .home li{
+        position:relative;
+        max-width: 15%;
+        height: 50vh;
+    }
+    .home img{
+        height:80%;
+        object-fit:cover;
+        border: 1px solid var(--white);
+    }
+    .home li:nth-child(odd) div{
+        position: absolute;
+        bottom:0;
+        left: 10%;
+        width:80%;
+        height: 35%
+    }
+    .home li:nth-child(even) div{
+        position: absolute;
+        top:0;
+        left: 10%;
+        width:80%;
+        height: 35%;
+    }
+    .home li:nth-child(even) img{
+        position: relative;
+        top:20%;
+    }
+    .home h2{
+        font-size: 2rem;
+    }
+    .home a{
+        font-size: 1.2rem;
+        color:var(--white);
+        border: 1px solid var(--white);
+        width:auto;
+    }
+    .home div{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .desktop{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: space-between;
+    }
+    .desktop h2, .desktop h3{
+        width:100%;
+    }
+    /* article h3{
+        padding-top:0;
+    } */
+    .desktop .slider{
+        max-width: 38%;
+    }
+    .desktop .description{
+        max-width:60%;
+    }
+    .desktop .description p:first-child{
+        margin-top: 0;
+    }
+    .mobile-button{
+        display:none;
+    }
+    .desktop-button{
+        display:flex;
+    }
+}
+
+/********************************************************
+FIN CSS MEDIA QUERIES
+********************************************************/
+.scrollToTopBtn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    z-index:100;
+    /* display:block; */
+    background-color:var(--cocktail);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 2.5rem;
+}
+
+

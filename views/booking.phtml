@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROC Multisport - Reservation Page</title>
+    <link rel="icon" href="img/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="" type="css/normalize/css" />
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="booking">
+    <h1>Formulaire de demande de réservation</h1>
+    <p>Dans le cadre de votre demande de réservation, celle-ci doit obligatoirement être validée par un retour de notre part en fonction de nos disponibilités.</p>
+
+    <form action="booking.php" method='post'>
+        <fieldset>
+            <legend>votre activité/vos activités</legend>
+            <select name="activity1">
+                <option value="">Séléctionnez votre activité 1</option>
+                <optogroup label="bike"> 
+                    <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
+                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80">VTTAE sans location VTT - journée - 80€/pers.</option>
+                    <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70">VTTAE avec location VTT - 1/2 journée - 70€/pers.</option>
+                    <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="120">VTTAE avec location VTT - journée - 120€/pers.</option>
+                </optogroup> 
+                <optogroup label="paddle">
+                    <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="65">Paddle - 1/2 journée - 65€/pers.</option>
+                    <option value="paddleAllDay" name="Paddle - journée" data-price="110">Paddle - journée - 110€/pers.</option>
+                    <option value="kayak" name="Kayak - 1/2 journée" data-price="60">Kayak - 1/2 journée - 60€/pers.</option>
+                </optogroup> 
+                <optogroup label="climbing">
+                    <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50">Escalade - 1/2 journée - 50€/pers.</option>
+                    <option value="climbingAllDay" name="Escalade - journée" data-price="90">Escalade - journée - 90€/pers.</option>
+                    <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée - 60€/pers.</option>
+                    <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
+                    </optogroup> 
+                    <optogroup label="archery">
+                    <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée - 50€/pers.</option>
+                </optogroup> 
+                <optogroup label="snowboard">
+                    <option value="rookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
+                    <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée - 160€/pers.</option>
+                    <option value="snowboarAllfDay" name="Snowboard - journée" data-price="330">Snowboard - journée - 300€/pers.</option>
+                    <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180">Splitboard - 1/2 journée - 180€/pers.</option>
+                    <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330">Splitboard - journée - 330€/pers.</option>
+                </optogroup> 
+                <optogroup label="cocktail">
+                    <option value="cocktailOneDay">Cocktail ROC - ROC DAY - à partir de 120€/pers.</option>
+                    <option value="cocktailTwoDay">Cocktail ROC - ROC WEEK-END - à partir de 220€/pers.</option>
+                </optogroup> 
+            </select>
+            <input type="date" name="date">
+            <input type="number" name="number" min="2" max="12" placeholder="Nombre de participants">
+
+            <select name="activity2">
+                <option value="">Séléctionnez votre activité 2</option>
+                <optogroup label="bike"> 
+                    <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
+                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80">VTTAE sans location VTT - journée - 80€/pers.</option>
+                    <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70">VTTAE avec location VTT - 1/2 journée - 70€/pers.</option>
+                    <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="120">VTTAE avec location VTT - journée - 120€/pers.</option>
+                </optogroup> 
+                <optogroup label="paddle">
+                    <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="65">Paddle - 1/2 journée - 65€/pers.</option>
+                    <option value="paddleAllDay" name="Paddle - journée" data-price="110">Paddle - journée - 110€/pers.</option>
+                    <option value="kayak" name="Kayak - 1/2 journée" data-price="60">Kayak - 1/2 journée - 60€/pers.</option>
+                </optogroup> 
+                <optogroup label="climbing">
+                    <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50">Escalade - 1/2 journée - 50€/pers.</option>
+                    <option value="climbingAllDay" name="Escalade - journée" data-price="90">Escalade - journée - 90€/pers.</option>
+                    <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée - 60€/pers.</option>
+                    <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
+                    </optogroup> 
+                    <optogroup label="archery">
+                    <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée - 50€/pers.</option>
+                </optogroup> 
+                <optogroup label="snowboard">
+                    <option value="rookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
+                    <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée - 160€/pers.</option>
+                    <option value="snowboarAllfDay" name="Snowboard - journée" data-price="330">Snowboard - journée - 300€/pers.</option>
+                    <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180">Splitboard - 1/2 journée - 180€/pers.</option>
+                    <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330">Splitboard - journée - 330€/pers.</option>
+                </optogroup> 
+                <optogroup label="cocktail">
+                    <option value="cocktailOneDay">Cocktail ROC - ROC DAY - à partir de 120€/pers.</option>
+                    <option value="cocktailTwoDay">Cocktail ROC - ROC WEEK-END - à partir de 220€/pers.</option>
+                </optogroup> 
+            </select>
+            <input type="date" name="date">
+            <input type="number" name="number" min="2" max="12" placeholder="Nombre de participants">
+        </fieldset>
+        <fieldset>
+            <legend>Vos coordonnées</legend>
+            <input type="text" name="lastName" required placeholder="Nom*">
+            <input type="text" name="firstName" required placeholder="Prénom*">
+            <input type="text" name="society" required placeholder="Nom de la société">
+            <input type="tel" name="phone" required placeholder="Téléphone(organisateur)*">
+            <input type="mail" name="mail" required placeholder="Email*">
+            <input type="text" name="adress" required placeholder="Adresse*">
+            <input type="Number" name="postalCode" required placeholder="Code postal">
+            <input type="text" name="city" required placeholder="Ville">
+        </fieldset>
+        <input type="checkbox">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT
+    </form>
+
+    <!-- <p>TOTAL RÉSERVATION: <span id="activity"></span><span id="price"></span></p> -->
+
+    <div class="basket">
+        <p>mon panier</p>
+        <ul id="selection">
+            <li id="activity1" class="hide"></li>
+            <li id="activity2" class="hide"></li>
+            <li id="activity3" class="hide"></li>
+            <li id="activity4" class="hide"></li>
+        </ul>
+        <p>total réservation : <span class="finalPrice"></span></p>
+    </div>
+    <script type="text/javascript" src="../js/app.js"></script>
+</body>
+</html>
