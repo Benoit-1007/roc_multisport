@@ -9,28 +9,33 @@
     <link rel="icon" href="img/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="" type="css/normalize/css" />
+    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header>
-        <img src="img/logo.png" alt="Logo ROC Multisport">
-        <nav class="menu">
-            <ul>
-                <li><a href="#home">accueil</a></li>
-                <li><a href="#">nos activités<br><i class="fas fa-caret-down"></i></a>
-                    <ul>
-                        <li><a href="#bike">vttae</a></li>
-                        <li><a href="#paddle">paddle / kayak</a></li>
-                        <li><a href="#climbing">escalade / via ferrata</a></li>
-                        <li><a href="#archery">tir à l'arc</a></li>
-                        <li><a href="#snowboard">snowboard / splitboard</a></li>
-                        <li><a href="#cocktail">cocktail roc</a></li>
-                    </ul>
+        <nav class="navbar">
+            <div class="navbar_logo"><img src="img/logo.png" alt="Logo ROC Multisport"></div>
+            <ul class="navbar_links">
+                <li class="navbar_link first"><a href="#home">accueil</a></li>
+                <li class="navbar_link second"><a href="#">nos activités</a>
+                <!-- <ul class="navbar_links">
+                    <li class="navbar_link"><a href="#bike">vttae</a></li>
+                    <li class="navbar_link"><a href="#paddle">paddle / kayak</a></li>
+                    <li class="navbar_link"><a href="#climbing">escalade / via ferrata</a></li>
+                    <li class="navbar_link"><a href="#archery">tir à l'arc</a></li>
+                    <li class="navbar_link"><a href="#snowboard">snowboard / splitboard</a></li>
+                    <li class="navbar_link"><a href="#cocktail">cocktail roc</a></li>
+                </ul> -->
                 </li>    
-                <li><a href="#testimony">témoignages</a></li>
-                <li><a href="#footer">contact</a></li>
-                <li><a href="#"><i class="fas fa-shopping-basket"></i></a></li>
+                <li class="navbar_link third"><a href="#testimony">témoignages</a></li>
+                <li class="navbar_link four"><a href="#footer">contact</a></li>
+                <li class="navbar_link fifth"><a href="#"><i class="fas fa-shopping-basket"></i></a></li>
             </ul>
+            <button class="burger">
+                <span class="bar"></span>
+            </button>
         </nav>
     </header>
 
@@ -42,42 +47,42 @@
             <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !! Du lac d'Annecy aux sommet des Aravis, venez tester l'aventure: sensations et souvenirs garantis!</p>
             <ul>
                 <li>
-                    <img src="img/vtt_home.jpeg" alt="Photo de cycliste sur un vttae">
+                    <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
                     <div class="green">
                         <h2>vttae</h2>
                         <a href="#bike">en savoir +</a>
                     </div>
                 </li>
                 <li>
-                    <img src="img/kayak_home.jpeg" alt="Photo d'un homme en sortie paddle">
+                    <img src="img/home_kayak.jpeg" alt="Photo d'un homme en sortie paddle">
                     <div class="blue">
                         <h2>paddle kayak</h2>
                         <a href="#paddle">en savoir +</a>
                     </div>
                 </li>
                 <li>
-                    <img src="img/climbing_home.jpeg" alt="Photo d'une femme sur une falaise">
+                    <img src="img/home_climbing.jpeg" alt="Photo d'une femme sur une falaise">
                     <div class="dark-grey">
                         <h2>escalade via ferrata</h2>
                         <a href="#climbing">en savoir +</a>
                     </div>
                 </li>
                 <li>
-                    <img src="img/archery_home.jpeg" alt="Photo d'un arc">
+                    <img src="img/home_archery.jpeg" alt="Photo d'un arc">
                     <div class="green">
                         <h2>tir à l'arc</h2>
                         <a href="#archery">en savoir +</a>
                     </div>
                 </li>
                 <li>
-                    <img src="img/snowboard_home.jpeg" alt="Photo d'un snowboarder">
+                    <img src="img/home_snowboard.jpeg" alt="Photo d'un snowboarder">
                     <div class="blue">
                         <h2>snowboard splitboard</h2>
                         <a href="#snowboard">en savoir +</a>
                     </div>
                 </li>
                 <li>
-                    <img src="img/vtt_home.jpeg" alt="Photo de cycliste sur un vttae">
+                    <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
                     <!-- <div>
                         COMPOSEZ LIBREMENT VOTE COCKTAIL D'ACTIVITÉS !
                     </div> -->
@@ -94,8 +99,12 @@
         <section id="bike" class="bike green desktop">
             <h2>vttae</h2>
             <h3>vtt <span>à assistance Électrique</span></h3>
-            <div class='slider'>
-                <img src="img/vtt.jpeg" alt="Photo d'une cycliste">
+            <div class='left_bloc'>
+                <div class="slider">
+                    <div><img src="img/vtt_1.jpeg" alt="Photo de 2 cyclistes"></div>
+                    <div><img src="img/vtt_2.jpeg" alt="Photo d'un cycliste"></div>
+                    <div><img src="img/vtt_4.jpeg" alt="Photo d'un cycliste en forêt"></div>
+                </div>
                 <div class="button desktop-button">
                     <a href="views/booking.phtml">réserver</a>
                     <a href="contact.phtml">contactez-nous</a>
@@ -157,8 +166,12 @@
         </div>
         <section id="paddle" class="paddle desktop">
             <h2>paddle / kayak</h2>
-            <div class="slider">
-                <img src="img/kayak.jpeg" alt="Photo de kayak">
+            <div class="left_bloc">
+                <div class="slider">
+                    <div><img src="img/kayak_1.jpeg" alt="Photo d'une jeune femme en kayak"></div>
+                    <div><img src="img/paddle_1.jpeg" alt="Photo d'un garçon sur un paddle"></div>
+                    <div><img src="img/kayak_3.jpeg" alt="Photo d'un jeune homme en kayak"></div>
+                </div>
                 <div class="button desktop-button">
                     <a href="views/booking.phtml">réserver</a>
                     <a href="contact.phtml">contactez-nous</a>
@@ -236,8 +249,12 @@
         </div>
         <section id="climbing" class="climbing dark-grey desktop">
             <h2>escalade / via-ferrata</h2>
-            <div class="slider">
-                <img src="img/via_ferrata.jpeg" alt="Photo d'une jeune femme sur une via-ferrata">
+            <div class="left_bloc">
+                <div class="slider">
+                    <div><img src="img/climbing_1.jpeg" alt="Photo d'un homme le long d'une falaise"></div>
+                    <div><img src="img/via_1.jpeg" alt="Photo d'un homme sur une via-ferrata"></div>
+                    <div><img src="img/climbing_2.jpeg" alt="Photo d'un groupe en sortie via-ferrata"></div>
+                </div>
                 <div class="button desktop-button">
                     <a href="views/booking.phtml">réserver</a>
                     <a href="contact.phtml">contactez-nous</a>
@@ -319,8 +336,12 @@
         </div>
         <section id="archery" class="archery desktop">
             <h2>tir à l'arc</h2>
-            <div class="slider">
-                <img src="img/archery.jpeg" alt="Photo d'un homme qui tir à l'arc">
+            <div class="left_bloc">
+                <div class="slider">
+                    <div><img src="img/archery_1.jpeg" alt="Photo d'un homme qui tir à l'arc"></div>
+                    <div><img src="img/archery_2.jpeg" alt="Photo d'une cible"></div>
+                    <div><img src="img/archery_3.jpeg" alt="Photo d'un enfant qui tire à l'arc"></div>
+                </div>
                 <div class="button desktop-button">
                     <a href="views/booking.phtml">réserver</a>
                     <a href="contact.phtml">contactez-nous</a>
@@ -329,7 +350,7 @@
             <div class="description">
                 <article>
                     <p>Avec Roc MULTISPORT, venez vous initier au tir à l'arc. Cette discipline qui allie précision et concentration vous permettra de passer un moment ludique. A proximité de superbes montagnes et du lac d'Annecy, tester votre adresse en toute sécurité au travers d'une activité plaisante qui développera votre rigueur et votre coordination. Avec une panoplie de jeux pédagogiques, votre moniteur vous apprendra les techniques de base du tir à l'arc.</p>
-                    <p>Dans une ambiance convivale, ROC MULTISPORT vous convie à essayer un sport divertissant et accessible à tous. Une expérience à partager en famille ou entre amis !</p>
+                    <p>Dans une ambiance convivale, ROC MULTISPORT vous convie à essayer un sport divertissant et accessible à tous. Une expérience à partager en famille ou entre amis!</p>
                 </article>
                 <article class="price">
                     <h3>tarifs tir à l'arc</h3>
@@ -365,8 +386,12 @@
         </div>
         <section id="snowboard" class="snowboard blue desktop">
             <h2>snowboard / splitboard</h2>
-            <div class="slider">
-                <img src="img/snowboarder_3.jpeg" alt="Photo d'un snowboarder en plein saut">
+            <div class="left_bloc">
+                <div class="slider">
+                    <div><img src="img/snowboard_1.jpeg" alt="Photo d'un snowboarder"></div>
+                    <div><img src="img/snowboard_5.jpeg" alt="Photo d'un snowboard regardant un paysage de montagnes"></div>
+                    <div><img src="img/snowboard_3.jpeg" alt="Photo d'un groupe en sortie via-ferrata"></div>
+                </div>
                 <div class="button desktop-button">
                     <a href="views/booking.phtml">réserver</a>
                     <a href="contact.phtml">contactez-nous</a>
@@ -436,7 +461,7 @@
             <h2>
             c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> d'activités <span>r</span><span>o</span><span>c</span>
             </h2>
-            <div class="slider">
+            <div class="left_bloc">
                 <img src="img/paddle_sunset.jpeg" alt="Photo d'un homme en paddle au couché du soleil">
                 <div class="button desktop-button">
                     <a href="views/booking.phtml">réserver</a>
@@ -502,8 +527,21 @@
             <a href="#" class="fab fa-instagram-square"></a>
         </div>
     </footer>
-    
+
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script>
+        $(document).ready(function(){
+            // on selectionne la classe .slider et on utilse la fonction slick()
+            $('.slider').slick({
+            // setting-name: setting-value
+                autoplay:true,
+                autoplaySpeed:2000,
+                arrows:true,
+            });
+        });
+    </script>
 
     
 </body>
