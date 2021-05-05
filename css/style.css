@@ -39,7 +39,7 @@ body{
     line-height: 1.5;
 }
 main{
-    max-width:1400px;
+    max-width:1600px;
     margin:0 auto;
 }
 section{
@@ -151,28 +151,21 @@ FIN CSS COMMUM
 CSS HEADER
 ********************************************************/
 
-header{
+/* header{
     text-align:center;
     background: url("../img/header_border.png") bottom repeat-x;
 }
-.menu li{
+.navbar li{
     padding: 1rem;
 }
-.menu a{
+.navbar a{
     color: var(--black);
     transition: color 0.5s;
 }
-.menu a:hover{
+.navbar a:hover{
     color: var(--green);
-}
-.menu ul > li ul{
-	max-height: 0;
-    overflow: hidden;
-    transition: max-height 1.5s;
-}
-.menu > ul > li:hover ul {
-	max-height: 20em;
-}
+} */
+
 /********************************************************
 FIN CSS HEADER
 ********************************************************/
@@ -322,6 +315,26 @@ CSS MAIN INDEX
 FIN CSS MAIN INDEX
 ********************************************************/
 
+/* ******************************************************
+CSS SLIDER
+********************************************************/
+.slick-next::before, 
+.slick-prev::before {
+	font-size: 2rem;
+	color: #ebe3db;
+}
+.slick-next {
+	right: 1rem;
+}
+.slick-prev {
+	left: 1rem;
+	z-index:1;
+}
+
+/* ******************************************************
+FIN CSS SLIDER
+********************************************************/
+
 /********************************************************
 CSS BOOKING
 ********************************************************/
@@ -384,11 +397,153 @@ MOBILE (max-width: 780px)
     .archery th{
         display: none;
     }
+    .navbar_links{
+        display: flex;
+        flex-direction: column;
+        width:0;
+        height:calc(100vh - 100px);
+        position: absolute;
+        top:98px;
+        right:0;
+        background: var(--soft-grey);
+        margin:0;
+        transition: all 0.5s ease-in-out;
+    }
+
+
+    /* Navbar */
+
+    .navbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height:100px;
+        color: var(--black);
+        background: var(--soft-grey);
+    }
+    .navbar_logo{
+        max-width: 150px;
+    }
+    .show_nav .navbar_links{
+        width:100%;
+    }
+    .navbar_link{
+        transform: translateX(101%);
+    }
+    .show_nav .navbar_link{
+        transform: translateX(0);
+    }
+    .navbar_link > a{
+        display: block;
+        color: var(--black);
+        padding: 1rem;
+        font-size: 1.6rem;
+        transition: all 0.4s ease-in-out;
+    }
+    .navbar_link > a:hover{
+        padding-left: 2rem;
+        letter-spacing: 0.5rem;
+    }
+    /* toggle menu */
+    .burger{
+        display: block;
+        position: relative;
+        padding: 0;
+        width: 45px;
+        height:45px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+    }
+    .bar{
+        display: block;
+        width: 45px;
+        height: 4px;
+        background: var(--black);
+        border-radius: 3px;
+        transition: all 0.5s ease-in-out;
+    }
+    .show_nav .bar{
+        width:0;
+        background: transparent;
+    }
+    .bar::before, .bar::after{
+        content:'';
+        position: absolute;
+        left: 0;
+        width: 45px;
+        height: 4px;
+        background: var(--black);
+        border-radius: 3px;
+        transition: all 0.5s ease-in-out;
+    }
+    .bar::before{
+        transform: translateY(-12px);
+    }
+    .show_nav .bar::before{
+        transform: rotate(45deg)
+    }
+    .bar::after{
+        transform: translateY(12px);
+    }
+    .show_nav .bar::after{
+        transform: rotate(-45deg)
+    }
+    /* bonus -animation */
+    .show_nav .first{
+        transition: all 1s ease-out
+    }
+    .show_nav .second{
+        transition: all 1.1s ease-out
+    }
+    .show_nav .third{
+        transition: all 1.2s ease-out
+    }
+    .show_nav .four{
+        transition: all 1.3s ease-out
+    }
+    .show_nav .fifth{
+        transition: all 1.4s ease-out
+    }
 }
 /********************************************************
 TABLET (min-width: 780px)
 ********************************************************/
 @media screen and (min-width:780px){
+    .navbar_logo{
+        max-width: 200px;
+    }
+    .navbar{
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 1rem;
+    }
+    .navbar_links{
+        display:flex;
+        flex-direction:row;
+    }
+    .navbar_link{
+        padding:0 1rem;
+    }
+    .burger{
+        display:none;
+    }
+    .navbar_link > a{
+        color: var(--black);
+    }
+    .navbar_link > a:after {
+        display: block;
+        content:"";
+        width:0;
+        height: 2px;
+        background: var(--green);
+        transition: width 0.4s;
+    }
+    .navbar_link:hover > a:after{
+        width:100%;
+
+    }
     .description{
         display:flex;
         flex-direction: column;
@@ -448,6 +603,7 @@ DESKTOP (min-width: 980px)
     }
     .home h2{
         font-size: 2rem;
+        margin-bottom: 0; 
     }
     .home a{
         font-size: 1.2rem;
@@ -458,7 +614,7 @@ DESKTOP (min-width: 980px)
     .home div{
         display:flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: space-between;
     }
     .desktop{
         display:flex;
@@ -472,7 +628,7 @@ DESKTOP (min-width: 980px)
     /* article h3{
         padding-top:0;
     } */
-    .desktop .slider{
+    .desktop .left_bloc{
         max-width: 38%;
     }
     .desktop .description{
@@ -486,6 +642,17 @@ DESKTOP (min-width: 980px)
     }
     .desktop-button{
         display:flex;
+    }
+
+
+
+    .navbar ul > li ul{
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 1.5s;
+    }
+    .navbar > ul > li:hover ul {
+        max-height: 20em;
     }
 }
 
@@ -503,5 +670,8 @@ FIN CSS MEDIA QUERIES
     border-radius: 50%;
     font-size: 2.5rem;
 }
+
+
+
 
 
