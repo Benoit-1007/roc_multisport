@@ -72,10 +72,6 @@ document.addEventListener("DOMContentLoaded", function(){
     // }
     // **fin test
 
-
-
-
-    // topButton 
     document.addEventListener("scroll", handleScroll);
     // get a reference to our predefined button
     let scrollToTopBtn = document.querySelector(".scrollToTopBtn");
@@ -118,18 +114,4 @@ document.addEventListener("DOMContentLoaded", function(){
         behavior: "smooth"
         });
     }
-
-
-
-    //burger menu
-    function toggleMenu(){
-        const navbar = document.querySelector('.navbar');
-        const burger = document.querySelector('.burger');
-
-        burger.addEventListener('click', () => {
-            console.log('test')
-            navbar.classList.toggle('show_nav');
-        })
-    }
-    toggleMenu();
 })
