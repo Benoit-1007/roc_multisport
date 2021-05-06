@@ -308,7 +308,7 @@ CSS MAIN INDEX
 .home{
     text-align:center;
     padding: 0;
-    background: url("../img/mountain.png") center, url('../resources/transitionVTT.png')bottom no-repeat;
+    background:  url('../resources/transitionVTT.png')bottom no-repeat, url("../img/mountain.png") center;
 }
 .home h1{
     color: var(--black);
@@ -490,9 +490,10 @@ fieldset{
 CSS FOOTER
 ********************************************************/
 footer{
+    height: 279px;
     color: var(--dark-grey);
     text-align: center;
-    background: url("../resources/bgFOOTER.png");
+    background: url("../resources/bgFOOTER.png") bottom no-repeat;
 }
 footer a{
     color: var(--dark-grey);
