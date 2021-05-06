@@ -14,20 +14,20 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
+    <header class="container">
         <nav class="navbar">
             <div class="navbar_logo"><img src="img/logo.png" alt="Logo ROC Multisport"></div>
             <ul class="navbar_links">
                 <li class="navbar_link first"><a href="#home">accueil</a></li>
                 <li class="navbar_link second"><a href="#">nos activités</a>
-                <!-- <ul class="navbar_links">
-                    <li class="navbar_link"><a href="#bike">vttae</a></li>
-                    <li class="navbar_link"><a href="#paddle">paddle / kayak</a></li>
-                    <li class="navbar_link"><a href="#climbing">escalade / via ferrata</a></li>
-                    <li class="navbar_link"><a href="#archery">tir à l'arc</a></li>
-                    <li class="navbar_link"><a href="#snowboard">snowboard / splitboard</a></li>
-                    <li class="navbar_link"><a href="#cocktail">cocktail roc</a></li>
-                </ul> -->
+                    <ul class="navbar_activities">
+                        <li class="navbar_activity"><a href="#bike">vttae</a></li>
+                        <li class="navbar_activity"><a href="#paddle">paddle / kayak</a></li>
+                        <li class="navbar_activity"><a href="#climbing">escalade / via ferrata</a></li>
+                        <li class="navbar_activity"><a href="#archery">tir à l'arc</a></li>
+                        <li class="navbar_activity"><a href="#snowboard">snowboard / splitboard</a></li>
+                        <li class="navbar_activity"><a href="#cocktail">cocktail roc</a></li>
+                    </ul>
                 </li>    
                 <li class="navbar_link third"><a href="#testimony">témoignages</a></li>
                 <li class="navbar_link four"><a href="#footer">contact</a></li>
@@ -39,9 +39,9 @@
         </nav>
     </header>
 
-    <main>
+    <main class="container">
         <section id="home" class="home">
-            <h1>UN ENCADREMENT <span>MULTISPORT</span> ENTRE LAC ET MONTAGNE</h1>
+            <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
             <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagnes? ROC MULTISPORT est là pour vous!</p>
             <p>Venez découvrir nos activités outdoors, été comme hiver, avec des moniteurs passionnés et qualifiés. Composez vous même votre " cocktail d'activités ROC " à la journée ou sur un week-end complet. <span>Vivez votre propre excursion</span></p>
             <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !! Du lac d'Annecy aux sommet des Aravis, venez tester l'aventure: sensations et souvenirs garantis!</p>
@@ -93,9 +93,6 @@
                 </li>
             </ul>
         </section>
-        <div class="transition">
-            <img src="img/bg/transition_vtt.png" alt="">
-        </div>
         <section id="bike" class="bike green desktop">
             <h2>vttae</h2>
             <h3>vtt <span>à assistance Électrique</span></h3>
@@ -244,9 +241,6 @@
                 <a href="contact.phtml">contactez-nous</a>
             </div>
         </section>
-        <div class="transition">
-            <img src="img/bg/transition_climbing.png" alt="">
-        </div>
         <section id="climbing" class="climbing dark-grey desktop">
             <h2>escalade / via-ferrata</h2>
             <div class="left_bloc">
@@ -513,13 +507,13 @@
         <button class="scrollToTopBtn hide">⇧</button>
     </main>
 
-    <footer id="footer">
+    <footer id="footer" class="container">
         <img src="img/logo.png" alt="Logo ROC Multisport">
         <address>
             <p>165 route des Tappes<br>
                 74230 Dingy-Saint-Clair</p>
             <p>Tél. : 06 58 35 51 66</p>
-            <a href="mailto:roc.multisport@gmail.com">roc.multisport@gmail.com</a>
+            <p><a href="mailto:roc.multisport@gmail.com">roc.multisport@gmail.com</a></p>
         </address>
         <div class="network">
             <p>Retrouver-nous sur :</p>
