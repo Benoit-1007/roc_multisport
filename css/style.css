@@ -587,6 +587,7 @@ TABLET (min-width: 780px)
         justify-content: space-around;
         align-items: center;
         padding: 1rem;
+        font-size: 1.3rem;
         /* background: url("../resources/borderHEADER.png") bottom repeat-x; */
     }
     .burger{
@@ -605,7 +606,6 @@ TABLET (min-width: 780px)
     }
     .navbar_link > a{
         color: var(--black);
-        font-size: 1.3rem;
     }
     .navbar_link > a:hover{
         padding-left: 1rem;

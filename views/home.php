@@ -18,7 +18,7 @@
         <nav class="navbar">
             <div class="navbar_logo"><img src="img/logo.png" alt="Logo ROC Multisport"></div>
             <ul class="navbar_links">
-                <li class="navbar_link first"><a href="#home">accueil</a></li>
+                <li class="navbar_link first"><a href="#">accueil</a></li>
                 <li class="navbar_link second"><a href="#">nos activités</a>
                     <ul class="navbar_activities">
                         <li class="navbar_activity"><a href="#bike">vttae</a></li>
@@ -40,7 +40,7 @@
     </header>
 
     <main class="container">
-        <section id="home" class="home">
+        <section  id="home" class="home">
             <div class="background">
                 <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
                 <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagnes? ROC MULTISPORT est là pour vous!</p>
