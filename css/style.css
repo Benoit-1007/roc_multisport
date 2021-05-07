@@ -34,6 +34,7 @@ CSS COMMUM
     font-family: "DINRegular";
     src:url("font/DINRegular.ttf");
 } */
+
 * {
 	box-sizing: border-box; /* On spécifie que la largeur (width) de chaque boîte comprend le padding et la bordure (par défaut, c'est seulement la largeur du contenu) */
 }
@@ -174,7 +175,7 @@ header{
     height:100px;
     color: var(--black);
     font-family: DINBlack;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
 }
 .navbar_logo{
     max-width: 150px;
@@ -189,10 +190,11 @@ header{
     right:0;
     background: var(--white);
     margin:0;
-    transition: all 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out, background 1s ease-in-out;
 }
 .show_nav .navbar_links{
     width:100%;
+    background: url("../img/picto/picto_paddle.png")bottom no-repeat, var(--white);
 }
 .navbar_link{
     transform: translateX(101%);
@@ -209,6 +211,13 @@ header{
 .navbar_link > a:hover{
     padding-left: 2rem;
     letter-spacing: 0.5rem;
+}
+.navbar_activities{
+    background: none;
+    transition: all 1s ease-in-out;
+}
+.show_nav .navbar_activities{
+    background:  url("../img/picto/xsmall_picto_climbing.png")right no-repeat;
 }
 .navbar_activity > a{
     display: block;
@@ -322,21 +331,7 @@ CSS MAIN INDEX
 .home ul{
     display:none;
 }
-.blocVTTAE{
-    background: url("../resources/blocVTTAE.png");
-}
-.blocPADDLE{
-    background: url("../resources/blocPADDLE.png");
-}
-.blocESCALADE{
-    background: url("../resources/blocESCALADE.png");
-}
-.blocTIR{
-    background: url("../resources/blocTIR.png");
-}
-.blocSNOWBOARD{
-    background: url("../resources/blocSNOWBOARD.png");
-}
+
 /* section bike */
 .bike{
     background-color: var(--green);
@@ -446,7 +441,7 @@ CSS MAIN INDEX
     background-color: var(--cocktail);
     color: var(--white);
 }
-.cocktail .button a{
+.cocktail a{
     background: linear-gradient(90deg, var(--dark-grey) 30%, var(--green)50%, var(--blue)60%);
     color: transparent;
     background-clip: text;
@@ -711,14 +706,14 @@ DESKTOP (min-width: 980px)
     .home ul{
         display:flex;
         justify-content: space-between;
-        padding: 3rem 5rem 10rem;
+        padding: 3rem 5rem 14rem;
         margin-bottom: 0;
         /* height:50vh; */
     }
     .home li{
         position:relative;
         max-width: 15%;
-        height: 50vh;
+        height: 65vh;
     }
     .home img{
         height:80%;
@@ -728,34 +723,88 @@ DESKTOP (min-width: 980px)
         position: absolute;
         bottom:0;
         left: 10%;
-        width:80%;
-        height: 35%
+        width:85%;
+        height: 25%
     }
     .home li:nth-child(even) div{
         position: absolute;
         top:0;
         left: 10%;
-        width:80%;
-        height: 35%;
+        width:85%;
+        height: 25%;
     }
     .home li:nth-child(even) img{
         position: relative;
         top:20%;
     }
-    .home h2{
-        font-size: 2rem;
-        margin-bottom: 0; 
+    .blocVTTAE{
+        background: url("../resources/blocVTTAE.png") center no-repeat;
     }
-    .home a{
-        font-size: 1.2rem;
-        color:var(--white);
+    .blocVTTAE a{
+        font-size: 1rem;
+        color: var(--green);
+        background: var(--white);
+        border: 1px solid var(--white);
+        width: auto;
+    }
+    .blocPADDLE{
+        background: url("../resources/blocPADDLE.png") center no-repeat;
+    }
+    .blocPADDLE a{
+        font-size: 1rem;
+        color: var(--blue);
+        background: var(--white);
+        border: 1px solid var(--white);
+        width: auto;
+    }
+    .blocESCALADE{
+        background: url("../resources/blocESCALADE.png") center no-repeat;
+    }
+    .blocESCALADE a{
+        font-size: 1rem;
+        color: var(--dark-grey);
+        background: var(--white);
+        border: 1px solid var(--white);
+        width: auto;
+    }
+    .blocTIR{
+        background: url("../resources/blocTIR.png") center no-repeat;
+    }
+    .blocTIR a{
+        font-size: 1rem;
+        color: var(--green);
+        background: var(--white);
+        border: 1px solid var(--white);
+        width: auto;
+    }
+    .blocSNOWBOARD{
+        background: url("../resources/blocSNOWBOARD.png") center no-repeat;
+    }
+    .blocSNOWBOARD a{
+        font-size: 1rem;
+        color: var(--blue);
+        background: var(--white);
+        border: 1px solid var(--white);
+        width: auto;
+    }
+    .home .cocktail a{
+        font-size: 1rem;
+        color: var(--cocktail);
+        background: var(--white);
         border: 1px solid var(--white);
         width:auto;
+    }
+    .home h2{
+        font-size: 1.5rem;
+        margin-bottom: 0; 
     }
     .home div{
         display:flex;
         flex-direction: column;
         justify-content: space-between;
+    }
+    .home li > div{
+        padding: 0.5rem;
     }
     .desktop{
         display:flex;
@@ -805,7 +854,6 @@ FIN CSS MEDIA QUERIES
     border-radius: 50%;
     font-size: 2.5rem;
 }
-
 
 
 

@@ -42,57 +42,57 @@
     <main class="container">
         <section id="home" class="home">
             <div class="background">
-            <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
-            <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagnes? ROC MULTISPORT est là pour vous!</p>
-            <p>Venez découvrir nos activités outdoors, été comme hiver, avec des moniteurs passionnés et qualifiés. Composez vous même votre " cocktail d'activités ROC " à la journée ou sur un week-end complet. <span>Vivez votre propre excursion</span></p>
-            <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !! Du lac d'Annecy aux sommet des Aravis, venez tester l'aventure: sensations et souvenirs garantis!</p>
-            <ul>
-                <li>
-                    <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
-                    <div class="blocVTTAE">
-                        <h2>vttae</h2>
-                        <a href="#bike">en savoir +</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/home_kayak.jpeg" alt="Photo d'un homme en sortie paddle">
-                    <div class="blocPADDLE">
-                        <h2>paddle kayak</h2>
-                        <a href="#paddle">en savoir +</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/home_climbing.jpeg" alt="Photo d'une femme sur une falaise">
-                    <div class="blocESCALADE">
-                        <h2>escalade via ferrata</h2>
-                        <a href="#climbing">en savoir +</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/home_archery.jpeg" alt="Photo d'un arc">
-                    <div class="blocTIR">
-                        <h2>tir à l'arc</h2>
-                        <a href="#archery">en savoir +</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/home_snowboard.jpeg" alt="Photo d'un snowboarder">
-                    <div class="blocSNOWBOARD">
-                        <h2>snowboard splitboard</h2>
-                        <a href="#snowboard">en savoir +</a>
-                    </div>
-                </li>
-                <li>
-                    <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
-                    <!-- <div>
-                        COMPOSEZ LIBREMENT VOTE COCKTAIL D'ACTIVITÉS !
-                    </div> -->
-                    <div class="cocktail">
-                        <h2>c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</h2>
-                        <a href="#cocktail">en savoir +</a>
-                    </div>
-                </li>
-            </ul>
+                <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
+                <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagnes? ROC MULTISPORT est là pour vous!</p>
+                <p>Venez découvrir nos activités outdoors, été comme hiver, avec des moniteurs passionnés et qualifiés. Composez vous même votre " cocktail d'activités ROC " à la journée ou sur un week-end complet. <span>Vivez votre propre excursion</span></p>
+                <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !! Du lac d'Annecy aux sommet des Aravis, venez tester l'aventure: sensations et souvenirs garantis!</p>
+                <ul>
+                    <li>
+                        <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
+                        <div class="blocVTTAE">
+                            <h2>vttae</h2>
+                            <a href="#bike">en savoir +</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/home_kayak.jpeg" alt="Photo d'un homme en sortie paddle">
+                        <div class="blocPADDLE">
+                            <h2>paddle kayak</h2>
+                            <a href="#paddle">en savoir +</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/home_climbing.jpeg" alt="Photo d'une femme sur une falaise">
+                        <div class="blocESCALADE">
+                            <h2>escalade via ferrata</h2>
+                            <a href="#climbing">en savoir +</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/home_archery.jpeg" alt="Photo d'un arc">
+                        <div class="blocTIR">
+                            <h2>tir à l'arc</h2>
+                            <a href="#archery">en savoir +</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/home_snowboard.jpeg" alt="Photo d'un snowboarder">
+                        <div class="blocSNOWBOARD">
+                            <h2>snowboard splitboard</h2>
+                            <a href="#snowboard">en savoir +</a>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
+                        <!-- <div>
+                            COMPOSEZ LIBREMENT VOTE COCKTAIL D'ACTIVITÉS !
+                        </div> -->
+                        <div class="cocktail">
+                            <h2>c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</h2>
+                            <a href="#cocktail">en savoir +</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </section>
         <section id="bike" class="bike desktop">
