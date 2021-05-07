@@ -41,6 +41,7 @@
 
     <main class="container">
         <section id="home" class="home">
+            <div class="background">
             <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
             <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagnes? ROC MULTISPORT est là pour vous!</p>
             <p>Venez découvrir nos activités outdoors, été comme hiver, avec des moniteurs passionnés et qualifiés. Composez vous même votre " cocktail d'activités ROC " à la journée ou sur un week-end complet. <span>Vivez votre propre excursion</span></p>
@@ -48,35 +49,35 @@
             <ul>
                 <li>
                     <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
-                    <div class="green">
+                    <div class="blocVTTAE">
                         <h2>vttae</h2>
                         <a href="#bike">en savoir +</a>
                     </div>
                 </li>
                 <li>
                     <img src="img/home_kayak.jpeg" alt="Photo d'un homme en sortie paddle">
-                    <div class="blue">
+                    <div class="blocPADDLE">
                         <h2>paddle kayak</h2>
                         <a href="#paddle">en savoir +</a>
                     </div>
                 </li>
                 <li>
                     <img src="img/home_climbing.jpeg" alt="Photo d'une femme sur une falaise">
-                    <div class="dark-grey">
+                    <div class="blocESCALADE">
                         <h2>escalade via ferrata</h2>
                         <a href="#climbing">en savoir +</a>
                     </div>
                 </li>
                 <li>
                     <img src="img/home_archery.jpeg" alt="Photo d'un arc">
-                    <div class="green">
+                    <div class="blocTIR">
                         <h2>tir à l'arc</h2>
                         <a href="#archery">en savoir +</a>
                     </div>
                 </li>
                 <li>
                     <img src="img/home_snowboard.jpeg" alt="Photo d'un snowboarder">
-                    <div class="blue">
+                    <div class="blocSNOWBOARD">
                         <h2>snowboard splitboard</h2>
                         <a href="#snowboard">en savoir +</a>
                     </div>
@@ -86,14 +87,15 @@
                     <!-- <div>
                         COMPOSEZ LIBREMENT VOTE COCKTAIL D'ACTIVITÉS !
                     </div> -->
-                    <div class="roc">
+                    <div class="cocktail">
                         <h2>c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</h2>
                         <a href="#cocktail">en savoir +</a>
                     </div>
                 </li>
             </ul>
+            </div>
         </section>
-        <section id="bike" class="bike green desktop">
+        <section id="bike" class="bike desktop">
             <h2>vttae</h2>
             <h3>vtt <span>à assistance Électrique</span></h3>
             <div class='left_bloc'>
@@ -241,7 +243,7 @@
                 <a href="contact.phtml">contactez-nous</a>
             </div>
         </section>
-        <section id="climbing" class="climbing dark-grey desktop">
+        <section id="climbing" class="climbing desktop">
             <h2>escalade / via-ferrata</h2>
             <div class="left_bloc">
                 <div class="slider">
@@ -378,7 +380,7 @@
         <div class="transition">
             <img src="img/bg/transition_snowboard.png" alt="">
         </div>
-        <section id="snowboard" class="snowboard blue desktop">
+        <section id="snowboard" class="snowboard desktop">
             <h2>snowboard / splitboard</h2>
             <div class="left_bloc">
                 <div class="slider">
@@ -451,7 +453,7 @@
         <div class="transition">
             <img src="img/bg/transition_cocktail.png" alt="">
         </div>
-        <section id="cocktail" class="roc cocktail desktop">
+        <section id="cocktail" class="cocktail desktop">
             <h2>
             c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> d'activités <span>r</span><span>o</span><span>c</span>
             </h2>
@@ -502,6 +504,16 @@
         </div>
         <section id="testimony" class="testimony">
             <h2>témoignages</h2>
+            <div class="bloc">
+                <div class="slider">
+                    <div>"temoignage 1"</div>
+                    <div>"temoignage 2"</div>
+                    <div>"temoignage 3"</div>
+                </div>
+                <div class="button">
+                    <a href="testimony.phtml" title="Consultez les témoignages de tous nos clients en cliquant içi !">tous les témoignages </a>
+                </div>
+            </div>
         </section>
 
         <button class="scrollToTopBtn hide">⇧</button>
@@ -513,12 +525,12 @@
             <p>165 route des Tappes<br>
                 74230 Dingy-Saint-Clair</p>
             <p>Tél. : 06 58 35 51 66</p>
-            <p><a href="mailto:roc.multisport@gmail.com">roc.multisport@gmail.com</a></p>
+            <p><a href="mailto:roc.multisport@gmail.com" title="Cliquez içi pour nous contacter">roc.multisport@gmail.com</a></p>
         </address>
         <div class="network">
             <p>Retrouver-nous sur :</p>
-            <a href="#" class="fab fa-facebook-square"></a>
-            <a href="#" class="fab fa-instagram-square"></a>
+            <a href="#" class="fab fa-facebook-square" title="Envie de découvrir notre page facebook? Cliquez içi !"></a>
+            <a href="#" class="fab fa-instagram-square" title="Pour découvrir d'autres photos de nos acivités, cliquez içi !"></a>
         </div>
     </footer>
 

@@ -18,7 +18,7 @@ CSS COMMUM
 /* fin de déclaration de variables CSS */
 
 /* déclaration font */
-@font-face{
+/* @font-face{
     font-family: "DINBlack";
     src:url("font/DINBlack.ttf");
 }
@@ -33,7 +33,7 @@ CSS COMMUM
 @font-face{
     font-family: "DINRegular";
     src:url("font/DINRegular.ttf");
-}
+} */
 * {
 	box-sizing: border-box; /* On spécifie que la largeur (width) de chaque boîte comprend le padding et la bordure (par défaut, c'est seulement la largeur du contenu) */
 }
@@ -42,7 +42,7 @@ html {
     /* scroll-behavior: "smooth"; */
 }
 body{
-    background-color: var(--soft-grey);
+    background-color: var(--white);
     font-family: DINRegular;
     font-size:1.2rem;
     color:var(--white);
@@ -108,11 +108,11 @@ table{
     width:100%;
 }
 th{
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--white);
     padding: 0.5em;
 }
 td{
-    border-top: 1px solid #fff;
+    border-top: 1px solid var(--white);
     padding: 0.5em;
 }
 .paddle th,
@@ -128,9 +128,9 @@ td{
 .button a, .home a{
     font-family: DINMedium;
     font-size: 1.5rem;
-    border-radius: 2rem;
-    width:20rem;
     text-align: center;
+    border-radius: 3rem;
+    width:20rem;
     padding: 1rem;
     margin:1rem;
     transition: transform 1s;
@@ -145,25 +145,13 @@ td{
     margin-top: -1.5rem;
     /* margin-bottom: -1rem; */
 }
-.green{
-    background-color: var(--green);
-}
-.blue{
-    background-color: var(--blue);
-}
-.dark-grey{
-    background-color: var(--dark-grey);
-}
-.roc{
-    background-color: var(--cocktail);
-}
-.roc span:nth-child(3n+1){
+.cocktail span:nth-child(3n+1){
     color:var(--dark-grey);
 }
-.roc span:nth-child(3n+2){
+.cocktail span:nth-child(3n+2){
     color:var(--green);
 }
-.roc span:nth-child(3n+3){
+.cocktail span:nth-child(3n+3){
     color:var(--blue);
 }
 /********************************************************
@@ -176,7 +164,7 @@ CSS HEADER
 header{
     position: sticky;
     top: 0;
-    background: url('../resources/bgHEADER.png') bottom;
+    background: url('../resources/borderHEADER.png') bottom repeat-x, var(--white);
     z-index: 100;
 }
 .navbar{
@@ -305,10 +293,15 @@ FIN CSS HEADER
 CSS MAIN INDEX
 ********************************************************/
 /* section home */
+.home .background{
+    background: url('../resources/transitionVTT.png')bottom no-repeat;
+    background-size: 100%;
+}
 .home{
     text-align:center;
     padding: 0;
-    background:  url('../resources/transitionVTT.png')bottom no-repeat, url("../img/mountain.png") center;
+    margin-top: 0;
+    background: url("../img/mountain.png") center no-repeat;
 }
 .home h1{
     color: var(--black);
@@ -329,7 +322,25 @@ CSS MAIN INDEX
 .home ul{
     display:none;
 }
+.blocVTTAE{
+    background: url("../resources/blocVTTAE.png");
+}
+.blocPADDLE{
+    background: url("../resources/blocPADDLE.png");
+}
+.blocESCALADE{
+    background: url("../resources/blocESCALADE.png");
+}
+.blocTIR{
+    background: url("../resources/blocTIR.png");
+}
+.blocSNOWBOARD{
+    background: url("../resources/blocSNOWBOARD.png");
+}
 /* section bike */
+.bike{
+    background-color: var(--green);
+}
 .bike h2{
     margin-bottom: 0.5rem;
 }
@@ -340,7 +351,7 @@ CSS MAIN INDEX
     text-transform: lowercase;
 }    
 .bike .price h3{
-    background-color: #fff;
+    background-color: var(--white);
     color: var(--green);
 }
 .bike .button a{
@@ -351,7 +362,8 @@ CSS MAIN INDEX
 /* section paddle */
 .paddle{
     color:var(--dark-grey);
-    background: url('../resources/transitionESCALADE.png')bottom no-repeat;
+    background: url('../resources/transitionESCALADE.png')bottom no-repeat, var(--soft-grey);
+    background-size: 100%;
     padding-bottom: 8rem;
 }
 .paddle h2, .paddle h3{
@@ -363,7 +375,7 @@ CSS MAIN INDEX
     padding: 1rem;
 }
 .paddle .price h3{
-    background-color: #fff;
+    background-color: var(--white);
 }
 .paddle .button a{
     color:var(--blue);
@@ -371,12 +383,15 @@ CSS MAIN INDEX
 }
 
 /* section climbing */
+.climbing{
+    background-color: var(--dark-grey);
+}
 .climbing h3{
     color:var(--green);
 }
 .climbing .price h3{
     color:var(--dark-grey);
-    background-color: #fff;
+    background-color: var(--white);
 }
 .climbing .button a{
     color:var(--white);
@@ -386,6 +401,7 @@ CSS MAIN INDEX
 /* section archery */
 .archery{
     color:var(--dark-grey);
+    background: var(--soft-grey);
 }
 .archery h2{
     color:var(--green);
@@ -396,7 +412,7 @@ CSS MAIN INDEX
     padding: 1rem;
 }
 .archery .price h3{
-    background-color: #fff;
+    background-color: var(--white);
     color: var(--green);
 }
 .archery .button a{
@@ -405,8 +421,11 @@ CSS MAIN INDEX
 }
 
 /* section snowboard */
+.snowboard{
+    background-color: var(--blue);
+}
 .snowboard h3{
-    background-color: #fff;
+    background-color: var(--white);
     color: var(--blue);
 }
 .snowboard .button a{
@@ -415,8 +434,11 @@ CSS MAIN INDEX
 }
 
 /* section cocktail */
+.cocktail{
+    background-color: var(--cocktail);
+}
 .cocktail .price{
-    background-color: #fff;
+    background-color: var(--white);
     color: var(--dark-grey);
     padding: 1rem;
 }
@@ -431,23 +453,53 @@ CSS MAIN INDEX
     -webkit-background-clip: text;
     border: 2px solid var(--green);
 }
-.roc .table th{
+.cocktail .table th{
     color: var(--dark-grey);
     border-bottom: 2px solid var(--dark-grey);
 }
-.roc .table td{
+.cocktail .table td{
     border-bottom: 2px solid var(--green);
 } 
-.roc .table td span{
+.cocktail .table td span{
     color: var(--green);
 }
-.roc .table tr:last-of-type td{
+.cocktail .table tr:last-of-type td{
     border-bottom: 2px solid var(--blue);
 } 
-.roc .table tr:last-of-type td span{
+.cocktail .table tr:last-of-type td span{
     color: var(--blue);
 }
 
+/* section testimony */
+.testimony{
+    background: url('../resources/bgTEMOIGNAGES.png') center no-repeat, var(--cocktail);
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 70vh;
+    padding: 0;
+}
+.testimony h2{
+    color:var(--cocktail);
+}
+.testimony .bloc{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color:var(--white);
+    text-align: center;
+    background-color: rgba(0, 33, 54, 0.7);
+    width: 80%;
+    margin: 0 auto;
+    height: 25vh;
+    border-radius: 4rem;
+}
+.testimony a{
+    color: var(--white);
+    border: 2px solid var(--white);
+    width:unset;
+    padding: 1rem 3rem;
+}
 /********************************************************
 FIN CSS MAIN INDEX
 ********************************************************/
@@ -490,10 +542,11 @@ fieldset{
 CSS FOOTER
 ********************************************************/
 footer{
-    height: 279px;
     color: var(--dark-grey);
     text-align: center;
     background: url("../resources/bgFOOTER.png") bottom no-repeat;
+    background-size: 100%;
+    padding-bottom: 5rem;
 }
 footer a{
     color: var(--dark-grey);
@@ -527,6 +580,10 @@ SMALL MOBILE (max-width: 450px)
 TABLET (min-width: 780px)
 ********************************************************/
 @media screen and (min-width:780px){
+    header{
+        background: url('../resources/bgHEADER.png') bottom no-repeat, var(--white);
+        background-size: 100%;
+    }
     .navbar_logo{
         max-width: 160px;
     }
@@ -545,6 +602,7 @@ TABLET (min-width: 780px)
         position: unset;
         width: unset;
         height: unset;
+        background: unset;
     }
     .navbar_link{
         padding:0 1rem;
@@ -583,6 +641,8 @@ TABLET (min-width: 780px)
         display:none;
         position: absolute;
         background: var(--white);
+        border: 1px solid var(--white);
+        border-radius: 0 0 30px 30px;
         /* max-height: 0;
         overflow: hidden; */
         transition: display 1.5s;
@@ -614,14 +674,19 @@ TABLET (min-width: 780px)
         display:table-cell;
     }
     footer{
+        height: 25rem;
         display:flex;
-        justify-content:space-around;
+        justify-content: flex-start;
         align-items: center;
         text-align: left;
         padding-bottom: 4rem;
     }
     footer img{
-        max-width: 250px;
+        max-width: 240px;
+        margin: auto 6rem;
+    }
+    footer address{
+        margin-right: 12rem;
     }
     footer p{
         margin: 0;
@@ -718,6 +783,11 @@ DESKTOP (min-width: 980px)
     }
     .desktop-button{
         display:flex;
+    }
+    .testimony .bloc{
+        width: 50%;
+        margin: unset;
+        border-radius: 0 4rem 4rem 0;
     }
 }
 
