@@ -16,7 +16,7 @@
 <body>
     <header class="container">
         <nav class="navbar">
-            <div class="navbar_logo"><img src="img/logo.png" alt="Logo ROC Multisport"></div>
+            <div class="navbar_logo"><img src="resources/logoRocMultisport.png" alt="Logo ROC Multisport"></div>
             <ul class="navbar_links">
                 <li class="navbar_link first"><a href="#">accueil</a></li>
                 <li class="navbar_link second"><a href="#">nos activités</a>
@@ -48,46 +48,56 @@
                 <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !! Du lac d'Annecy aux sommet des Aravis, venez tester l'aventure: sensations et souvenirs garantis!</p>
                 <ul>
                     <li>
-                        <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
-                        <div class="blocVTTAE">
+                        <div class="img">
+                            <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
+                        </div>    
+                        <div class="blocVTTAE text">
                             <h2>vttae</h2>
                             <a href="#bike">en savoir +</a>
                         </div>
                     </li>
                     <li>
-                        <img src="img/home_kayak.jpeg" alt="Photo d'un homme en sortie paddle">
-                        <div class="blocPADDLE">
+                        <div class="img">
+                            <img src="img/home_kayak.jpeg" alt="Photo d'un homme en sortie paddle">
+                        </div>    
+                        <div class="blocPADDLE text">
                             <h2>paddle kayak</h2>
                             <a href="#paddle">en savoir +</a>
                         </div>
                     </li>
                     <li>
-                        <img src="img/home_climbing.jpeg" alt="Photo d'une femme sur une falaise">
-                        <div class="blocESCALADE">
+                        <div class="img">
+                            <img src="img/home_climbing.jpeg" alt="Photo d'une femme sur une falaise">
+                        </div>    
+                        <div class="blocESCALADE text">
                             <h2>escalade via ferrata</h2>
                             <a href="#climbing">en savoir +</a>
                         </div>
                     </li>
                     <li>
-                        <img src="img/home_archery.jpeg" alt="Photo d'un arc">
-                        <div class="blocTIR">
+                        <div class="img">
+                            <img src="img/home_archery.jpeg" alt="Photo d'un arc">
+                        </div>    
+                        <div class="blocTIR text">
                             <h2>tir à l'arc</h2>
                             <a href="#archery">en savoir +</a>
                         </div>
                     </li>
                     <li>
-                        <img src="img/home_snowboard.jpeg" alt="Photo d'un snowboarder">
-                        <div class="blocSNOWBOARD">
+                        <div class="img">
+                            <img src="img/home_snowboard2.jpeg" alt="Photo d'un snowboarder">
+                        </div>    
+                        <div class="blocSNOWBOARD text">
                             <h2>snowboard splitboard</h2>
                             <a href="#snowboard">en savoir +</a>
                         </div>
                     </li>
                     <li>
-                        <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
-                        <!-- <div>
-                            COMPOSEZ LIBREMENT VOTE COCKTAIL D'ACTIVITÉS !
-                        </div> -->
-                        <div class="cocktail">
+                        <div class="cocktailBottom img">
+                            <img src="resources/cocktailROC.png" alt="">
+                            <p>COMPOSEZ LIBREMENT VOTE <span>COCKTAIL D'ACTIVITÉS!</span></p>
+                        </div>
+                        <div class="cocktail text">
                             <h2>c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</h2>
                             <a href="#cocktail">en savoir +</a>
                         </div>
@@ -191,11 +201,11 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>65€/personne</td>
+                                <td>55€/personne</td>
                             </tr>
                             <tr>
                                 <td>1 journée</td>
-                                <td>110€/personne</td>
+                                <td>100€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -223,7 +233,7 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>60€/personne</td>
+                                <td>50€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -260,7 +270,7 @@
                 <article>
                     <h3>escalade</h3>
                     <p>L'escalade vous offrira la possibilité, au contact du rocher, de vous dépasser, de tester votre confiance en vous et surtout d'observer un paysage époustouflant !</p>
-                    <p>Du bébutant à l'initié, il existe de nombreux lieux de pratique autour d'Annecy. Prendre de la hauteur sur les falaises école du mont Veyrier, vaincre le jeu d'équilibre de la dalle du Roc des Boeufs ou affronter la verticalité des parois du Parmelan; venez découvrir avec ROC MULTISPORT une activité grisante dans un environnement calme et majestueux !</p>
+                    <p>Du débutant à l'initié, il existe de nombreux lieux de pratique autour d'Annecy. Prendre de la hauteur sur les falaises école du mont Veyrier, vaincre le jeu d'équilibre de la dalle du Roc des Boeufs ou affronter la verticalité des parois du Parmelan; venez découvrir avec ROC MULTISPORT une activité grisante dans un environnement calme et majestueux !</p>
                 </article>
                 <article class="price">
                     <h3>tarifs escalade </h3>
@@ -357,7 +367,7 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>50€/personne</td>
+                                <td>45€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 12 personnes maximum, activités disponible à partir de 6 particpants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
@@ -485,11 +495,11 @@
                             </tr>
                             <tr>
                                 <td><span>ROC Day</span><br>2 activités différentes au choix<br></td>
-                                <td>à partir de 105€/personne</td>
+                                <td>à partir de 100€/personne</td>
                             </tr>
                             <tr>
                                 <td><span>ROC Week-end</span><br>jusqu'à 4 activités différentes au choix</td>
-                                <td>à partir de 220€/personne</td>
+                                <td>à partir de 210€/personne</td>
                             </tr>
                         </table>
                     </div>    
@@ -520,7 +530,7 @@
     </main>
 
     <footer id="footer" class="container">
-        <img src="img/logo.png" alt="Logo ROC Multisport">
+        <img src="resources/logoRocMultisport.png" alt="Logo ROC Multisport">
         <address>
             <p>165 route des Tappes<br>
                 74230 Dingy-Saint-Clair</p>

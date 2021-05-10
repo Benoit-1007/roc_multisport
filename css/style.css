@@ -18,22 +18,22 @@ CSS COMMUM
 /* fin de déclaration de variables CSS */
 
 /* déclaration font */
-/* @font-face{
-    font-family: "DINBlack";
-    src:url("font/DINBlack.ttf");
+@font-face{
+    font-family: "DIN-Black";
+    src:url("font/DIN-Black.ttf");
 }
 @font-face{
-    font-family: "DINBold";
-    src:url("font/DINBold.ttf");
+    font-family: "DIN-Bold";
+    src:url("font/DIN-Bold.woff");
 }
 @font-face{
-    font-family: "DINMedium";
-    src:url("font/DINMedium.ttf");
+    font-family: "DIN-Medium";
+    src:url("font/DIN-Medium.woff");
 }
 @font-face{
-    font-family: "DINRegular";
-    src:url("font/DINRegular.ttf");
-} */
+    font-family: "DIN-Regular";
+    src:url("font/DIN-Regular.woff");
+}
 
 * {
 	box-sizing: border-box; /* On spécifie que la largeur (width) de chaque boîte comprend le padding et la bordure (par défaut, c'est seulement la largeur du contenu) */
@@ -44,11 +44,12 @@ html {
 }
 body{
     background-color: var(--white);
-    font-family: DINRegular;
-    font-size:1.2rem;
+    font-family: DIN-Regular;
+    font-size:1.8rem;
     color:var(--white);
     text-align:justify;
     line-height: 1.5;
+    margin: 0;
 }
 .container{
     max-width: 1200px;
@@ -60,7 +61,7 @@ main{
 section{
     padding-left: 5rem;
     padding-right: 5rem;
-    margin-top:-1rem;
+    margin-top:-2rem;
 }
 img{
     max-width:100%;
@@ -69,12 +70,12 @@ h1, h2, h3, a{
     text-transform: uppercase;
 }
 h1{
-    font-family: DINBlack;
-    font-size: 2rem;
+    font-family: DIN-Black;
+    font-size: 2.5rem;
     margin-top: 0;
 }
 h2{
-    font-family: DINBlack;
+    font-family: DIN-Black;
     font-size: 3.6rem;
     text-align: center;
     margin-top:0;
@@ -82,9 +83,10 @@ h2{
     padding: 0.5rem;
 }
 h3{
-    font-family: DINBold;
+    font-family: DIN-Bold;
     font-size: 2rem;
     margin-top:0;
+    vertical-align: middle; 
 }
 .price{
     margin-bottom: 2rem;
@@ -127,7 +129,7 @@ td{
     margin: 1rem auto;
 }
 .button a, .home a{
-    font-family: DINMedium;
+    font-family: DIN-Medium;
     font-size: 1.5rem;
     text-align: center;
     border-radius: 3rem;
@@ -155,6 +157,11 @@ td{
 .cocktail span:nth-child(3n+3){
     color:var(--blue);
 }
+section:target {
+    padding-top: 10rem; 
+    margin-top: -10rem; 
+}
+
 /********************************************************
 FIN CSS COMMUM
 ********************************************************/
@@ -174,8 +181,9 @@ header{
     align-items: center;
     height:100px;
     color: var(--black);
-    font-family: DINBlack;
+    font-family: DIN-Black;
     font-size: 1.8rem;
+    padding: 0 5rem
 }
 .navbar_logo{
     max-width: 150px;
@@ -320,7 +328,7 @@ CSS MAIN INDEX
     color: var(--blue);
 }
 .home p{
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     color: var(--dark-grey);
     width: 70%;
     margin: 1rem auto; 
@@ -584,9 +592,9 @@ TABLET (min-width: 780px)
     }
     .navbar{
         display:flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
-        padding: 1rem;
+        /* margin: 0 5rem; */
         font-size: 1.3rem;
         /* background: url("../resources/borderHEADER.png") bottom repeat-x; */
     }
@@ -646,6 +654,12 @@ TABLET (min-width: 780px)
         /* max-height: 20em; */
         display: block;
     }
+    .fifth{
+        padding-right: 0;
+    }
+    .fifth a{
+        padding-right: 0;
+    }
     .description{
         display:flex;
         flex-direction: column;
@@ -697,6 +711,9 @@ TABLET (min-width: 780px)
 DESKTOP (min-width: 980px)
 ********************************************************/
 @media screen and (min-width:980px){
+    .navbar{
+        padding: 0 10rem;
+    }
     .navbar_link > a{
         font-size: 1.4rem;
     }
@@ -706,39 +723,42 @@ DESKTOP (min-width: 980px)
     .home ul{
         display:flex;
         justify-content: space-between;
-        padding: 3rem 5rem 14rem;
+        padding: 3rem 10rem 14rem;
         margin-bottom: 0;
-        /* height:50vh; */
     }
     .home li{
         position:relative;
         max-width: 15%;
         height: 65vh;
     }
-    .home img{
+    .home .img{
         height:80%;
-        object-fit:cover;
     }
-    .home li:nth-child(odd) div{
+    .home img{
+        object-fit:cover;
+        height:100%
+    }
+    .home li:nth-child(odd) .text{
         position: absolute;
         bottom:0;
-        left: 10%;
-        width:85%;
-        height: 25%
+        left: 5%;
+        width:90%;
+        height: 30%;
     }
-    .home li:nth-child(even) div{
+    .home li:nth-child(even) .text{
         position: absolute;
         top:0;
-        left: 10%;
-        width:85%;
-        height: 25%;
+        left: 5%;
+        width:90%;
+        height: 30%;
     }
-    .home li:nth-child(even) img{
+    .home li:nth-child(even) .img{
         position: relative;
         top:20%;
     }
     .blocVTTAE{
-        background: url("../resources/blocVTTAE.png") center no-repeat;
+        background: url("../resources/blocVTTAE.png") no-repeat;
+        background-size: cover;
     }
     .blocVTTAE a{
         font-size: 1rem;
@@ -747,8 +767,10 @@ DESKTOP (min-width: 980px)
         border: 1px solid var(--white);
         width: auto;
     }
+    
     .blocPADDLE{
-        background: url("../resources/blocPADDLE.png") center no-repeat;
+        background: url("../resources/blocPADDLE.png") no-repeat;
+        background-size: cover;
     }
     .blocPADDLE a{
         font-size: 1rem;
@@ -758,7 +780,8 @@ DESKTOP (min-width: 980px)
         width: auto;
     }
     .blocESCALADE{
-        background: url("../resources/blocESCALADE.png") center no-repeat;
+        background: url("../resources/blocESCALADE.png") no-repeat;
+        background-size: cover;
     }
     .blocESCALADE a{
         font-size: 1rem;
@@ -768,7 +791,8 @@ DESKTOP (min-width: 980px)
         width: auto;
     }
     .blocTIR{
-        background: url("../resources/blocTIR.png") center no-repeat;
+        background: url("../resources/blocTIR.png") no-repeat;
+        background-size: cover;
     }
     .blocTIR a{
         font-size: 1rem;
@@ -778,7 +802,8 @@ DESKTOP (min-width: 980px)
         width: auto;
     }
     .blocSNOWBOARD{
-        background: url("../resources/blocSNOWBOARD.png") center no-repeat;
+        background: url("../resources/blocSNOWBOARD.png") no-repeat;
+        background-size: cover;
     }
     .blocSNOWBOARD a{
         font-size: 1rem;
@@ -794,18 +819,30 @@ DESKTOP (min-width: 980px)
         border: 1px solid var(--white);
         width:auto;
     }
-    .home h2{
-        font-size: 1.5rem;
-        margin-bottom: 0; 
+    .cocktailBottom p{
+        position: absolute;
+        bottom: 180px;
+        width:84%;
+        left:8%;
+        color: var(--white);
+        font-size: 1.8rem
     }
-    .home div{
+    .cocktailBottom span{
+        color: var(--green);
+    }
+    .home h2{
+        font-size: 2rem;
+        margin-bottom: 0;
+        padding: 0 1rem;
+    }
+    .home .text{
         display:flex;
         flex-direction: column;
         justify-content: space-between;
     }
-    .home li > div{
+    /* .home li > .text{
         padding: 0.5rem;
-    }
+    } */
     .desktop{
         display:flex;
         flex-wrap: wrap;
@@ -854,7 +891,3 @@ FIN CSS MEDIA QUERIES
     border-radius: 50%;
     font-size: 2.5rem;
 }
-
-
-
-
