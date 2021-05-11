@@ -5,15 +5,15 @@ CSS COMMUM
 
 /* déclaration de variables CSS */
 :root {
-    --white: #EDEDED;
-    --black: #000;
-    --dark-grey: #565656;
-    --soft-grey: #e5e2e2;
-    --green: #009641;
-    --soft-green: #20a459;
-    --blue: #0375be;
-    --soft-blue: #2187c6;
-    --cocktail: #002136;
+    --clearColor: #EDEDED;
+    --darkColor: #000;
+    --background: #e5e2e2;
+    --rocColorR: #565656;
+    --rocColorO: #009641;
+    --rocColorC: #0375be;
+    --cocktailColor: #002136;
+    /* --soft-grey: #20a459; */
+    /* --soft-blue: #2187c6; */
 }
 /* fin de déclaration de variables CSS */
 
@@ -36,32 +36,31 @@ CSS COMMUM
 }
 
 * {
-	box-sizing: border-box; /* On spécifie que la largeur (width) de chaque boîte comprend le padding et la bordure (par défaut, c'est seulement la largeur du contenu) */
+	box-sizing: border-box; 
 }
 html {
 	font-size: 62.5%; /* 1rem = 10px */
-    /* scroll-behavior: "smooth"; */
 }
 body{
-    background-color: var(--white);
+    background-color: var(--background);
     font-family: DIN-Regular;
     font-size:1.8rem;
-    color:var(--white);
+    color:var(--clearColor);
     text-align:justify;
     line-height: 1.5;
     margin: 0;
 }
 .container{
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
 }
 main{
     margin:0 auto;
 }
 section{
-    padding-left: 5rem;
-    padding-right: 5rem;
-    margin-top:-2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top:-0.5rem;
 }
 img{
     max-width:100%;
@@ -84,9 +83,8 @@ h2{
 }
 h3{
     font-family: DIN-Bold;
-    font-size: 2rem;
-    margin-top:0;
-    vertical-align: middle; 
+    /* font-size: 2rem; */
+    /* vertical-align: middle;  */
 }
 .price{
     margin-bottom: 2rem;
@@ -111,12 +109,15 @@ table{
     width:100%;
 }
 th{
-    border-bottom: 2px solid var(--white);
+    border-bottom: 2px solid var(--clearColor);
     padding: 0.5em;
 }
 td{
-    border-top: 1px solid var(--white);
+    border-top: 1px solid var(--clearColor);
     padding: 0.5em;
+}
+.tablePrice{
+    text-align: right;
 }
 .paddle th,
 .climbing th,
@@ -146,21 +147,21 @@ td{
 }
 .transition{
     margin-top: -1.5rem;
-    /* margin-bottom: -1rem; */
+    margin-bottom: -1rem;
 }
 .cocktail span:nth-child(3n+1){
-    color:var(--dark-grey);
+    color:var(--rocColorR);
 }
 .cocktail span:nth-child(3n+2){
-    color:var(--green);
+    color:var(--rocColorO);
 }
 .cocktail span:nth-child(3n+3){
-    color:var(--blue);
+    color:var(--rocColorC);
 }
-section:target {
+/* section:target {
     padding-top: 10rem; 
     margin-top: -10rem; 
-}
+} */
 
 /********************************************************
 FIN CSS COMMUM
@@ -172,20 +173,20 @@ CSS HEADER
 header{
     position: sticky;
     top: 0;
-    background: url('../resources/borderHEADER.png') bottom repeat-x, var(--white);
+    background: url('../resources/borderHEADER.png') bottom repeat-x, var(--background);
     z-index: 100;
 }
 .navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height:100px;
-    color: var(--black);
+    height:10rem;
+    color: var(--darkColor);
     font-family: DIN-Black;
     font-size: 1.8rem;
-    padding: 0 5rem
+    padding: 0 2rem
 }
-.navbar_logo{
+.logo{
     max-width: 150px;
 }
 .navbar_links{
@@ -196,13 +197,13 @@ header{
     position: absolute;
     top:68px;
     right:0;
-    background: var(--white);
+    background: var(--background);
     margin:0;
     transition: width 0.5s ease-in-out, background 1s ease-in-out;
 }
 .show_nav .navbar_links{
     width:100%;
-    background: url("../img/picto/picto_paddle.png")bottom no-repeat, var(--white);
+    background: url("../img/picto/picto_paddle.png")bottom no-repeat, var(--background);
 }
 .navbar_link{
     transform: translateX(101%);
@@ -212,7 +213,7 @@ header{
 }
 .navbar_link > a{
     display: block;
-    color: var(--black);
+    color: var(--darkColor);
     padding: 1rem;
     transition: all 0.4s ease-in-out;
 }
@@ -227,17 +228,28 @@ header{
 .show_nav .navbar_activities{
     background:  url("../img/picto/xsmall_picto_climbing.png")right no-repeat;
 }
-.navbar_activity > a{
+.navbar_activity a{
     display: block;
-    color: var(--black);
     width: max-content;
     padding: 1rem 5rem;
     transition: all 0.4s ease-in-out;
 }
-.navbar_activity > a:hover{
+.navbar_activities li:nth-child(2n+1) a{
+    color: var(--rocColorO)
+}       
+.navbar_activities li:nth-child(2n+2) a{
+    color: var(--rocColorC)
+}       
+.navbar_activities li:nth-child(3) a{
+    color: var(--rocColorR)
+}       
+.navbar_activities li:last-of-type a{
+    color: var(--cocktailColor);
+    background-color: var(--background);
+}       
+.navbar_activities a:hover{
     padding-left: 6rem;
     letter-spacing: 0.5rem;
-    color: var(--green);
 }
 /* toggle menu */
 .burger{
@@ -254,7 +266,7 @@ header{
     display: block;
     width: 45px;
     height: 4px;
-    background: var(--black);
+    background: var(--darkColor);
     border-radius: 3px;
     transition: all 0.5s ease-in-out;
 }
@@ -268,7 +280,7 @@ header{
     left: 0;
     width: 45px;
     height: 4px;
-    background: var(--black);
+    background: var(--darkColor);
     border-radius: 3px;
     transition: all 0.5s ease-in-out;
 }
@@ -321,20 +333,21 @@ CSS MAIN INDEX
     background: url("../img/mountain.png") center no-repeat;
 }
 .home h1{
-    color: var(--black);
+    color: var(--darkColor);
     padding-top: 2rem;
 }
 .home h1 span{
-    color: var(--blue);
+    color: var(--rocColorC);
 }
 .home p{
     font-size: 1.8rem;
-    color: var(--dark-grey);
-    width: 70%;
-    margin: 1rem auto; 
+    color: var(--rocColorR);
+    padding: 0 2rem
+    /* padding-top: 1rem; */
 }
 .home p:last-of-type{
     padding-bottom: 10rem;
+    margin-bottom: -0.5rem;
 }
 .home ul{
     display:none;
@@ -342,10 +355,13 @@ CSS MAIN INDEX
 
 /* section bike */
 .bike{
-    background-color: var(--green);
+    background-color: var(--rocColorO);
 }
 .bike h2{
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
+}
+.bike h3{
+    margin-top: 0;
 }
 .bike h2 + h3{
     text-align: center;
@@ -354,128 +370,128 @@ CSS MAIN INDEX
     text-transform: lowercase;
 }    
 .bike .price h3{
-    background-color: var(--white);
-    color: var(--green);
+    background-color: var(--clearColor);
+    color: var(--rocColorO);
 }
 .bike .button a{
-    color:var(--white);
-    border: 2px solid var(--white);
+    color:var(--clearColor);
+    border: 2px solid var(--clearColor);
 }
 
 /* section paddle */
 .paddle{
-    color:var(--dark-grey);
-    background: url('../resources/transitionESCALADE.png')bottom no-repeat, var(--soft-grey);
+    color:var(--rocColorR);
+    background: url('../resources/transitionESCALADE.png')bottom no-repeat, var(--background);
     background-size: 100%;
     padding-bottom: 8rem;
 }
 .paddle h2, .paddle h3{
-    color:var(--blue);
+    color:var(--rocColorC);
 }
 .paddle .price{
-    background-color: var(--blue);
-    color: var(--white);
+    background-color: var(--rocColorC);
+    color: var(--clearColor);
     padding: 1rem;
 }
 .paddle .price h3{
-    background-color: var(--white);
+    background-color: var(--clearColor);
 }
 .paddle .button a{
-    color:var(--blue);
-    border: 2px solid var(--blue);
+    color:var(--rocColorC);
+    border: 2px solid var(--rocColorC);
 }
 
 /* section climbing */
 .climbing{
-    background-color: var(--dark-grey);
+    background-color: var(--rocColorR);
 }
 .climbing h3{
-    color:var(--green);
+    color:var(--rocColorO);
 }
 .climbing .price h3{
-    color:var(--dark-grey);
-    background-color: var(--white);
+    color:var(--rocColorR);
+    background-color: var(--clearColor);
 }
 .climbing .button a{
-    color:var(--white);
-    border: 2px solid var(--white);
+    color:var(--clearColor);
+    border: 2px solid var(--clearColor);
 }
 
 /* section archery */
 .archery{
-    color:var(--dark-grey);
-    background: var(--soft-grey);
+    color:var(--rocColorR);
+    background: var(--background);
 }
 .archery h2{
-    color:var(--green);
+    color:var(--rocColorO);
 }
 .archery .price{
-    background-color: var(--green);
-    color: var(--white);
+    background-color: var(--rocColorO);
+    color: var(--clearColor);
     padding: 1rem;
 }
 .archery .price h3{
-    background-color: var(--white);
-    color: var(--green);
+    background-color: var(--clearColor);
+    color: var(--rocColorO);
 }
 .archery .button a{
-    color:var(--green);
-    border: 2px solid var(--green);
+    color:var(--rocColorO);
+    border: 2px solid var(--rocColorO);
 }
 
 /* section snowboard */
 .snowboard{
-    background-color: var(--blue);
+    background-color: var(--rocColorC);
 }
 .snowboard h3{
-    background-color: var(--white);
-    color: var(--blue);
+    background-color: var(--clearColor);
+    color: var(--rocColorC);
 }
 .snowboard .button a{
-    color:var(--white);
-    border: 2px solid var(--white);
+    color:var(--clearColor);
+    border: 2px solid var(--clearColor);
 }
 
 /* section cocktail */
 .cocktail{
-    background-color: var(--cocktail);
+    background-color: var(--cocktailColor);
 }
 .cocktail .price{
-    background-color: var(--white);
-    color: var(--dark-grey);
+    background-color: var(--clearColor);
+    color: var(--darkColor);
     padding: 1rem;
 }
 .cocktail h3{
-    background-color: var(--cocktail);
-    color: var(--white);
+    background-color: var(--cocktailColor);
+    color: var(--clearColor);
 }
 .cocktail a{
-    background: linear-gradient(90deg, var(--dark-grey) 30%, var(--green)50%, var(--blue)60%);
+    background: linear-gradient(90deg, var(--rocColorR) 30%, var(--rocColorO)50%, var(--rocColorC)60%);
     color: transparent;
     background-clip: text;
     -webkit-background-clip: text;
-    border: 2px solid var(--green);
+    border: 2px solid var(--rocColorO);
 }
 .cocktail .table th{
-    color: var(--dark-grey);
-    border-bottom: 2px solid var(--dark-grey);
+    color: var(--rocColorR);
+    border-bottom: 2px solid var(--rocColorR);
 }
 .cocktail .table td{
-    border-bottom: 2px solid var(--green);
+    border-bottom: 2px solid var(--rocColorO);
 } 
 .cocktail .table td span{
-    color: var(--green);
+    color: var(--rocColorO);
 }
 .cocktail .table tr:last-of-type td{
-    border-bottom: 2px solid var(--blue);
+    border-bottom: 2px solid var(--rocColorC);
 } 
 .cocktail .table tr:last-of-type td span{
-    color: var(--blue);
+    color: var(--rocColorC);
 }
 
 /* section testimony */
 .testimony{
-    background: url('../resources/bgTEMOIGNAGES.png') center no-repeat, var(--cocktail);
+    background: url('../resources/bgTEMOIGNAGES.png') center no-repeat, var(--cocktailColor);
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -483,13 +499,13 @@ CSS MAIN INDEX
     padding: 0;
 }
 .testimony h2{
-    color:var(--cocktail);
+    color:var(--cocktailColor);
 }
 .testimony .bloc{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    color:var(--white);
+    color:var(--clearColor);
     text-align: center;
     background-color: rgba(0, 33, 54, 0.7);
     width: 80%;
@@ -498,8 +514,8 @@ CSS MAIN INDEX
     border-radius: 4rem;
 }
 .testimony a{
-    color: var(--white);
-    border: 2px solid var(--white);
+    color: var(--clearColor);
+    border: 2px solid var(--clearColor);
     width:unset;
     padding: 1rem 3rem;
 }
@@ -531,7 +547,7 @@ FIN CSS SLIDER
 CSS BOOKING
 ********************************************************/
 .booking{
-    color:var(--black);
+    color:var(--darkColor);
 }
 fieldset{
     display: flex;
@@ -545,14 +561,15 @@ fieldset{
 CSS FOOTER
 ********************************************************/
 footer{
-    color: var(--dark-grey);
+    color: var(--rocColorR);
     text-align: center;
-    background: url("../resources/bgFOOTER.png") bottom no-repeat;
+    background: url("../resources/bgFOOTER.png") bottom no-repeat, var(--clearColor);
     background-size: 100%;
+    padding-top: 2rem;
     padding-bottom: 5rem;
 }
 footer a{
-    color: var(--dark-grey);
+    color: var(--rocColorR);
     text-transform: lowercase;
 }
 footer .network a{
@@ -580,23 +597,22 @@ SMALL MOBILE (max-width: 450px)
 }
 
 /********************************************************
-TABLET (min-width: 780px)
+TABLET (min-width: 768px)
 ********************************************************/
-@media screen and (min-width:780px){
+@media screen and (min-width:768px){
     header{
-        background: url('../resources/bgHEADER.png') bottom no-repeat, var(--white);
-        background-size: 100%;
+        background: url('../resources/bgHEADER.png')bottom left no-repeat;
+        background-size: cover;
     }
-    .navbar_logo{
+    .logo{
         max-width: 160px;
     }
     .navbar{
         display:flex;
         justify-content: space-between;
         align-items: center;
-        /* margin: 0 5rem; */
-        font-size: 1.3rem;
-        /* background: url("../resources/borderHEADER.png") bottom repeat-x; */
+        font-size: 1.4rem;
+        padding-left: 8rem;
     }
     .burger{
         display:none;
@@ -609,29 +625,28 @@ TABLET (min-width: 780px)
         background: unset;
     }
     .navbar_link{
-        padding:0 1rem;
         transform: translateX(0);
     }
-    .navbar_link > a{
-        color: var(--black);
-    }
-    .navbar_link > a:hover{
+    /* .navbar_link a{
+        color: var(--darkColor);
+    } */
+    .navbar_link a:hover{
         padding-left: 1rem;
         letter-spacing: unset;
     }
     .navbar_activity{
         display:initial;
     }
-    .navbar_activity > a:hover{
+    .navbar_activity a:hover{
         padding-left: 6rem;
-        letter-spacing: unset;
+        /* letter-spacing: unset; */
     }
-    .navbar_link > a:after {
+    .navbar_link a:after {
         display: block;
         content:"";
         width:0;
         height: 2px;
-        background: var(--green);
+        background: var(--rocColorO);
         transition: width 0.4s;
     }
     .navbar_link:hover > a:after{
@@ -643,8 +658,8 @@ TABLET (min-width: 780px)
     .navbar_activities{
         display:none;
         position: absolute;
-        background: var(--white);
-        border: 1px solid var(--white);
+        background: var(--clearColor);
+        border: 1px solid var(--clearColor);
         border-radius: 0 0 30px 30px;
         /* max-height: 0;
         overflow: hidden; */
@@ -654,6 +669,10 @@ TABLET (min-width: 780px)
         /* max-height: 20em; */
         display: block;
     }
+    .navbar_activities li:last-of-type a{
+        background-color: var(--clearColor);
+        border-radius: 0 0 30px 30px;
+    } 
     .fifth{
         padding-right: 0;
     }
@@ -683,39 +702,51 @@ TABLET (min-width: 780px)
         display:table-cell;
     }
     footer{
-        height: 25rem;
+        height: 20rem;
         display:flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
         text-align: left;
-        padding-bottom: 4rem;
+        padding: 0rem 8rem 6rem 8rem;
     }
-    footer img{
-        max-width: 240px;
-        margin: auto 6rem;
+    /* footer img{
+        margin: auto 2rem;
     }
     footer address{
-        margin-right: 12rem;
-    }
+        margin-right: 7rem;
+    } */
     footer p{
         margin: 0;
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
     footer .network a{
         font-size: 3rem;
-        margin-left: 0;
+        /* margin-left: 0; */
     }
+
 }
 
 /********************************************************
 DESKTOP (min-width: 980px)
 ********************************************************/
 @media screen and (min-width:980px){
+    header{
+        background: url('../resources/bgHEADER.png') bottom no-repeat;
+        background-size: 100%;
+    }
     .navbar{
         padding: 0 10rem;
     }
     .navbar_link > a{
         font-size: 1.4rem;
+    }
+    section{
+        padding-left: 10rem; 
+        padding-right: 10rem; 
+    }
+    .home p{
+        max-width: 70%;
+        margin: auto;
     }
     .home p:last-of-type{
         padding-bottom: unset;
@@ -729,7 +760,7 @@ DESKTOP (min-width: 980px)
     .home li{
         position:relative;
         max-width: 15%;
-        height: 65vh;
+        height: 75vh;
     }
     .home .img{
         height:80%;
@@ -743,14 +774,14 @@ DESKTOP (min-width: 980px)
         bottom:0;
         left: 5%;
         width:90%;
-        height: 30%;
+        height: 25%;
     }
     .home li:nth-child(even) .text{
         position: absolute;
         top:0;
         left: 5%;
         width:90%;
-        height: 30%;
+        height: 25%;
     }
     .home li:nth-child(even) .img{
         position: relative;
@@ -762,21 +793,20 @@ DESKTOP (min-width: 980px)
     }
     .blocVTTAE a{
         font-size: 1rem;
-        color: var(--green);
-        background: var(--white);
-        border: 1px solid var(--white);
+        color: var(--rocColorO);
+        background: var(--clearColor);
+        border: 1px solid var(--clearColor);
         width: auto;
     }
-    
     .blocPADDLE{
         background: url("../resources/blocPADDLE.png") no-repeat;
         background-size: cover;
     }
     .blocPADDLE a{
         font-size: 1rem;
-        color: var(--blue);
-        background: var(--white);
-        border: 1px solid var(--white);
+        color: var(--rocColorC);
+        background: var(--clearColor);
+        border: 1px solid var(--clearColor);
         width: auto;
     }
     .blocESCALADE{
@@ -785,9 +815,9 @@ DESKTOP (min-width: 980px)
     }
     .blocESCALADE a{
         font-size: 1rem;
-        color: var(--dark-grey);
-        background: var(--white);
-        border: 1px solid var(--white);
+        color: var(--rocColorR);
+        background: var(--clearColor);
+        border: 1px solid var(--clearColor);
         width: auto;
     }
     .blocTIR{
@@ -796,9 +826,9 @@ DESKTOP (min-width: 980px)
     }
     .blocTIR a{
         font-size: 1rem;
-        color: var(--green);
-        background: var(--white);
-        border: 1px solid var(--white);
+        color: var(--rocColorO);
+        background: var(--clearColor);
+        border: 1px solid var(--clearColor);
         width: auto;
     }
     .blocSNOWBOARD{
@@ -807,31 +837,32 @@ DESKTOP (min-width: 980px)
     }
     .blocSNOWBOARD a{
         font-size: 1rem;
-        color: var(--blue);
-        background: var(--white);
-        border: 1px solid var(--white);
+        color: var(--rocColorC);
+        background: var(--clearColor);
+        border: 1px solid var(--clearColor);
         width: auto;
     }
     .home .cocktail a{
         font-size: 1rem;
-        color: var(--cocktail);
-        background: var(--white);
-        border: 1px solid var(--white);
+        color: var(--clearColor);
+        background: var(--cocktailColor);
+        border: 1px solid var(--clearColor);
         width:auto;
     }
     .cocktailBottom p{
-        position: absolute;
-        bottom: 180px;
+        color: var(--clearColor);
+        position: relative;
+        bottom: 75%;
         width:84%;
-        left:8%;
-        color: var(--white);
-        font-size: 1.8rem
+        font-size: 1.8rem;
+        margin: auto;
+        padding: 0;
     }
     .cocktailBottom span{
-        color: var(--green);
+        color: var(--rocColorO);
     }
     .home h2{
-        font-size: 2rem;
+        font-size: 1.5rem;
         margin-bottom: 0;
         padding: 0 1rem;
     }
@@ -839,6 +870,8 @@ DESKTOP (min-width: 980px)
         display:flex;
         flex-direction: column;
         justify-content: space-between;
+    }.paddle{
+        padding-bottom: 12rem;
     }
     /* .home li > .text{
         padding: 0.5rem;
@@ -876,7 +909,37 @@ DESKTOP (min-width: 980px)
         border-radius: 0 4rem 4rem 0;
     }
 }
-
+/********************************************************
+DESKTOP (min-width: 1400px)
+********************************************************/
+@media screen and (min-width:1400px){
+    .home h2{
+        font-size: 2rem;
+    }
+    .navbar{
+        padding: 0 15rem;
+    }
+    section{
+        padding-left: 15rem; 
+        padding-right: 15rem; 
+    }
+    .home p:last-of-type{
+        padding-bottom: unset;
+    }
+    .home ul{
+        padding: 3rem 15rem 14rem;
+    }
+    .home li{
+        max-width: 12%;
+    }
+    .testimony{
+        background-size:100%;
+        height: 100vh;
+    }
+    /* .home ul{
+        justify-content:space-around;
+    } */
+}
 /********************************************************
 FIN CSS MEDIA QUERIES
 ********************************************************/
@@ -884,10 +947,10 @@ FIN CSS MEDIA QUERIES
     position:fixed;
     bottom:20px;
     right:20px;
+    background-color:var(--cocktailColor);
     z-index:100;
     /* display:block; */
-    background-color:var(--cocktail);
-    color: var(--white);
+    color: var(--clearColor);
     border-radius: 50%;
     font-size: 2.5rem;
 }

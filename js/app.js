@@ -2,36 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    const activities = document.querySelectorAll('select');
-
-    activities.forEach(activity => {
-        activity.addEventListener('change',function(){
-            //get number activty
-            let myActivity = activity.getAttribute('name');
-            console.log(myActivity);
-
-            //get price activity
-            let price = Number(this.options[activity.selectedIndex].getAttribute('data-price'));
-            console.log(price)
-
-            //get name activity
-            let chosenActivity = this.options[activity.selectedIndex].getAttribute('name');
-            console.log(chosenActivity);
-
-            //update basket
-
-
-            const choice = document.getElementById(`${myActivity}`);
-            console.log(choice);
-
-            choice.classList.remove('hide');
-
-            choice.textContent = '';
-
-            choice.innerHTML += chosenActivity + " " + price;
-            
-        })            
-    })
+    // 0
 
     
     
@@ -75,49 +46,49 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 
-    // topButton 
-    document.addEventListener("scroll", handleScroll);
-    // get a reference to our predefined button
-    let scrollToTopBtn = document.querySelector(".scrollToTopBtn");
-    console.log(scrollToTopBtn);
+    // // topButton 
+    // document.addEventListener("scroll", handleScroll);
+    // // get a reference to our predefined button
+    // let scrollToTopBtn = document.querySelector(".scrollToTopBtn");
+    // console.log(scrollToTopBtn);
 
 
-    function handleScroll() {
-        let scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let ratio = 0.1;
+    // function handleScroll() {
+    //     let scrollableHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    //     let ratio = 0.1;
 
-        if ((document.documentElement.scrollTop / scrollableHeight ) > ratio) {
-            //show button
-            // scrollToTopBtn.style.display = "block";
-            scrollToTopBtn.classList.remove('hide');
+    //     if ((document.documentElement.scrollTop / scrollableHeight ) > ratio) {
+    //         //show button
+    //         // scrollToTopBtn.style.display = "block";
+    //         scrollToTopBtn.classList.remove('hide');
             
             
-        // } else {
-        // //hide button
-        // // scrollToTopBtn.style.display = "none";
-        // scrollToTopBtn.classList.add('hide');
-        }
-        if(scrollToTopBtn.classList.value === 'scrollToTopBtn'){
+    //     // } else {
+    //     // //hide button
+    //     // // scrollToTopBtn.style.display = "none";
+    //     // scrollToTopBtn.classList.add('hide');
+    //     }
+    //     if(scrollToTopBtn.classList.value === 'scrollToTopBtn'){
                 
-            let timeoutID = window.setTimeout( hide,4000);
+    //         let timeoutID = window.setTimeout( hide,4000);
 
-            function hide(){
-                scrollToTopBtn.classList.add('hide');
-            }
-        }
-    };
-
-
+    //         function hide(){
+    //             scrollToTopBtn.classList.add('hide');
+    //         }
+    //     }
+    // };
 
 
-    scrollToTopBtn.addEventListener("click", scrollToTop);
 
-    function scrollToTop() {
-        window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-        });
-    }
+
+    // scrollToTopBtn.addEventListener("click", scrollToTop);
+
+    // function scrollToTop() {
+    //     window.scrollTo({
+    //     top: 0,
+    //     behavior: "smooth"
+    //     });
+    // }
 
 
 
@@ -125,11 +96,21 @@ document.addEventListener("DOMContentLoaded", function(){
     function toggleMenu(){
         const navbar = document.querySelector('.navbar');
         const burger = document.querySelector('.burger');
+        const links = document.querySelectorAll('a');
 
         burger.addEventListener('click', () => {
-            console.log('test')
+            console.log('burger');
             navbar.classList.toggle('show_nav');
         })
+
+        // links.forEach(link => {
+        //     link.addEventListener('click', () => {
+        //         console.log('link');
+        //         navbar.classList.toggle('show_nav');
+        //     })
+            
+        });
+        
     }
     toggleMenu();
 })

@@ -16,7 +16,7 @@
 <body>
     <header class="container">
         <nav class="navbar">
-            <div class="navbar_logo"><img src="resources/logoRocMultisport.png" alt="Logo ROC Multisport"></div>
+            <div class="logo"><img src="resources/logoRocMultisport.png" alt="Logo ROC Multisport"></div>
             <ul class="navbar_links">
                 <li class="navbar_link first"><a href="#">accueil</a></li>
                 <li class="navbar_link second"><a href="#">nos activités</a>
@@ -26,7 +26,7 @@
                         <li class="navbar_activity"><a href="#climbing">escalade / via ferrata</a></li>
                         <li class="navbar_activity"><a href="#archery">tir à l'arc</a></li>
                         <li class="navbar_activity"><a href="#snowboard">snowboard / splitboard</a></li>
-                        <li class="navbar_activity"><a href="#cocktail">cocktail roc</a></li>
+                        <li class="navbar_activity"><a href="#cocktail" class="cocktail">c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</a></li>
                     </ul>
                 </li>    
                 <li class="navbar_link third"><a href="#testimony">témoignages</a></li>
@@ -133,11 +133,11 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>45€/personne</td>
+                                <td class="tablePrice">45€/personne</td>
                             </tr>
                             <tr>
                                 <td>1 journée</td>
-                                <td>80€/personne</td>
+                                <td class="tablePrice">80€/personne</td>
                             </tr>
                         </table>
                         <table>
@@ -146,11 +146,11 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>70€/personne</td>
+                                <td class="tablePrice">70€/personne</td>
                             </tr>
                             <tr>
                                 <td>1 journée</td>
-                                <td>120€/personne</td>
+                                <td class="tablePrice">120€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -201,11 +201,11 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>55€/personne</td>
+                                <td class="tablePrice">55€/personne</td>
                             </tr>
                             <tr>
                                 <td>1 journée</td>
-                                <td>100€/personne</td>
+                                <td class="tablePrice">100€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -233,7 +233,7 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>50€/personne</td>
+                                <td class="tablePrice">50€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -281,11 +281,11 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>50€/personne</td>
+                                <td class="tablePrice">50€/personne</td>
                             </tr>
                             <tr>
                                 <td>1 journée</td>
-                                <td>90€/personne</td>
+                                <td class="tablePrice">90€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -313,11 +313,11 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>60€/personne</td>
+                                <td class="tablePrice">60€/personne</td>
                             </tr>
                             <tr>
                                 <td>1 journée (2 via-ferrata)</td>
-                                <td>110€/personne</td>
+                                <td class="tablePrice">110€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -367,7 +367,7 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>45€/personne</td>
+                                <td class="tablePrice">45€/personne</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 12 personnes maximum, activités disponible à partir de 6 particpants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
@@ -416,14 +416,14 @@
                                 <th colspan="4">TARIFS SNOWBOARD</th>
                             </tr>
                             <tr>
-                                <td rowspan="2">Stage Rookeasy (débutant)<br> 3 x 1/2 journéé</td>
-                                <td rowspan="2">180€/pers.</td>
+                                <td rowspan="2">Stage Rookeasy (débutant)<br> 3 x 1/2 journée</td>
+                                <td rowspan="2" class="tablePrice">180€/pers.</td>
                                 <td>1/2 journée</td>
-                                <td>160€/pers.</td>
+                                <td class="tablePrice">160€/pers.</td>
                             </tr>
                             <tr>
                                 <td>1 journée</td>
-                                <td>330€/pers.</td>
+                                <td class="tablePrice">330€/pers.</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 3 participants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -436,11 +436,11 @@
                             </tr>
                             <tr>
                                 <td>1/2 journée</td>
-                                <td>180€/pers.</td>
+                                <td class="tablePrice">180€/pers.</td>
                             </tr>
                             <tr>
                                 <td>1 journée</td>
-                                <td>330€/pers.</td>
+                                <td class="tablePrice">330€/pers.</td>
                             </tr>
                             <tr>
                                 <td colspan="2">Groupe de 6 personnes maximum, activités disponible à partir de 2 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -477,7 +477,7 @@
             <div class="description">
                 <article>
                     <p>Infos pratiques</p>
-                    <p>À partir de 7 ans. Encadrement, matériel (sauf snowboard, splitboard, matériel de sécurité:dva, pelle, sonde) et transport compris jusqu'à 5 personnes(2ème véhicule nécessaire au-delà). POur le matérielhivernal, pensez à vous renseigner sur la location de votre équipement avant toute réservation.</p>
+                    <p>À partir de 7 ans. Encadrement, matériel (sauf snowboard, splitboard, matériel de sécurité: dva, pelle, sonde) et transport compris jusqu'à 5 personnes (2ème véhicule nécessaire au-delà). Puur le matériel hivernal, pensez à vous renseigner sur la location de votre équipement avant toute réservation.</p>
                     <p>Une bonne condition physique est fortement recommandée pour les deux formules. Des vêtements et des chaussures adaptées sont indispensables à la pratique des disciplines outdoor. Les activités sportives de montagnes son soumises aux aléas de la météo.</p>
                     <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                     <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -495,11 +495,11 @@
                             </tr>
                             <tr>
                                 <td><span>ROC Day</span><br>2 activités différentes au choix<br></td>
-                                <td>à partir de 100€/personne</td>
+                                <td class="tablePrice">à partir de 100€/personne</td>
                             </tr>
                             <tr>
                                 <td><span>ROC Week-end</span><br>jusqu'à 4 activités différentes au choix</td>
-                                <td>à partir de 210€/personne</td>
+                                <td class="tablePrice">à partir de 210€/personne</td>
                             </tr>
                         </table>
                     </div>    
@@ -530,7 +530,7 @@
     </main>
 
     <footer id="footer" class="container">
-        <img src="resources/logoRocMultisport.png" alt="Logo ROC Multisport">
+        <img class="logo" src="resources/logoRocMultisport.png" alt="Logo ROC Multisport">
         <address>
             <p>165 route des Tappes<br>
                 74230 Dingy-Saint-Clair</p>
