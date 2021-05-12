@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ROC Multisport, une expérience unique entre lac et montagne !">
     <title>ROC Multisport - Home Page</title>
-    <link rel="icon" href="img/logo.png">
+    <link rel="icon" href="resources/logoRocMultisport.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="" type="css/normalize/css" />
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
@@ -15,28 +15,7 @@
 </head>
 <body>
     <header class="container">
-        <nav class="navbar">
-            <div class="logo"><img src="resources/logoRocMultisport.png" alt="Logo ROC Multisport"></div>
-            <ul class="navbar_links">
-                <li class="navbar_link first"><a href="#">accueil</a></li>
-                <li class="navbar_link second"><a href="#">nos activités</a>
-                    <ul class="navbar_activities">
-                        <li class="navbar_activity"><a href="#bike">vttae</a></li>
-                        <li class="navbar_activity"><a href="#paddle">paddle / kayak</a></li>
-                        <li class="navbar_activity"><a href="#climbing">escalade / via ferrata</a></li>
-                        <li class="navbar_activity"><a href="#archery">tir à l'arc</a></li>
-                        <li class="navbar_activity"><a href="#snowboard">snowboard / splitboard</a></li>
-                        <li class="navbar_activity"><a href="#cocktail" class="cocktail">c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</a></li>
-                    </ul>
-                </li>    
-                <li class="navbar_link third"><a href="#testimony">témoignages</a></li>
-                <li class="navbar_link four"><a href="#footer">contact</a></li>
-                <li class="navbar_link fifth"><a href="#"><i class="fas fa-shopping-basket"></i></a></li>
-            </ul>
-            <button class="burger">
-                <span class="bar"></span>
-            </button>
-        </nav>
+        <?= require('header.php') ?> 
     </header>
 
     <main class="container">
@@ -105,8 +84,8 @@
                 </ul>
             </div>
         </section>
-        <section id="bike" class="bike desktop">
-            <h2>vttae</h2>
+        <section class="bike desktop">
+            <h2 id="bike">vttae</h2>
             <h3>vtt <span>à assistance Électrique</span></h3>
             <div class='left_bloc'>
                 <div class="slider">
@@ -157,7 +136,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div>
+                    <div class="info">
                         <p>Infos pratiques</p>
                         <p>À partir de 8 ans. Encadrement et matériel fourni: VTTAE, casque, gants... Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du VTTAE. Les activités sportives de montagnes sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
@@ -173,8 +152,8 @@
         <div class="transition">
             <img src="img/bg/transition_paddle.png" alt="">
         </div>
-        <section id="paddle" class="paddle desktop">
-            <h2>paddle / kayak</h2>
+        <section class="paddle desktop">
+            <h2 id="paddle">paddle / kayak</h2>
             <div class="left_bloc">
                 <div class="slider">
                     <div><img src="img/kayak_1.jpeg" alt="Photo d'une jeune femme en kayak"></div>
@@ -212,7 +191,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div>
+                    <div class="info">
                         <p>Infos pratiques</p>
                         <p>À partir de 6 ans. Encadrement et matériel fourni: Paddle, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagnes sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
@@ -240,7 +219,7 @@
                             </tr>
                         </table>    
                     </div>
-                    <div>
+                    <div class="info">
                         <p>Infos pratiques</p>
                         <p>À partir de 6 ans. Encadrement et matériel fourni: Kayak, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagnes sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
@@ -253,8 +232,8 @@
                 <a href="contact.phtml">contactez-nous</a>
             </div>
         </section>
-        <section id="climbing" class="climbing desktop">
-            <h2>escalade / via-ferrata</h2>
+        <section class="climbing desktop">
+            <h2 id="climbing">escalade / via-ferrata</h2>
             <div class="left_bloc">
                 <div class="slider">
                     <div><img src="img/climbing_1.jpeg" alt="Photo d'un homme le long d'une falaise"></div>
@@ -292,7 +271,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div>
+                    <div class="info">
                         <p>Infos pratiques</p>
                         <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de l'escalade. Les activités sportives de montagnes  sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
@@ -324,7 +303,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div>
+                    <div class="info">
                         <p>Infos pratiques</p>
                         <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de la via-ferrata. Les activités sportives de montagnes  sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
@@ -340,8 +319,8 @@
         <div class="transition">
             <img src="img/bg/transition_archery.png" alt="">
         </div>
-        <section id="archery" class="archery desktop">
-            <h2>tir à l'arc</h2>
+        <section class="archery desktop">
+            <h2 id="archery">tir à l'arc</h2>
             <div class="left_bloc">
                 <div class="slider">
                     <div><img src="img/archery_1.jpeg" alt="Photo d'un homme qui tir à l'arc"></div>
@@ -374,7 +353,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div>
+                    <div class="info">
                         <p>Infos pratiques</p>
                         <p>À partir de 7 ans. Encadrement et matériel fourni: arc, flèches, cibles, blasons... Activité réalisée dans un lieu adapté. Une bonne coordination ainsi que des vêtements adaptés sont indispensables à la pratique du tir à l'arc. Les activités sportives de montagnes  sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
@@ -390,8 +369,8 @@
         <div class="transition">
             <img src="img/bg/transition_snowboard.png" alt="">
         </div>
-        <section id="snowboard" class="snowboard desktop">
-            <h2>snowboard / splitboard</h2>
+        <section class="snowboard desktop">
+            <h2 id="snowboard">snowboard / splitboard</h2>
             <div class="left_bloc">
                 <div class="slider">
                     <div><img src="img/snowboard_1.jpeg" alt="Photo d'un snowboarder"></div>
@@ -413,11 +392,13 @@
                     <div class="table">
                         <table>
                             <tr>
-                                <th colspan="4">TARIFS SNOWBOARD</th>
+                                <th colspan="2">TARIFS SNOWBOARD</th>
                             </tr>
                             <tr>
-                                <td rowspan="2">Stage Rookeasy (débutant)<br> 3 x 1/2 journée</td>
-                                <td rowspan="2" class="tablePrice">180€/pers.</td>
+                                <td>Stage Rookeasy (débutant) 3x 1/2 journée</td>
+                                <td class="tablePrice">180€/pers.</td>
+                            </tr>
+                            <tr>
                                 <td>1/2 journée</td>
                                 <td class="tablePrice">160€/pers.</td>
                             </tr>
@@ -426,8 +407,7 @@
                                 <td class="tablePrice">330€/pers.</td>
                             </tr>
                             <tr>
-                                <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 3 participants. Possibilité de compléter un groupe déjà inscrit.</td>
-                                <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 2 participants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 2 participants (3 pour le Rookeasy). Possibilité de compléter un groupe déjà inscrit.</td>
                             </tr>
                         </table>
                         <table>
@@ -463,8 +443,8 @@
         <div class="transition">
             <img src="img/bg/transition_cocktail.png" alt="">
         </div>
-        <section id="cocktail" class="cocktail desktop">
-            <h2>
+        <section class="cocktail desktop">
+            <h2 id="cocktail">
             c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> d'activités <span>r</span><span>o</span><span>c</span>
             </h2>
             <div class="left_bloc">
