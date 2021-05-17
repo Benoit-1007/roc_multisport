@@ -17,8 +17,7 @@ class Errors {
                     const div = document.createElement('div');
                     div.innerText = error[field];
                     div.classList.add('form-error');
-                    const input = document.querySelector(
-                        `input[name="${field}"]`);
+                    const input = document.getElementById(`${field}`)
                     if (!input.nextElementSibling.classList.contains('form-error')) {
                         input.parentNode.insertBefore(div, input.nextSibling);
                     }

@@ -1,7 +1,7 @@
 'use strict';
 
 // imports
-import Formcontact from './Formcontact.js';
+import Contactform from './Contactform.js';
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -78,36 +78,32 @@ document.addEventListener("DOMContentLoaded", function(){
     let form = document.querySelector('form')
     console.log(form)
 
-    const inputs = form.querySelectorAll('input');
-    // const inputs = form.elements;
-    console.log(inputs);
+    const inputs = form.querySelectorAll('.field');
+    console.log("🚀 ~ file: app.js ~ line 82 ~ document.addEventListener ~ inputs", inputs)
     
     form.addEventListener('submit', event => {
         // Block form auto refresh
-        event.preventDefault();
+        
 
         console.log(form);
         
         // Get action to do (from form id)
-        if(form.id = 'formContact'){
-            form = new Formcontact;
+        if(form.id = 'contactForm'){
+            let contactForm = new Contactform();
+            console.log("🚀 ~ file: app.js ~ line 93 ~ document.addEventListener ~ contactForm", contactForm)
             
-            if(form.validate(inputs)){
-                console.log("form ok, renvoi vers php")
-                // TODO gestion php
-            }
-            else
-            {
-                console.log(form.error.errors.messages, "form ko");
-                form.createError();
+            if(!contactForm.validate(inputs)){
+                event.preventDefault();
+                // console.log(contactForm.error.errors.messages, "form ko");
+                contactForm.createError();
             };
             inputs.forEach.call(inputs, input => {
-                input.addEventListener('keydown', form.removeError);
+                input.addEventListener('keydown', contactForm.removeError);
             });
         }
         // TODO gestion form booking
 
     })
     
-
+    
 })

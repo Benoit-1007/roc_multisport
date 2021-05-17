@@ -16,7 +16,7 @@ CSS COMMUM
     --rocColorC: #0375be;
     --cocktailColor: #002136;
     --require: red;
-    /* --soft-grey: #20a459; */
+    --soft-grey: #20a459;
     /* --soft-blue: #2187c6; */
 }
 /* fin de déclaration de variables CSS */
@@ -508,12 +508,13 @@ CSS MAIN INDEX
     background: url('../resources/bgTEMOIGNAGES.png') top no-repeat, var(--cocktailColor);
     display:flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     height: 70vh;
     padding: 0;
 }
 .testimony h2{
     color:var(--cocktailColor);
+    padding-top: 20rem;
 }
 .testimony .sliderBloc{
     display: flex;
@@ -583,7 +584,6 @@ CSS CONTACT
     text-align: center;
     padding: 1rem;
     background: url("../img/mountain.png") center no-repeat;
-
 }
 .contact span{
     color: var(--require);
@@ -595,20 +595,20 @@ CSS CONTACT
 .contact form{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     align-content: space-between;
-    background-color: var(--rocColorO);
-    border: 2px solid var(--rocColorO);
+    background-color: var(--background);
+    border: 2px solid var(--rocColorC);
     border-radius: 3px;
     padding: 1rem;
     margin-top: 2rem;
+    height: 50rem;
 }
 .contact label{
     width: 30%;
     text-align: left;
 }
-.contact input,
-.contact textarea{
+.field{
     width: 65%;
 }
 
@@ -616,9 +616,9 @@ CSS CONTACT
     font-family: DIN-Medium;
     font-size: 1.5rem;
     color: var(--rocColorC);
-    background-color: var(--clearColor);
+    background-color: var(--background);
     padding: 1rem;
-    margin:1rem;
+    margin:1rem auto;
     text-align: center;
     text-transform: uppercase;
     border: 2px solid;
@@ -1050,7 +1050,5 @@ div.form-error {
     /* display: block; */
     background-color: rgba(255, 100, 100, 1);
     color: white;
-    padding: 1rem;
-    border: 5px;
     width: 100%
 }

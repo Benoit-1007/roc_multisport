@@ -2,7 +2,7 @@
 
 import Errors from './Errors.js';
 
-class Formcontact {
+class Contactform {
     constructor(){
         this.error = new Errors();
         this.isValid = false;
@@ -72,6 +72,7 @@ class Formcontact {
         }
     }
 
+
     // function verifyPhoneNumber(phoneNumber){
     //     // Definition du motif a matcher
     //     var regex = new RegExp(/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/);
@@ -99,4 +100,4 @@ class Formcontact {
     }
 }
 
-export default Formcontact;
+export default Contactform;
