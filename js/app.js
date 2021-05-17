@@ -1,5 +1,8 @@
 'use strict';
 
+// imports
+import Formcontact from './Formcontact.js';
+
 document.addEventListener("DOMContentLoaded", function(){
 
     // // topButton 
@@ -47,8 +50,8 @@ document.addEventListener("DOMContentLoaded", function(){
     // }
 
     
+    // BURGER MENU //
 
-    //burger menu
     function toggleMenu(){
         const navbar = document.querySelector('.navbar');
         const burger = document.querySelector('.burger');
@@ -69,4 +72,42 @@ document.addEventListener("DOMContentLoaded", function(){
         } 
     }
     toggleMenu();
+
+    // FORM 
+
+    let form = document.querySelector('form')
+    console.log(form)
+
+    const inputs = form.querySelectorAll('input');
+    // const inputs = form.elements;
+    console.log(inputs);
+    
+    form.addEventListener('submit', event => {
+        // Block form auto refresh
+        event.preventDefault();
+
+        console.log(form);
+        
+        // Get action to do (from form id)
+        if(form.id = 'formContact'){
+            form = new Formcontact;
+            
+            if(form.validate(inputs)){
+                console.log("form ok, renvoi vers php")
+                // TODO gestion php
+            }
+            else
+            {
+                console.log(form.error.errors.messages, "form ko");
+                form.createError();
+            };
+            inputs.forEach.call(inputs, input => {
+                input.addEventListener('keydown', form.removeError);
+            });
+        }
+        // TODO gestion form booking
+
+    })
+    
+
 })

@@ -2,10 +2,10 @@
 /********************************************************
 CSS COMMUM
 ********************************************************/
-h2:target {
+/* h2:target {
     padding-top: 12rem; 
     margin-top: -12rem; 
-}
+} */
 /* déclaration de variables CSS */
 :root {
     --clearColor: #EDEDED;
@@ -15,6 +15,7 @@ h2:target {
     --rocColorO: #009641;
     --rocColorC: #0375be;
     --cocktailColor: #002136;
+    --require: red;
     /* --soft-grey: #20a459; */
     /* --soft-blue: #2187c6; */
 }
@@ -61,9 +62,17 @@ main{
     margin:0 auto;
 }
 section{
+    padding-top: 10rem; /* offset management anchors vs header*/
+    margin-top: -10rem;
+    /* padding-left: 2rem;
+    padding-right: 2rem;
+    margin-top:-0.5rem; */
+}
+.activity{
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-top:-0.5rem;
+    margin-top:-1rem; /* management space between sections */
+    margin-bottom:-1rem;
 }
 img{
     max-width:100%;
@@ -74,6 +83,7 @@ h1, h2, h3, a{
 h1{
     font-family: DIN-Black;
     font-size: 2.5rem;
+    color: var(--darkColor);
     margin-top: 0;
 }
 h2{
@@ -135,13 +145,15 @@ td{
 }
 .button a, .home a{
     font-family: DIN-Medium;
-    font-size: 1.5rem;
+    padding: 1rem;
     text-align: center;
     border-radius: 3rem;
     width:20rem;
-    padding: 1rem;
-    margin:1rem;
     transition: transform 1s;
+}
+.button a{
+    font-size: 1.5rem;
+    margin:1rem;
 }
 .button a:hover{
     transform:scale(1.1);
@@ -149,10 +161,13 @@ td{
 .desktop-button{
     display:none;
 }
-.transition{
+.desktop-button a{
+    font-size: 1vw;
+}
+/* .transition{
     margin-top: -1.5rem;
     margin-bottom: -1rem;
-}
+} */
 .cocktail span:nth-child(3n+1){
     color:var(--rocColorR);
 }
@@ -335,7 +350,6 @@ CSS MAIN INDEX
     background: url("../img/mountain.png") center no-repeat;
 }
 .home h1{
-    color: var(--darkColor);
     padding-top: 2rem;
 }
 .home h1 span{
@@ -454,6 +468,7 @@ CSS MAIN INDEX
 /* section cocktail */
 .cocktail{
     background-color: var(--cocktailColor);
+    padding-bottom: 2rem;
 }
 .cocktail .price{
     background-color: var(--clearColor);
@@ -490,7 +505,7 @@ CSS MAIN INDEX
 
 /* section testimony */
 .testimony{
-    background: url('../resources/bgTEMOIGNAGES.png') center no-repeat, var(--cocktailColor);
+    background: url('../resources/bgTEMOIGNAGES.png') top no-repeat, var(--cocktailColor);
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -500,7 +515,7 @@ CSS MAIN INDEX
 .testimony h2{
     color:var(--cocktailColor);
 }
-.testimony .bloc{
+.testimony .sliderBloc{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -545,19 +560,74 @@ FIN CSS SLIDER
 /********************************************************
 CSS BOOKING
 ********************************************************/
-.booking{
+#booking{
     color:var(--darkColor);
 }
-fieldset{
+#booking fieldset{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
-input, button{
+#booking input, button{
     margin: 1rem;
 }
-.hide{
+#booking .hide{
     display:none;
+}
+
+/********************************************************
+CSS CONTACT
+********************************************************/
+.contact{
+    color: var(--darkColor);
+    text-align: center;
+    padding: 1rem;
+    background: url("../img/mountain.png") center no-repeat;
+
+}
+.contact span{
+    color: var(--require);
+}
+.contact h1 span,
+.contact a{
+    color: var(--rocColorC);
+}
+.contact form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-between;
+    background-color: var(--rocColorO);
+    border: 2px solid var(--rocColorO);
+    border-radius: 3px;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+.contact label{
+    width: 30%;
+    text-align: left;
+}
+.contact input,
+.contact textarea{
+    width: 65%;
+}
+
+.contact button{
+    font-family: DIN-Medium;
+    font-size: 1.5rem;
+    color: var(--rocColorC);
+    background-color: var(--clearColor);
+    padding: 1rem;
+    margin:1rem;
+    text-align: center;
+    text-transform: uppercase;
+    border: 2px solid;
+    border-radius: 3rem;
+    width:20rem;
+    transition: transform 1s;
+}
+.contact button:hover{
+    transform:scale(1.1);
 }
 /********************************************************
 CSS FOOTER
@@ -603,7 +673,7 @@ TABLET (min-width: 768px)
 ********************************************************/
 @media screen and (min-width:768px){
     header{
-        background: url('../resources/bgHEADER.png')bottom left no-repeat;
+        background: url('../resources/bgHEADER.png')bottom right no-repeat;
         background-size: cover;
     }
     .logo{
@@ -717,6 +787,11 @@ TABLET (min-width: 768px)
         font-size: 3rem;
         /* margin-left: 0; */
     }
+    /* CONTACT */
+    .contact p, .contact form{
+        width:70vw;
+        margin: 2rem auto;
+    }
 
 }
 
@@ -724,10 +799,10 @@ TABLET (min-width: 768px)
 DESKTOP (min-width: 980px)
 ********************************************************/
 @media screen and (min-width:980px){
-    header{
+    /* header{
         background: url('../resources/bgHEADER.png') bottom no-repeat;
         background-size: 100%;
-    }
+    } */
     .navbar{
         padding: 0 10rem;
     }
@@ -738,7 +813,11 @@ DESKTOP (min-width: 980px)
     .navbar_link > a{
         font-size: 1.4rem;
     }
-    section{
+    /* section{
+        padding-left: 10rem; 
+        padding-right: 10rem; 
+    } */
+    .activity{
         padding-left: 10rem; 
         padding-right: 10rem; 
     }
@@ -785,12 +864,26 @@ DESKTOP (min-width: 980px)
         position: relative;
         top:20%;
     }
+    .text{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* padding: 0.5rem 1rem; */  
+    }
+    .text h2{
+        font-size: 1vw;
+        margin-bottom: 0;
+        padding: auto 0.5rem;
+    }
+    .text a{
+        margin: 1rem;
+    }
     .blocVTTAE{
         background: url("../resources/blocVTTAE.png") no-repeat;
         background-size: cover;
     }
     .blocVTTAE a{
-        font-size: 1rem;
+        font-size: 1vw;
         color: var(--rocColorO);
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
@@ -801,7 +894,7 @@ DESKTOP (min-width: 980px)
         background-size: cover;
     }
     .blocPADDLE a{
-        font-size: 1rem;
+        font-size: 1vw;
         color: var(--rocColorC);
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
@@ -812,7 +905,7 @@ DESKTOP (min-width: 980px)
         background-size: cover;
     }
     .blocESCALADE a{
-        font-size: 1rem;
+        font-size: 1vw;
         color: var(--rocColorR);
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
@@ -823,7 +916,7 @@ DESKTOP (min-width: 980px)
         background-size: cover;
     }
     .blocTIR a{
-        font-size: 1rem;
+        font-size: 1vw;
         color: var(--rocColorO);
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
@@ -834,14 +927,14 @@ DESKTOP (min-width: 980px)
         background-size: cover;
     }
     .blocSNOWBOARD a{
-        font-size: 1rem;
+        font-size: 1vw;
         color: var(--rocColorC);
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
         width: auto;
     }
     .home .cocktail a{
-        font-size: 1rem;
+        font-size: 1vw;
         color: var(--clearColor);
         background: var(--cocktailColor);
         border: 1px solid var(--clearColor);
@@ -859,22 +952,19 @@ DESKTOP (min-width: 980px)
     .cocktailBottom span{
         color: var(--rocColorO);
     }
-    .home h2{
-        font-size: 1.5rem;
-        margin-bottom: 0;
-        padding: 0 1rem;
-    }
-    .home .text{
-        display:flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }.paddle{
+    .paddle{
         padding-bottom: 12rem;
     }
     /* .home li > .text{
         padding: 0.5rem;
     } */
-    .desktop{
+    /* .desktop{
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: space-between;
+    } */
+    .activity{
         display:flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -918,7 +1008,7 @@ DESKTOP (min-width: 980px)
     .desktop-button{
         display:flex;
     }
-    .testimony .bloc{
+    .testimony .sliderBloc{
         width: 50%;
         margin: unset;
         border-radius: 0 4rem 4rem 0;
@@ -928,22 +1018,19 @@ DESKTOP (min-width: 980px)
 DESKTOP (min-width: 1400px)
 ********************************************************/
 @media screen and (min-width:1400px){
-    .home h2{
-        font-size: 2rem;
-    }
-    .home p:last-of-type{
+    /* .home p:last-of-type{
         padding-bottom: unset;
-    }
-    .home li{
+    } */
+    /* .home li{
         max-width: 12%;
-    }
+    } */
     .testimony{
         background-size:100%;
         height: 100vh;
     }
     /* .home ul{
         justify-content:space-around;
-    } */
+    }*/
 }
 /********************************************************
 FIN CSS MEDIA QUERIES
@@ -958,4 +1045,12 @@ FIN CSS MEDIA QUERIES
     color: var(--clearColor);
     border-radius: 50%;
     font-size: 2.5rem;
+}
+div.form-error {
+    /* display: block; */
+    background-color: rgba(255, 100, 100, 1);
+    color: white;
+    padding: 1rem;
+    border: 5px;
+    width: 100%
 }
