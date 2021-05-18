@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="" type="css/normalize/css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="test">
     <header class="container">
         <?php require('partials/header.php') ?>
     </header>
@@ -19,12 +19,17 @@
         <p>Pour toute demande de renseignement(s), merci de remplir le formulaire ci-dessous<small>(<span>*</span> Mentions obligatoires)</small></p>
 
         <?php if (isset($_SESSION) && !empty($_SESSION['error'])): ?>
-                <div class="alert">
+            <div class="alert">
                 <?php foreach ($_SESSION['error'] as $value): ?>
                     <p><?= $value ?></p>
                 <?php endforeach; ?>
-                </div>
-            <?php endif; ?>
+            </div>
+        <?php endif; ?>
+        <?php if (isset($_SESSION) && empty($_SESSION['error']) && !empty($_SESSION['info'])): ?>
+            <div class="alert">
+                <p><?= $_SESSION['info'] ?></p>
+            </div>
+        <?php endif; ?>
 
         <form id="contactForm" action="contact.php" method="post">
             <label for="email">E-mail<span>*</span></label><input class="field" type="email" id="email" name="email" require autofocus>
@@ -40,5 +45,5 @@
         <?php require('partials/footer.php') ?>
     </footer>
 
-    <!-- <script type="module" src="js/app.js"></script> -->
+    <script type="module" src="js/app.js"></script>
 </body>

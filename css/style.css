@@ -596,13 +596,17 @@ CSS TEMPORARYBOOKING
 /********************************************************
 CSS CONTACT
 ********************************************************/
+.test{
+    background-color: var(--rocColorC);
+}
 .contact{
     color: var(--darkColor);
     text-align: center;
     padding: 1rem;
     background: url("../img/mountain.png") center no-repeat;
 }
-.contact span{
+.contact span,
+.contact .alert{
     color: var(--require);
 }
 .contact h1 span,
