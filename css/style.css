@@ -575,7 +575,24 @@ CSS BOOKING
 #booking .hide{
     display:none;
 }
-
+/********************************************************
+CSS TEMPORARYBOOKING
+********************************************************/
+#temporaryBooking{
+    text-align: center;
+    color: var(--rocColorR);
+    font-size: 2rem;
+}
+#temporaryBooking .alert{
+    width: 75vw;
+    border: 2px solid var(--rocColorO);
+    border-radius: 3.5rem;
+    margin: 25vh auto;
+}
+#temporaryBooking .alert a{
+    text-transform:capitalize;
+    color: var(--rocColorO);
+}
 /********************************************************
 CSS CONTACT
 ********************************************************/

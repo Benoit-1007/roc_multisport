@@ -28,9 +28,9 @@
 
         <form id="contactForm" action="contact.php" method="post">
             <label for="email">E-mail<span>*</span></label><input class="field" type="email" id="email" name="email" require autofocus>
-            <label for="lastName">Nom<span>*</span></label><input class="field" type="text" id="lastName" name="lastName" require>
-            <label for="firstName">Prénom<span>*</span></label><input class="field" type="text" id="firstName" name="firstName" require>
-            <label for="phone">Téléphone</label><input class="field" type="phone" id="phone" name="phone">
+            <label for="lastName">Nom<span>*</span></label><input class="field" type="text" id="lastName" name="nom" require>
+            <label for="firstName">Prénom<span>*</span></label><input class="field" type="text" id="firstName" name="prénom" require>
+            <label for="phone">Téléphone</label><input class="field" type="phone" id="phone" name="téléphone">
             <label for="message">Message<span>*</span></label><textarea class="field" id="message" name="message" rows="10" require></textarea>
             <button type="submit">Envoyer</button>
         </form>
@@ -40,5 +40,5 @@
         <?php require('partials/footer.php') ?>
     </footer>
 
-    <script type="module" src="js/app.js"></script>
+    <!-- <script type="module" src="js/app.js"></script> -->
 </body>

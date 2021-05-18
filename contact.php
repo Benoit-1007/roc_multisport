@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
         $errors = [];
         //test inputs
         foreach($_POST as $key => $input) {
-            if(empty($input)) {
+            if($key !== 'téléphone' && empty($input)) {
                 array_push($errors, "Le champ $key est vide");
             }
         }
@@ -39,6 +39,13 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
         {
             // Accéder à la session, afin d'y référencer les erreurs trouvées
             $_SESSION['error'] = $errors;
+        } else {
+            // extract Data($email, $nom, $prénom, $téléphone, $message)
+            extract($_POST);
+
+            if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+            }
         }
     }
 }
