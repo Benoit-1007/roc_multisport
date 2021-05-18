@@ -22,9 +22,9 @@
         <section  id="home" class="home">
             <div class="background">
                 <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
-                <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagnes? ROC MULTISPORT est là pour vous!</p>
+                <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagne? ROC MULTISPORT est là pour vous!</p>
                 <p>Venez découvrir nos activités outdoors, été comme hiver, avec des moniteurs passionnés et qualifiés. Composez vous même votre " cocktail d'activités ROC " à la journée ou sur un week-end complet. <span>Vivez votre propre excursion</span></p>
-                <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !! Du lac d'Annecy aux sommet des Aravis, venez tester l'aventure: sensations et souvenirs garantis!</p>
+                <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !!! Du lac d'Annecy aux sommets des Aravis, venez tester l'aventure : sensations et souvenirs garantis!</p>
                 <ul>
                     <li>
                         <div class="img">
@@ -102,7 +102,7 @@
                 <div class="description">
                     <article>
                         <p>Partez à la découverte de lieux insolites par l'intermédiaire du VTTAE. Depuis la Clusaz, venez vous échapper vers le lac des Confins, le col des Aravis ou encore le plateau de Beauregard. Le bassin Annecien offre lui aussi de multiples randonnées à réaliser en famille ou entre amis.</p>
-                        <p>Du plateau des glières à la descente du Semnoz, le VTT à assistance électrique vous permettra d'atteindre de magnifiques points de vue. Avec un profond respet de la nature, en fonction de vos attentes et de vos capacités physiques, votre moniteur mettra tout en oeuvre pour vous offrir la sortie la plus adaptée. Un moment mémorable à venir partager avec ROC MULTISPORT.</p>
+                        <p>Du plateau des glières à la descente du Semnoz, le VTT à assistance électrique vous permettra d'atteindre de magnifiques points de vue. Avec un profond respect de la nature, en fonction de vos attentes et de vos capacités physiques, votre moniteur mettra tout en oeuvre pour vous offrir la sortie la plus adaptée. Un moment mémorable à venir partager avec ROC MULTISPORT.</p>
                     </article>
                     <article class="price">
                         <h3>tarifs vttae</h3>
@@ -133,13 +133,13 @@
                                     <td class="tablePrice">120€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
-                            <p>À partir de 8 ans. Encadrement et matériel fourni: VTTAE, casque, gants... Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du VTTAE. Les activités sportives de montagnes sont soumises aux aléas de la météo.</p>
+                            <p>À partir de 8 ans. Encadrement et matériel fourni: VTTAE, casque, gants... Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du VTTAE. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
@@ -172,7 +172,7 @@
                     <article>
                         <h3>paddle</h3>
                         <p>À la surface de l'eau, venez tester les bienfaits du paddle. Cette discipline accessible à tous, melant équilibre et tonicité, vous permettra d'apprécier les eaux bleues du lac d'Annecy. </p>
-                        <p>Parfaitement détendu, déplacez-vous le long des rives jusqu'aux réservrs naturelles qui bordent le lac. Vous contemplerez tout au long de votre excursion la faune et la flore ainsi que les magnifiques points de vue q'offre ce lieu magique. Au ras de l'eau et entouré de somptueuses montagnes, ROC MULTISPORT vous propose de découvrir le paddle dans une atmosphère calme et agréable: une sortie nautique à ne pas manquer!</p>
+                        <p>Parfaitement détendu, déplacez-vous le long des rives jusqu'aux réserves naturelles qui bordent le lac. Vous contemplerez tout au long de votre excursion la faune et la flore ainsi que les magnifiques points de vue qu'offre ce lieu magique. Au ras de l'eau et entouré de somptueuses montagnes, ROC MULTISPORT vous propose de découvrir le paddle dans une atmosphère calme et agréable: une sortie nautique à ne pas manquer!</p>
                     </article>
                     <article class="price">
                         <h3>tarifs paddle</h3>
@@ -190,13 +190,13 @@
                                     <td class="tablePrice">100€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
-                            <p>À partir de 6 ans. Encadrement et matériel fourni: Paddle, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagnes sont soumises aux aléas de la météo.</p>
+                            <p>À partir de 6 ans. Encadrement et matériel fourni: Paddle, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
@@ -218,13 +218,13 @@
                                     <td class="tablePrice">50€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>    
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
-                            <p>À partir de 6 ans. Encadrement et matériel fourni: Kayak, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagnes sont soumises aux aléas de la météo.</p>
+                            <p>À partir de 6 ans. Encadrement et matériel fourni: Kayak, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
@@ -272,20 +272,20 @@
                                     <td class="tablePrice">90€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
-                            <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de l'escalade. Les activités sportives de montagnes  sont soumises aux aléas de la météo.</p>
+                            <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de l'escalade. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                     <article>
                         <h3>via ferrata</h3>
-                        <p>Entre escalade et randonnée verticale, la via-ferrata vous permettra de savourer, en toute sécurité grâce à une ligne de vie métallique, les délices de la hauteur. De la tour jallouvre au col des Aravis en passant par la Roche dà l'Agathe, découvrez une activité excitante et accessible à tous.</p>
+                        <p>Entre escalade et randonnée verticale, la via-ferrata vous permettra de savourer, en toute sécurité grâce à une ligne de vie métallique, les délices de la hauteur. De la tour Jallouvre au col des Aravis en passant par la Roche à l'Agathe, découvrez une activité excitante et accessible à tous.</p>
                         <p>Encadré d'un moniteur qualifié, traversez pont de singe, poutre suspendue, tyroliennes, gravissez des échelons métalliques... autant d'éléments vertigineux qui vous feront vivre une expérience unique au milieu de paysages à couper le souffle. Prenez de la hauteur avec ROC MULTISPORT afin de vous confronter à vos limites et apprécier la liberté des grands espaces !</p>
                     </article>
                     <article class="price">
@@ -304,13 +304,13 @@
                                     <td class="tablePrice">110€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
-                            <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de la via-ferrata. Les activités sportives de montagnes  sont soumises aux aléas de la météo.</p>
+                            <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de la via-ferrata. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
@@ -356,13 +356,13 @@
                                     <td class="tablePrice">45€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 12 personnes maximum, activités disponible à partir de 6 particpants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
+                                    <td colspan="2">Groupe de 12 personnes maximum, activités disponibles à partir de 6 particpants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
-                            <p>À partir de 7 ans. Encadrement et matériel fourni: arc, flèches, cibles, blasons... Activité réalisée dans un lieu adapté. Une bonne coordination ainsi que des vêtements adaptés sont indispensables à la pratique du tir à l'arc. Les activités sportives de montagnes  sont soumises aux aléas de la météo.</p>
+                            <p>À partir de 7 ans. Encadrement et matériel fourni: arc, flèches, cibles, blasons... Activité réalisée dans un lieu adapté. Une bonne coordination ainsi que des vêtements adaptés sont indispensables à la pratique du tir à l'arc. Les activités sportives de montagne  sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
@@ -416,7 +416,7 @@
                                     <td class="tablePrice">330€/pers.</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponible à partir de 2 participants (3 pour le Rookeasy). Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 2 participants (3 pour le Rookeasy). Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                             <table>
@@ -432,13 +432,13 @@
                                     <td class="tablePrice">330€/pers.</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 6 personnes maximum, activités disponible à partir de 2 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 6 personnes maximum, activités disponibles à partir de 2 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
                         <div>
                             <p>Infos pratiques</p>
-                            <p>À partir de 7 ans. Encadrement compris, matériel non fourni. Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du snowboard. Les activités sportives de montagnes  sont soumises aux aléas de la météo.</p>
+                            <p>À partir de 7 ans. Encadrement compris, matériel non fourni. Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du snowboard. Les activités sportives de montagne  sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
@@ -468,8 +468,8 @@
                 <div class="description">
                     <article>
                         <p>Infos pratiques</p>
-                        <p>À partir de 7 ans. Encadrement, matériel (sauf snowboard, splitboard, matériel de sécurité: dva, pelle, sonde) et transport compris jusqu'à 5 personnes (2ème véhicule nécessaire au-delà). Puur le matériel hivernal, pensez à vous renseigner sur la location de votre équipement avant toute réservation.</p>
-                        <p>Une bonne condition physique est fortement recommandée pour les deux formules. Des vêtements et des chaussures adaptées sont indispensables à la pratique des disciplines outdoor. Les activités sportives de montagnes son soumises aux aléas de la météo.</p>
+                        <p>À partir de 7 ans. Encadrement et matériel compris (sauf snowboard, splitboard, matériel de sécurité: dva, pelle, sonde). Transport compris jusqu'à 5 personnes (2ème véhicule nécessaire au-delà). Pour le matériel hivernal, pensez à vous renseigner sur la location de votre équipement avant toute réservation.</p>
+                        <p>Une bonne condition physique est fortement recommandée pour les deux formules. Des vêtements et des chaussures adaptées sont indispensables à la pratique des disciplines outdoor. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                         <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                     </article>
@@ -477,7 +477,7 @@
                         <h3>tarifs c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span></h3>
                         <div>
                             <p><strong>COMPOSEZ LIBREMENT VOTRE COCKTAIL D'ACTIVITÉS</strong></p>
-                            <p>Groupe de 8 personnes maximum, activité disponible à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</p>
+                            <p>Groupe de 8 personnes maximum, activité disponibles à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</p>
                         </div>
                         <div class="table">
                             <table>
