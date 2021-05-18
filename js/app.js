@@ -82,17 +82,13 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log("🚀 ~ file: app.js ~ line 82 ~ document.addEventListener ~ inputs", inputs)
     
     form.addEventListener('submit', event => {
-        // Block form auto refresh
-        
-
-        console.log(form);
-        
         // Get action to do (from form id)
         if(form.id = 'contactForm'){
             let contactForm = new Contactform();
             console.log("🚀 ~ file: app.js ~ line 93 ~ document.addEventListener ~ contactForm", contactForm)
             
             if(!contactForm.validate(inputs)){
+                // Block form auto refresh
                 event.preventDefault();
                 // console.log(contactForm.error.errors.messages, "form ko");
                 contactForm.createError();
