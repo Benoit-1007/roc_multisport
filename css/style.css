@@ -564,7 +564,8 @@ CSS BOOKING
 #booking{
     color:var(--darkColor);
 }
-#booking fieldset{
+#booking fieldset,
+.activityItem{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -629,7 +630,7 @@ CSS CONTACT
     width: 30%;
     text-align: left;
 }
-.field{
+.contact .field{
     width: 65%;
 }
 
