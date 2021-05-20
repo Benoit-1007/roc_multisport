@@ -110,7 +110,7 @@ h3{
 /* .price p:first-child{
     margin-top: 0.5rem;
 } */
-a{
+a:not(p a){
     text-decoration:none;
 }
 ul{
@@ -163,6 +163,10 @@ td{
 }
 .desktop-button a{
     font-size: 1vw;
+}
+p a{
+    color: var(--clearColor);
+    text-transform: lowercase;
 }
 /* .transition{
     margin-top: -1.5rem;
@@ -479,7 +483,7 @@ CSS MAIN INDEX
     background-color: var(--cocktailColor);
     color: var(--clearColor);
 }
-.cocktail a{
+.cocktail a:not(p a){
     background: linear-gradient(90deg, var(--rocColorR) 30%, var(--rocColorO)50%, var(--rocColorC)60%);
     color: transparent;
     background-clip: text;

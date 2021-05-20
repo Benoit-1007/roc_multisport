@@ -6,7 +6,7 @@ class Contactform {
     constructor(){
         this.error = new Errors();
         this.isValid = false;
-        this.allowed = ['email', 'nom', 'prénom', 'téléphone', 'message'];
+        this.allowed = ['email', 'nom', 'prenom', 'telephone', 'message'];
         this.email='';
         this.lastName='';
         this.firstName='';
@@ -32,13 +32,13 @@ class Contactform {
                 }
                 this.firstName = field.value;
             }
-            if (field.name === 'prénom'){
+            if (field.name === 'prenom'){
                 if(!field.value || !this.validateName(field.value)){
                     this.error.record({firstName: 'Prénom invalide'});
                 }
                 this.lastName = field.value;
             }
-            if (field.name === 'téléphone'){
+            if (field.name === 'telephone'){
                 // if(!field.value || verifyPhoneNumber(field.value) === false){
                 //     // this.error.record({ phone: 'Numéro de téléphone invalide' });
                 //     alert('Tél invalide')

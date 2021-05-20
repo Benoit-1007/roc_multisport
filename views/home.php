@@ -141,7 +141,7 @@
                             <p>Infos pratiques</p>
                             <p>À partir de 8 ans. Encadrement et matériel fourni: VTTAE, casque, gants... Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du VTTAE. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                            <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                            <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                 </div>
@@ -198,7 +198,7 @@
                             <p>Infos pratiques</p>
                             <p>À partir de 6 ans. Encadrement et matériel fourni: Paddle, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                            <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                            <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                     <article>
@@ -218,7 +218,7 @@
                                     <td class="tablePrice">50€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>    
                         </div>
@@ -226,7 +226,7 @@
                             <p>Infos pratiques</p>
                             <p>À partir de 6 ans. Encadrement et matériel fourni: Kayak, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                            <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                            <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                 </div>
@@ -280,7 +280,7 @@
                             <p>Infos pratiques</p>
                             <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de l'escalade. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                            <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                            <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                     <article>
@@ -312,7 +312,7 @@
                             <p>Infos pratiques</p>
                             <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de la via-ferrata. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                            <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                            <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                 </div>
@@ -356,7 +356,7 @@
                                     <td class="tablePrice">45€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 12 personnes maximum, activités disponibles à partir de 6 particpants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
+                                    <td colspan="2">Groupe de 12 personnes maximum, activité disponible à partir de 6 particpants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
                                 </tr>
                             </table>
                         </div>
@@ -364,7 +364,7 @@
                             <p>Infos pratiques</p>
                             <p>À partir de 7 ans. Encadrement et matériel fourni: arc, flèches, cibles, blasons... Activité réalisée dans un lieu adapté. Une bonne coordination ainsi que des vêtements adaptés sont indispensables à la pratique du tir à l'arc. Les activités sportives de montagne  sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                            <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                            <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                 </div>
@@ -440,7 +440,7 @@
                             <p>Infos pratiques</p>
                             <p>À partir de 7 ans. Encadrement compris, matériel non fourni. Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du snowboard. Les activités sportives de montagne  sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                            <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                            <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                         </div>
                     </article>
                 </div>
@@ -471,13 +471,13 @@
                         <p>À partir de 7 ans. Encadrement et matériel compris (sauf snowboard, splitboard, matériel de sécurité: dva, pelle, sonde). Transport compris jusqu'à 5 personnes (2ème véhicule nécessaire au-delà). Pour le matériel hivernal, pensez à vous renseigner sur la location de votre équipement avant toute réservation.</p>
                         <p>Une bonne condition physique est fortement recommandée pour les deux formules. Des vêtements et des chaussures adaptées sont indispensables à la pratique des disciplines outdoor. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
-                        <p>Pour toute demande particulière, contactez-nous! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
+                        <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
                     </article>
                     <article class="price"> 
                         <h3>tarifs c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span></h3>
                         <div>
                             <p><strong>COMPOSEZ LIBREMENT VOTRE COCKTAIL D'ACTIVITÉS</strong></p>
-                            <p>Groupe de 8 personnes maximum, activité disponibles à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</p>
+                            <p>Groupe de 8 personnes maximum, activités disponibles à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</p>
                         </div>
                         <div class="table">
                             <table>

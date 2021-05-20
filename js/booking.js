@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function(){
                     <optogroup label="snowboard">
                         <option value="rookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
                         <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée - 160€/pers.</option>
-                        <option value="snowboarAllfDay" name="Snowboard - journée" data-price="330">Snowboard - journée - 300€/pers.</option>
+                        <option value="snowboardAllDay" name="Snowboard - journée" data-price="330">Snowboard - journée - 300€/pers.</option>
                         <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180">Splitboard - 1/2 journée - 180€/pers.</option>
                         <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330">Splitboard - journée - 330€/pers.</option>
                     </optogroup> 
@@ -112,26 +112,124 @@ document.addEventListener('DOMContentLoaded', function(){
         
     }
 
-    //CHOOSE ROC ACTIVITY
+    //CHOOSE ACTIVITY
     function chooseActivity(field){
         for (let i = 0; i < field.length; i++) {
             const element = field[i];
 
             element.addEventListener('change',function(){
-                //get price activity
-                let price = Number(this.options[element.selectedIndex].getAttribute('data-price'));
-                console.log(price)
                 //get activity number
                 let split = element.getAttribute('name').split('_');
-                console.log("🚀 ~ file: booking.js ~ line 127 ~ element.addEventListener ~ activityNumber", split)
+                console.log("🚀 split", split)
                 let activityNumber = split[split.length-1];
-                console.log("🚀 ~ file: booking.js ~ line 129 ~ element.addEventListener ~ y", activityNumber)
+                console.log("🚀 activityNumber", activityNumber)
                 //get name activity
-                let activity = this.options[element.selectedIndex].getAttribute('name');
-                console.log(activity);
+                let activityName = this.options[element.selectedIndex].getAttribute('name');
+                console.log("🚀 activityName", activityName);
+                //get value activity
+                let activityValue = this.options[element.selectedIndex].getAttribute('value');
+                console.log("🚀 activityValue", activityValue);
+                //get price activity
+                let price = Number(this.options[element.selectedIndex].getAttribute('data-price'));
+                console.log("🚀 price", price);
+                //get input date
+                let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`)
+                console.log("🚀 dateSelector", dateSelector)
+                //get input numberparticipants
+                let numberparticipantsCount = document.querySelector(`input[name="numberparticipantsCount_activity_` +activityNumber+ `"]`)
+                console.log("🚀 numberparticipantsCount", numberparticipantsCount);
+                //get div current activity
+                let currentActivity = document.querySelector(`.activity_`+ activityNumber);
+                console.log("🚀 currentActivity", currentActivity)
+
+
                 
-                
-                if(activity === "Cocktail ROC DAY" || activity === "Cocktail ROC WEEK-END"){
+
+                if(activityValue === "bikeHalfDayNoLoc" || activityValue === "bikeAllDayNoLoc" || activityValue === "bikeHalfDay" || activityValue === "bikeAllDay" || activityValue === "paddleHalfDay" || activityValue === "paddleAllDay" || activityValue === "kayak" || activityValue === "climbingHalfDay" || activityValue === "climbingAllDay" || activityValue === "viaHalfDay" || activityValue === "viaAllDay"){
+                    //if halfday selected, add halfday selector
+                    if(activityValue === "bikeHalfDayNoLoc" || activityValue === "bikeHalfDay" || activityValue === "paddleHalfDay" || activityValue === "kayak" || activityValue === "climbingHalfDay" || activityValue === "viaHalfDay"){
+                        //unless it already exists
+                        if(!dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                            addHalfDaySelector();
+                        }
+                    //or remove halfday selector if exists
+                    } else {
+                        if(dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                            removeHalfDaySelector();
+                        }
+                        
+                    };
+                    //check number of participants
+                    numberparticipantsCount.setAttribute("min", "4");
+                    numberparticipantsCount.setAttribute("max", "8");
+                    // remove ROC activity if exists
+                    removeRocActivity();
+                } else if(activityValue === "archery"){
+                    //add halfday selector
+                    //unless it already exists
+                    if(!dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                        addHalfDaySelector();
+                    }
+                    //check number of participants
+                    numberparticipantsCount.setAttribute("min", "6");
+                    numberparticipantsCount.setAttribute("max", "12");
+                    // remove ROC activity if exists
+                    removeRocActivity();
+                } else if(activityValue === "rookeasy"){
+    //TODO CHOOSE 3 HALF DAY
+                    //check number of participants
+                    numberparticipantsCount.setAttribute("min", "3");
+                    numberparticipantsCount.setAttribute("max", "8");
+                    // remove ROC activity if exists
+                    removeRocActivity();
+                } else if(activityValue === "snowboardHalfDay" || activityValue === "snowboardAllDay"){
+                    if(activityValue === "snowboardHalfDay"){
+                        //add halfday selector
+                        //unless it already exists
+                        if(!dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                            addHalfDaySelector();
+                        }
+                    //or remove halfday selector if exists
+                    } else {
+                        if(dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                            removeHalfDaySelector();
+                        }
+                    };
+                    //check number of participants
+                    numberparticipantsCount.setAttribute("min", "2");
+                    numberparticipantsCount.setAttribute("max", "8");
+                    // remove ROC activity if exists
+                    removeRocActivity();
+                } else if(activityValue === "splitboardHalfDay" || activityValue === "splitboardAllDay"){
+                    if(activityValue === "splitboardHalfDay"){
+                        //add halfday selector
+                        //unless it already exists
+                        if(!dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                            addHalfDaySelector();
+                        }
+                    } else {
+                        //or remove halfday selector if exists
+                        if(dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                            removeHalfDaySelector();
+                        }
+                    };
+                    //check number of participants
+                    numberparticipantsCount.setAttribute("min", "2");
+                    numberparticipantsCount.setAttribute("max", "6");
+                    // remove ROC activity if exists
+                    removeRocActivity();
+                } else if(activityValue === "cocktailOneDay" || activityValue === "cocktailTwoDay"){
+                    //remove halfday selector if exists
+                    if(dateSelector.nextElementSibling.classList.contains("activity_"+ activityNumber +"_halfDaySelector")){
+                        removeHalfDaySelector();
+                    }
+                    addRocActivity();
+                }
+
+
+
+                // ADD ROC ACTIVITY
+                function addRocActivity(){
                     let rocActivityNumber = 1;
                     let newRocActivity = document.createElement('div');
                     if(document.querySelector(".activity_"+ activityNumber +"_rocActivityItem") === null){
@@ -164,27 +262,47 @@ document.addEventListener('DOMContentLoaded', function(){
                                 <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée</option>
                                 <option value="snowboarAllfDay" name="Snowboard - journée" data-price="330">Snowboard - journée</option>
                                 <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180">Splitboard - 1/2 journée</option>
-                                <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330">Splitboard - journée</option>
+                                <option value="splitboardAllDay" name="Splitboard - journée" data-price="330">Splitboard - journée</option>
                             </optogroup> 
                         `;
-                        document.querySelector(`.activity_`+ activityNumber).appendChild(newRocActivity);
+                        // document.querySelector(`.activity_`+ activityNumber).appendChild(newRocActivity);
+                        currentActivity.appendChild(newRocActivity);
+
+                        numberparticipantsCount.setAttribute("min", "4");
+                        numberparticipantsCount.setAttribute("max", "8");
 
                         let select = document.querySelectorAll('.choice');
 
                         chooseActivity(select);
                     }
-                }else {
+                }
+                // REMOVE ROC ACTIVITY
+                function removeRocActivity(){
+                    //get activity to remove
                     let activityToRemove = document.querySelector(".activity_"+ activityNumber +"_rocActivityItem")
+                    //remove activity
                     document.querySelector(`.activity_`+ activityNumber).removeChild(activityToRemove);
+                }
+                // ADD HALF DAY SELECTOR
+                function addHalfDaySelector(){
+                    let halfDaySelector = document.createElement('select');
+                    halfDaySelector.classList.add("activity_"+ activityNumber +"_halfDaySelector")
+                    halfDaySelector.innerHTML = `
+                    <option value="morning">Matin</option>
+                    <option value="afternoon">Après-midi</option>
+                    `;
+                    currentActivity.insertBefore(halfDaySelector, numberparticipantsCount);
+                }
+                // REMOVE HALF DAY SELECTOR
+                function removeHalfDaySelector(){
+                    //get half day selector to remove
+                    let halfDaySelectorToRemove = document.querySelector(".activity_"+ activityNumber +"_halfDaySelector");
+                    //remove half day selector
+                    document.querySelector(`.activity_`+ activityNumber).removeChild(halfDaySelectorToRemove);
                 }
             })
         }
     }
-
-
-
-
-
 });
 
 
