@@ -1,0 +1,28 @@
+header, footer{
+    height: 10vh;;
+}
+
+section{
+    height: 80vh;
+}
+
+
+.activityBloc{
+    background-color: lightblue;
+    margin: 5px 0;
+}
+
+.card{
+    background-color: lightblue;
+    margin: 5px;
+    padding: 10px;
+}
+
+.activityItem{
+    margin-bottom: 10px;
+}
+
+.margeBottom{
+    margin-bottom: 10px;
+}
+

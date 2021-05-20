@@ -21,20 +21,19 @@ class Contactform {
             }
             if (field.name === 'email') {
                 if (this.validateEmail(field.value)) {
-                    this.isValid = true;
                     this.email = field.value;
                 } else {
                     this.error.record({ email: 'Email invalide' });
                 }
             }
             if (field.name === 'nom'){
-                if(!field.value || !typeof field.value === 'string'){
+                if(!field.value || !this.validateName(field.value)){
                     this.error.record({lastName: 'Nom invalide'});
                 }
                 this.firstName = field.value;
             }
             if (field.name === 'prénom'){
-                if(!field.value || !typeof field.value === 'string'){
+                if(!field.value || !this.validateName(field.value)){
                     this.error.record({firstName: 'Prénom invalide'});
                 }
                 this.lastName = field.value;
@@ -97,6 +96,10 @@ class Contactform {
     validateEmail(email) {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
+    }
+    validateName(string) {
+        const reg = /^[a-zA-Z ]+$/;
+        return reg.test(string)
     }
 }
 
