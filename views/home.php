@@ -87,7 +87,7 @@
         <section id="bike">
             <div class="bike activity">
                 <h2>vttae</h2>
-                <h3>vtt <span>à assistance Électrique</span></h3>
+                <h3>vtt <span>à</span> A<span>ssistance</span> É<span>lectrique</span></h3>
                 <div class='left_bloc'>
                     <div class="slider">
                         <div><img src="img/vtt_1.jpeg" alt="Photo de 2 cyclistes"></div>

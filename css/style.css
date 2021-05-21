@@ -1,18 +1,8 @@
-/*#region header */
-.toto{
-    color:red;
-}
-/*#endregion header */
-
 /*MOBILE FIRST*/
-/********************************************************
-CSS COMMUM
-********************************************************/
-/* h2:target {
-    padding-top: 12rem; 
-    margin-top: -12rem; 
-} */
-/* déclaration de variables CSS */
+
+/* #region COMMUM */
+
+/* #region variables CSS */
 :root {
     --clearColor: #EDEDED;
     --darkColor: #000;
@@ -25,9 +15,9 @@ CSS COMMUM
     --soft-grey: #20a459;
     /* --soft-blue: #2187c6; */
 }
-/* fin de déclaration de variables CSS */
+/* #endregion variables CSS */
 
-/* déclaration font */
+/* #region font */
 @font-face{
     font-family: "DIN-Black";
     src:url("font/DIN-Black.ttf");
@@ -44,6 +34,7 @@ CSS COMMUM
     font-family: "DIN-Regular";
     src:url("font/DIN-Regular.ttf");
 }
+/* #endregion font */
 
 * {
 	box-sizing: border-box; 
@@ -77,7 +68,7 @@ section{
 .activity{
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-top:-1rem; /* management space between sections */
+    margin-top:-2rem; /* management space between sections */
     margin-bottom:-1rem;
 }
 img{
@@ -88,13 +79,13 @@ h1, h2, h3, a{
     font-weight: normal;
 }
 h1{
-    font-family: "DIN-Regular";
+    font-family: "DIN-Medium";
     font-size: 2.5rem;
     color: var(--darkColor);
     margin-top: 0;
 }
 h2{
-    font-family: "DIN-Regular";
+    font-family: "DIN-Medium";
     font-size: 3.6rem;
     text-align: center;
     margin-top:0;
@@ -102,7 +93,7 @@ h2{
     padding: 0.5rem;
 }
 h3{
-    font-family: "DIN-Regular";
+    font-family: "DIN-Medium";
     margin-top: 0;
     /* font-size: 2rem; */
     /* vertical-align: middle;  */
@@ -191,15 +182,11 @@ p a{
 }
 
 
-/********************************************************
-FIN CSS COMMUM
-********************************************************/
+
+/* #endregion COMMUM */
 
 
-
-/********************************************************
-CSS HEADER
-********************************************************/
+/* #region HEADER */
 header{
     position: sticky;
     top: 0;
@@ -215,6 +202,7 @@ header{
     color: var(--darkColor);
     font-family: DIN-Regular;
     font-size: 1.8rem;
+    white-space: nowrap;
     padding: 0 2rem
 }
 .logo{
@@ -344,15 +332,12 @@ header{
     transition: all 1.4s ease-out
 }
 
-/********************************************************
-FIN CSS HEADER
-********************************************************/
+/* #endregion HEADER */
 
 
-/********************************************************
-CSS MAIN INDEX
-********************************************************/
-/* section home */
+/* #region MAIN INDEX */
+
+/* #region home */
 .home .background{
     background: url('../resources/transitionVTT.png')bottom no-repeat;
     background-size: 100%;
@@ -382,8 +367,9 @@ CSS MAIN INDEX
 .home ul{
     display:none;
 }
+/* #endregion home */
 
-/* section bike */
+/* #region bike */
 .bike{
     background-color: var(--rocColorO);
 }
@@ -404,8 +390,9 @@ CSS MAIN INDEX
     color:var(--clearColor);
     border: 2px solid var(--clearColor);
 }
+/* #endregion bike */
 
-/* section paddle */
+/* #region paddle */
 .paddle{
     color:var(--rocColorR);
     background: url('../resources/transitionESCALADE.png')bottom no-repeat, var(--background);
@@ -427,8 +414,9 @@ CSS MAIN INDEX
     color:var(--rocColorC);
     border: 2px solid var(--rocColorC);
 }
+/* #endregion paddle */
 
-/* section climbing */
+/* #region climbing */
 .climbing{
     background-color: var(--rocColorR);
 }
@@ -443,8 +431,9 @@ CSS MAIN INDEX
     color:var(--clearColor);
     border: 2px solid var(--clearColor);
 }
+/* #endregion climbing */
 
-/* section archery */
+/* #region archery */
 .archery{
     color:var(--rocColorR);
     background: var(--background);
@@ -465,8 +454,9 @@ CSS MAIN INDEX
     color:var(--rocColorO);
     border: 2px solid var(--rocColorO);
 }
+/* #endregion archery */
 
-/* section snowboard */
+/* #region snowboard */
 .snowboard{
     background-color: var(--rocColorC);
 }
@@ -478,11 +468,11 @@ CSS MAIN INDEX
     color:var(--clearColor);
     border: 2px solid var(--clearColor);
 }
+/* #endregion snowboard */
 
-/* section cocktail */
+/* #region cocktail */
 .cocktail{
     background-color: var(--cocktailColor);
-    padding-bottom: 2rem;
 }
 .cocktail .price{
     background-color: var(--clearColor);
@@ -516,8 +506,12 @@ CSS MAIN INDEX
 .cocktail .table tr:last-of-type td span{
     color: var(--rocColorC);
 }
+/* #endregion cocktail */
 
-/* section testimony */
+/* #region testimony */
+#testimony{
+    background-color: var(--cocktailColor);
+}
 .testimony{
     background: url('../resources/bgTEMOIGNAGES.png') top no-repeat, var(--cocktailColor);
     display:flex;
@@ -548,13 +542,12 @@ CSS MAIN INDEX
     width:unset;
     padding: 1rem 3rem;
 }
-/********************************************************
-FIN CSS MAIN INDEX
-********************************************************/
+/* #endregion testimony */
 
-/* ******************************************************
-CSS SLIDER
-********************************************************/
+/* #endregion MAIN INDEX */
+
+
+/* #region SLIDER */
 .slick-next::before, 
 .slick-prev::before {
 	font-size: 2rem;
@@ -568,13 +561,10 @@ CSS SLIDER
 	z-index:1;
 }
 
-/* ******************************************************
-FIN CSS SLIDER
-********************************************************/
+/* #endregion SLIDER */
 
-/********************************************************
-CSS BOOKING
-********************************************************/
+
+/* #region BOOKING */
 #booking{
     color:var(--darkColor);
 }
@@ -590,9 +580,10 @@ CSS BOOKING
 #booking .hide{
     display:none;
 }
-/********************************************************
-CSS TEMPORARYBOOKING
-********************************************************/
+/* #endregion BOOKING */
+
+
+/* #region TEMPORARYBOOKING */
 #temporaryBooking{
     text-align: center;
     color: var(--rocColorR);
@@ -608,9 +599,17 @@ CSS TEMPORARYBOOKING
     text-transform:capitalize;
     color: var(--rocColorO);
 }
-/********************************************************
-CSS CONTACT
-********************************************************/
+
+/* #endregion TEMPORARYBOOKING */
+
+
+/* #region CONTACT */
+div.form-error {
+    /* display: block; */
+    background-color: rgba(255, 100, 100, 1);
+    color: white;
+    width: 100%
+}
 .test{
     background-color: var(--rocColorC);
 }
@@ -665,9 +664,10 @@ CSS CONTACT
 .contact button:hover{
     transform:scale(1.1);
 }
-/********************************************************
-CSS FOOTER
-********************************************************/
+/* #endregion CONTACT */
+
+
+/* #region FOOTER */
 footer{
     color: var(--rocColorR);
     text-align: center;
@@ -684,29 +684,22 @@ footer .network a{
     font-size: 5rem;
     margin:0 2rem;
 }
-/********************************************************
-FIN CSS FOOTER
-********************************************************/
+
+/* #endregion FOOTER */
 
 
-/********************************************************
-CSS MEDIA QUERIES
-********************************************************/
+/* #region MEDIA QUERIES */
 
-
-/********************************************************
-SMALL MOBILE (max-width: 450px)
-********************************************************/
+/* #region SMALL MOBILE (max-width: 450px) */
 @media screen and (max-width: 450px) {
     .button{
         flex-direction: column;
         align-items: center;
     }
 }
+/* #endregion SMALL MOBILE (max-width: 450px) */
 
-/********************************************************
-TABLET (min-width: 768px)
-********************************************************/
+/* #region TABLET (min-width: 768px) */
 @media screen and (min-width:768px){
     header{
         background: url('../resources/bgHEADER.png')bottom right no-repeat;
@@ -717,9 +710,9 @@ TABLET (min-width: 768px)
     }
     .navbar{
         display:flex;
-        justify-content: space-between;
+        /* justify-content: space-between; */
         align-items: center;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         padding-left: 8rem;
     }
     .burger{
@@ -743,9 +736,9 @@ TABLET (min-width: 768px)
         padding-left: 1rem;
         letter-spacing: unset;
     }
-    .navbar_activity{
+    /* .navbar_activity{
         display:initial;
-    }
+    } */
     /* .navbar_activity a{
         transition: unset;
     } */
@@ -830,10 +823,9 @@ TABLET (min-width: 768px)
     }
 
 }
+/* #endregion TABLET (min-width: 768px) */
 
-/********************************************************
-DESKTOP (min-width: 980px)
-********************************************************/
+/* #region DESKTOP (min-width: 980px) */
 @media screen and (min-width:980px){
     /* header{
         background: url('../resources/bgHEADER.png') bottom no-repeat;
@@ -849,7 +841,7 @@ DESKTOP (min-width: 980px)
     .navbar_link > a{
         font-size: 2rem;
     }
-    /* section{
+    /* #region{
         padding-left: 10rem; 
         padding-right: 10rem; 
     } */
@@ -1050,9 +1042,9 @@ DESKTOP (min-width: 980px)
         border-radius: 0 4rem 4rem 0;
     }
 }
-/********************************************************
-DESKTOP (min-width: 1400px)
-********************************************************/
+/* #endregion DESKTOP (min-width: 980px) */
+
+/* #region DESKTOP (min-width: 1400px) */
 @media screen and (min-width:1400px){
     /* .home p:last-of-type{
         padding-bottom: unset;
@@ -1068,9 +1060,10 @@ DESKTOP (min-width: 1400px)
         justify-content:space-around;
     }*/
 }
-/********************************************************
-FIN CSS MEDIA QUERIES
-********************************************************/
+/* #endregion DESKTOP (min-width: 1400px) */
+
+/* #endregion MEDIA QUERIES */
+
 .scrollToTopBtn{
     position:fixed;
     bottom:20px;

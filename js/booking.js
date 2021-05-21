@@ -10,12 +10,43 @@ document.addEventListener('DOMContentLoaded', function () {
     let select = bookingForm.querySelectorAll('.choice');
     // console.log("🚀 ~ file: booking.js ~ line 10 ~ document.addEventListener ~ select", select)
 
-    chooseActivity(select);
+    let singleActivityFieldset = bookingForm.querySelector("#singleActivity");
+
+    let rocCocktailFieldset = bookingForm.querySelector("#rocCocktail");
+
+    let singleActivityBtn = bookingForm.querySelector('#singleActivityButton');
+
+    let rocCocktailBtn = bookingForm.querySelector('#rocCocktailButton');
+
+    let returnBtn = bookingForm.querySelector('#returnButton');
 
     let addActivityBtn = bookingForm.querySelector('#addActivityButton');
 
     let validateReservationBtn = bookingForm.querySelector('#validateReservation');
 
+    // CHOICE FORMULA
+    
+    singleActivityBtn.addEventListener('click', function(){
+        singleActivityBtn.classList.add('hide');
+        rocCocktailBtn.classList.add('hide');
+        returnBtn.classList.remove('hide');
+        singleActivityFieldset.classList.remove("hide");
+        chooseActivity(select);
+    })
+    rocCocktailBtn.addEventListener('click', function(){
+        singleActivityBtn.classList.add('hide');
+        rocCocktailBtn.classList.add('hide');
+        returnBtn.classList.remove('hide');
+        rocCocktailFieldset.classList.remove("hide");
+        chooseActivity(select);
+    })
+    returnBtn.addEventListener('click', function(){
+        singleActivityBtn.classList.remove('hide');
+        rocCocktailBtn.classList.remove('hide');
+        returnBtn.classList.add('hide');
+        singleActivityFieldset.classList.add("hide");
+        rocCocktailFieldset.classList.add("hide");
+    })
 
     //VERIF RECUPERATION INPUTS
     validateReservationBtn.addEventListener('click', function () {
@@ -24,9 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     })
 
-
     //ADD ACTIVITY
     addActivityBtn.addEventListener('click', addActivity);
+
+
+
 
     function addActivity() {
         let x = document.querySelector('.activities').childElementCount + 1;
@@ -40,39 +73,35 @@ document.addEventListener('DOMContentLoaded', function () {
                 <select class="field choice" name="activity_`+ x + `">
                     <option value="">Séléctionnez votre activité `+ x + `</option>
                     <optogroup label="bike"> 
-                        <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
-                        <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80">VTTAE sans location VTT - journée - 80€/pers.</option>
-                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70">VTTAE avec location VTT - 1/2 journée - 70€/pers.</option>
-                        <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="120">VTTAE avec location VTT - journée - 120€/pers.</option>
+                        <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
+                        <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">VTTAE sans location VTT - journée - 80€/pers.</option>
+                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">VTTAE avec location VTT - 1/2 journée - 70€/pers.</option>
+                        <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="120" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">VTTAE avec location VTT - journée - 120€/pers.</option>
                     </optogroup> 
                     <optogroup label="paddle">
-                        <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée - 55€/pers.</option>
-                        <option value="paddleAllDay" name="Paddle - journée" data-price="100">Paddle - journée - 100€/pers.</option>
-                        <option value="kayak" name="Kayak - 1/2 journée" data-price="50">Kayak - 1/2 journée - 50€/pers.</option>
+                        <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">Paddle - 1/2 journée - 55€/pers.</option>
+                        <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">Paddle - journée - 100€/pers.</option>
+                        <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">Kayak - 1/2 journée - 50€/pers.</option>
                     </optogroup> 
                     <optogroup label="climbing">
-                        <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50">Escalade - 1/2 journée - 50€/pers.</option>
-                        <option value="climbingAllDay" name="Escalade - journée" data-price="90">Escalade - journée - 90€/pers.</option>
-                        <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée - 60€/pers.</option>
-                        <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
+                        <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">Escalade - 1/2 journée - 50€/pers.</option>
+                        <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">Escalade - journée - 90€/pers.</option>
+                        <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">Via Ferrata - 1/2 journée - 60€/pers.</option>
+                        <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
                         </optogroup> 
                         <optogroup label="archery">
-                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="45">Tir à l'arc - 1/2 journée - 45€/pers.</option>
+                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="45" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay">Tir à l'arc - 1/2 journée - 45€/pers.</option>
                     </optogroup> 
                     <optogroup label="snowboard">
-                        <option value="rookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
-                        <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée - 160€/pers.</option>
-                        <option value="snowboardAllDay" name="Snowboard - journée" data-price="330">Snowboard - journée - 300€/pers.</option>
-                        <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180">Splitboard - 1/2 journée - 180€/pers.</option>
-                        <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330">Splitboard - journée - 330€/pers.</option>
-                    </optogroup> 
-                    <optogroup label="cocktail">
-                    <option value="cocktailOneDay" name="Cocktail ROC DAY" data-price="10">Cocktail ROC - ROC DAY - à partir de 100€/pers.</option>
-                    <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-price="20">Cocktail ROC - ROC WEEK-END - à partir de 210€/pers.</option>
+                        <option value="rookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="3" data-maxParticipants="8" data-duration="threeHalfDay">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
+                        <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay">Snowboard - 1/2 journée - 160€/pers.</option>
+                        <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay">Snowboard - journée - 300€/pers.</option>
+                        <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="4" data-maxParticipants="6" data-duration="halfDay">Splitboard - 1/2 journée - 180€/pers.</option>
+                        <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330" data-minParticipants="4" data-maxParticipants="6" data-duration="allDay">Splitboard - journée - 330€/pers.</option>
                     </optogroup> 
                 </select>
                 <input class="field" type="date" name="date_activity_`+ x + `">
-                <input class="field" type="number" name="numberparticipantsInput_activity_`+ x + `" min="2" max="12" placeholder="Nombre de participants">
+                <input class="field" type="number" name="numberParticipantsCount_activity_`+ x + `" placeholder="Nombre de participants">
             </div>
             <div class="activity_`+ x + `_participants">
                 <p>Participants à l'activité `+ x + `</p>
@@ -135,111 +164,64 @@ document.addEventListener('DOMContentLoaded', function () {
                 //get price activity
                 let price = Number(this.options[element.selectedIndex].getAttribute('data-price'));
                 console.log("🚀 price", price);
+                //get activity duration
+                let activityDuration = this.options[element.selectedIndex].getAttribute('data-duration');
+                //get min numberparticipants
+                let numberMinParticipants = Number(this.options[element.selectedIndex].getAttribute('data-minParticipants'));
+                //get max numberparticipants
+                let numberMaxParticipants = Number(this.options[element.selectedIndex].getAttribute('data-maxParticipants'));
                 //get input date
                 let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`)
                 console.log("🚀 dateSelector", dateSelector)
                 //get input numberparticipants
-                let numberparticipantsInput = document.querySelector(`input[name="numberparticipantsCount_activity_` + activityNumber + `"]`)
-                console.log("🚀 numberparticipantsCount", numberparticipantsInput);
+                let numberParticipantsInput = document.querySelector(`input[name="numberParticipantsCount_activity_` + activityNumber + `"]`)
+                console.log("🚀 numberParticipantsCount", numberParticipantsInput);
                 //get div current activity
                 let currentActivity = document.querySelector(`.activity_` + activityNumber);
                 console.log("🚀 currentActivity", currentActivity)
 
-                //get min numberparticipants
-                let numberMinParticipants = Number(this.options[element.selectedIndex].getAttribute('data-minUsers'));
-                //get max numberparticipants
-                let numberMaxParticipants = Number(this.options[element.selectedIndex].getAttribute('data-maxUsers'));
 
-                numberparticipantsInput.setAttribute("min", numberMinParticipants);
-                numberparticipantsInput.setAttribute("max", numberMaxParticipants);
+                numberParticipantsInput.setAttribute("min", numberMinParticipants);
+                numberParticipantsInput.setAttribute("max", numberMaxParticipants);
 
-                /*
-                Get isHalfDay    
+                numberParticipantsInput.value = numberMinParticipants;
 
-
-
-                */
-
-                if (activityValue === "bikeHalfDayNoLoc" || activityValue === "bikeAllDayNoLoc" || activityValue === "bikeHalfDay" || activityValue === "bikeAllDay" || activityValue === "paddleHalfDay" || activityValue === "paddleAllDay" || activityValue === "kayak" || activityValue === "climbingHalfDay" || activityValue === "climbingAllDay" || activityValue === "viaHalfDay" || activityValue === "viaAllDay") {
-                    //if halfday selected, add halfday selector
-                    if (activityValue === "bikeHalfDayNoLoc" || activityValue === "bikeHalfDay" || activityValue === "paddleHalfDay" || activityValue === "kayak" || activityValue === "climbingHalfDay" || activityValue === "viaHalfDay") {
-                        //unless it already exists
+                switch (activityDuration) {
+                    case "halfDay":
                         if (!dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
                             addHalfDaySelector();
                         }
-                        //or remove halfday selector if exists
-                    } else {
+                        break;
+                    default:
                         if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
                             removeHalfDaySelector();
                         }
-
-                    };
-                    //check number of participants
-                    numberparticipantsInput.setAttribute("min", "4");
-                    numberparticipantsInput.setAttribute("max", "8");
-                    // remove ROC activity if exists
-                    removeRocActivity();
-                } else if (activityValue === "archery") {
-                    //add halfday selector
-                    //unless it already exists
-                    if (!dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                        addHalfDaySelector();
-                    }
-                    //check number of participants
-                    numberparticipantsInput.setAttribute("min", "6");
-                    numberparticipantsInput.setAttribute("max", "12");
-                    // remove ROC activity if exists
-                    removeRocActivity();
-                } else if (activityValue === "rookeasy") {
-                    //TODO CHOOSE 3 HALF DAY
-                    //check number of participants
-                    numberparticipantsInput.setAttribute("min", "3");
-                    numberparticipantsInput.setAttribute("max", "8");
-                    // remove ROC activity if exists
-                    removeRocActivity();
-                } else if (activityValue === "snowboardHalfDay" || activityValue === "snowboardAllDay") {
-                    if (activityValue === "snowboardHalfDay") {
-                        //add halfday selector
-                        //unless it already exists
-                        if (!dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                            addHalfDaySelector();
-                        }
-                        //or remove halfday selector if exists
-                    } else {
-                        if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                            removeHalfDaySelector();
-                        }
-                    };
-                    //check number of participants
-                    numberparticipantsInput.setAttribute("min", "2");
-                    numberparticipantsInput.setAttribute("max", "8");
-                    // remove ROC activity if exists
-                    removeRocActivity();
-                } else if (activityValue === "splitboardHalfDay" || activityValue === "splitboardAllDay") {
-                    if (activityValue === "splitboardHalfDay") {
-                        //add halfday selector
-                        //unless it already exists
-                        if (!dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                            addHalfDaySelector();
-                        }
-                    } else {
-                        //or remove halfday selector if exists
-                        if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                            removeHalfDaySelector();
-                        }
-                    };
-                    //check number of participants
-                    numberparticipantsInput.setAttribute("min", "2");
-                    numberparticipantsInput.setAttribute("max", "6");
-                    // remove ROC activity if exists
-                    removeRocActivity();
-                } else if (activityValue === "cocktailOneDay" || activityValue === "cocktailTwoDay") {
-                    //remove halfday selector if exists
-                    if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                        removeHalfDaySelector();
-                    }
-                    addRocActivity();
+                        break;
                 }
+
+                
+                // } else if (activityValue === "splitboardHalfDay" || activityValue === "splitboardAllDay") {
+                //     if (activityValue === "splitboardHalfDay") {
+                //         //add halfday selector
+                //         //unless it already exists
+                //         if (!dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
+                //             addHalfDaySelector();
+                //         }
+                //     } else {
+                //         //or remove halfday selector if exists
+                //         if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
+                //             removeHalfDaySelector();
+                //         }
+                //     };
+                //     // remove ROC activity if exists
+                //     removeRocActivity();
+                // } else if (activityValue === "cocktailOneDay" || activityValue === "cocktailTwoDay") {
+                //     //remove halfday selector if exists
+                //     if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
+                //         removeHalfDaySelector();
+                //     }
+                //     addRocActivity();
+                // }
 
 
 
@@ -283,8 +265,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         // document.querySelector(`.activity_`+ activityNumber).appendChild(newRocActivity);
                         currentActivity.appendChild(newRocActivity);
 
-                        numberparticipantsInput.setAttribute("min", "4");
-                        numberparticipantsInput.setAttribute("max", "8");
 
                         let select = document.querySelectorAll('.choice');
 
@@ -306,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="morning">Matin</option>
                     <option value="afternoon">Après-midi</option>
                     `;
-                    currentActivity.insertBefore(halfDaySelector, numberparticipantsInput);
+                    currentActivity.insertBefore(halfDaySelector, numberParticipantsInput);
                 }
                 // REMOVE HALF DAY SELECTOR
                 function removeHalfDaySelector() {

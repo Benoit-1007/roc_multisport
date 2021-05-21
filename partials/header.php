@@ -14,7 +14,7 @@
         </li>    
         <li class="navbar_link third"><a href="index.php#testimony">témoignages</a></li>
         <li class="navbar_link four"><a href="contact.php">contact</a></li>
-        <li class="navbar_link fifth"><a href="#"><i class="fas fa-shopping-basket"></i></a></li>
+        <li class="navbar_link fifth"><a href="booking.php"><!--<i class="fas fa-shopping-basket"></i>-->réservation</a></li>
     </ul>
     <button class="burger">
         <span class="bar"></span>
