@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let validateReservationBtn = bookingForm.querySelector('#validateReservation');
 
+    
     // CHOICE FORMULA
     
     singleActivityBtn.addEventListener('click', function(){
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
         rocCocktailBtn.classList.add('hide');
         returnBtn.classList.remove('hide');
         rocCocktailFieldset.classList.remove("hide");
-        chooseActivity(select);
+        chooseRocActivities(select);
     })
     returnBtn.addEventListener('click', function(){
         singleActivityBtn.classList.remove('hide');
@@ -145,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function chooseActivity(field) {
         for (let i = 0; i < field.length; i++) {
 
-            console.log("🚀 i", field);
+            console.log("🚀 field", field);
 
             const element = field[i];
 
@@ -198,42 +199,90 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         break;
                 }
-
                 
-                // } else if (activityValue === "splitboardHalfDay" || activityValue === "splitboardAllDay") {
-                //     if (activityValue === "splitboardHalfDay") {
-                //         //add halfday selector
-                //         //unless it already exists
-                //         if (!dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                //             addHalfDaySelector();
-                //         }
-                //     } else {
-                //         //or remove halfday selector if exists
-                //         if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                //             removeHalfDaySelector();
-                //         }
-                //     };
-                //     // remove ROC activity if exists
-                //     removeRocActivity();
-                // } else if (activityValue === "cocktailOneDay" || activityValue === "cocktailTwoDay") {
-                //     //remove halfday selector if exists
-                //     if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                //         removeHalfDaySelector();
-                //     }
-                //     addRocActivity();
-                // }
+                // ADD HALF DAY SELECTOR
+                function addHalfDaySelector() {
+                    let halfDaySelector = document.createElement('select');
+                    halfDaySelector.classList.add("activity_" + activityNumber + "_halfDaySelector")
+                    halfDaySelector.innerHTML = `
+                    <option value="morning">Matin</option>
+                    <option value="afternoon">Après-midi</option>
+                    `;
+                    currentActivity.insertBefore(halfDaySelector, numberParticipantsInput);
+                }
+                // REMOVE HALF DAY SELECTOR
+                function removeHalfDaySelector() {
+                    //get half day selector to remove
+                    let halfDaySelectorToRemove = document.querySelector(".activity_" + activityNumber + "_halfDaySelector");
+                    //remove half day selector
+                    document.querySelector(`.activity_` + activityNumber).removeChild(halfDaySelectorToRemove);
+                }
+            })
+        }
+    }
 
 
+    // CHOOSE ROC ACTIVITIES
+    function chooseRocActivities(field) {
+        console.log('enter roc function');
+        console.log("🚀 field", field)
+        
+        for (let i = 0; i < field.length; i++) {
 
+            const element = field[i];
+
+            element.addEventListener('change', function () {
+                //get div rocCocktailActivities for add activity
+                let rocCocktailActivities = document.querySelector(".rocCocktailActivities");
+                console.log("🚀 rocCocktailActivities", rocCocktailActivities)
+                //get name activity
+                let rocActivityName = this.options[element.selectedIndex].getAttribute('name');
+                console.log("🚀 rocActivityName", rocActivityName);
+                //get value activity
+                let activityValue = this.options[element.selectedIndex].getAttribute('value');
+                console.log("🚀 activityValue", activityValue);
+                //get activity duration
+                let activityDuration = this.options[element.selectedIndex].getAttribute('data-duration');
+                //get min numberparticipants
+                let numberMinParticipants = Number(this.options[element.selectedIndex].getAttribute('data-minParticipants'));
+                //get max numberparticipants
+                let numberMaxParticipants = Number(this.options[element.selectedIndex].getAttribute('data-maxParticipants'));
+                //get input date
+                let dateSelector = document.querySelector(`input[name="date_rocActivity"]`)
+                console.log("🚀 dateSelector", dateSelector)
+                //get input numberparticipants
+                let numberParticipantsInput = document.querySelector(`input[name="numberParticipantsCount_rocActivity"]`)
+                console.log("🚀 numberParticipantsCount", numberParticipantsInput);
+
+                numberParticipantsInput.setAttribute("min", numberMinParticipants);
+                numberParticipantsInput.setAttribute("max", numberMaxParticipants);
+
+                numberParticipantsInput.value = numberMinParticipants;
+
+                switch(activityDuration){
+                    case "rocDay":
+                        addHalfDayActivity();
+                        break;
+                    default:
+                        addAllActivity();
+                        break;
+                }
                 // ADD ROC ACTIVITY
-                function addRocActivity() {
+                function addHalfDayActivity() {
+                    console.log("ok");
+                    let select = document.querySelectorAll('.choice');
+
+                    chooseRocActivities(select);
+                };
+
+                function addAllActivity() {
                     let rocActivityNumber = 1;
                     let newRocActivity = document.createElement('div');
-                    if (document.querySelector(".activity_" + activityNumber + "_rocActivityItem") === null) {
-                        newRocActivity.classList.add("activity_" + activityNumber + "_rocActivityItem");
+                    // if (document.querySelector("rocActivity_` + rocActivityNumber +") === null) {
+                    //     newRocActivity.classList.add("activity_" + activityNumber + "_rocActivityItem");
                         newRocActivity.innerHTML = `
-                        <p>ROC Activité `+ activityNumber + `</p>
-                        <select class="field choice" name="activity_`+ activityNumber + `_rocActivity_` + rocActivityNumber + `">
+                        <p>ROC Activité `+ rocActivityNumber + `</p>
+                        <select class="field choice" name="rocActivity_` + rocActivityNumber + `">
                             <option value="">Séléctionnez votre ROC activité `+ rocActivityNumber + `</option>
                             <optogroup label="bike"> 
                                 <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée</option>
@@ -262,43 +311,25 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <option value="splitboardAllDay" name="Splitboard - journée" data-price="330">Splitboard - journée</option>
                             </optogroup> 
                         `;
-                        // document.querySelector(`.activity_`+ activityNumber).appendChild(newRocActivity);
-                        currentActivity.appendChild(newRocActivity);
-
+                        rocCocktailActivities.appendChild(newRocActivity);
 
                         let select = document.querySelectorAll('.choice');
 
-                        chooseActivity(select);
-                    }
-                }
-                // REMOVE ROC ACTIVITY
-                function removeRocActivity() {
-                    //get activity to remove
-                    let activityToRemove = document.querySelector(".activity_" + activityNumber + "_rocActivityItem")
-                    //remove activity
-                    document.querySelector(`.activity_` + activityNumber).removeChild(activityToRemove);
-                }
-                // ADD HALF DAY SELECTOR
-                function addHalfDaySelector() {
-                    let halfDaySelector = document.createElement('select');
-                    halfDaySelector.classList.add("activity_" + activityNumber + "_halfDaySelector")
-                    halfDaySelector.innerHTML = `
-                    <option value="morning">Matin</option>
-                    <option value="afternoon">Après-midi</option>
-                    `;
-                    currentActivity.insertBefore(halfDaySelector, numberParticipantsInput);
-                }
-                // REMOVE HALF DAY SELECTOR
-                function removeHalfDaySelector() {
-                    //get half day selector to remove
-                    let halfDaySelectorToRemove = document.querySelector(".activity_" + activityNumber + "_halfDaySelector");
-                    //remove half day selector
-                    document.querySelector(`.activity_` + activityNumber).removeChild(halfDaySelectorToRemove);
+                        // chooseRocActivities(select);
+                    // }
                 }
             })
-        }
+        }    
     }
 });
+
+// REMOVE ROC ACTIVITY
+function removeRocActivity() {
+    //get activity to remove
+    let activityToRemove = document.querySelector(".activity_" + activityNumber + "_rocActivityItem")
+    //remove activity
+    document.querySelector(`.activity_` + activityNumber).removeChild(activityToRemove);
+}
 
 
 
