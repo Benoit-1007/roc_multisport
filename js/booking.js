@@ -223,21 +223,23 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 displayParticipants(activityNumber, numberMinParticipants);
 
-                participantsNumberSelector.addEventListener('keyup mouseup', function(){
-                    console.log('test')
+                participantsNumberSelector.addEventListener('keyup', function(){
+                    console.log('test');
+                    let newParticipantsNumber = participantsNumberSelector.value;
+                    displayParticipants(activityNumber, newParticipantsNumber);
                 })
             })
         }
     }
 
-    function addHalfDaySelector(numActivity, divActivity,NumberParticipantsInput) {
+    function addHalfDaySelector(numActivity, divActivity,participantsNumberInput) {
         let halfDaySelector = document.createElement('select');
         halfDaySelector.classList.add('activity_' + numActivity + '_halfDaySelector')
         halfDaySelector.innerHTML = `
         <option value='morning'>Matin</option>
         <option value='afternoon'>Après-midi</option>
         `;
-        divActivity.insertBefore(halfDaySelector, NumberParticipantsInput);
+        divActivity.insertBefore(halfDaySelector, participantsNumberInput);
     }
     
     function removeHalfDaySelector(numActivity) {
@@ -308,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 let dateSelector = document.querySelector(`input[name="date_rocActivity"]`)
                 console.log("🚀 dateSelector", dateSelector)
                 //get input numberparticipants
-                let numberParticipantsInput = document.querySelector(`input[name="numberParticipantsCount_rocActivity"]`)
+                let participantsNumberInput = document.querySelector(`input[name="numberParticipantsCount_rocActivity"]`)
                 console.log("🚀 numberParticipantsCount", numberParticipantsInput);
 
                 numberParticipantsInput.setAttribute('min', numberMinParticipants);
