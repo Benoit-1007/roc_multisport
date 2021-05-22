@@ -29,7 +29,7 @@
                 <input class="field" type="Number" name="contact_postalCode" required placeholder="Code postal">
                 <input class="field" type="text" name="contact_city" required placeholder="Ville">
         </fieldset>
-        <fieldset id="formulaChoice">
+        <fieldset id="formulaSelector">
             <legend>Choisissez votre formule</legend>
             <button type="button" id="singleActivityButton">activité simple</button>
             <button type="button" id="rocCocktailButton">cocktail roc</button>
@@ -43,7 +43,7 @@
                     <div class="activityItem">
                         <div class="activity_1">
                             <p>Activité 1</p>
-                            <select class="field choice" name="activity_1">
+                            <select class="field selector" name="activity_1">
                                 <option value="">Séléctionnez votre activité 1</option>
                                 <optogroup label="bike"> 
                                     <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -74,33 +74,36 @@
                                 </optogroup> 
                             </select>
                             <input class="field" type="date" name="date_activity_1">
-                            <input class="field" type="number" name="numberParticipantsCount_activity_1" placeholder="Nombre de participants">
+                            <input class="field" type="number" name="numberParticipantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
                         </div>
                         <div class="activity_1_participants">
                             <p>Participants à l'activité 1</p>
-                            <input class="field" type="text" name="firstName_activity_1_participant_1" required placeholder="Nom*">
-                            <input class="field" type="text" name="lastName_activity_1_participant_1" required placeholder="Prénom*">
-                            <input class="field" type="text" name="birthdate_activity_1_participant_1" required placeholder="Date de naissance* (jj/mm/aaaa)">
-                            <input class="field" type="number" name="size_activity_1_participant_1" required placeholder="Taille (cm)*">
-                            <select class="field" name="level_activity_1_participant_1">
-                                <option value="">Niveau*</option>
-                                <option value="beginner">Débutant</option>
-                                <option value="intermediate">Intermédiaire</option>
-                                <option value="confirmed">Confirmé</option>
-                                <option value="expert">Expert</option>
-                            </select>
-
-                            <input class="field" type="text" name="firstName_activity_1_participant_2" required placeholder="Nom*">
-                            <input class="field" type="text" name="lastName_activity_1_participant_2" required placeholder="Prénom*">
-                            <input class="field" type="text" name="birthdate_activity_1_participant_2" required placeholder="Date de naissance* (jj/mm/aaaa)">
-                            <input class="field" type="number" name="size_activity_1_participant_2" required placeholder="Taille (cm)*">
-                            <select class="field" name="level_activity_1_participant_2">
-                                <option value="">Niveau*</option>
-                                <option value="beginner">Débutant</option>
-                                <option value="intermediate">Intermédiaire</option>
-                                <option value="confirmed">Confirmé</option>
-                                <option value="expert">Expert</option>
-                            </select>
+                            <div class="activity_1_participant_1">
+                                <input class="field" type="text" name="firstName_activity_1_participant_1" required placeholder="Nom*">
+                                <input class="field" type="text" name="lastName_activity_1_participant_1" required placeholder="Prénom*">
+                                <input class="field" type="text" name="birthdate_activity_1_participant_1" required placeholder="Date de naissance* (jj/mm/aaaa)">
+                                <input class="field" type="number" name="size_activity_1_participant_1" required placeholder="Taille (cm)*">
+                                <select class="field" name="level_activity_1_participant_1">
+                                    <option value="">Niveau*</option>
+                                    <option value="beginner">Débutant</option>
+                                    <option value="intermediate">Intermédiaire</option>
+                                    <option value="confirmed">Confirmé</option>
+                                    <option value="expert">Expert</option>
+                                </select>
+                            </div>
+                            <div class="activity_1_participant_2">
+                                <input class="field" type="text" name="firstName_activity_1_participant_2" required placeholder="Nom*">
+                                <input class="field" type="text" name="lastName_activity_1_participant_2" required placeholder="Prénom*">
+                                <input class="field" type="text" name="birthdate_activity_1_participant_2" required placeholder="Date de naissance* (jj/mm/aaaa)">
+                                <input class="field" type="number" name="size_activity_1_participant_2" required placeholder="Taille (cm)*">
+                                <select class="field" name="level_activity_1_participant_2">
+                                    <option value="">Niveau*</option>
+                                    <option value="beginner">Débutant</option>
+                                    <option value="intermediate">Intermédiaire</option>
+                                    <option value="confirmed">Confirmé</option>
+                                    <option value="expert">Expert</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,7 +117,7 @@
                 <legend>Votre ROC Cocktail</legend>
                 <div class="activityItem">
                     <div class="rocCocktailActivities">
-                        <select class="field choice" name="rocCocktailActivities">
+                        <select class="field selector" name="rocCocktailActivities">
                             <option value="">Séléctionnez votre Cocktail ROC</option>
                             <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8" data-duration="rocDay">Cocktail ROC - ROC DAY - à partir de 100€/pers.</option>
                             <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8" data-duration="rocWeekEnd">Cocktail ROC - ROC WEEK-END - à partir de 210€/pers.</option>

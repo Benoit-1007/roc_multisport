@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // VARIABLES
     let bookingForm = document.querySelector('#bookingForm');
 
-    let inputs = bookingForm.querySelectorAll('.field');
-
-    let select = bookingForm.querySelectorAll('.choice');
+    let select = bookingForm.querySelectorAll('.selector');
     // console.log("🚀 ~ file: booking.js ~ line 10 ~ document.addEventListener ~ select", select)
 
-    let singleActivityFieldset = bookingForm.querySelector("#singleActivity");
+    let singleActivityFieldset = bookingForm.querySelector('#singleActivity');
 
-    let rocCocktailFieldset = bookingForm.querySelector("#rocCocktail");
+    let rocCocktailFieldset = bookingForm.querySelector('#rocCocktail');
+    
+    let activitiesbtn = document.querySelectorAll('#formulaSelector button');
 
     let singleActivityBtn = bookingForm.querySelector('#singleActivityButton');
 
@@ -24,54 +24,71 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let validateReservationBtn = bookingForm.querySelector('#validateReservation');
 
+    //Choose between single activity or cocktail ROC
+    chooseFormula(activitiesbtn);
     
-    // CHOICE FORMULA
+    //add a new single activity
+    addActivityBtn.addEventListener('click', addActivity);
     
-    singleActivityBtn.addEventListener('click', function(){
-        singleActivityBtn.classList.add('hide');
-        rocCocktailBtn.classList.add('hide');
-        returnBtn.classList.remove('hide');
-        singleActivityFieldset.classList.remove("hide");
-        chooseActivity(select);
-    })
-    rocCocktailBtn.addEventListener('click', function(){
-        singleActivityBtn.classList.add('hide');
-        rocCocktailBtn.classList.add('hide');
-        returnBtn.classList.remove('hide');
-        rocCocktailFieldset.classList.remove("hide");
-        chooseRocActivities(select);
-    })
-    returnBtn.addEventListener('click', function(){
-        singleActivityBtn.classList.remove('hide');
-        rocCocktailBtn.classList.remove('hide');
-        returnBtn.classList.add('hide');
-        singleActivityFieldset.classList.add("hide");
-        rocCocktailFieldset.classList.add("hide");
-    })
+
+
+    let inputs = bookingForm.querySelectorAll('.field');
 
     //VERIF RECUPERATION INPUTS
     validateReservationBtn.addEventListener('click', function () {
         inputs.forEach(input => {
-            console.log(input.getAttribute("name"));
+            console.log(input.getAttribute('name'));
         });
     })
 
-    //ADD ACTIVITY
-    addActivityBtn.addEventListener('click', addActivity);
 
 
 
+    //FUNCTIONS
+    function chooseFormula(buttons){
+        for (let i = 0; i < buttons.length; i++) {
+            const btn = buttons[i];
+
+            btn.addEventListener('click', function(){
+                let currentBtn = btn.id;
+
+                switch(currentBtn){
+                    case "singleActivityButton":
+                        singleActivityBtn.classList.add('hide');
+                        rocCocktailBtn.classList.add('hide');
+                        returnBtn.classList.remove('hide');
+                        singleActivityFieldset.classList.remove("hide");
+                        chooseActivity(select);
+                        break;
+                    case "rocCocktailButton":
+                        singleActivityBtn.classList.add('hide');
+                        rocCocktailBtn.classList.add('hide');
+                        returnBtn.classList.remove('hide');
+                        rocCocktailFieldset.classList.remove("hide");
+                        chooseRocActivities(select);
+                        break;
+                    default:
+                        singleActivityBtn.classList.remove('hide');
+                        rocCocktailBtn.classList.remove('hide');
+                        returnBtn.classList.add('hide');
+                        singleActivityFieldset.classList.add("hide");
+                        rocCocktailFieldset.classList.add("hide");
+                        break;
+                }
+            })
+        }
+    }
 
     function addActivity() {
         let x = document.querySelector('.activities').childElementCount + 1;
 
         let newActivity = document.createElement('div');
-        newActivity.classList.add("activityItem");
+        newActivity.classList.add('activityItem');
 
         newActivity.innerHTML = `
             <div class="activity_`+ x + `">
                 <p>Activité `+ x + `</p>
-                <select class="field choice" name="activity_`+ x + `">
+                <select class="field selector" name="activity_`+ x + `">
                     <option value="">Séléctionnez votre activité `+ x + `</option>
                     <optogroup label="bike"> 
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -102,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </optogroup> 
                 </select>
                 <input class="field" type="date" name="date_activity_`+ x + `">
-                <input class="field" type="number" name="numberParticipantsCount_activity_`+ x + `" placeholder="Nombre de participants">
+                <input class="field" type="number" name="numberParticipantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
             </div>
             <div class="activity_`+ x + `_participants">
                 <p>Participants à l'activité `+ x + `</p>
@@ -133,28 +150,27 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
 
         //append newActivity to button
-        document.querySelector(".activities").appendChild(newActivity);
+        document.querySelector('.activities').appendChild(newActivity);
 
-        let select = document.querySelectorAll('.choice');
-        console.log("🚀 ~ file: booking.js ~ line 109 ~ addActivity ~ select", select);
+        let select = document.querySelectorAll('.selector');
+        console.log("🚀select", select);
 
         chooseActivity(select);
 
     }
 
-    //CHOOSE ACTIVITY
     function chooseActivity(field) {
-        for (let i = 0; i < field.length; i++) {
 
-            console.log("🚀 field", field);
+        for (let i = 0; i < field.length; i++) {
 
             const element = field[i];
 
             element.addEventListener('change', function () {
                 //get activity number
-                let split = element.getAttribute('name').split('_');
-                console.log("🚀 split", split)
-                let activityNumber = split[split.length - 1];
+                let activityNumber = element.getAttribute('name').replace(/\D/g,'');
+                // let split = element.getAttribute('name').split('_');
+                // console.log("🚀 split", split)
+                // let activityNumber = split[split.length - 1];
                 console.log("🚀 activityNumber", activityNumber)
                 //get name activity
                 let activityName = this.options[element.selectedIndex].getAttribute('name');
@@ -167,65 +183,106 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("🚀 price", price);
                 //get activity duration
                 let activityDuration = this.options[element.selectedIndex].getAttribute('data-duration');
+                console.log("🚀 ~ file: booking.js ~ line 186 ~ activityDuration", activityDuration)
                 //get min numberparticipants
                 let numberMinParticipants = Number(this.options[element.selectedIndex].getAttribute('data-minParticipants'));
+                console.log("🚀 ~ file: booking.js ~ line 189 ~ numberMinParticipants", numberMinParticipants)
                 //get max numberparticipants
                 let numberMaxParticipants = Number(this.options[element.selectedIndex].getAttribute('data-maxParticipants'));
+                console.log("🚀 ~ file: booking.js ~ line 192 ~ numberMaxParticipants", numberMaxParticipants)
                 //get input date
-                let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`)
+                let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`);
                 console.log("🚀 dateSelector", dateSelector)
                 //get input numberparticipants
-                let numberParticipantsInput = document.querySelector(`input[name="numberParticipantsCount_activity_` + activityNumber + `"]`)
-                console.log("🚀 numberParticipantsCount", numberParticipantsInput);
+                let participantsNumberSelector = document.querySelector(`input[name="numberParticipantsCount_activity_` + activityNumber + `"]`);
+                console.log("🚀 numberParticipantsCount", participantsNumberSelector);
+                // get numberparticipants
+                let currentParticipantsNumber = document.querySelectorAll(`div[class*="activity_` + activityNumber + `_participant_"]`).length;
+                console.log("🚀currentParticipantsNumber", currentParticipantsNumber)
                 //get div current activity
-                let currentActivity = document.querySelector(`.activity_` + activityNumber);
+                let currentActivity = document.querySelector('.activity_' + activityNumber);
                 console.log("🚀 currentActivity", currentActivity)
 
 
-                numberParticipantsInput.setAttribute("min", numberMinParticipants);
-                numberParticipantsInput.setAttribute("max", numberMaxParticipants);
+                participantsNumberSelector.setAttribute('min', numberMinParticipants);
+                participantsNumberSelector.setAttribute('max', numberMaxParticipants);
 
-                numberParticipantsInput.value = numberMinParticipants;
+                participantsNumberSelector.value = numberMinParticipants;
 
                 switch (activityDuration) {
                     case "halfDay":
-                        if (!dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                            addHalfDaySelector();
+                        if (!dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
+                            addHalfDaySelector(activityNumber, currentActivity, participantsNumberSelector);
                         }
                         break;
                     default:
-                        if (dateSelector.nextElementSibling.classList.contains("activity_" + activityNumber + "_halfDaySelector")) {
-                            removeHalfDaySelector();
+                        if (dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
+                            removeHalfDaySelector(activityNumber);
                         }
                         break;
                 }
-                
-                // ADD HALF DAY SELECTOR
-                function addHalfDaySelector() {
-                    let halfDaySelector = document.createElement('select');
-                    halfDaySelector.classList.add("activity_" + activityNumber + "_halfDaySelector")
-                    halfDaySelector.innerHTML = `
-                    <option value="morning">Matin</option>
-                    <option value="afternoon">Après-midi</option>
-                    `;
-                    currentActivity.insertBefore(halfDaySelector, numberParticipantsInput);
-                }
-                // REMOVE HALF DAY SELECTOR
-                function removeHalfDaySelector() {
-                    //get half day selector to remove
-                    let halfDaySelectorToRemove = document.querySelector(".activity_" + activityNumber + "_halfDaySelector");
-                    //remove half day selector
-                    document.querySelector(`.activity_` + activityNumber).removeChild(halfDaySelectorToRemove);
-                }
+                displayParticipants(activityNumber, numberMinParticipants);
+
+                participantsNumberSelector.addEventListener('keyup mouseup', function(){
+                    console.log('test')
+                })
             })
         }
     }
 
+    function addHalfDaySelector(numActivity, divActivity,NumberParticipantsInput) {
+        let halfDaySelector = document.createElement('select');
+        halfDaySelector.classList.add('activity_' + numActivity + '_halfDaySelector')
+        halfDaySelector.innerHTML = `
+        <option value='morning'>Matin</option>
+        <option value='afternoon'>Après-midi</option>
+        `;
+        divActivity.insertBefore(halfDaySelector, NumberParticipantsInput);
+    }
+    
+    function removeHalfDaySelector(numActivity) {
+        //get half day selector to remove
+        let halfDaySelectorToRemove = document.querySelector('.activity_' + numActivity + '_halfDaySelector');
+        //remove half day selector
+        document.querySelector('.activity_' + numActivity).removeChild(halfDaySelectorToRemove);
+    }
 
-    // CHOOSE ROC ACTIVITIES
+    function displayParticipants(numActivity, NumberParticipants){
+        let participantsField = document.querySelector('.activity_' + numActivity + '_participants');
+        let currentParticipantsNumber = document.querySelectorAll(`div[class*="activity_` + numActivity + `_participant_"]`).length;
+        let differenceParticipants = NumberParticipants-currentParticipantsNumber;
+        console.log("🚀 ~ file: booking.js ~ line 225 ~ differenceParticipants", differenceParticipants)
+        if(differenceParticipants > 0){
+            for (let i = 0; i < differenceParticipants; i++) {
+                let currentParticipant = currentParticipantsNumber+i+1;
+                let newParticipant = document.createElement('div');
+                newParticipant.classList.add('activity_' + numActivity + '_participant_'+ currentParticipant)
+                newParticipant.innerHTML = ` 
+                    <input class="field" type="text" name="firstName_activity_` + numActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
+                    <input class="field" type="text" name="lastName_activity_` + numActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
+                    <input class="field" type="text" name="birthdate_activity_` + numActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
+                    <input class="field" type="number" name="size_activity_` + numActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
+                    <select class="field" name="level_activity_` + numActivity + `_participant_` + currentParticipant + `">
+                        <option value="">Niveau*</option>
+                        <option value="beginner">Débutant</option>
+                        <option value="intermediate">Intermédiaire</option>
+                        <option value="confirmed">Confirmé</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                `;
+                participantsField.appendChild(newParticipant);
+            }
+            
+        } else if(differenceParticipants < 0){
+            for (let i = 0; i < Math.abs(differenceParticipants); i++) {
+                let participantToRemove = document.querySelector('.activity_' + numActivity + '_participant_'+ (currentParticipantsNumber-i));
+                participantsField.removeChild(participantToRemove);
+            }
+        }
+    };
+
     function chooseRocActivities(field) {
         console.log('enter roc function');
-        console.log("🚀 field", field)
         
         for (let i = 0; i < field.length; i++) {
 
@@ -233,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             element.addEventListener('change', function () {
                 //get div rocCocktailActivities for add activity
-                let rocCocktailActivities = document.querySelector(".rocCocktailActivities");
+                let rocCocktailActivities = document.querySelector('.rocCocktailActivities');
                 console.log("🚀 rocCocktailActivities", rocCocktailActivities)
                 //get name activity
                 let rocActivityName = this.options[element.selectedIndex].getAttribute('name');
@@ -254,8 +311,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 let numberParticipantsInput = document.querySelector(`input[name="numberParticipantsCount_rocActivity"]`)
                 console.log("🚀 numberParticipantsCount", numberParticipantsInput);
 
-                numberParticipantsInput.setAttribute("min", numberMinParticipants);
-                numberParticipantsInput.setAttribute("max", numberMaxParticipants);
+                numberParticipantsInput.setAttribute('min', numberMinParticipants);
+                numberParticipantsInput.setAttribute('max', numberMaxParticipants);
 
                 numberParticipantsInput.value = numberMinParticipants;
 
@@ -270,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 // ADD ROC ACTIVITY
                 function addHalfDayActivity() {
                     console.log("ok");
-                    let select = document.querySelectorAll('.choice');
+                    let select = document.querySelectorAll('.selector');
 
                     chooseRocActivities(select);
                 };
@@ -282,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     //     newRocActivity.classList.add("activity_" + activityNumber + "_rocActivityItem");
                         newRocActivity.innerHTML = `
                         <p>ROC Activité `+ rocActivityNumber + `</p>
-                        <select class="field choice" name="rocActivity_` + rocActivityNumber + `">
+                        <select class="field selector" name="rocActivity_` + rocActivityNumber + `">
                             <option value="">Séléctionnez votre ROC activité `+ rocActivityNumber + `</option>
                             <optogroup label="bike"> 
                                 <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée</option>
@@ -313,7 +370,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         `;
                         rocCocktailActivities.appendChild(newRocActivity);
 
-                        let select = document.querySelectorAll('.choice');
+                        let select = document.querySelectorAll('.selector');
 
                         // chooseRocActivities(select);
                     // }

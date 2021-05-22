@@ -610,24 +610,21 @@ div.form-error {
     color: white;
     width: 100%
 }
-.test{
-    background-color: var(--rocColorC);
-}
-.contact{
+#contact{
     color: var(--darkColor);
     text-align: center;
     padding: 1rem;
     background: url("../img/mountain.png") center no-repeat;
 }
-.contact span,
-.contact .alert{
+#contact span,
+#contact .alert{
     color: var(--require);
 }
-.contact h1 span,
-.contact a{
+#contact h1 span,
+#contact a{
     color: var(--rocColorC);
 }
-.contact form{
+#contact form{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -639,15 +636,15 @@ div.form-error {
     margin-top: 2rem;
     height: 50rem;
 }
-.contact label{
+#contact label{
     width: 30%;
     text-align: left;
 }
-.contact .field{
+#contact .field{
     width: 65%;
 }
 
-.contact button{
+#contact button{
     font-family: DIN-Medium;
     font-size: 1.5rem;
     color: var(--rocColorC);
@@ -661,7 +658,7 @@ div.form-error {
     width:20rem;
     transition: transform 1s;
 }
-.contact button:hover{
+#contact button:hover{
     transform:scale(1.1);
 }
 /* #endregion CONTACT */

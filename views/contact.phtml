@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="" type="css/normalize/css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="test">
+<body>
     <header class="container">
         <?php require('partials/header.php') ?>
     </header>
-    <main class="contact">
+    <main id="contact">
         <h1>Formulaire de <span>contact</span></h1>
         <p>Pour toute demande de renseignement(s), merci de remplir le formulaire ci-dessous<small>(<span>*</span> Mentions obligatoires)</small></p>
 
@@ -39,7 +39,7 @@
             <label for="message">Message<span>*</span></label><textarea class="field" id="message" name="message" rows="10" require></textarea>
             <button type="submit">Envoyer</button>
         </form>
-        <p>Vous pouvez également nous contacter par téléphone au <a href="tel:0658355166">O6.58.35.51.66.</a></p>
+        <p>Vous pouvez également nous contacter par téléphone au <a href="tel:0658355166">06.58.35.51.66.</a></p>
     </main>
     <footer>
         <?php require('partials/footer.php') ?>
