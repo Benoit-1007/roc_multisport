@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <input class="field" type="number" name="numberParticipantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
             </div>
             <div class="activity_`+ x + `_participantsList">
-                <p>Participants à l'activité `+ x + `</p>
+                <p>Participants activité `+ x + `</p>
                 <input class="field" type="text" name="firstName_activity_`+ x + `_participant_1" required placeholder="Nom*">
                 <input class="field" type="text" name="lastName_activity_`+ x + `_participant_1" required placeholder="Prénom*">
                 <input class="field" type="text" name="birthdate_activity_`+ x + `_participant_1" required placeholder="Date de naissance* (jj/mm/aaaa)">
@@ -398,15 +398,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 participantsNumberSelector.value = numberMinParticipants;
 
+                
                 switch(activityDuration){
                     case "rocDay":
                         addHalfDayActivity(rocCocktailActivities);
                         break;
-                    default:
-                        addAllActivity();
-                        break;
-                }
-
+                        default:
+                            addAllActivity();
+                            break;
+                        }
+                        
+                displayParticipants(activity, numberMinParticipants);
+                
                 participantsNumberSelector.addEventListener('keyup', function(){
                     let newParticipantsNumber;
                     if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
