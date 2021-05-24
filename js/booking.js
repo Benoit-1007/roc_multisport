@@ -32,12 +32,13 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 
-    let inputs = bookingForm.querySelectorAll('.field');
-
+    
     //VERIF RECUPERATION INPUTS
-    validateReservationBtn.addEventListener('click', function () {
+    validateReservationBtn.addEventListener('click', function (e) {
+        let inputs = bookingForm.querySelectorAll('.field');
+        e.preventDefault();
         inputs.forEach(input => {
-            console.log(input.getAttribute('name'));
+            console.log(input.name);
         });
     })
 
@@ -409,7 +410,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         
                 displayParticipants(activity, numberMinParticipants);
-                
+
                 participantsNumberSelector.addEventListener('keyup', function(){
                     let newParticipantsNumber;
                     if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
