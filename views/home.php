@@ -126,11 +126,11 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">70€/personne</td>
+                                    <td class="tablePrice">80€/personne</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée</td>
-                                    <td class="tablePrice">120€/personne</td>
+                                    <td class="tablePrice">130€/personne</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
@@ -139,6 +139,7 @@
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
+                            <p>Activité disponible du 1er Avril au 31 Octobre.</p>
                             <p>À partir de 8 ans. Encadrement et matériel fourni: VTTAE, casque, gants... Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du VTTAE. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -196,6 +197,7 @@
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
+                            <p>Activité disponible du 1er Mai au 31 Octobre.</p>
                             <p>À partir de 6 ans. Encadrement et matériel fourni: Paddle, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -224,6 +226,7 @@
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
+                            <p>Activité disponible du 1er Mai au 31 Octobre.</p>
                             <p>À partir de 6 ans. Encadrement et matériel fourni: Kayak, pagaie, gilet... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique du paddle. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -278,6 +281,7 @@
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
+                            <p>Activité disponible du 1er Mai au 31 Octobre.</p>
                             <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de l'escalade. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -310,6 +314,7 @@
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
+                            <p>Activité disponible du 1er Mai au 31 Octobre.</p>
                             <p>À partir de 8 ans. Encadrement et matériel fourni: baudriers, casques, descendeurs, cordes, mousquetons... Une bonne condition physique ainsi que des vêtements adaptés sont indispensables à la pratique de la via-ferrata. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -353,7 +358,7 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">45€/personne</td>
+                                    <td class="tablePrice">50€/personne</td>
                                 </tr>
                                 <tr>
                                     <td colspan="2">Groupe de 12 personnes maximum, activité disponible à partir de 6 particpants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
@@ -362,6 +367,7 @@
                         </div>
                         <div class="info">
                             <p>Infos pratiques</p>
+                            <p>Activité disponible du 1er Mai au 31 Octobre.</p>
                             <p>À partir de 7 ans. Encadrement et matériel fourni: arc, flèches, cibles, blasons... Activité réalisée dans un lieu adapté. Une bonne coordination ainsi que des vêtements adaptés sont indispensables à la pratique du tir à l'arc. Les activités sportives de montagne  sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -438,6 +444,7 @@
                         </div>
                         <div>
                             <p>Infos pratiques</p>
+                            <p>Activité disponible du 15 Décembre au 30 Avril.</p>
                             <p>À partir de 7 ans. Encadrement compris, matériel non fourni. Une bonne condition physique et des vêtements adaptés sont indispensables à la pratique du snowboard. Les activités sportives de montagne  sont soumises aux aléas de la météo.</p>
                             <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
                             <p>Pour toute demande particulière, <a href="contact.php">contactez-nous</a>! (groupes de plus de 8 personnes, séminaires, collectivités, EVG/EVF, anniversaires...)</p>
@@ -468,6 +475,7 @@
                 <div class="description">
                     <article>
                         <p>Infos pratiques</p>
+                        <p>Formule disponible du 1er Mai au 31 Octobre.</p>
                         <p>À partir de 7 ans. Encadrement et matériel compris (sauf snowboard, splitboard, matériel de sécurité: dva, pelle, sonde). Transport compris jusqu'à 5 personnes (2ème véhicule nécessaire au-delà). Pour le matériel hivernal, pensez à vous renseigner sur la location de votre équipement avant toute réservation.</p>
                         <p>Une bonne condition physique est fortement recommandée pour les deux formules. Des vêtements et des chaussures adaptées sont indispensables à la pratique des disciplines outdoor. Les activités sportives de montagne sont soumises aux aléas de la météo.</p>
                         <p>Pensez à vérifier que vous êtes assurés en cas d'annulation ou de maladie.</p>
@@ -486,11 +494,11 @@
                                 </tr>
                                 <tr>
                                     <td><span>ROC Day</span><br>2 activités différentes au choix<br></td>
-                                    <td class="tablePrice">à partir de 100€/personne</td>
+                                    <td class="tablePrice">à partir de 85€/personne</td>
                                 </tr>
                                 <tr>
                                     <td><span>ROC Week-end</span><br>jusqu'à 4 activités différentes au choix</td>
-                                    <td class="tablePrice">à partir de 210€/personne</td>
+                                    <td class="tablePrice">à partir de 170€/personne</td>
                                 </tr>
                             </table>
                         </div>    

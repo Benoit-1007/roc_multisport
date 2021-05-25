@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <optogroup label="bike"> 
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
                         <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">VTTAE sans location VTT - journée - 80€/pers.</option>
-                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">VTTAE avec location VTT - 1/2 journée - 70€/pers.</option>
-                        <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="120" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">VTTAE avec location VTT - journée - 120€/pers.</option>
+                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
+                        <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">VTTAE avec location VTT - journée - 130€/pers.</option>
                     </optogroup> 
                     <optogroup label="paddle">
                         <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay">Paddle - 1/2 journée - 55€/pers.</option>
@@ -117,10 +117,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
                         </optogroup> 
                     <optogroup label="archery">
-                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="45" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay">Tir à l'arc - 1/2 journée - 45€/pers.</option>
+                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay">Tir à l'arc - 1/2 journée - 50€/pers.</option>
                     </optogroup> 
                     <optogroup label="snowboard">
-                        <option value="rookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="3" data-maxParticipants="8" data-duration="threeHalfDay">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
+                        <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="3" data-maxParticipants="8" data-duration="threeHalfDay">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
                         <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay">Snowboard - 1/2 journée - 160€/pers.</option>
                         <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay">Snowboard - journée - 300€/pers.</option>
                         <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="4" data-maxParticipants="6" data-duration="halfDay">Splitboard - 1/2 journée - 180€/pers.</option>
@@ -128,35 +128,35 @@ document.addEventListener('DOMContentLoaded', function () {
                     </optogroup> 
                 </select>
                 <input class="field" type="date" name="date_activity_`+ x + `">
-                <input class="field" type="number" name="numberParticipantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
+                <input class="field" type="number" name="participantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
             </div>
-            <div class="activity_`+ x + `_participantsList">
-                <p>Participants activité `+ x + `</p>
-                <input class="field" type="text" name="firstName_activity_`+ x + `_participant_1" required placeholder="Nom*">
-                <input class="field" type="text" name="lastName_activity_`+ x + `_participant_1" required placeholder="Prénom*">
-                <input class="field" type="text" name="birthdate_activity_`+ x + `_participant_1" required placeholder="Date de naissance* (jj/mm/aaaa)">
-                <input class="field" type="number" name="size_activity_`+ x + `_participant_1" required placeholder="Taille (cm)*">
-                <select class="field" name="level_activity_`+ x + `_participant_1">
-                    <option value="">Niveau*</option>
-                    <option value="beginner">Débutant</option>
-                    <option value="intermediate">Intermédiaire</option>
-                    <option value="confirmed">Confirmé</option>
-                    <option value="expert">Expert</option>
-                </select>
+            `;
+            // <div class="activity_`+ x + `_participantsList">
+            //     <p>Participants activité `+ x + `</p>
+            //     <input class="field" type="text" name="firstName_activity_`+ x + `_participant_1" required placeholder="Nom*">
+            //     <input class="field" type="text" name="lastName_activity_`+ x + `_participant_1" required placeholder="Prénom*">
+            //     <input class="field" type="text" name="birthdate_activity_`+ x + `_participant_1" required placeholder="Date de naissance* (jj/mm/aaaa)">
+            //     <input class="field" type="number" name="size_activity_`+ x + `_participant_1" required placeholder="Taille (cm)*">
+            //     <select class="field" name="level_activity_`+ x + `_participant_1">
+            //         <option value="">Niveau*</option>
+            //         <option value="beginner">Débutant</option>
+            //         <option value="intermediate">Intermédiaire</option>
+            //         <option value="confirmed">Confirmé</option>
+            //         <option value="expert">Expert</option>
+            //     </select>
 
-                <input class="field" type="text" name="firstName_activity_`+ x + `_participant_2" required placeholder="Nom*">
-                <input class="field" type="text" name="lastName_activity_`+ x + `_participant_2" required placeholder="Prénom*">
-                <input class="field" type="text" name="birthdate_activity_`+ x + `_participant_2" required placeholder="Date de naissance* (jj/mm/aaaa)">
-                <input class="field" type="number" name="size_activity_`+ x + `_participant_2" required placeholder="Taille (cm)*">
-                <select class="field" name="level_activity_`+ x + `_participant_2">
-                    <option value="">Niveau*</option>
-                    <option value="beginner">Débutant</option>
-                    <option value="intermediate">Intermédiaire</option>
-                    <option value="confirmed">Confirmé</option>
-                    <option value="expert">Expert</option>
-                </select>
-            </div>
-        `;
+            //     <input class="field" type="text" name="firstName_activity_`+ x + `_participant_2" required placeholder="Nom*">
+            //     <input class="field" type="text" name="lastName_activity_`+ x + `_participant_2" required placeholder="Prénom*">
+            //     <input class="field" type="text" name="birthdate_activity_`+ x + `_participant_2" required placeholder="Date de naissance* (jj/mm/aaaa)">
+            //     <input class="field" type="number" name="size_activity_`+ x + `_participant_2" required placeholder="Taille (cm)*">
+            //     <select class="field" name="level_activity_`+ x + `_participant_2">
+            //         <option value="">Niveau*</option>
+            //         <option value="beginner">Débutant</option>
+            //         <option value="intermediate">Intermédiaire</option>
+            //         <option value="confirmed">Confirmé</option>
+            //         <option value="expert">Expert</option>
+            //     </select>
+            // </div>
 
         //append newActivity to button
         document.querySelector('.activities').appendChild(newActivity);
@@ -184,9 +184,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("🚀activity", activity)
                 //get activity number
                 let activityNumber = activity.replace(/\D/g,'');
-                // let split = element.getAttribute('name').split('_');
-                // console.log("🚀 split", split)
-                // let activityNumber = split[split.length - 1];
                 console.log("🚀 activityNumber", activityNumber)
                 //get name activity
                 let activityName = this.options[element.selectedIndex].getAttribute('name');
@@ -199,18 +196,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log("🚀 price", price);
                 //get activity duration
                 let activityDuration = this.options[element.selectedIndex].getAttribute('data-duration');
-                console.log("🚀 ~ file: booking.js ~ line 186 ~ activityDuration", activityDuration)
+                console.log("🚀 activityDuration", activityDuration)
                 //get min numberparticipants
                 let numberMinParticipants = Number(this.options[element.selectedIndex].getAttribute('data-minParticipants'));
-                console.log("🚀 ~ file: booking.js ~ line 189 ~ numberMinParticipants", numberMinParticipants)
+                console.log("🚀 numberMinParticipants", numberMinParticipants)
                 //get max numberparticipants
                 let numberMaxParticipants = Number(this.options[element.selectedIndex].getAttribute('data-maxParticipants'));
                 console.log("🚀 ~ file: booking.js ~ line 192 ~ numberMaxParticipants", numberMaxParticipants)
+                //get period (display available dates according to chosen activity)
+                let activityPeriod = this.options[element.selectedIndex].getAttribute('data-period')
+                console.log("🚀 activityPeriod", activityPeriod)
                 //get input date
                 let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`);
                 console.log("🚀 dateSelector", dateSelector)
                 //get input numberparticipants
-                let participantsNumberSelector = document.querySelector(`input[name="numberParticipantsCount_activity_` + activityNumber + `"]`);
+                let participantsNumberSelector = document.querySelector(`input[name="participantsCount_activity_` + activityNumber + `"]`);
                 console.log("🚀 numberParticipantsCount", participantsNumberSelector);
                 // get numberparticipants
                 let currentParticipantsNumber = document.querySelectorAll(`div[class*="activity_` + activityNumber + `_participant_"]`).length;
@@ -224,6 +224,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 participantsNumberSelector.setAttribute('max', numberMaxParticipants);
 
                 participantsNumberSelector.value = numberMinParticipants;
+
+                displayAvailableDates(activityPeriod, dateSelector);
 
                 switch (activityDuration) {
                     case "halfDay":
@@ -244,9 +246,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
                         console.log('test min');
                         participantsNumberSelector.value = participantsNumberSelector.min;
-                        console.log("🚀 ~ file: booking.js ~ line 231 ~ participantsNumberSelector.addEventListener ~ participantsNumberSelector.value", participantsNumberSelector.value)
+                        console.log("🚀 participantsNumberSelector.value", participantsNumberSelector.value)
                         newParticipantsNumber = participantsNumberSelector.value
-                        console.log("🚀 ~ file: booking.js ~ line 233 ~ participantsNumberSelector.addEventListener ~ newParticipantsNumber", newParticipantsNumber)
+                        console.log("🚀 newParticipantsNumber", newParticipantsNumber)
                         displayParticipants(activity, newParticipantsNumber);
                     } else if (Math.floor(participantsNumberSelector.value) > participantsNumberSelector.max) {
                         console.log('test max');
@@ -272,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {*} divActivity div of current activity
      * @param {*} participantsNumberInput input participants number selector of current activity
      */
-    function addHalfDaySelector(numActivity, divActivity,participantsNumberInput) {
+    function addHalfDaySelector(numActivity, divActivity, participantsNumberInput) {
         let halfDaySelector = document.createElement('select');
         halfDaySelector.classList.add('activity_' + numActivity + '_halfDaySelector')
         halfDaySelector.innerHTML = `
@@ -293,11 +295,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.activity_' + numActivity).removeChild(halfDaySelectorToRemove);
     }
 
-    /**
-     * display number of div activity_X_participant_Y according to number of participants selected for current activity
-     * @param {*} numActivity number of current activity (1, 2, ...)
-     * @param {*} numberOfParticipants number of participants selected
-     */
+    
     // function displayParticipants(numActivity, numberOfParticipants){
     //     let participantsField = document.querySelector('.activity_' + numActivity + '_participants');
     //     let currentParticipantsNumber = document.querySelectorAll(`div[class*="activity_` + numActivity + `_participant_"]`).length;
@@ -331,6 +329,11 @@ document.addEventListener('DOMContentLoaded', function () {
     //         }
     //     }
     // };
+    /**
+     * display number of div activity_participant_Y according to number of participants selected for current activity
+     * @param {*} numActivity number of current activity (1, 2, ...)
+     * @param {*} numberOfParticipants number of participants selected
+     */
     function displayParticipants(currentActivity, numberOfParticipants){
         let participantsField = document.querySelector('.' + currentActivity + '_participantsList');
         let currentParticipantsNumber = document.querySelectorAll(`div[class*="` + currentActivity + `_participant_"]`).length;
@@ -362,6 +365,26 @@ document.addEventListener('DOMContentLoaded', function () {
                 let participantToRemove = document.querySelector('.' + currentActivity + '_participant_'+ (currentParticipantsNumber-i));
                 participantsField.removeChild(participantToRemove);
             }
+        }
+    };
+
+    /**
+     * display available dates according to chosen activity
+     * @param {*} periodCurrentActivity available period of current activity
+     * @param {*} inputDateSelectorCurrentActivity input date selector of current activity
+     */
+    function displayAvailableDates(periodCurrentActivity, inputDateSelectorCurrentActivity){
+        if(periodCurrentActivity === "april/october"){
+            inputDateSelectorCurrentActivity.setAttribute('min', new Date().getFullYear() + '-04-01');
+            inputDateSelectorCurrentActivity.setAttribute('max', new Date().getFullYear() + '-10-31');
+        } else if(periodCurrentActivity === "may/october"){
+            console.log('test may')
+            inputDateSelectorCurrentActivity.setAttribute('min', new Date().getFullYear() + '-05-01');
+            inputDateSelectorCurrentActivity.setAttribute('max', new Date().getFullYear() + '-10-31');
+        } else {
+            console.log('test dec')
+            inputDateSelectorCurrentActivity.setAttribute('min', new Date().getFullYear() + '-12-15');
+            inputDateSelectorCurrentActivity.setAttribute('max', new Date().getFullYear()+1 + '-04-30');
         }
     };
 
@@ -416,9 +439,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
                         console.log('test min');
                         participantsNumberSelector.value = participantsNumberSelector.min;
-                        console.log("🚀 ~ file: booking.js ~ line 231 ~ participantsNumberSelector.addEventListener ~ participantsNumberSelector.value", participantsNumberSelector.value)
+                        console.log("🚀  participantsNumberSelector.value", participantsNumberSelector.value)
                         newParticipantsNumber = participantsNumberSelector.value
-                        console.log("🚀 ~ file: booking.js ~ line 233 ~ participantsNumberSelector.addEventListener ~ newParticipantsNumber", newParticipantsNumber)
+                        console.log("🚀  newParticipantsNumber", newParticipantsNumber)
                         displayParticipants(activity, newParticipantsNumber);
                     } else if (Math.floor(participantsNumberSelector.value) > participantsNumberSelector.max) {
                         console.log('test max');
@@ -433,7 +456,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 participantsNumberSelector.addEventListener('click', function(){
                     console.log('test toto')
                     let newParticipantsNumber = participantsNumberSelector.value;
-                    console.log("🚀 ~ file: booking.js ~ line 411 ~ participantsNumberSelector.addEventListener ~ newParticipantsNumber", newParticipantsNumber)
+                    console.log("🚀 newParticipantsNumber", newParticipantsNumber)
                     displayParticipants(activity, newParticipantsNumber);
                 })
             })
@@ -451,7 +474,7 @@ function addHalfDayActivity(divRocActivities) {
                     <option value="">Séléctionnez votre activité 1</option>
                     <optogroup label="bike"> 
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
-                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70">VTTAE avec location VTT - 1/2 journée - 70€/pers.</option>
+                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
                     </optogroup> 
                     <optogroup label="paddle">
                         <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée - 55€/pers.</option>
@@ -462,7 +485,7 @@ function addHalfDayActivity(divRocActivities) {
                         <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée - 60€/pers.</option>
                         </optogroup> 
                     <optogroup label="archery">
-                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="45">Tir à l'arc - 1/2 journée - 45€/pers.</option>
+                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée - 50€/pers.</option>
                     </optogroup> 
                     <optogroup label="snowboard">
                         <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée - 160€/pers.</option>
@@ -481,7 +504,7 @@ function addHalfDayActivity(divRocActivities) {
                     <option value="">Séléctionnez votre activité 2</option>
                     <optogroup label="bike"> 
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
-                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70">VTTAE avec location VTT - 1/2 journée - 70€/pers.</option>
+                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
                     </optogroup> 
                     <optogroup label="paddle">
                         <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée - 55€/pers.</option>
@@ -492,7 +515,7 @@ function addHalfDayActivity(divRocActivities) {
                         <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée - 60€/pers.</option>
                         </optogroup> 
                     <optogroup label="archery">
-                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="45">Tir à l'arc - 1/2 journée - 45€/pers.</option>
+                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée - 50€/pers.</option>
                     </optogroup> 
                     <optogroup label="snowboard">
                         <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée - 160€/pers.</option>
@@ -501,7 +524,7 @@ function addHalfDayActivity(divRocActivities) {
                 </select>
         `;
         let rocActivity_1 = document.querySelector('.activity_1').value;
-        console.log("🚀 ~ file: booking.js ~ line 440 ~ addHalfDayActivity ~ rocActivity_1", rocActivity_1)
+        console.log("🚀 rocActivity_1", rocActivity_1)
         let test = document.querySelector(`option[value="` + rocActivity_1 + `"]`);
         test.classList.add('hide')
 
@@ -524,8 +547,8 @@ function addAllActivity() {
             <optogroup label="bike"> 
                 <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée</option>
                 <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80">VTTAE sans location VTT - journée</option>
-                <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="70">VTTAE avec location VTT - 1/2 journée</option>
-                <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="120">VTTAE avec location VTT - journée</option>
+                <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée</option>
+                <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130">VTTAE avec location VTT - journée</option>
             </optogroup> 
             <optogroup label="paddle">
                 <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée</option>
@@ -539,7 +562,7 @@ function addAllActivity() {
                 <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110">Via Ferrata - journée (2 via ferrata)</option>
                 </optogroup> 
                 <optogroup label="archery">
-                <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="45">Tir à l'arc - 1/2 journée</option>
+                <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée</option>
             </optogroup> 
             <optogroup label="snowboard">
                 <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée</option>
