@@ -117,10 +117,10 @@
                 <legend>Votre ROC Cocktail</legend>
                 <div class="activityItem">
                     <div class="rocCocktailActivities">
-                        <select class="field selector" name="rocCocktailActivities">
+                        <select class="field selector" name="rocCocktailFormula">
                             <option value="">Séléctionnez votre Cocktail ROC</option>
-                            <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8" data-duration="rocDay">Cocktail ROC - ROC DAY - à partir de 85€/pers.</option>
-                            <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8" data-duration="rocWeekEnd">Cocktail ROC - ROC WEEK-END - à partir de 170€/pers.</option>
+                            <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC DAY - à partir de 85€/pers.</option>
+                            <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC WEEK-END - à partir de 170€/pers.</option>
                         </select>
                         <input class="field" type="date" name="date_rocActivity" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
                         <input class="field" type="number" name="participantsCount_rocActivity" min="4" max="8" placeholder="Nombre de participants">
