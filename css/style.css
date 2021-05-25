@@ -602,12 +602,7 @@ header{
 
 
 /* #region CONTACT */
-div.form-error {
-    /* display: block; */
-    background-color: rgba(255, 100, 100, 1);
-    color: white;
-    width: 100%
-}
+
 #contact{
     color: var(--darkColor);
     text-align: center;
@@ -617,6 +612,14 @@ div.form-error {
 #contact span,
 #contact .alert{
     color: var(--require);
+}
+div.form-error {
+    color: var(--require);
+    width: 100%
+}
+#contact .red-border{
+    border: 2px solid var(--require);
+    border-radius: 5px;
 }
 #contact h1 span,
 #contact a{
@@ -1008,10 +1011,16 @@ footer .network a{
         justify-content: space-between;
     }
     .info{
-        max-width: 60%;
+        max-width: 58%;
+    }
+    .cocktail .info{
+        max-width: 38%;
     }
     .table:not(.snowboard .table, .cocktail .table){
         max-width: 38%;
+    }
+    .cocktail .table{
+        max-width: 58%;
     }
 
     .paddle th,
@@ -1035,6 +1044,10 @@ footer .network a{
         width: 50%;
         margin: unset;
         border-radius: 0 4rem 4rem 0;
+    }
+    #contactForm{
+        max-width: 70%;
+        margin: auto;
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */
@@ -1069,10 +1082,4 @@ footer .network a{
     color: var(--clearColor);
     border-radius: 50%;
     font-size: 2.5rem;
-}
-div.form-error {
-    /* display: block; */
-    background-color: rgba(255, 100, 100, 1);
-    color: white;
-    width: 100%
 }

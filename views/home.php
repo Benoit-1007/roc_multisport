@@ -483,7 +483,7 @@
                     </article>
                     <article class="price"> 
                         <h3>tarifs c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span></h3>
-                        <div>
+                        <div class="info">
                             <p><strong>COMPOSEZ LIBREMENT VOTRE COCKTAIL D'ACTIVITÉS</strong></p>
                             <p>Groupe de 8 personnes maximum, activités disponibles à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</p>
                         </div>

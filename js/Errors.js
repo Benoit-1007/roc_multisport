@@ -21,6 +21,7 @@ class Errors {
                     if (!input.nextElementSibling.classList.contains('form-error')) {
                         input.parentNode.insertBefore(div, input.nextSibling);
                     }
+                input.classList.add('red-border');
                 }
             }
         }

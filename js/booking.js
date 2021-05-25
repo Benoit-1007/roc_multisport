@@ -438,10 +438,16 @@ document.addEventListener('DOMContentLoaded', function () {
                             })
                         })
                         break;
-                        default:
-                            addAllActivity();
-                            break;
-                        }
+                    default:
+                        addAllActivity(rocCocktailActivities);
+                        
+
+
+
+
+
+                        break;
+                }
                         
                 displayParticipants(activity, numberMinParticipants);
 
@@ -532,59 +538,46 @@ function addHalfDayActivity(divRocActivities) {
 
             divRocActivities.appendChild(newRocActivity);
         };
-        // let rocActivity_1 = document.querySelector('.activity_1').value;
-        // console.log("🚀 rocActivity_1", rocActivity_1)
-        // let test = document.querySelector(`option[value="` + rocActivity_1 + `"]`);
-        // test.classList.add('hide')
-
-
     }
-
-    // chooseRocActivities(select);
 };
 
-function addAllActivity() {
-    let rocActivityNumber = 1;
+function addAllActivity(divRocActivities) {
+    if (document.querySelector('rocActivity_1') === null) {
     let newRocActivity = document.createElement('div');
-    // if (document.querySelector("rocActivity_` + rocActivityNumber +") === null) {
-    //     newRocActivity.classList.add("activity_" + activityNumber + "_rocActivityItem");
         newRocActivity.innerHTML = `
-        <p>ROC Activité `+ rocActivityNumber + `</p>
-        <select class="field selector" name="rocActivity_` + rocActivityNumber + `">
-            <option value="">Séléctionnez votre ROC activité `+ rocActivityNumber + `</option>
+        <p>Activité 1</p>
+        <select class="field selector" name="rocActivity_1">
+            <option value="">Séléctionnez votre activité 1</option>
             <optogroup label="bike"> 
-                <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée</option>
-                <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80">VTTAE sans location VTT - journée</option>
-                <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée</option>
-                <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130">VTTAE avec location VTT - journée</option>
+                <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-duration="halfDay">VTTAE sans location VTT - 1/2 journée</option>
+                <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-duration="allDay">VTTAE sans location VTT - journée</option>
+                <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-duration="halfDay">VTTAE avec location VTT - 1/2 journée</option>
+                <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-duration="allDay">VTTAE avec location VTT - journée</option>
             </optogroup> 
             <optogroup label="paddle">
-                <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée</option>
-                <option value="paddleAllDay" name="Paddle - journée" data-price="100">Paddle - journée</option>
-                <option value="kayak" name="Kayak - 1/2 journée" data-price="50">Kayak - 1/2 journée</option>
+                <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-duration="halfDay">Paddle - 1/2 journée</option>
+                <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-duration="allDay">Paddle - journée</option>
+                <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-duration="halfDay">Kayak - 1/2 journée</option>
             </optogroup> 
             <optogroup label="climbing">
-                <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50">Escalade - 1/2 journée</option>
-                <option value="climbingAllDay" name="Escalade - journée" data-price="90">Escalade - journée</option>
-                <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée</option>
-                <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110">Via Ferrata - journée (2 via ferrata)</option>
+                <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-duration="halfDay">Escalade - 1/2 journée</option>
+                <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-duration="allDay">Escalade - journée</option>
+                <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-duration="halfDay">Via Ferrata - 1/2 journée</option>
+                <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-duration="allDay">Via Ferrata - journée (2 via ferrata)</option>
                 </optogroup> 
                 <optogroup label="archery">
-                <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée</option>
+                <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-duration="halfDay">Tir à l'arc - 1/2 journée</option>
             </optogroup> 
             <optogroup label="snowboard">
                 <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée</option>
-                <option value="snowboarAllfDay" name="Snowboard - journée" data-price="330">Snowboard - journée</option>
+                <option value="snowboarAllfDay" name="Snowboard - journée" data-price="330" data-duration="allDay">Snowboard - journée</option>
                 <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180">Splitboard - 1/2 journée</option>
-                <option value="splitboardAllDay" name="Splitboard - journée" data-price="330">Splitboard - journée</option>
+                <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-duration="allDay">Splitboard - journée</option>
             </optogroup> 
         `;
-        rocCocktailActivities.appendChild(newRocActivity);
 
-        let select = document.querySelectorAll('.selector');
-
-        // chooseRocActivities(select);
-    // }
+        divRocActivities.appendChild(newRocActivity);
+    };
 }
 
 

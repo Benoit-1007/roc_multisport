@@ -68,6 +68,7 @@ class Contactform {
     removeError() {
         if (this.nextElementSibling.classList.contains('form-error')) {
             this.nextElementSibling.remove();
+            this.classList.remove('red-border')
         }
     }
 
