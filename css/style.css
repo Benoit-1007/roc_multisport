@@ -54,21 +54,23 @@ body{
     /* max-width: 1200px; */
     margin: 0 auto;
 }
-main{
+/* main{
     margin:0 auto;
-}
+} */
 section{
-    padding-top: 12rem; /* offset management anchors vs header*/
-    margin-top: -12rem;
+    padding-top: 10rem; /* offset management anchors vs header*/
+    margin-top: -10rem;
+}
+.activity,
+.booking,
+.contact{
+    padding: 2rem;
     /* padding-left: 2rem;
-    padding-right: 2rem;
-    margin-top:-0.5rem; */
+    padding-right: 2rem; */
+    /* margin-bottom:-1rem; */
 }
 .activity{
-    padding-left: 2rem;
-    padding-right: 2rem;
-    margin-top:-1rem; /* management space between sections */
-    /* margin-bottom:-1rem; */
+    margin-top:-1rem; /*management space between sections*/
 }
 img{
     max-width:100%;
@@ -82,6 +84,10 @@ h1{
     font-size: 2.5rem;
     color: var(--darkColor);
     margin-top: 0;
+    /* padding-top: 2rem; */
+}
+h1 span{
+    color: var(--rocColorC);
 }
 h2{
     font-family: "DIN-Medium";
@@ -188,6 +194,7 @@ header{
     position: sticky;
     top: 0;
     background: url('../resources/borderHEADER.png') bottom repeat-x, var(--background);
+    height: 10rem;
     z-index: 100;
 }
 
@@ -336,20 +343,14 @@ header{
 
 /* #region home */
 .home .background{
-    background: url('../img/background/vttTransition.png')bottom no-repeat;
+    background: url('../img/background/vttTransition.png') bottom no-repeat;
     background-size: 100%;
 }
 .home{
     text-align:center;
-    padding: 0;
     margin-top: 0;
-    background: url("../img/mountain.png") center no-repeat;
-}
-.home h1{
     padding-top: 2rem;
-}
-.home h1 span{
-    color: var(--rocColorC);
+    background: url("../img/mountain.png") center no-repeat;
 }
 .home p{
     font-size: 1.8rem;
@@ -368,7 +369,7 @@ header{
 
 /* #region bike */
 .bike{
-    background: url('../img/background/paddleTransition.png')bottom no-repeat;
+    background: url('../img/background/paddleTransition.png')bottom no-repeat, var(--rocColorO);
     background-size: 100%;
     padding-bottom: 8rem;
 }
@@ -520,16 +521,15 @@ header{
 }
 .testimony{
     background: url('../img/background/bgSnowTestimony.png') top no-repeat;
-    background-size: 100%;
+    background-size: cover;
+    height:100vh;
     display:flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 70vh;
+    justify-content: center;
     padding: 0;
 }
 .testimony h2{
     color:var(--cocktailColor);
-    padding-top: 6rem;
 }
 .testimony .sliderBloc{
     display: flex;
@@ -572,21 +572,20 @@ header{
 
 
 /* #region BOOKING */
-#booking{
+.booking{
     color:var(--darkColor);
     text-align: center;
-    padding: 1rem 2rem;
 }
-#booking h1 span{
+.booking h1 span{
     color: var(--rocColorC);
 }
 legend{
     text-transform: uppercase;
 }
 #contactInformation,
-#formulaSelector legend,
+#formulaSelector,
 #singleActivity,
-#rocCocktail
+#rocCocktail,
 .activityItem{
     display: flex;
     flex-direction: column;
@@ -632,18 +631,17 @@ legend{
 
 /* #region CONTACT */
 
-#contact{
+.contact{
     color: var(--darkColor);
     text-align: center;
-    padding: 1rem 2rem;
     background: url("../img/mountain.png") center no-repeat;
 }
 
-#contact h1 span,
-#contact a{
+.contact h1 span,
+.contact a{
     color: var(--rocColorC);
 }
-#contact form{
+.contact form{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -655,30 +653,30 @@ legend{
     margin-top: 2rem;
     height: 50rem;
 }
-#contact label{
+.contact label{
     width: 30%;
     text-align: left;
 }
-#contact .field{
+.contact .field{
     width: 65%;
     border: 1px solid var(--rocColorC);
 }
-#contact button{
+.contact button{
     color: var(--clearColor);
     background-color: var(--rocColorC);
     margin:1rem auto;
     border: 2px solid var(--rocColorC);
     border-radius: 3rem;
 }
-#contact span,
-#contact .alert{
+.contact span,
+.contact .alert{
     color: var(--require);
 }
 div.form-error {
     color: var(--require);
     width: 100%;
 }
-#contact .red-border{
+.contact .red-border{
     border: 2px solid var(--require);
     border-radius: 5px;
 }
@@ -721,15 +719,12 @@ footer .network a{
 @media screen and (min-width:768px){
     header{
         background: url('../img/background/bgHeader.jpg')bottom right no-repeat;
-        background-size: 100%;
-        height: auto;
+        background-size: cover;
     }
     .logo{
         max-width: 160px;
     }
     .navbar{
-        /* display:flex; */
-        /* justify-content: space-between; */
         align-items: center;
         font-size: 1.5rem;
         padding-left: 2rem;
@@ -803,6 +798,10 @@ footer .network a{
     .fifth a{
         padding-right: 0;
     }
+    .home p{
+        max-width: 70%;
+        margin: auto;
+    }
     /* .description{
         display:flex;
         flex-direction: column;
@@ -860,17 +859,9 @@ footer .network a{
     .navbar > a{
         font-size: 2rem;
     }
-    /* #region{
-        padding-left: 10rem; 
-        padding-right: 10rem; 
-    } */
     .activity{
         padding-left: 12rem; 
         padding-right: 12rem; 
-    }
-    .home p{
-        max-width: 70%;
-        margin: auto;
     }
     .home p:last-of-type{
         padding-bottom: unset;
@@ -1009,23 +1000,20 @@ footer .network a{
     .cocktailBottom span{
         color: var(--rocColorO);
     }
-    .home{
+    /* .home{
         padding-bottom: 8rem;
-    }
+    } */
     .bike{
         padding-bottom: 15rem;
     }
     .paddle{
         padding-bottom: 15rem;
     }
+    .archery{
+        padding-bottom: 22rem;
+    }
     /* .home li > .text{
         padding: 0.5rem;
-    } */
-    /* .desktop{
-        display:flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: space-between;
     } */
     .activity{
         display:flex;
@@ -1097,10 +1085,10 @@ footer .network a{
     /* .home li{
         max-width: 12%;
     } */
-    .testimony{
+    /* .testimony{
         background-size:100%;
         height: 100vh;
-    }
+    } */
     /* .home ul{
         justify-content:space-around;
     }*/

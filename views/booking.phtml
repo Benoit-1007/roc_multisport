@@ -14,135 +14,135 @@
     <header  class="container">
         <?php require('partials/header.php') ?> 
     </header>
-    <h1>Formulaire de <span>demande de réservation</span></h1>
-    <p>Dans le cadre de votre demande de réservation, celle-ci doit obligatoirement être validée par un retour de notre part en fonction de nos disponibilités.</p>
+    <main class="booking">
+        <h1>Formulaire de <span>demande de réservation</span></h1>
+        <p>Dans le cadre de votre demande de réservation, celle-ci doit obligatoirement être validée par un retour de notre part en fonction de nos disponibilités.</p>
 
-    <form id="bookingForm" action="booking.php" method='post'>
-        <fieldset id="contactInformation">
-                <legend>Vos coordonnées</legend>
-                <input class="field" type="text" name="contact_lastName" required placeholder="Nom*">
-                <input class="field" type="text" name="contact_firstName" required placeholder="Prénom*">
-                <input class="field" type="text" name="contact_society" placeholder="Nom de la société">
-                <input class="field" type="tel" name="contact_phone" required placeholder="Téléphone(organisateur)*">
-                <input class="field" type="mail" name="contact_mail" required placeholder="Email*">
-                <input class="field" type="text" name="contact_adress" required placeholder="Adresse*">
-                <input class="field" type="Number" name="contact_postalCode" required placeholder="Code postal">
-                <input class="field" type="text" name="contact_city" required placeholder="Ville">
-        </fieldset>
-        <fieldset id="formulaSelector">
-            <legend>Choisissez votre formule</legend>
-            <button type="button" id="singleActivityButton">activité simple</button>
-            <button type="button" id="rocCocktailButton">cocktail roc</button>
-            <button type="button" id="returnButton" class="hide">changer de formule</button>
-        </fieldset>
+        <form id="bookingForm" action="booking.php" method='post'>
+            <fieldset id="contactInformation">
+                    <legend>Vos coordonnées</legend>
+                    <input class="field" type="text" name="contact_lastName" required placeholder="Nom*">
+                    <input class="field" type="text" name="contact_firstName" required placeholder="Prénom*">
+                    <input class="field" type="text" name="contact_society" placeholder="Nom de la société">
+                    <input class="field" type="tel" name="contact_phone" required placeholder="Téléphone(organisateur)*">
+                    <input class="field" type="mail" name="contact_mail" required placeholder="Email*">
+                    <input class="field" type="text" name="contact_adress" required placeholder="Adresse*">
+                    <input class="field" type="Number" name="contact_postalCode" required placeholder="Code postal">
+                    <input class="field" type="text" name="contact_city" required placeholder="Ville">
+            </fieldset>
+            <fieldset id="formulaSelector">
+                <legend>Choisissez votre formule</legend>
+                <button type="button" id="singleActivityButton">activité simple</button>
+                <button type="button" id="rocCocktailButton">cocktail roc</button>
+                <button type="button" id="returnButton" class="hide">changer de formule</button>
+            </fieldset>
 
-        <div id="singleActivity" class="hide">
-            <fieldset>
-                <legend>votre activité/vos activités</legend>
-                <div class="activities"> <!-- NE PAS RAJOUTER D'ENFANT A CETTE DIV -->
-                    <div class="activityItem">
-                        <div class="activity_1">
-                            <p>Activité 1</p>
-                            <select class="field selector" name="activity_1">
-                                <option value="">Séléctionnez votre activité 1</option>
-                                <optogroup label="bike"> 
-                                    <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
-                                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
-                                    <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
-                                    <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée - 130€/pers.</option>
-                                </optogroup> 
-                                <optogroup label="paddle">
-                                    <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée - 55€/pers.</option>
-                                    <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée - 100€/pers.</option>
-                                    <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée - 50€/pers.</option>
-                                </optogroup> 
-                                <optogroup label="climbing">
-                                    <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée - 50€/pers.</option>
-                                    <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée - 90€/pers.</option>
-                                    <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Via Ferrata - 1/2 journée - 60€/pers.</option>
-                                    <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
+            <div id="singleActivity" class="hide">
+                <fieldset>
+                    <legend>votre activité/vos activités</legend>
+                    <div class="activities"> <!-- NE PAS RAJOUTER D'ENFANT A CETTE DIV -->
+                        <div class="activityItem">
+                            <div class="activity_1">
+                                <p>Activité 1</p>
+                                <select class="field selector" name="activity_1">
+                                    <option value="">Séléctionnez votre activité 1</option>
+                                    <optogroup label="bike"> 
+                                        <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
+                                        <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
+                                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
+                                        <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée - 130€/pers.</option>
                                     </optogroup> 
-                                    <optogroup label="archery">
-                                    <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay" data-period="may/october">Tir à l'arc - 1/2 journée - 50€/pers.</option>
-                                </optogroup> 
-                                <optogroup label="snowboard">
-                                    <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="3" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
-                                    <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée - 160€/pers.</option>
-                                    <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
-                                    <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
-                                    <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
-                                </optogroup> 
+                                    <optogroup label="paddle">
+                                        <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée - 55€/pers.</option>
+                                        <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée - 100€/pers.</option>
+                                        <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée - 50€/pers.</option>
+                                    </optogroup> 
+                                    <optogroup label="climbing">
+                                        <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée - 50€/pers.</option>
+                                        <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée - 90€/pers.</option>
+                                        <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Via Ferrata - 1/2 journée - 60€/pers.</option>
+                                        <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
+                                        </optogroup> 
+                                        <optogroup label="archery">
+                                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay" data-period="may/october">Tir à l'arc - 1/2 journée - 50€/pers.</option>
+                                    </optogroup> 
+                                    <optogroup label="snowboard">
+                                        <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="3" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
+                                        <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée - 160€/pers.</option>
+                                        <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
+                                        <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
+                                        <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
+                                    </optogroup> 
+                                </select>
+                                <input class="field" type="date" name="date_activity_1">
+                                <input class="field" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
+                            </div>
+                            <div class="activity_1_participantsList">
+                                <p>Participants activité 1</p>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <button type="button" id="addActivityButton">Ajouter une activité</button>
+                <!-- <button type="button" id="deletActivityButton">Supprimer une activité</button> -->
+            </div>
+
+            <div id="rocCocktail" class="hide">
+                <fieldset>
+                    <legend>Votre ROC Cocktail</legend>
+                    <div class="activityItem">
+                        <div class="rocCocktailActivities">
+                            <select class="field selector" name="rocCocktailFormula">
+                                <option value="">Séléctionnez votre Cocktail ROC</option>
+                                <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC DAY - à partir de 85€/pers.</option>
+                                <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
-                            <input class="field" type="date" name="date_activity_1">
-                            <input class="field" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
+                            <input class="field" type="date" name="date_rocActivity" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
+                            <input class="field" type="number" name="participantsCount_rocActivity" min="4" max="8" placeholder="Nombre de participants">
                         </div>
-                        <div class="activity_1_participantsList">
-                            <p>Participants activité 1</p>
+                        <div class="rocCocktail_participantsList">
+                            <p>Participants</p>
                         </div>
                     </div>
-                </div>
-            </fieldset>
-            <button type="button" id="addActivityButton">Ajouter une activité</button>
-            <!-- <button type="button" id="deletActivityButton">Supprimer une activité</button> -->
+                </fieldset>
+            </div>
+            <input class="field" type="checkbox">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT
+
+            <button type="submit" id="validateReservation">Réserver</button>
+        </form>
+
+        <!-- <p>TOTAL RÉSERVATION: <span id="activity"></span><span id="price"></span></p> -->
+
+        <div class="basket">
+            <table id="selection">
+                <thead>
+                    <tr>
+                        <th colspan="4">mon pranier</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="singleActivityBasket_1 hide">
+                        <td class="name_singleActivityBasket_1"></td>
+                        <td class="participantsCount_singleActivityBasket_1"></td>
+                        <td class="price_singleActivityBasket_1"></td>
+                        <td class="total_singleActivityBasket_1"></td>
+                    </tr>
+                    <tr class="rocActivityBasket_1 hide">
+                        <td>roc week-end</td>
+                        <td class="participantsCount"></td>
+                        <td class="price"></td>
+                        <td class="total"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">total réservation</td>
+                        <td class="totalPrice"></td>
+                    </tr>
+                </tfoot>    
+            </table>
         </div>
-
-        <div id="rocCocktail" class="hide">
-            <fieldset>
-                <legend>Votre ROC Cocktail</legend>
-                <div class="activityItem">
-                    <div class="rocCocktailActivities">
-                        <select class="field selector" name="rocCocktailFormula">
-                            <option value="">Séléctionnez votre Cocktail ROC</option>
-                            <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC DAY - à partir de 85€/pers.</option>
-                            <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC WEEK-END - à partir de 170€/pers.</option>
-                        </select>
-                        <input class="field" type="date" name="date_rocActivity" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
-                        <input class="field" type="number" name="participantsCount_rocActivity" min="4" max="8" placeholder="Nombre de participants">
-                    </div>
-                    <div class="rocCocktail_participantsList">
-                        <p>Participants</p>
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <input class="field" type="checkbox">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT
-
-        <button type="submit" id="validateReservation">Réserver</button>
-    </form>
-
-    <!-- <p>TOTAL RÉSERVATION: <span id="activity"></span><span id="price"></span></p> -->
-
-    <div class="basket">
-        <table id="selection">
-            <thead>
-                <tr>
-                    <th colspan="4">mon pranier</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="singleActivityBasket_1 hide">
-                    <td class="name_singleActivityBasket_1"></td>
-                    <td class="participantsCount_singleActivityBasket_1"></td>
-                    <td class="price_singleActivityBasket_1"></td>
-                    <td class="total_singleActivityBasket_1"></td>
-                </tr>
-                <tr class="rocActivityBasket_1 hide">
-                    <td>roc week-end</td>
-                    <td class="participantsCount"></td>
-                    <td class="price"></td>
-                    <td class="total"></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td colspan="3">total réservation</td>
-                    <td class="totalPrice"></td>
-                </tr>
-            </tfoot>    
-        </table>
-        
-    </div>
-
+    </main>
     <footer>
         <?php require("partials/footer.php") ?>
     </footer>
