@@ -12,7 +12,6 @@
     --rocColorC: #0375be;
     --cocktailColor: #002136;
     --require: red;
-    --soft-grey: #20a459;
     /* --soft-blue: #2187c6; */
 }
 /* #endregion variables CSS */
@@ -68,13 +67,13 @@ section{
 .activity{
     padding-left: 2rem;
     padding-right: 2rem;
-    margin-top:-2rem; /* management space between sections */
-    margin-bottom:-1rem;
+    margin-top:-1rem; /* management space between sections */
+    /* margin-bottom:-1rem; */
 }
 img{
     max-width:100%;
 }
-h1, h2, h3, a{
+h1, h2, h3, a, button{
     text-transform: uppercase;
     font-weight: normal;
 }
@@ -140,7 +139,7 @@ td{
     justify-content: space-around;
     margin: 1rem auto;
 }
-.button a, .home a{
+.button a, .home a, button{
     font-family: DIN-Medium;
     padding: 1rem;
     text-align: center;
@@ -148,11 +147,11 @@ td{
     width:20rem;
     transition: transform 1s;
 }
-.button a{
+.button a, button{
     font-size: 1.5rem;
     margin:1rem;
 }
-.button a:hover{
+.button a:hover, button:hover{
     transform:scale(1.1);
 }
 .desktop-button{
@@ -337,7 +336,7 @@ header{
 
 /* #region home */
 .home .background{
-    background: url('../resources/transitionVTT.png')bottom no-repeat;
+    background: url('../img/background/vttTransition.png')bottom no-repeat;
     background-size: 100%;
 }
 .home{
@@ -369,7 +368,9 @@ header{
 
 /* #region bike */
 .bike{
-    background-color: var(--rocColorO);
+    background: url('../img/background/paddleTransition.png')bottom no-repeat;
+    background-size: 100%;
+    padding-bottom: 8rem;
 }
 .bike h2{
     margin-bottom: 0;
@@ -393,7 +394,7 @@ header{
 /* #region paddle */
 .paddle{
     color:var(--rocColorR);
-    background: url('../resources/transitionESCALADE.png')bottom no-repeat, var(--background);
+    background: url('../img/background/climbingTransition.png')bottom no-repeat;
     background-size: 100%;
     padding-bottom: 8rem;
 }
@@ -416,7 +417,9 @@ header{
 
 /* #region climbing */
 .climbing{
-    background-color: var(--rocColorR);
+    background: url('../img/background/archeryTransition.png')bottom no-repeat, var(--rocColorR);
+    background-size: 100%;
+    padding-bottom: 10rem;
 }
 .climbing h3{
     color:var(--rocColorO);
@@ -434,7 +437,9 @@ header{
 /* #region archery */
 .archery{
     color:var(--rocColorR);
-    background: var(--background);
+    background: url('../img/background/snowboardTransition.png')bottom no-repeat;
+    background-size: 100%;
+    padding-bottom: 10rem;
 }
 .archery h2{
     color:var(--rocColorO);
@@ -456,7 +461,9 @@ header{
 
 /* #region snowboard */
 .snowboard{
-    background-color: var(--rocColorC);
+    background: url('../img/background/cocktailTransition.png')bottom no-repeat,  var(--rocColorC);
+    background-size: 100%;
+    padding-bottom: 10rem;
 }
 .snowboard h3{
     background-color: var(--clearColor);
@@ -476,6 +483,7 @@ header{
     background-color: var(--clearColor);
     color: var(--darkColor);
     padding: 1rem;
+    /* text-align: left; */
 }
 .cocktail h3{
     background-color: var(--cocktailColor);
@@ -511,7 +519,8 @@ header{
     background-color: var(--cocktailColor);
 }
 .testimony{
-    background: url('../resources/bgTEMOIGNAGES.png') top no-repeat, var(--cocktailColor);
+    background: url('../img/background/bgSnowTestimony.png') top no-repeat;
+    background-size: 100%;
     display:flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -520,7 +529,7 @@ header{
 }
 .testimony h2{
     color:var(--cocktailColor);
-    padding-top: 20rem;
+    padding-top: 6rem;
 }
 .testimony .sliderBloc{
     display: flex;
@@ -565,15 +574,35 @@ header{
 /* #region BOOKING */
 #booking{
     color:var(--darkColor);
+    text-align: center;
+    padding: 1rem 2rem;
 }
-#booking fieldset,
+#booking h1 span{
+    color: var(--rocColorC);
+}
+legend{
+    text-transform: uppercase;
+}
+#contactInformation,
+#formulaSelector legend,
+#singleActivity,
+#rocCocktail
 .activityItem{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    text-align: left;
+}
+#contactInformation{
+    color: var(--rocColorO);
+    border: 1px solid var(--rocColorO);
+    border-radius: 1rem;
+}
+#contactInformation input{
+    border: 1px solid var(--rocColorO);
 }
 #booking input, button{
-    margin: 1rem;
+    margin: 1rem 0;
 }
 #booking .hide{
     display:none;
@@ -606,21 +635,10 @@ header{
 #contact{
     color: var(--darkColor);
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 2rem;
     background: url("../img/mountain.png") center no-repeat;
 }
-#contact span,
-#contact .alert{
-    color: var(--require);
-}
-div.form-error {
-    color: var(--require);
-    width: 100%
-}
-#contact .red-border{
-    border: 2px solid var(--require);
-    border-radius: 5px;
-}
+
 #contact h1 span,
 #contact a{
     color: var(--rocColorC);
@@ -632,7 +650,7 @@ div.form-error {
     align-content: space-between;
     background-color: var(--background);
     border: 2px solid var(--rocColorC);
-    border-radius: 3px;
+    border-radius: 1rem;
     padding: 1rem;
     margin-top: 2rem;
     height: 50rem;
@@ -643,24 +661,26 @@ div.form-error {
 }
 #contact .field{
     width: 65%;
+    border: 1px solid var(--rocColorC);
 }
-
 #contact button{
-    font-family: DIN-Medium;
-    font-size: 1.5rem;
-    color: var(--rocColorC);
-    background-color: var(--background);
-    padding: 1rem;
+    color: var(--clearColor);
+    background-color: var(--rocColorC);
     margin:1rem auto;
-    text-align: center;
-    text-transform: uppercase;
-    border: 2px solid;
+    border: 2px solid var(--rocColorC);
     border-radius: 3rem;
-    width:20rem;
-    transition: transform 1s;
 }
-#contact button:hover{
-    transform:scale(1.1);
+#contact span,
+#contact .alert{
+    color: var(--require);
+}
+div.form-error {
+    color: var(--require);
+    width: 100%;
+}
+#contact .red-border{
+    border: 2px solid var(--require);
+    border-radius: 5px;
 }
 /* #endregion CONTACT */
 
@@ -669,7 +689,7 @@ div.form-error {
 footer{
     color: var(--rocColorR);
     text-align: center;
-    background: url("../resources/bgFOOTER.png") bottom no-repeat, var(--clearColor);
+    background: url("../img/background/bgFooter.png") bottom no-repeat, var(--clearColor);
     background-size: 100%;
     padding-top: 2rem;
     padding-bottom: 5rem;
@@ -700,8 +720,9 @@ footer .network a{
 /* #region TABLET (min-width: 768px) */
 @media screen and (min-width:768px){
     header{
-        background: url('../resources/bgHEADER.png')bottom right no-repeat;
-        background-size: cover;
+        background: url('../img/background/bgHeader.jpg')bottom right no-repeat;
+        background-size: 100%;
+        height: auto;
     }
     .logo{
         max-width: 160px;
@@ -844,8 +865,8 @@ footer .network a{
         padding-right: 10rem; 
     } */
     .activity{
-        padding-left: 10rem; 
-        padding-right: 10rem; 
+        padding-left: 12rem; 
+        padding-right: 12rem; 
     }
     .home p{
         max-width: 70%;
@@ -961,10 +982,20 @@ footer .network a{
     }
     .home .cocktail a{
         font-size: 1vw;
-        color: var(--clearColor);
-        background: var(--cocktailColor);
-        border: 1px solid var(--clearColor);
+        border: none;
         width:auto;
+        margin: 0;
+    }
+    .home .cocktail div{
+        color: var(--clearColor);
+        background-color: var(--clearColor);
+        border: 1px solid var(--rocColorO);
+        border-radius: 3rem;
+        width:auto;
+        margin: 1rem;
+        padding: 0.5rem 0 0 0;
+        width:auto;
+        height:inherit;
     }
     .cocktailBottom p{
         color: var(--clearColor);
@@ -978,8 +1009,14 @@ footer .network a{
     .cocktailBottom span{
         color: var(--rocColorO);
     }
+    .home{
+        padding-bottom: 8rem;
+    }
+    .bike{
+        padding-bottom: 15rem;
+    }
     .paddle{
-        padding-bottom: 12rem;
+        padding-bottom: 15rem;
     }
     /* .home li > .text{
         padding: 0.5rem;

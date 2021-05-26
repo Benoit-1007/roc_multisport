@@ -6,4 +6,4 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // Appels de dépendances
-require 'views/Booking.phtml';
+require 'views/booking.phtml';

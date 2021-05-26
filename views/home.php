@@ -78,7 +78,7 @@
                         </div>
                         <div class="cocktail text">
                             <h2>c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</h2>
-                            <a href="#cocktail">en savoir +</a>
+                            <div><a href="#cocktail">en savoir +</a></div>
                         </div>
                     </li>
                 </ul>
@@ -152,9 +152,9 @@
                 </div>
             </div>
         </section>
-        <div class="transition">
+        <!-- <div class="transition">
             <img src="img/bg/transition_paddle.png" alt="">
-        </div>
+        </div> -->
         <section id="paddle">
             <div class="paddle activity">
                 <h2>paddle / kayak</h2>
@@ -275,7 +275,7 @@
                                     <td class="tablePrice">90€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -308,7 +308,7 @@
                                     <td class="tablePrice">110€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -327,9 +327,9 @@
                 </div>
             </div>
         </section>
-        <div class="transition">
+        <!-- <div class="transition">
             <img src="img/bg/transition_archery.png" alt="">
-        </div>
+        </div> -->
         <section id="archery">
             <div class="archery activity">
                 <h2>tir à l'arc</h2>
@@ -380,9 +380,9 @@
                 </div>
             </div>
         </section>
-        <div class="transition">
+        <!-- <div class="transition">
             <img src="img/bg/transition_snowboard.png" alt="">
-        </div>
+        </div> -->
         <section id="snowboard" >
             <div class="snowboard activity">
                 <h2>snowboard / splitboard</h2>
@@ -422,7 +422,7 @@
                                     <td class="tablePrice">330€/pers.</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activités disponibles à partir de 2 participants (3 pour le Rookeasy). Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 2 participants (3 pour le Rookeasy). Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                             <table>
@@ -438,7 +438,7 @@
                                     <td class="tablePrice">330€/pers.</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 6 personnes maximum, activités disponibles à partir de 2 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de 6 personnes maximum, activité disponible à partir de 2 particpants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -457,9 +457,9 @@
                 </div>
             </div>
         </section>
-        <div class="transition">
+        <!-- <div class="transition">
             <img src="img/bg/transition_cocktail.png" alt="">
-        </div>
+        </div> -->
         <section id="cocktail">
             <div class="cocktail activity">
                 <h2>
@@ -510,8 +510,6 @@
                 </div>
             </div>
         </section>
-        <div class="transition">
-        </div>
         <section id="testimony">
             <div class="testimony">
             <h2>témoignages</h2>

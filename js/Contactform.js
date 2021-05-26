@@ -99,7 +99,7 @@ class Contactform {
         return re.test(String(email).toLowerCase());
     }
     validateName(string) {
-        const reg = /^[a-zA-Z ]+$/;
+        const reg = /^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/;
         return reg.test(string)
     }
 }
