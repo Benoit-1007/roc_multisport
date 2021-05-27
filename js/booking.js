@@ -502,39 +502,45 @@ document.addEventListener('DOMContentLoaded', function () {
                         reset(myRocActivities);
                         addAllActivities(myRocActivities);
 
+                        //START FUNCTION
+                        
+                        let selectors = myRocActivities.querySelectorAll('.selector');
+                        for (let i = 0; i < selectors.length; i++) {
+                            const selector = selectors[i];
+                            
+                            selector.addEventListener('change', function(){
+                                let selectedDays = 0;
+                                let emptySelector = [];
+                                let currentSelectors = myRocActivities.querySelectorAll('.selector')
+                                currentSelectors.forEach(currentSelector => {
+                                    if(currentSelector.value !== 'empty'){
+                                        
+                                        selectedDays += Number(this.options[currentSelector.selectedIndex].getAttribute('data-duration'));
+                                        
+                                        console.log("🚀 selectedDays", selectedDays)
+                                    } else {
+                                        emptySelector.push(currentSelector);
+                                        console.log("🚀 emptySelector", emptySelector)
+                                    }
+                                    
 
+                                    // if(validatedSelectors.length === 1 && )
+                                });
+                                
+                            })
+                            
+                        }
+
+
+
+                        //END FUNCTION
                         break;
                 }
                         
                 displayParticipants(activity, numberMinParticipants);
 
-                participantsNumberSelector.addEventListener('keyup', function(){
-                    let newParticipantsNumber;
-                    if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
-                        console.log('test min');
-                        participantsNumberSelector.value = participantsNumberSelector.min;
-                        console.log("🚀  participantsNumberSelector.value", participantsNumberSelector.value)
-                        newParticipantsNumber = participantsNumberSelector.value
-                        console.log("🚀  newParticipantsNumber", newParticipantsNumber)
-                        displayParticipants(activity, newParticipantsNumber);
-                    } else if (Math.floor(participantsNumberSelector.value) > participantsNumberSelector.max) {
-                        console.log('test max');
-                        newParticipantsNumber = participantsNumberSelector.max;
-                        displayParticipants(activity, newParticipantsNumber);
-                    } else {
-                        newParticipantsNumber = participantsNumberSelector.value;
-                        displayParticipants(activity, newParticipantsNumber);
-                    }
-                })
+                validateParticipantsNumber(activity, participantsNumberSelector);
 
-                participantsNumberSelector.addEventListener('click', function(){
-                    let newParticipantsNumber = participantsNumberSelector.value;
-                    console.log("🚀 newParticipantsNumber", newParticipantsNumber)
-                    displayParticipants(activity, newParticipantsNumber);
-                })
-
-                
-                
             })
         }    
     }
@@ -613,38 +619,34 @@ document.addEventListener('DOMContentLoaded', function () {
                 newRocActivity.innerHTML = `
                 <p>Activité ` + x + `</p>
                 <select class="field selector" name="rocActivity_` + x + `">
-                    <option value="">Séléctionnez votre activité ` + x + `</option>
+                    <option value="empty">Séléctionnez votre activité ` + x + `</option> 
                     <optogroup label="bike"> 
-                        <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-duration="halfDay">VTTAE sans location VTT - 1/2 journée</option>
-                        <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-duration="allDay">VTTAE sans location VTT - journée</option>
-                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-duration="halfDay">VTTAE avec location VTT - 1/2 journée</option>
-                        <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-duration="allDay">VTTAE avec location VTT - journée</option>
+                        <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-duration="0.5">VTTAE sans location VTT - 1/2 journée</option>
+                        <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-duration="1">VTTAE sans location VTT - journée</option>
+                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-duration="0.5">VTTAE avec location VTT - 1/2 journée</option>
+                        <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-duration="1">VTTAE avec location VTT - journée</option>
                     </optogroup> 
                     <optogroup label="paddle">
-                        <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-duration="halfDay">Paddle - 1/2 journée</option>
-                        <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-duration="allDay">Paddle - journée</option>
-                        <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-duration="halfDay">Kayak - 1/2 journée</option>
+                        <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-duration="0.5">Paddle - 1/2 journée</option>
+                        <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-duration="1">Paddle - journée</option>
+                        <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-duration="0.5">Kayak - 1/2 journée</option>
                     </optogroup> 
                     <optogroup label="climbing">
-                        <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-duration="halfDay">Escalade - 1/2 journée</option>
-                        <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-duration="allDay">Escalade - journée</option>
-                        <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-duration="halfDay">Via Ferrata - 1/2 journée</option>
-                        <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-duration="allDay">Via Ferrata - journée (2 via ferrata)</option>
+                        <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-duration="0.5">Escalade - 1/2 journée</option>
+                        <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-duration="1">Escalade - journée</option>
+                        <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-duration="0.5">Via Ferrata - 1/2 journée</option>
+                        <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-duration="1">Via Ferrata - journée (2 via ferrata)</option>
                         </optogroup> 
                         <optogroup label="archery">
-                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-duration="halfDay">Tir à l'arc - 1/2 journée</option>
-                    </optogroup> 
-                    <optogroup label="snowboard">
-                        <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160">Snowboard - 1/2 journée</option>
-                        <option value="snowboarAllfDay" name="Snowboard - journée" data-price="330" data-duration="allDay">Snowboard - journée</option>
-                        <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180">Splitboard - 1/2 journée</option>
-                        <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-duration="allDay">Splitboard - journée</option>
+                        <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-duration="0.5">Tir à l'arc - 1/2 journée</option>
                     </optogroup> 
                 `;
 
             divMyRocActivities.appendChild(newRocActivity);
         };
     }
+
+    // function chooseRocWeekEndActivities(myRocActivities){}
 
     // function updateBasket()
 

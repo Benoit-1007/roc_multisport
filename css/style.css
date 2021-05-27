@@ -487,8 +487,10 @@ header{
     /* text-align: left; */
 }
 .cocktail h3{
-    background-color: var(--cocktailColor);
+    width: 100%;
     color: var(--clearColor);
+    background: url(../img/background/bgFullPicto.png) right no-repeat, var(--cocktailColor);
+    background-size: contain;
 }
 .cocktail a:not(p a){
     background: linear-gradient(90deg, var(--rocColorR) 30%, var(--rocColorO)50%, var(--rocColorC)60%);
@@ -553,7 +555,6 @@ header{
 
 /* #endregion MAIN INDEX */
 
-
 /* #region SLIDER */
 .slick-next::before, 
 .slick-prev::before {
@@ -569,7 +570,6 @@ header{
 }
 
 /* #endregion SLIDER */
-
 
 /* #region BOOKING */
 .count{
@@ -611,7 +611,6 @@ legend{
 }
 /* #endregion BOOKING */
 
-
 /* #region TEMPORARYBOOKING */
 #temporaryBooking{
     text-align: center;
@@ -630,7 +629,6 @@ legend{
 }
 
 /* #endregion TEMPORARYBOOKING */
-
 
 /* #region CONTACT */
 
@@ -685,7 +683,6 @@ div.form-error {
 }
 /* #endregion CONTACT */
 
-
 /* #region FOOTER */
 footer{
     color: var(--rocColorR);
@@ -705,7 +702,6 @@ footer .network a{
 }
 
 /* #endregion FOOTER */
-
 
 /* #region MEDIA QUERIES */
 
@@ -1006,14 +1002,11 @@ footer .network a{
     /* .home{
         padding-bottom: 8rem;
     } */
-    .bike{
+    .bike, .paddle{
         padding-bottom: 15rem;
     }
-    .paddle{
-        padding-bottom: 15rem;
-    }
-    .archery{
-        padding-bottom: 22rem;
+    .archery, .snowboard{
+        padding-bottom: 25rem;
     }
     /* .home li > .text{
         padding: 0.5rem;
