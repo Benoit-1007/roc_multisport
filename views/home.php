@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="ROC Multisport, une expérience unique entre lac et montagne !">
     <title>ROC Multisport - Home Page</title>
-    <link rel="icon" href="resources/logoRocMultisport.png">
+    <link rel="icon" href="img/background/logoRocMultisport.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="" type="css/normalize/css" />
     <link rel="stylesheet" type="text/css" href="slick/slick.css"/>
@@ -73,7 +73,7 @@
                     </li>
                     <li>
                         <div class="cocktailBottom img">
-                            <img src="resources/cocktailROC.png" alt="">
+                            <img src="img/background/cocktailROC.png" alt="">
                             <p>COMPOSEZ LIBREMENT VOTE <span>COCKTAIL D'ACTIVITÉS!</span></p>
                         </div>
                         <div class="cocktail text">

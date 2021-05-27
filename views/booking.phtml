@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROC Multisport - Reservation Page</title>
-    <link rel="icon" href="resources/logoRocMultisport.png">
+    <link rel="icon" href="img/background/logoRocMultisport.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="" type="css/normalize/css" />
     <link rel="stylesheet" href="css/style.css">
@@ -75,7 +75,7 @@
                                     </optogroup> 
                                 </select>
                                 <input class="field" type="date" name="date_activity_1">
-                                <input class="field" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
+                                <input class="field count" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
                             </div>
                             <div class="activity_1_participantsList">
                                 <p>Participants activité 1</p>
@@ -98,7 +98,9 @@
                                 <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
                             <input class="field" type="date" name="date_rocActivity" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
-                            <input class="field" type="number" name="participantsCount_rocActivity" min="4" max="8" placeholder="Nombre de participants">
+                            <input class="field count" type="number" name="participantsCount_rocActivity" min="4" max="8" placeholder="Nombre de participants">
+                        </div>
+                        <div class="myRocActivities">
                         </div>
                         <div class="rocCocktail_participantsList">
                             <p>Participants</p>

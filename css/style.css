@@ -193,7 +193,7 @@ p a{
 header{
     position: sticky;
     top: 0;
-    background: url('../resources/borderHEADER.png') bottom repeat-x, var(--background);
+    background: url('../img/background/borderHeader.png') bottom repeat-x, var(--background);
     height: 10rem;
     z-index: 100;
 }
@@ -395,7 +395,7 @@ header{
 /* #region paddle */
 .paddle{
     color:var(--rocColorR);
-    background: url('../img/background/climbingTransition.png')bottom no-repeat;
+    background: url('../img/background/climbingTransition.png')bottom no-repeat, var(--background);
     background-size: 100%;
     padding-bottom: 8rem;
 }
@@ -572,6 +572,9 @@ header{
 
 
 /* #region BOOKING */
+.count{
+    width: 200px;
+}
 .booking{
     color:var(--darkColor);
     text-align: center;
@@ -718,7 +721,7 @@ footer .network a{
 /* #region TABLET (min-width: 768px) */
 @media screen and (min-width:768px){
     header{
-        background: url('../img/background/bgHeader.jpg')bottom right no-repeat;
+        background: url('../img/background/bgHeader.png')bottom right no-repeat;
         background-size: cover;
     }
     .logo{
@@ -846,7 +849,7 @@ footer .network a{
 /* #region DESKTOP (min-width: 980px) */
 @media screen and (min-width:980px){
     /* header{
-        background: url('../resources/bgHEADER.png') bottom no-repeat;
+        background: url('../img/background//bgHEADER.png') bottom no-repeat;
         background-size: 100%;
     } */
     .navbar{
@@ -917,7 +920,7 @@ footer .network a{
         margin: 1rem;
     }
     .blocVTTAE{
-        background: url("../resources/blocVTTAE.png") no-repeat;
+        background: url("../img/background/vttBloc") no-repeat;
         background-size: cover;
     }
     .blocVTTAE a{
@@ -928,7 +931,7 @@ footer .network a{
         width: auto;
     }
     .blocPADDLE{
-        background: url("../resources/blocPADDLE.png") no-repeat;
+        background: url("../img/background/paddleBloc.png") no-repeat;
         background-size: cover;
     }
     .blocPADDLE a{
@@ -939,7 +942,7 @@ footer .network a{
         width: auto;
     }
     .blocESCALADE{
-        background: url("../resources/blocESCALADE.png") no-repeat;
+        background: url("../img/background/climbingBloc.png") no-repeat;
         background-size: cover;
     }
     .blocESCALADE a{
@@ -950,7 +953,7 @@ footer .network a{
         width: auto;
     }
     .blocTIR{
-        background: url("../resources/blocTIR.png") no-repeat;
+        background: url("../img/background/archeryBloc.png") no-repeat;
         background-size: cover;
     }
     .blocTIR a{
@@ -961,7 +964,7 @@ footer .network a{
         width: auto;
     }
     .blocSNOWBOARD{
-        background: url("../resources/blocSNOWBOARD.png") no-repeat;
+        background: url("../img/background/snowboardBloc.png") no-repeat;
         background-size: cover;
     }
     .blocSNOWBOARD a{

@@ -1,4 +1,4 @@
-<img class="logo" src="resources/logoRocMultisport.png" alt="Logo ROC Multisport">
+<img class="logo" src="img/background/logoRocMultisport.png" alt="Logo ROC Multisport">
 <address>
     <p>165 route des Tappes</p>
     <p>74230 Dingy-Saint-Clair</p>

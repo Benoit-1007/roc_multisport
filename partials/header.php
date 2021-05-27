@@ -1,5 +1,5 @@
 <nav class="navbar">            
-    <div class="logo"><img src="resources/logoRocMultisport.png" alt="Logo ROC Multisport"></div>
+    <div class="logo"><img src="img/background/logoRocMultisport.png" alt="Logo ROC Multisport"></div>
     <ul class="navbar_links">
         <li class="navbar_link first"><a href="index.php">accueil</a></li>
         <li class="navbar_link second"><a href="index.php#home">nos activités</a>
