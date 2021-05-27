@@ -152,9 +152,6 @@
                 </div>
             </div>
         </section>
-        <!-- <div class="transition">
-            <img src="img/bg/transition_paddle.png" alt="">
-        </div> -->
         <section id="paddle">
             <div class="paddle activity">
                 <h2>paddle / kayak</h2>
@@ -327,9 +324,6 @@
                 </div>
             </div>
         </section>
-        <!-- <div class="transition">
-            <img src="img/bg/transition_archery.png" alt="">
-        </div> -->
         <section id="archery">
             <div class="archery activity">
                 <h2>tir à l'arc</h2>
@@ -380,9 +374,6 @@
                 </div>
             </div>
         </section>
-        <!-- <div class="transition">
-            <img src="img/bg/transition_snowboard.png" alt="">
-        </div> -->
         <section id="snowboard" >
             <div class="snowboard activity">
                 <h2>snowboard / splitboard</h2>
@@ -457,9 +448,6 @@
                 </div>
             </div>
         </section>
-        <!-- <div class="transition">
-            <img src="img/bg/transition_cocktail.png" alt="">
-        </div> -->
         <section id="cocktail">
             <div class="cocktail activity">
                 <h2>
