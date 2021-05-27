@@ -208,9 +208,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 //get input numberparticipants
                 let participantsNumberSelector = document.querySelector(`input[name="participantsCount_activity_` + activityNumber + `"]`);
                 console.log("🚀 participantsNumberSelector", participantsNumberSelector);
-                // get numberparticipants
-                let currentParticipantsNumber = document.querySelectorAll(`div[class*="activity_` + activityNumber + `_participant_"]`).length;
-                console.log("🚀currentParticipantsNumber", currentParticipantsNumber)
                 //get div current activity
                 let currentActivity = document.querySelector('.activity_' + activityNumber);
                 console.log("🚀 currentActivity", currentActivity)
@@ -243,32 +240,69 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 displayParticipants(activity, numberMinParticipants);
 
-                participantsNumberSelector.addEventListener('keyup', function(){
+                participantsNumberSelector.addEventListener('focusout', function(){
+
                     let newParticipantsNumber;
+
                     if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
+
                         console.log('test min');
                         participantsNumberSelector.value = participantsNumberSelector.min;
                         console.log("🚀 participantsNumberSelector.value", participantsNumberSelector.value)
                         newParticipantsNumber = participantsNumberSelector.value
                         console.log("🚀 newParticipantsNumber", newParticipantsNumber)
-                        displayParticipants(activity, newParticipantsNumber);
+
                     } else if (Math.floor(participantsNumberSelector.value) > participantsNumberSelector.max) {
+
                         console.log('test max');
+                        participantsNumberSelector.value = participantsNumberSelector.max;
                         newParticipantsNumber = participantsNumberSelector.max;
-                        displayParticipants(activity, newParticipantsNumber);
+
                     } else {
+
                         newParticipantsNumber = participantsNumberSelector.value;
-                        displayParticipants(activity, newParticipantsNumber);
                     }
+
+                    displayParticipants(activity, newParticipantsNumber);
                 })
 
                 participantsNumberSelector.addEventListener('click', function(){
-                    let newParticipantsNumber = participantsNumberSelector.value;
+
+                    let newParticipantsNumber;
+
+                    if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
+
+                        console.log('test min');
+                        participantsNumberSelector.value = participantsNumberSelector.min;
+                        console.log("🚀 participantsNumberSelector.value", participantsNumberSelector.value)
+                        newParticipantsNumber = participantsNumberSelector.value
+                        console.log("🚀 newParticipantsNumber", newParticipantsNumber)
+
+                    } else if (Math.floor(participantsNumberSelector.value) > participantsNumberSelector.max) {
+
+                        console.log('test max');
+                        participantsNumberSelector.value = participantsNumberSelector.max;
+                        newParticipantsNumber = participantsNumberSelector.max;
+
+                    } else {
+
+                        newParticipantsNumber = participantsNumberSelector.value;
+                    }
+
                     displayParticipants(activity, newParticipantsNumber);
+
+                    
+                    // let newParticipantsNumber = participantsNumberSelector.value;
+                    // displayParticipants(activity, newParticipantsNumber);
                 })
             })
         }
     }
+
+
+function numberParticipantsChange(){
+    
+}
 
     /** display input half day selector according to chosen activity
      * @param {*} numActivity number of current activity (1, 2, ...)
@@ -453,7 +487,7 @@ document.addEventListener('DOMContentLoaded', function () {
             newRocActivity.classList.add('rocActivity_1');
             newRocActivity.innerHTML = `
             <p>Activité 1</p>
-                    <select class="field selector" name="rocActivity_1">
+                    <select class="field selector" name="rocActivity_1" disabled>
                         <option value="">Séléctionnez votre activité 1</option>
                         <optogroup label="bike"> 
                             <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
