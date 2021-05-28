@@ -5,9 +5,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // VARIABLES
     let bookingForm = document.querySelector('#bookingForm');
 
-    let select = bookingForm.querySelectorAll('.selector');
+    // let select = bookingForm.querySelectorAll('.selector');
+    let singleActivitySelector = bookingForm.querySelectorAll('.singleActivitySelector');
 
     let singleActivityFieldset = bookingForm.querySelector('#singleActivity');
+
+    let rocFormulaSelector = bookingForm.querySelector('.rocFormulaSelector');
 
     let rocCocktailFieldset = bookingForm.querySelector('#rocCocktail');
 
@@ -65,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         returnBtn.classList.remove('hide');
                         singleActivityFieldset.classList.remove("hide");
                         // singleActivityBasket.classList.remove("hide");
-                        chooseActivity(select);
+                        chooseActivity(singleActivitySelector);
                         updateBasket();
                         break;
                     case "rocCocktailButton":
@@ -73,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         rocCocktailBtn.classList.add('hide');
                         returnBtn.classList.remove('hide');
                         rocCocktailFieldset.classList.remove("hide");
-                        chooseRocFormula(select);
+                        chooseRocFormula(rocFormulaSelector);
                         updateBasket();
                         break;
                     default:
@@ -85,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         reset(myRocActivities);
                         document.querySelector('.rocWeekEndBasket').classList.add('hide');
                         document.querySelector('.rocDayBasket').classList.add('hide');
-                        let currentSelect = bookingForm.querySelectorAll('.selector');
+                        let currentSelect = bookingForm.querySelectorAll(`[class*='Selector']`);
                         currentSelect.forEach(element => {
                             element.value = "empty"
                         });
@@ -105,40 +108,39 @@ document.addEventListener('DOMContentLoaded', function () {
     /** Update form booking elements(min & max participants authorized, display input half day selector for half day activities, update div basket) according to chosen activity
      * @param {NodeList} field All inputs select
      */
-    function chooseActivity(field) {
-        console.log("🚀 ~ file: booking.js ~ line 109 ~ chooseActivity ~ field", field.length)
+    function chooseActivity(selectors) {
         console.log('enter chooseActivity')
-        for (let i = 0; i < field.length; i++) {
+        for (let i = 0; i < selectors.length; i++) {
 
-            const element = field[i];
+            const selector = selectors[i];
 
-            element.addEventListener('change', function () {
+            selector.addEventListener('change', function () {
                 //get activity
-                let activity = element.getAttribute('name');
+                let activity = selector.getAttribute('name');
                 console.log("🚀activity", activity)
                 //get activity number
                 let activityNumber = activity.replace(/\D/g,'');
                 console.log("🚀 activityNumber", activityNumber)
                 //get name activity
-                let activityName = this.options[element.selectedIndex].getAttribute('name');
+                let activityName = this.options[selector.selectedIndex].getAttribute('name');
                 console.log("🚀 activityName", activityName);
                 //get value activity
-                let activityValue = this.options[element.selectedIndex].getAttribute('value');
+                let activityValue = this.options[selector.selectedIndex].getAttribute('value');
                 console.log("🚀 activityValue", activityValue);
                 //get price activity
-                let price = Number(this.options[element.selectedIndex].getAttribute('data-price'));
+                let price = Number(this.options[selector.selectedIndex].getAttribute('data-price'));
                 console.log("🚀 price", price);
                 //get activity duration
-                let activityDuration = this.options[element.selectedIndex].getAttribute('data-duration');
+                let activityDuration = this.options[selector.selectedIndex].getAttribute('data-duration');
                 console.log("🚀 activityDuration", activityDuration)
                 //get min numberparticipants
-                let numberMinParticipants = Number(this.options[element.selectedIndex].getAttribute('data-minParticipants'));
+                let numberMinParticipants = Number(this.options[selector.selectedIndex].getAttribute('data-minParticipants'));
                 console.log("🚀 numberMinParticipants", numberMinParticipants)
                 //get max numberparticipants
-                let numberMaxParticipants = Number(this.options[element.selectedIndex].getAttribute('data-maxParticipants'));
+                let numberMaxParticipants = Number(this.options[selector.selectedIndex].getAttribute('data-maxParticipants'));
                 console.log("🚀 numberMaxParticipants", numberMaxParticipants)
                 //get period (display available dates according to chosen activity)
-                let activityPeriod = this.options[element.selectedIndex].getAttribute('data-period')
+                let activityPeriod = this.options[selector.selectedIndex].getAttribute('data-period')
                 console.log("🚀 activityPeriod", activityPeriod)
                 //get input date
                 let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`);
@@ -287,12 +289,13 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let i = 0; i < differenceParticipants; i++) {
                 let currentParticipant = currentParticipantsNumber+i+1;
                 let newParticipant = document.createElement('div');
-                newParticipant.classList.add(currentActivity + '_participant_'+ currentParticipant)
+                newParticipant.classList.add(currentActivity + '_participant_'+ currentParticipant);
+                newParticipant.classList.add("participant"); // for css properties
                 newParticipant.innerHTML = ` 
                     <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
                     <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
                     <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
-                    <input class="field" type="number" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
+                    <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
                     <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
                         <option value="">Niveau*</option>
                         <option value="beginner">Débutant</option>
@@ -341,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newActivity.innerHTML = `
             <div class="activity_`+ x + `">
                 <p>Activité `+ x + `</p>
-                <select class="field selector" name="activity_`+ x + `">
+                <select class="field singleActivitySelector" name="activity_`+ x + `">
                     <option value="">Séléctionnez votre activité `+ x + `</option>
                     <optogroup label="bike"> 
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -400,21 +403,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelector('.singleActivityBasket_'+ x).remove();
             })
 
-        let select = document.querySelectorAll('.selector');
+        let singleActivitySelectors = document.querySelectorAll('.singleActivitySelector');
 
-        chooseActivity(select);
+        chooseActivity(singleActivitySelectors);
 
     }
     /** allows to choose between ROC Day & Roc Week-end, display form according to chosen formula
      * @param {*} field input ROC formula selector
      */
-    function chooseRocFormula(field) {
+    function chooseRocFormula(selector) {
 
-        for (let i = 0; i < field.length; i++) {
+        // for (let i = 0; i < field.length; i++) {
 
-            const element = field[i];
+            // const selector = field[i];
 
-            element.addEventListener('change', function () {
+            selector.addEventListener('change', function () {
                 //get activity (for display participants)
                 let activity = document.querySelector('#rocCocktail').id;
                 console.log("🚀activity", activity)
@@ -422,10 +425,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 let rocCocktailActivities = document.querySelector('.rocCocktailActivities');
                 console.log("🚀 rocCocktailActivities", rocCocktailActivities)
                 //get formula value (day or week-end)
-                let formulaValue = this.options[element.selectedIndex].getAttribute('value');
+                let formulaValue = this.options[selector.selectedIndex].getAttribute('value');
                 console.log("🚀 formulaValue", formulaValue);
                 //get min numberparticipants
-                let numberMinParticipants = Number(this.options[element.selectedIndex].getAttribute('data-minParticipants'));
+                let numberMinParticipants = Number(this.options[selector.selectedIndex].getAttribute('data-minParticipants'));
                 console.log("🚀 numberMinParticipants", numberMinParticipants)
                 //get input numberparticipants
                 let participantsNumberSelector = document.querySelector(`input[name="participantsCount_rocActivity"]`);
@@ -474,7 +477,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 validateParticipantsNumber(activity, participantsNumberSelector);
 
             })
-        }    
+        // }    
     }
 
     /** allows to choose ROC day activities
@@ -486,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function () {
             newRocActivity.classList.add('rocActivity_1');
             newRocActivity.innerHTML = `
             <p>Activité 1</p>
-                    <select class="field selector" name="rocActivity_1">
+                    <select class="field rocActivitySelector" name="rocActivity_1">
                         <option value="">Séléctionnez votre activité 1</option>
                         <optogroup label="bike"> 
                             <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -524,7 +527,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 newRocActivity.classList.add('rocActivity_2');
                 newRocActivity.innerHTML = `
                 <p>Activité 2</p>
-                        <select class="field selector" name="rocActivity_2">
+                        <select class="field rocActivitySelector" name="rocActivity_2">
                             <option value="">Séléctionnez votre activité 2</option>
                             <optogroup label="bike"> 
                                 <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -569,7 +572,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let newRocActivity = document.createElement('div');
                 newRocActivity.innerHTML = `
                 <p>Activité ` + x + `</p>
-                <select class="field selector" name="rocActivity_` + x + `">
+                <select class="field rocActivitySelector" name="rocActivity_` + x + `">
                     <option value="empty">Séléctionnez votre activité ` + x + `</option> 
                     <optogroup label="bike"> 
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-duration="0.5">VTTAE sans location VTT - 1/2 journée</option>
@@ -605,14 +608,14 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function chooseRocWeekEndActivities(divMyRocActivities) {
                             
-        let selectors = divMyRocActivities.querySelectorAll('.selector');
+        let selectors = divMyRocActivities.querySelectorAll('.rocActivitySelector');
         for (let i = 0; i < selectors.length; i++) {
             const selector = selectors[i];
             
             selector.addEventListener('change', function(){
                 let selectedDays = 0;
                 let emptySelector = [];
-                let currentSelectors = divMyRocActivities.querySelectorAll('.selector')
+                let currentSelectors = divMyRocActivities.querySelectorAll('.rocActivitySelector')
                 currentSelectors.forEach(currentSelector => {
                     if(currentSelector.value !== 'empty'){
                         selectedDays += Number(this.options[currentSelector.selectedIndex].getAttribute('data-duration'));
@@ -675,7 +678,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateBasket(){
         console.log('enter basket function')
-        let chosenActivities = document.querySelectorAll('.selector')
+        let chosenActivities = document.querySelectorAll(`[class*="Selector]`)
         chosenActivities.forEach(element => {
             console.log(element.value)
         });

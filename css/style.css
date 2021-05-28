@@ -578,33 +578,54 @@ header{
 .booking{
     color:var(--darkColor);
     text-align: center;
+    padding: 2rem;
 }
 .booking h1 span{
     color: var(--rocColorC);
 }
+.booking p{
+    text-align: justify;
+}
 legend{
     text-transform: uppercase;
 }
-#contactInformation,
+/* #contactInformation,
 #formulaSelector,
 #singleActivity,
 #rocCocktail,
-.activityItem{
+.activityItem */
+fieldset{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    text-align: left;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 #contactInformation{
     color: var(--rocColorO);
     border: 1px solid var(--rocColorO);
-    border-radius: 1rem;
 }
 #contactInformation input{
     border: 1px solid var(--rocColorO);
 }
-#booking input, button{
-    margin: 1rem 0;
+#formulaSelector{
+    color: var(--rocColorR);
+    border: 1px solid var(--rocColorR);
+}
+#singleActivity fieldset, #rocCocktail fieldset{
+    color: var(--rocColorC);
+    border: 1px solid var(--rocColorC);
+}
+#booking input, #booking select{
+    margin: 1rem;
+    padding: 0.5rem;
+    width:90%
+}
+.participant{
+    border-bottom: 1px dotted var(--rocColorC);
+}
+#formulaSelector button{
+    margin: 1rem auto;
 }
 #booking .hide{
     display:none;

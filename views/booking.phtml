@@ -31,7 +31,7 @@
                     <input class="field" type="text" name="contact_city" required placeholder="Ville">
             </fieldset>
             <fieldset id="formulaSelector">
-                <legend>Choisissez votre formule</legend>
+                <!-- <legend>Choisissez votre formule</legend> -->
                 <button type="button" id="singleActivityButton">activité simple</button>
                 <button type="button" id="rocCocktailButton">cocktail roc</button>
                 <button type="button" id="returnButton" class="hide">changer de formule</button>
@@ -44,7 +44,7 @@
                         <div class="activityItem">
                             <div class="activity_1">
                                 <p>Activité 1</p>
-                                <select class="field selector" name="activity_1">
+                                <select class="field singleActivitySelector" name="activity_1">
                                     <option value="empty">Séléctionnez votre activité 1</option>
                                     <optogroup label="bike"> 
                                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -92,10 +92,10 @@
                     <legend>Votre ROC Cocktail</legend>
                     <div class="activityItem">
                         <div class="rocCocktailActivities">
-                            <select class="field selector" name="rocCocktailFormula">
+                            <select class="field rocFormulaSelector" name="rocCocktailFormula">
                                 <option value="empty">Séléctionnez votre Cocktail ROC</option>
-                                <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC DAY - à partir de 85€/pers.</option>
-                                <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC WEEK-END - à partir de 170€/pers.</option>
+                                <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC DAY - à partir de 85€/pers.</option>
+                                <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
                             <input class="field" type="date" name="date_rocActivity" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
                             <input class="field count" type="number" name="participantsCount_rocActivity" min="4" max="8" placeholder="Nombre de participants">
@@ -108,44 +108,46 @@
                     </div>
                 </fieldset>
             </div>
+            <div class="basket">
+                <table id="selection">
+                    <thead>
+                        <tr>
+                            <th colspan="4">mon panier</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="singleActivityBasket_1 hide">
+                            <td class="name_singleActivityBasket_1"></td>
+                            <td class="participantsCount_singleActivityBasket_1"></td>
+                            <td class="price_singleActivityBasket_1"></td>
+                            <td class="total_singleActivityBasket_1"></td>
+                        </tr>
+                        <tr class="rocDayBasket hide">
+                            <td colspan = "3">ROC DAY (10% de remise sur vos activités)</td>
+                            <td class="rocDayDiscount"></td>
+                        </tr>
+                        <tr class="rocWeekEndBasket hide">
+                            <td colspan = "3">ROC WEEK-END (15% de remise sur vos activités)</td>
+                            <td class="rocWeekEndDiscount"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3">total réservation</td>
+                            <td class="totalPrice"></td>
+                        </tr>
+                    </tfoot>    
+                </table>
+            </div>
             <input class="field" type="checkbox">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT
-
-            <button type="submit" id="validateReservation">Réserver</button>
+            <div>
+                <button type="submit" id="validateReservation">Réserver</button>
+            </div>
         </form>
 
         <!-- <p>TOTAL RÉSERVATION: <span id="activity"></span><span id="price"></span></p> -->
 
-        <div class="basket">
-            <table id="selection">
-                <thead>
-                    <tr>
-                        <th colspan="4">mon pranier</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="singleActivityBasket_1 hide">
-                        <td class="name_singleActivityBasket_1"></td>
-                        <td class="participantsCount_singleActivityBasket_1"></td>
-                        <td class="price_singleActivityBasket_1"></td>
-                        <td class="total_singleActivityBasket_1"></td>
-                    </tr>
-                    <tr class="rocDayBasket hide">
-                        <td colspan = "3">ROC DAY (10% de remise sur vos activités)</td>
-                        <td class="rocDayDiscount"></td>
-                    </tr>
-                    <tr class="rocWeekEndBasket hide">
-                        <td colspan = "3">ROC WEEK-END (15% de remise sur vos activités)</td>
-                        <td class="rocWeekEndDiscount"></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="3">total réservation</td>
-                        <td class="totalPrice"></td>
-                    </tr>
-                </tfoot>    
-            </table>
-        </div>
+        
     </main>
     <footer>
         <?php require("partials/footer.php") ?>
