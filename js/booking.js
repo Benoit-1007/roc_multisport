@@ -6,11 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
     let bookingForm = document.querySelector('#bookingForm');
 
     let select = bookingForm.querySelectorAll('.selector');
-    console.log("🚀 select", select)
 
     let singleActivityFieldset = bookingForm.querySelector('#singleActivity');
 
     let rocCocktailFieldset = bookingForm.querySelector('#rocCocktail');
+
+    let myRocActivities = booking.querySelector('.myRocActivities');
     
     let activitiesbtn = document.querySelectorAll('#formulaSelector button');
 
@@ -33,8 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
     
     //add a new single activity
     addActivityBtn.addEventListener('click', addActivity);
-    
-
 
     
     //VERIF RECUPERATION INPUTS
@@ -45,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(input.name);
         });
     })
-
 
 
     //FUNCTIONS
@@ -66,16 +64,17 @@ document.addEventListener('DOMContentLoaded', function () {
                         rocCocktailBtn.classList.add('hide');
                         returnBtn.classList.remove('hide');
                         singleActivityFieldset.classList.remove("hide");
-                        singleActivityBasket.classList.remove("hide");
+                        // singleActivityBasket.classList.remove("hide");
                         chooseActivity(select);
+                        updateBasket();
                         break;
                     case "rocCocktailButton":
                         singleActivityBtn.classList.add('hide');
                         rocCocktailBtn.classList.add('hide');
                         returnBtn.classList.remove('hide');
                         rocCocktailFieldset.classList.remove("hide");
-                        rocActivityBasket.classList.remove("hide");
                         chooseRocFormula(select);
+                        updateBasket();
                         break;
                     default:
                         singleActivityBtn.classList.remove('hide');
@@ -83,19 +82,32 @@ document.addEventListener('DOMContentLoaded', function () {
                         returnBtn.classList.add('hide');
                         singleActivityFieldset.classList.add("hide");
                         rocCocktailFieldset.classList.add("hide");
-                        singleActivityBasket.classList.add("hide");
-                        rocActivityBasket.classList.add("hide");
+                        reset(myRocActivities);
+                        document.querySelector('.rocWeekEndBasket').classList.add('hide');
+                        document.querySelector('.rocDayBasket').classList.add('hide');
+                        let currentSelect = bookingForm.querySelectorAll('.selector');
+                        currentSelect.forEach(element => {
+                            element.value = "empty"
+                        });
                         break;
                 }
             })
         }
     }
 
+    /** remove HTML element content
+     * @param {HTMLElement} 
+     */
+    function reset(HTMLElement){
+        HTMLElement.innerHTML='';
+        }
+
     /** Update form booking elements(min & max participants authorized, display input half day selector for half day activities, update div basket) according to chosen activity
      * @param {NodeList} field All inputs select
      */
     function chooseActivity(field) {
-
+        console.log("🚀 ~ file: booking.js ~ line 109 ~ chooseActivity ~ field", field.length)
+        console.log('enter chooseActivity')
         for (let i = 0; i < field.length; i++) {
 
             const element = field[i];
@@ -146,11 +158,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 displayAvailableDates(activityPeriod, dateSelector);
 
-                document.querySelector('.name_singleActivityBasket_' + activityNumber).innerHTML = activityName;
-                document.querySelector('.participantsCount_singleActivityBasket_' + activityNumber).innerHTML = `${participantsNumberSelector.value}x`;
-                document.querySelector('.price_singleActivityBasket_' + activityNumber).innerHTML = `${price}€`;
-                document.querySelector('.total_singleActivityBasket_' + activityNumber).innerHTML = Number(participantsNumberSelector.value * price) +'€';
-                document.querySelector('.totalPrice').innerHTML = Number(document.querySelector('.totalPrice').textContent.replace(/\D/g,'')) + Number(participantsNumberSelector.value * price) +'€';
+                // updateBasket();
+
+                // document.querySelector('.name_singleActivityBasket_' + activityNumber).innerHTML = activityName;
+                // document.querySelector('.participantsCount_singleActivityBasket_' + activityNumber).innerHTML = `${participantsNumberSelector.value}x`;
+                // document.querySelector('.price_singleActivityBasket_' + activityNumber).innerHTML = `${price}€`;
+                // document.querySelector('.total_singleActivityBasket_' + activityNumber).innerHTML = Number(participantsNumberSelector.value * price) +'€';
+                // document.querySelector('.totalPrice').innerHTML = Number(document.querySelector('.totalPrice').textContent.replace(/\D/g,'')) + Number(participantsNumberSelector.value * price) +'€';
 
                 switch (activityDuration) {
                     case "halfDay":
@@ -168,67 +182,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 validateParticipantsNumber(activity, participantsNumberSelector)
 
-                // participantsNumberSelector.addEventListener('focusout', function(){
-
-                //     let newParticipantsNumber;
-
-                //     if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
-
-                //         console.log('test min');
-                //         participantsNumberSelector.value = participantsNumberSelector.min;
-                //         console.log("🚀 participantsNumberSelector.value", participantsNumberSelector.value)
-                //         newParticipantsNumber = participantsNumberSelector.value
-                //         console.log("🚀 newParticipantsNumber", newParticipantsNumber)
-
-                //     } else if (Math.floor(participantsNumberSelector.value) > participantsNumberSelector.max) {
-
-                //         console.log('test max');
-                //         participantsNumberSelector.value = participantsNumberSelector.max;
-                //         newParticipantsNumber = participantsNumberSelector.max;
-
-                //     } else {
-
-                //         newParticipantsNumber = participantsNumberSelector.value;
-                //     }
-
-                //     displayParticipants(activity, newParticipantsNumber);
-                // })
-
-                // participantsNumberSelector.addEventListener('click', function(){
-
-                //     let newParticipantsNumber;
-
-                //     if (Math.floor(participantsNumberSelector.value) < participantsNumberSelector.min) {
-
-                //         console.log('test min');
-                //         participantsNumberSelector.value = participantsNumberSelector.min;
-                //         console.log("🚀 participantsNumberSelector.value", participantsNumberSelector.value)
-                //         newParticipantsNumber = participantsNumberSelector.value
-                //         console.log("🚀 newParticipantsNumber", newParticipantsNumber)
-
-                //     } else if (Math.floor(participantsNumberSelector.value) > participantsNumberSelector.max) {
-
-                //         console.log('test max');
-                //         participantsNumberSelector.value = participantsNumberSelector.max;
-                //         newParticipantsNumber = participantsNumberSelector.max;
-
-                //     } else {
-
-                //         newParticipantsNumber = participantsNumberSelector.value;
-                //     }
-
-                //     displayParticipants(activity, newParticipantsNumber);
-
-                    
-                //     // let newParticipantsNumber = participantsNumberSelector.value;
-                //     // displayParticipants(activity, newParticipantsNumber);
-                // })
             })
         }
     }
 
-    /**
-     * 
+    /** check if number of participants selected is allowed
      * @param {*} currentActivity name of current activity
      * @param {*} inputParticipantsNumberSelector input participants number selector of current activity
      */
@@ -284,10 +242,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             displayParticipants(currentActivity, newParticipantsNumber);
 
+            // updateBasket();
+
         })
 
     }
-
 
     /** display input half day selector according to chosen activity
      * @param {*} numActivity number of current activity (1, 2, ...)
@@ -314,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.activity_' + numActivity).removeChild(halfDaySelectorToRemove);
     }
 
-    /**display number of div activity_participant_X according to number of participants selected for current activity
+    /** display number of div activity_participant_X according to number of participants selected for current activity
      * @param {*} numActivity number of current activity (1, 2, ...)
      * @param {*} numberOfParticipants number of participants selected
      */
@@ -351,6 +310,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 participantsField.removeChild(participantToRemove);
             }
         }
+        updateBasket();
     };
 
     /** display available dates according to chosen activity
@@ -413,15 +373,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 </select>
                 <input class="field" type="date" name="date_activity_`+ x + `">
                 <input class="field" type="number" name="participantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
+                <button type="button" id="deletActivity` + x + `">x</button>
             </div>
             <div class="activity_`+ x + `_participantsList">
                 <p>Participants activité `+ x + `</p>
             </div>
             `;
-
-            //append newActivity to button
+            
             document.querySelector('.activities').appendChild(newActivity);
-
 
             let newSingleActivityBasket = document.createElement('tr');
             newSingleActivityBasket.classList.add('singleActivityBasket_'+ x);
@@ -434,21 +393,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
             document.querySelector('tbody').appendChild(newSingleActivityBasket);
 
-
-
+            newActivity.querySelector('#deletActivity' + x).addEventListener('click', function(){
+                console.log('test delete btn')
+                document.querySelector('.activity_'+ x).remove();
+                document.querySelector(`.activity_`+ x + `_participantsList`).remove();
+                document.querySelector('.singleActivityBasket_'+ x).remove();
+            })
 
         let select = document.querySelectorAll('.selector');
-        console.log("🚀select", select);
 
         chooseActivity(select);
 
     }
-
+    /** allows to choose between ROC Day & Roc Week-end, display form according to chosen formula
+     * @param {*} field input ROC formula selector
+     */
     function chooseRocFormula(field) {
-        console.log("🚀 field", field)
-        console.log('enter roc function');
-        
-        
+
         for (let i = 0; i < field.length; i++) {
 
             const element = field[i];
@@ -473,11 +434,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 let myRocActivities = document.querySelector('.myRocActivities');
 
                 participantsNumberSelector.value = numberMinParticipants;
-
                 
                 switch(formulaValue){
                     case "cocktailOneDay":
                         reset(myRocActivities);
+                        document.querySelector('.rocDayBasket').classList.remove('hide');
+                        document.querySelector('.rocWeekEndBasket').classList.add('hide');
                         chooseRocDayActivities(myRocActivities);
 
                         let currentRocActivity = document.querySelector(`select[name='rocActivity_1']`);
@@ -500,92 +462,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         break;
                     default:
                         reset(myRocActivities);
+                        document.querySelector('.rocWeekEndBasket').classList.remove('hide');
+                        document.querySelector('.rocDayBasket').classList.add('hide');
                         addAllActivities(myRocActivities);
                         chooseRocWeekEndActivities(myRocActivities)
-
-
-
-                        //START FUNCTION
-                        function chooseRocWeekEndActivities(divMyRocActivities) {
-                            
-                            let selectors = divMyRocActivities.querySelectorAll('.selector');
-                            for (let i = 0; i < selectors.length; i++) {
-                                const selector = selectors[i];
-                                
-                                selector.addEventListener('change', function(){
-                                    let selectedDays = 0;
-                                    let emptySelector = [];
-                                    let currentSelectors = divMyRocActivities.querySelectorAll('.selector')
-                                    currentSelectors.forEach(currentSelector => {
-                                        if(currentSelector.value !== 'empty'){
-                                            selectedDays += Number(this.options[currentSelector.selectedIndex].getAttribute('data-duration'));
-                                        } else {
-                                            emptySelector.push(currentSelector);
-                                        }
-                                    });
-                                    console.log("🚀 selectedDays", selectedDays)
-                                    console.log("🚀 emptySelector", emptySelector)
-                                    if(selectedDays === 0.5 || selectedDays === 1 && emptySelector.length === 3 || selectedDays === 1 && emptySelector.length === 2){
-                                        emptySelector[0].disabled = false;
-                                        // for (let i = 0; i < emptySelector.length; i++) {
-                                            //     emptySelector[i].disabled = false;
-                                            // }
-                                        } else if(selectedDays === 1.5 && emptySelector.length === 2){
-                                            let activitiesToHide = emptySelector[0].querySelectorAll(`option[data-duration="1"]`);
-                                            console.log("🚀activitiesToHide", activitiesToHide)
-                                            activitiesToHide.forEach(activity => {
-                                                activity.classList.add('hide');
-                                            })
-                                            emptySelector[0].disabled = false;
-                                        }else if(selectedDays === 1.5 && emptySelector.length === 1){
-                                            let activitiesToHide = currentSelectors[3].querySelectorAll(`option[data-duration="1"]`);
-                                            console.log("🚀activitiesToHide", activitiesToHide)
-                                            activitiesToHide.forEach(activity => {
-                                                activity.classList.add('hide');
-                                            })
-                                            emptySelector[0].disabled = false;
-                                        } else if(selectedDays === 1.5 && emptySelector.length > 1){
-                                            let activitiesToHide = currentSelectors[2].querySelectorAll(`option[data-duration="1"]`);
-                                            console.log("🚀activitiesToHide", activitiesToHide)
-                                            activitiesToHide.forEach(activity => {
-                                                activity.classList.add('hide');
-                                            })
-                                            currentSelectors[3].value = 'empty';
-                                            currentSelectors[3].disabled = true;
-                                        } else if(selectedDays > 2 && emptySelector.length === 1){
-                                            console.log(currentSelectors)
-                                            console.log(this.options[currentSelectors[0].selectedIndex].getAttribute('data-duration'));
-                                            console.log(currentSelectors[1].options[currentSelectors[1].selectedIndex].getAttribute('data-duration'));
-
-                                            if (Number(this.options[currentSelectors[0].selectedIndex].getAttribute('data-duration')) + Number(currentSelectors[1].options[currentSelectors[1].selectedIndex].getAttribute('data-duration')) === 2){
-                                                console.log('test yoyo')
-                                                currentSelectors[2].value = 'empty';
-                                                currentSelectors[2].disabled = true;
-                                            }
-                                        } else if(selectedDays === 2 && emptySelector.length === 2){
-                                            currentSelectors[2].value = 'empty';
-                                            currentSelectors[2].disabled = true;
-                                        } else if (selectedDays > 2 && emptySelector.length !== 1){
-                                            currentSelectors[2].value = 'empty';
-                                            let activitiesToHide = currentSelectors[2].querySelectorAll(`option[data-duration="1"]`);
-                                            console.log("🚀activitiesToHide", activitiesToHide)
-                                            activitiesToHide.forEach(activity => {
-                                                activity.classList.add('hide');
-                                            })
-                                            // currentSelectors[2].disabled = true;
-                                            currentSelectors[3].value = 'empty';
-                                            currentSelectors[3].disabled = true;
-                                        } else if (selectedDays > 2 && emptySelector.length === 1){
-                                            currentSelectors[2].value = 'empty';
-                                            // currentSelectors[2].disabled = true;
-                                            currentSelectors[3].value = 'empty';
-                                            currentSelectors[3].disabled = true;
-                                        } 
-                                    })
-                                }
-                                //END FUNCTION
-                            }
-                                break;
+                        break;
                 }
                         
                 displayParticipants(activity, numberMinParticipants);
@@ -596,15 +477,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }    
     }
 
-    /** remove HTML element content
-     * @param {HTMLElement} 
+    /** allows to choose ROC day activities
+     * @param {*} divMyRocActivities where to display choices
      */
-    function reset(HTMLElement){
-        console.log('test reset');
-        HTMLElement.innerHTML='';
-        }
-
-    // ADD ROC ACTIVITY
     function chooseRocDayActivities(divMyRocActivities) {
         if(document.querySelector('.rocActivity_1') === null){
             let newRocActivity = document.createElement('div');
@@ -631,7 +506,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     </select>
             `;
             divMyRocActivities.appendChild(newRocActivity);
-            
+
+            // let rocDayActivityBasket_1 = document.createElement('tr');
+            // rocDayActivityBasket_1.classList.add('rocDayActivityBasket_1');
+            // rocDayActivityBasket_1.innerHTML=`
+            //     <td class="name_rocDayActivityBasket_1"></td>
+            //     <td class="participantsCount_rocDayActivityBasket_1"></td>
+            //     <td class="price_rocDayActivityBasket_1"></td>
+            //     <td class="total_rocDayActivityBasket_1"></td>
+            // `;
+
+            // document.querySelector('tbody').insertBefore(rocDayActivityBasket_1, document.querySelector('.rocDayBasket'));
+
         } else {
             if(document.querySelector('.rocActivity_2') === null){
                 let newRocActivity = document.createElement('div');
@@ -659,10 +545,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
 
                 divMyRocActivities.appendChild(newRocActivity);
+
+            //     let rocDayActivityBasket_2 = document.createElement('tr');
+            //     rocDayActivityBasket_2.classList.add('rocDayActivityBasket_2');
+            //     rocDayActivityBasket_2.innerHTML=`
+            //     <td class="name_rocDayActivityBasket_2"></td>
+            //     <td class="participantsCount_rocDayActivityBasket_2"></td>
+            //     <td class="price_rocDayActivityBasket_2"></td>
+            //     <td class="total_rocDayActivityBasket_2"></td>
+            // `;
+
+            // document.querySelector('tbody').insertBefore(rocDayActivityBasket_2, document.querySelector('.rocDayBasket'));
             };
         }
     };
 
+    /** display ROC week-end activities selectors
+     * @param {*} divMyRocActivities divMyRocActivities where to display choices
+     */
     function addAllActivities(divMyRocActivities) {
         for (let i = 0; i < 4; i++) {
             let x = i+1;
@@ -700,9 +600,89 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    // function chooseRocWeekEndActivities(myRocActivities){}
+    /** allows to choose ROC week-end activities
+     * @param {*} divMyRocActivities where to display choices
+     */
+    function chooseRocWeekEndActivities(divMyRocActivities) {
+                            
+        let selectors = divMyRocActivities.querySelectorAll('.selector');
+        for (let i = 0; i < selectors.length; i++) {
+            const selector = selectors[i];
+            
+            selector.addEventListener('change', function(){
+                let selectedDays = 0;
+                let emptySelector = [];
+                let currentSelectors = divMyRocActivities.querySelectorAll('.selector')
+                currentSelectors.forEach(currentSelector => {
+                    if(currentSelector.value !== 'empty'){
+                        selectedDays += Number(this.options[currentSelector.selectedIndex].getAttribute('data-duration'));
+                    } else {
+                        emptySelector.push(currentSelector);
+                    }
+                });
+                if(selectedDays === 0.5 || selectedDays === 1 && emptySelector.length === 3 || selectedDays === 1 && emptySelector.length === 2){
+                    emptySelector[0].disabled = false;
+                    
+                } else if(selectedDays === 1.5){
+                    if(emptySelector.length === 2){
+                        let activitiesToHide = emptySelector[0].querySelectorAll(`option[data-duration="1"]`);
+                        activitiesToHide.forEach(activity => {
+                            activity.classList.add('hide');
+                        })
+                        emptySelector[0].disabled = false;
+                    } else if(emptySelector.length === 1){
+                        let activitiesToHide = currentSelectors[3].querySelectorAll(`option[data-duration="1"]`);
+                        activitiesToHide.forEach(activity => {
+                            activity.classList.add('hide');
+                        })
+                        emptySelector[0].disabled = false;
+                    } else if(emptySelector.length > 1){
+                        let activitiesToHide = currentSelectors[2].querySelectorAll(`option[data-duration="1"]`);
+                        activitiesToHide.forEach(activity => {
+                            activity.classList.add('hide');
+                        })
+                        currentSelectors[3].value = 'empty';
+                        currentSelectors[3].disabled = true;
+                    }
+                } else if(selectedDays === 2 && emptySelector.length === 2){
+                    currentSelectors[2].value = 'empty';
+                    currentSelectors[2].disabled = true;
+                } else if(selectedDays > 2){
+                    if(emptySelector.length === 1){
+                        if (Number(this.options[currentSelectors[0].selectedIndex].getAttribute('data-duration')) + Number(currentSelectors[1].options[currentSelectors[1].selectedIndex].getAttribute('data-duration')) === 2){
+                            console.log('test yoyo')
+                            currentSelectors[2].value = 'empty';
+                            currentSelectors[2].disabled = true;
+                        } else if(emptySelector.length === 1) {
+                            currentSelectors[2].value = 'empty';
+                            currentSelectors[3].value = 'empty';
+                            currentSelectors[3].disabled = true;
+                        }
+                    } else if(emptySelector.length !== 1){
+                        currentSelectors[2].value = 'empty';
+                        let activitiesToHide = currentSelectors[2].querySelectorAll(`option[data-duration="1"]`);
+                        activitiesToHide.forEach(activity => {
+                            activity.classList.add('hide');
+                        })
+                        currentSelectors[3].value = 'empty';
+                        currentSelectors[3].disabled = true;
+                    }
+                }
+                updateBasket();
+            })
+        }
+    }
 
-    // function updateBasket()
+    function updateBasket(){
+        console.log('enter basket function')
+        let chosenActivities = document.querySelectorAll('.selector')
+        chosenActivities.forEach(element => {
+            console.log(element.value)
+        });
+        let participantCounts = document.querySelectorAll('.count');
+        participantCounts.forEach(element => {
+            console.log(element.value)
+        });    }
 
 
 });

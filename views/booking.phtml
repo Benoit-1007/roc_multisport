@@ -45,7 +45,7 @@
                             <div class="activity_1">
                                 <p>Activité 1</p>
                                 <select class="field selector" name="activity_1">
-                                    <option value="">Séléctionnez votre activité 1</option>
+                                    <option value="empty">Séléctionnez votre activité 1</option>
                                     <optogroup label="bike"> 
                                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
                                         <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
@@ -93,7 +93,7 @@
                     <div class="activityItem">
                         <div class="rocCocktailActivities">
                             <select class="field selector" name="rocCocktailFormula">
-                                <option value="">Séléctionnez votre Cocktail ROC</option>
+                                <option value="empty">Séléctionnez votre Cocktail ROC</option>
                                 <option value="cocktailOneDay" name="Cocktail ROC DAY" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC DAY - à partir de 85€/pers.</option>
                                 <option value="cocktailTwoDay" name="Cocktail ROC WEEK-END" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC - ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
@@ -129,11 +129,13 @@
                         <td class="price_singleActivityBasket_1"></td>
                         <td class="total_singleActivityBasket_1"></td>
                     </tr>
-                    <tr class="rocActivityBasket_1 hide">
-                        <td>roc week-end</td>
-                        <td class="participantsCount"></td>
-                        <td class="price"></td>
-                        <td class="total"></td>
+                    <tr class="rocDayBasket hide">
+                        <td colspan = "3">ROC DAY (10% de remise sur vos activités)</td>
+                        <td class="rocDayDiscount"></td>
+                    </tr>
+                    <tr class="rocWeekEndBasket hide">
+                        <td colspan = "3">ROC WEEK-END (15% de remise sur vos activités)</td>
+                        <td class="rocWeekEndDiscount"></td>
                     </tr>
                 </tbody>
                 <tfoot>
