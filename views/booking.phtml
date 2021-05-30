@@ -15,13 +15,14 @@
         <?php require('partials/header.php') ?> 
     </header>
     <main class="booking">
+        <div id="formResult"></div>
         <h1>Formulaire de <span>demande de réservation</span></h1>
         <p>Dans le cadre de votre demande de réservation, celle-ci doit obligatoirement être validée par un retour de notre part en fonction de nos disponibilités.</p>
 
         <form id="bookingForm" action="booking.php" method='post'>
             <fieldset id="contactInformation">
                     <legend>Vos coordonnées</legend>
-                    <input class="field" type="text" name="contact_lastName" required placeholder="Nom*">
+                    <input class="field" type="text" id="contact_lastName" name="contact_lastName" required placeholder="Nom*">
                     <input class="field" type="text" name="contact_firstName" required placeholder="Prénom*">
                     <input class="field" type="text" name="contact_society" placeholder="Nom de la société">
                     <input class="field" type="tel" name="contact_phone" required placeholder="Téléphone(organisateur)*">
@@ -141,7 +142,7 @@
             </div>
             <input class="field" type="checkbox">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT
             <div>
-                <button type="submit" id="validateReservation">Réserver</button>
+                <button type="submit" id="validateReservation" onclick="submitform()">Réserver</button>
             </div>
         </form>
 
