@@ -1,28 +1,32 @@
 'use strict';
 
+// VARIABLES
+const bookingData = [
+    { "value": 'bikeAllDayNoLoc', "name": 'VTTAE sans location VTT - journée', "price": '80' },
+    { "value": 'bikeHalfDayNoLoc', "name": 'VTTAE sans location VTT - 1/2 journée', "price": '45' },
+    { "value": 'bikeHalfDay', "name": 'VTTAE avec location VTT - 1/2 journée', "price": '80' },
+    { "value": 'bikeAllDay', "name": 'VTTAE avec location VTT - journée', "price": '130' },
+    { "value": 'paddleHalfDay', "name": 'Paddle - 1/2 journée', "price": '55' },
+    { "value": 'paddleAllDay', "name": 'Paddle - journée', "price": '100' },
+    { "value": 'kayak', "name": 'Kayak - 1/2 journée', "price": '50' },
+    { "value": 'climbingHalfDay', "name": 'Escalade - 1/2 journée', "price": '50' },
+    { "value": 'climbingAllDay', "name": 'Escalade - journée', "price": '90' },
+    { "value": 'viaHalfDay', "name": 'Via Ferrata - 1/2 journée', "price": '60' },
+    { "value": 'viaAllDay', "name": 'Via Ferrata - journée (2 via ferrata)', "price": '110' },
+    { "value": 'archery', "name": 'Tir à l\'arc - 1/2 journée', "price": '50' },
+    { "value": 'snowboardRookeasy', "name": 'Rookeasy - 3 x 1/2 journée (débutant snow)', "price": '180' },
+    { "value": 'snowboardHalfDay', "name": 'Snowboard - 1/2 journée', "price": '160' },
+    { "value": 'snowboardAllDay', "name": 'Snowboard - journée', "price": '330' },
+    { "value": 'splitboardHalfDay', "name": 'Splitboard - 1/2 journée', "price": '180' },
+    { "value": 'splitboardAllDay', "name": 'Splitboard - journée', "price": '330' },
+];
+
 document.addEventListener('DOMContentLoaded', function () {
 
-    // VARIABLES
 
-    let bookingData = [
-        {value : 'bikeAllDayNoLoc', name : 'VTTAE sans location VTT - journée', price : '80'},
-        {value : 'bikeHalfDayNoLoc', name : 'VTTAE sans location VTT - 1/2 journée', price : '45'},
-        {value : 'bikeHalfDay', name : 'VTTAE avec location VTT - 1/2 journée', price : '80'},
-        {value : 'bikeAllDay', name : 'VTTAE avec location VTT - journée', price : '130'},
-        {value : 'paddleHalfDay', name : 'Paddle - 1/2 journée', price : '55'},
-        {value : 'paddleAllDay', name : 'Paddle - journée', price : '100'},
-        {value : 'kayak', name : 'Kayak - 1/2 journée', price : '50'},
-        {value : 'climbingHalfDay', name : 'Escalade - 1/2 journée', price : '50'},
-        {value : 'climbingAllDay', name : 'Escalade - journée', price : '90'},
-        {value : 'viaHalfDay', name : 'Via Ferrata - 1/2 journée', price : '60'},
-        {value : 'viaAllDay', name : 'Via Ferrata - journée (2 via ferrata)', price : '110'},
-        {value : 'archery', name : 'Tir à l\'arc - 1/2 journée' , price : '50'},
-        {value : 'snowboardRookeasy', name : 'Rookeasy - 3 x 1/2 journée (débutant snow)', price : '180'},
-        {value : 'snowboardHalfDay', name : 'Snowboard - 1/2 journée', price : '160'},
-        {value : 'snowboardAllDay', name : 'Snowboard - journée', price : '330'},
-        {value : 'splitboardHalfDay', name : 'Splitboard - 1/2 journée', price : '180'},
-        {value : 'splitboardAllDay', name : 'Splitboard - journée', price : '330'},
-    ];
+
+
+
 
     let bookingForm = document.querySelector('#bookingForm');
 
@@ -32,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let singleActivityFieldset = bookingForm.querySelector('#singleActivity');
 
     let rocCocktailFieldset = bookingForm.querySelector('#rocCocktail');
-    
+
     let rocFormulaSelector = bookingForm.querySelector('.rocFormulaSelector');
 
     let myRocActivities = booking.querySelector('.myRocActivities');
@@ -277,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function addHalfDaySelector(numActivity, divActivity, inputParticipantsNumberSelector) {
         let halfDaySelector = document.createElement('select');
-        halfDaySelector.name = 'halfDaySelector'+'_activity_' + numActivity
+        halfDaySelector.name = 'halfDaySelector' + '_activity_' + numActivity
         halfDaySelector.classList.add('activity_' + numActivity + '_halfDaySelector')
         halfDaySelector.innerHTML = `
         <option value='morning'>Matin</option>
@@ -662,19 +666,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateBasket() {
         console.log('enter basket function')
-        // let chosenActivities = document.querySelectorAll(`[class*="Selector"]`)
-        // chosenActivities.forEach(element => {
-        //     console.log(element.value)
 
-        // });
-        // let participantCounts = document.querySelectorAll('.count');
-        // participantCounts.forEach(element => {
-        //     console.log(element.value)
-        // });
-
+        // Get data from form
         let formData = document.querySelector('#bookingForm');
-        let currentForm = new FormData(formData);
-        
+        let data = new FormData(formData);
+
+        let totalPrice = 0;
+
+        let bookingSummaryElmt = document.querySelector(".totalPrice");
+        bookingSummaryElmt.innerHTML = "";
+
+        for (let key of data.keys()) {
+
+            // On cherche les activités
+            if (key.startsWith('activity')) {
+                let activityName = data.get(key).toString();
+
+
+                // On cherche le nombre de participants
+                let activityNumberParticipants = data.get("participantsCount_" + key);
+
+                // On recupere le prix par participants et le nom => donc l'objet activity du tableau
+                let crtActivity = bookingData.find(activity => activity.value == activityName);
+
+                // On ajoute le prix au total
+                let linePrice = crtActivity.price * activityNumberParticipants;
+                totalPrice += linePrice;
+
+                // On affiche
+                let newActivityLine = document.createElement('h6');
+                newActivityLine.innerText = crtActivity.name + " pour " + activityNumberParticipants + " participants : " + linePrice + "€";
+
+                bookingSummaryElmt.appendChild(newActivityLine);
+            }
+        }
+        let newTotalLine = document.createElement('h6');
+        newTotalLine.innerText = "Total : " + totalPrice + "€";
+
+        bookingSummaryElmt.appendChild(newTotalLine);
     }
 
 
@@ -685,9 +714,11 @@ document.addEventListener('DOMContentLoaded', function () {
 // Generate jsonData
 function submitform() {
 
+    // controle !
+
     let jsondata = JSON.parse('{ }');;
     let formData = document.querySelector('#bookingForm');
-    const data = new FormData(formData);
+    let data = new FormData(formData);
 
     // console.log(data);
 
@@ -705,6 +736,8 @@ function submitform() {
             // Adding contact inforations
             contactJson[key] = data.get(key).toString();
         }
+
+        // Manage Activity
         if (key.startsWith('activity')) {
             // Adding activity x
             let activityDetailsJson = JSON.parse('{ }');
@@ -712,8 +745,8 @@ function submitform() {
             activityDetailsJson["date"] = data.get("date_" + key);
             activityDetailsJson["name"] = data.get(key);
             activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
-            if(data.has("halfDaySelector_"+key)){
-                activityDetailsJson["halfDay"] = data.get("halfDaySelector_"+key);
+            if (data.has("halfDaySelector_" + key)) {
+                activityDetailsJson["halfDay"] = data.get("halfDaySelector_" + key);
             }
 
             // Adding participants for activity x
@@ -739,6 +772,50 @@ function submitform() {
             jsondata["contact"] = contactJson;
             jsondata["activities"] = activitiesJson;
         }
+
+        // Manage RocActivities
+        if (key.startsWith('rocCocktail')) {
+
+            let activityDetailsJson = JSON.parse('{ }');
+
+            // Nom de la formule
+            // Date
+            // Nombre de participants
+
+            // activityDetailsJson["date"] = data.get("date_rocActivity");
+            // activityDetailsJson["name"] = data.get(key);
+            // activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
+
+
+            // Adding activities
+
+            // si (rocActivity_1 != null) => 4 fois
+
+
+            // Adding participants for activity x
+            let participantsJson = JSON.parse('[]');
+
+            for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
+                let participantJson = JSON.parse('{}');
+                participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
+                participantJson["lastName"] = data.get("lastName_" + key + "_participant_" + i);
+                participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
+                participantJson["size"] = data.get("size_" + key + "_participant_" + i);
+                participantJson["level"] = data.get("level_" + key + "_participant_" + i);
+                participantsJson.push(participantJson);
+            }
+
+            activityDetailsJson["participants"] = participantsJson;
+
+            //console.log(participantsJson);
+            // console.log(activityDetailsJson);
+            activitiesJson.push(activityDetailsJson);
+
+
+            jsondata["contact"] = contactJson;
+            jsondata["activities"] = activitiesJson;
+        }
+
 
     }
 
