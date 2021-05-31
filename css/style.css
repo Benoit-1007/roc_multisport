@@ -11,6 +11,7 @@
     --rocColorO: #009641;
     --rocColorC: #0375be;
     --cocktailColor: #002136;
+    --bookingColor: #c8c4c5;
     --require: red;
     /* --soft-blue: #2187c6; */
 }
@@ -572,13 +573,10 @@ header{
 /* #endregion SLIDER */
 
 /* #region BOOKING */
-.count{
-    width: 200px;
-}
+
 .booking{
     color:var(--darkColor);
     text-align: center;
-    padding: 2rem;
 }
 .booking h1 span{
     color: var(--rocColorC);
@@ -586,50 +584,99 @@ header{
 .booking p{
     text-align: justify;
 }
+#bookingForm p{
+    text-align: left;
+}
 legend{
     text-transform: uppercase;
 }
-/* #contactInformation,
-#formulaSelector,
-#singleActivity,
-#rocCocktail,
-.activityItem */
 fieldset{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center; */
     border-radius: 1rem;
     margin-bottom: 1rem;
+    padding: 1rem;
 }
-#contactInformation{
+.contactInformation{
     color: var(--rocColorO);
+    border: 1.5px solid var(--rocColorO);
+    padding: 1rem 2rem;
+}
+.contactInformation input{
     border: 1px solid var(--rocColorO);
 }
-#contactInformation input{
-    border: 1px solid var(--rocColorO);
+.booking input, .booking select{
+    margin: 1rem 0;
+    padding: 0.5rem;
+    width: 100%;
 }
-#formulaSelector{
+.checkbox{
+    display: flex;
+    text-align: left;
     color: var(--rocColorR);
+}
+.checkbox input{
+    width: unset;
+    margin: 1rem;
+}
+.formulaSelector{
+    display: flex;
+    justify-content: space-between;
+    color: var(--darkColor);
+    border: 1.5px solid var(--rocColorR);
+}
+.singleActivity fieldset, .rocCocktail fieldset{
+    color: var(--darkColor);
     border: 1px solid var(--rocColorR);
 }
-#singleActivity fieldset, #rocCocktail fieldset{
+.activityItem > div{
+    padding: 1rem;
+    /* margin-bottom: 2rem; */
+}
+.participantsList{
+    color: var(--darkColor);
+    background-color: var(--bookingColor);
+    border: 1px solid var(--bookingColor);
+    border-radius: 1rem; 
+}
+.participant + .participant{
+    border-top: 1.5px solid var(--rocColorR);
+}
+.basket{
+    border: 1.5px solid var(--rocColorC);
+    border-radius: 1rem; 
+    padding: 2rem;
+    text-transform: uppercase;
+}
+.basket th{
     color: var(--rocColorC);
-    border: 1px solid var(--rocColorC);
 }
-#booking input, #booking select{
-    margin: 1rem;
-    padding: 0.5rem;
-    width:90%
+.basket td{
+    padding: 1rem
 }
-.participant{
-    border-bottom: 1px dotted var(--rocColorC);
+.basket tfoot{
+    background-color: var(--rocColorC);
+    color: var(--clearColor);
 }
-#formulaSelector button{
+.booking button:not(.deletActivity){
     margin: 1rem auto;
+    background-color: var(--bookingColor);
+    border: 1px solid var(--darkColor);
+    color: var(--darkColor);
 }
-#booking .hide{
+.deletActivity{
+    margin: 1rem auto;
+    background-color: var(--bookingColor);
+    border: 1px solid var(--require);
+    color: var(--require);
+}
+.booking .hide{
     display:none;
 }
+
+
 /* #endregion BOOKING */
 
 /* #region TEMPORARYBOOKING */
@@ -728,7 +775,7 @@ footer .network a{
 
 /* #region SMALL MOBILE (max-width: 450px) */
 @media screen and (max-width: 450px) {
-    .button{
+    .button, .formulaSelector{
         flex-direction: column;
         align-items: center;
     }
@@ -854,10 +901,36 @@ footer .network a{
         font-size: 3rem;
         /* margin-left: 0; */
     }
-    /* CONTACT */
-    .contact p, .contact form{
-        width:70vw;
-        margin: 2rem auto;
+    /* FORM */
+    .contact p, #contactForm, .booking p:not(#bookingForm p), #bookingForm{
+        width:70%;
+        margin: auto;
+    }
+    .formulaSelector{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .activityItem > div{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .myRocActivities{
+        justify-content: space-between;
+    }
+    .myRocActivities div{
+        width:48%;
+    }
+    .participantsList{
+        justify-content: space-evenly;
+    }
+    .participantsList p{
+        width:100%
+    }
+    .participant{
+        max-width: 48%;
+    }
+    .participantsList div:nth-child(3){
+        border-top: unset;
     }
 
 }
@@ -1087,9 +1160,11 @@ footer .network a{
         margin: unset;
         border-radius: 0 4rem 4rem 0;
     }
-    #contactForm{
-        max-width: 70%;
-        margin: auto;
+    /* FORM */
+    .participant{
+        max-width:48%;
+        min-width: 25%;
+        border: unset;
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */
