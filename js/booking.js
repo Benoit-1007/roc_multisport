@@ -817,11 +817,33 @@ function submitform() {
         }
 
 
+
+
     }
 
 
 
     console.log(jsondata);
+
+    // for debuging only:
+
+    let bookingObj = JSON.parse('{ }');
+    bookingObj["dateOfBooking"] = "2021/06/01";
+    bookingObj["comment"] = "Ceci est un commentaire";
+    bookingObj["idContact"] = 1;
+
+    var formDataTest = JSON.stringify(bookingObj);
+
+    fetch('api/product/create.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: formDataTest
+    })
+        .then(response => console.log(response))
+    //   .then(data => document.querySelector("p.broken").innerHTML = data);
+
     //console.log(activitiesJson);
 
 }
