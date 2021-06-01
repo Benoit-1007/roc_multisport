@@ -91,8 +91,9 @@
                 <div class='left_bloc'>
                     <div class="slider">
                         <div><img src="img/vtt_1.jpeg" alt="Photo de 2 cyclistes"></div>
-                        <div><img src="img/vtt_2.jpeg" alt="Photo d'un cycliste"></div>
+                        <div><img src="img/vtt_2.png" alt="Photo d'un vttae"></div>
                         <div><img src="img/vtt_4.jpeg" alt="Photo d'un cycliste en forêt"></div>
+                        <div><img src="img/vtt_5.png" alt="Photo d'une cycliste au sommet d'une montagne"></div>
                     </div>
                     <div class="button desktop-button">
                         <a href="booking.php">réserver</a>
@@ -244,6 +245,7 @@
                         <div><img src="img/climbing_1.jpeg" alt="Photo d'un homme le long d'une falaise"></div>
                         <div><img src="img/via_1.jpeg" alt="Photo d'un homme sur une via-ferrata"></div>
                         <div><img src="img/climbing_2.jpeg" alt="Photo d'un groupe en sortie via-ferrata"></div>
+                        <div><img src="img/via_5.png" alt="Photo d'une jeune femme sur un pont de singe"></div>
                     </div>
                     <div class="button desktop-button">
                         <a href="booking.php">réserver</a>
@@ -379,7 +381,7 @@
                 <h2>snowboard / splitboard</h2>
                 <div class="left_bloc">
                     <div class="slider">
-                        <div><img src="img/snowboard_1.jpeg" alt="Photo d'un snowboarder"></div>
+                        <div><img src="img/splitboard_1.jpeg" alt="Photo d'un snowboarder"></div>
                         <div><img src="img/snowboard_5.jpeg" alt="Photo d'un snowboard regardant un paysage de montagnes"></div>
                         <div><img src="img/snowboard_3.jpeg" alt="Photo d'un groupe en sortie via-ferrata"></div>
                     </div>
