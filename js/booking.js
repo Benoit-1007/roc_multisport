@@ -48,6 +48,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let returnBtn = bookingForm.querySelector('#returnButton');
 
     let addActivityBtn = bookingForm.querySelector('#addActivityButton');
+    
+    let deletActivityBtn = bookingForm.querySelector('#deletActivityButton');
 
     let singleActivityBasket = booking.querySelector('.singleActivityBasket_1');
 
@@ -60,6 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     //add a new single activity
     addActivityBtn.addEventListener('click', addActivity);
+    
+    //remove a new single activity
+    deletActivityBtn.addEventListener('click', removeActivity);
+
+
 
 
     //VERIF RECUPERATION INPUTS
@@ -321,7 +328,6 @@ document.addEventListener('DOMContentLoaded', function () {
         newActivity.innerHTML = `
             <div class="activity_`+ x + `">
                 <p>Activité `+ x + `</p>
-                <button type="button" id="deletActivity` + x + `" class="deletActivity">supprimer l'activité</button>
                 <select class="field singleActivitySelector" name="activity_`+ x + `">
                     <option value="">Séléctionnez votre activité `+ x + `</option>
                     <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -352,14 +358,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelector('.activities').appendChild(newActivity);
 
-        newActivity.querySelector('#deletActivity' + x).addEventListener('click', function () {
-            document.querySelector('.activityItem_' + x).remove();
-            updateBasket();
-        })
-
         let singleActivitySelectors = document.querySelectorAll('.singleActivitySelector');
 
         chooseActivity(singleActivitySelectors);
+
+        deletActivityBtn.classList.remove('hide');
+
+    }
+
+    /** remove last single activity */
+    function removeActivity() {
+        let activities = document.querySelector('.activities')
+        let activityToRemove =  document.querySelector('.activities').lastChild;
+        activities.removeChild(activityToRemove);
+        
+        updateBasket();
     }
 
     /** allows to choose between ROC Day & Roc Week-end, display form according to chosen formula
@@ -572,8 +585,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateBasket() {
-        console.log('enter basket function')
-
         // Get data from form
         let formData = document.querySelector('#bookingForm');
         let data = new FormData(formData);
@@ -693,12 +704,14 @@ function submitform() {
     // Activities :
     let activitiesJson = JSON.parse('[]');
 
+    let rocActivityJson = JSON.parse('[]');
+
     for (let key of data.keys()) {
 
         // console.log(key + " : "+ data.get(key));
 
         if (key.startsWith('contact')) {
-            // Adding contact inforations
+            // Adding contact informations
             contactJson[key] = data.get(key).toString();
         }
 
@@ -707,9 +720,13 @@ function submitform() {
             // Adding activity x
             let activityDetailsJson = JSON.parse('{ }');
 
+            // get activity date 
             activityDetailsJson["date"] = data.get("date_" + key);
+            // get activity name
             activityDetailsJson["name"] = data.get(key);
+            // get activity participants number
             activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
+            // get activity half day 
             if (data.has("halfDaySelector_" + key)) {
                 activityDetailsJson["halfDay"] = data.get("halfDaySelector_" + key);
             }
@@ -719,8 +736,8 @@ function submitform() {
 
             for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
                 let participantJson = JSON.parse('{}');
-                participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
                 participantJson["lastName"] = data.get("lastName_" + key + "_participant_" + i);
+                participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
                 participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
                 participantJson["size"] = data.get("size_" + key + "_participant_" + i);
                 participantJson["level"] = data.get("level_" + key + "_participant_" + i);
@@ -735,30 +752,38 @@ function submitform() {
 
 
             jsondata["contact"] = contactJson;
-            jsondata["activities"] = activitiesJson;
+            jsondata["activities"] = rocActivityJson;
         }
 
         // Manage RocActivities
         if (key.startsWith('rocCocktail')) {
+            let cocktailDetailsJson = JSON.parse('{ }');
 
-            let activityDetailsJson = JSON.parse('{ }');
-
-            // Nom de la formule
-            // Date
-            // Nombre de participants
-
-            // activityDetailsJson["date"] = data.get("date_rocActivity");
-            // activityDetailsJson["name"] = data.get(key);
-            // activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
-
+            // get formula
+            cocktailDetailsJson["formula"] = data.get("rocCocktail_Formula");
+            // get date
+            cocktailDetailsJson["date"] = data.get("date_rocCocktail");
+            // get activity participants number
+            cocktailDetailsJson["participantsCount"] = data.get("participantsCount_rocCocktail");
 
             // Adding activities
+            let cocktailActivitiesJson = JSON.parse('[]');
 
-            // si (rocActivity_1 != null) => 4 fois
+            for (let i = 1; i < 5; i++) {
+            
+                if(data.get('rocActivity_' +i) !== null){
+                    let activityJson = JSON.parse('{ }');
+                    activityJson["activity"] = data.get("rocActivity_" +i);
+                    activitiesJson.push(activityJson);
+                }
+            }
+
+            cocktailDetailsJson["activities"] = cocktailActivitiesJson;
+            
 
 
             // Adding participants for activity x
-            let participantsJson = JSON.parse('[]');
+            let cocktailParticipantsJson = JSON.parse('[]');
 
             for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
                 let participantJson = JSON.parse('{}');
@@ -767,23 +792,19 @@ function submitform() {
                 participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
                 participantJson["size"] = data.get("size_" + key + "_participant_" + i);
                 participantJson["level"] = data.get("level_" + key + "_participant_" + i);
-                participantsJson.push(participantJson);
+                participantsJson.push(cocktailParticipantsJson);
             }
 
-            activityDetailsJson["participants"] = participantsJson;
+            cocktailDetailsJson["participants"] = cocktailParticipantsJson;
 
             //console.log(participantsJson);
-            // console.log(activityDetailsJson);
-            activitiesJson.push(activityDetailsJson);
+            // console.log(cocktailDetailsJson);
+            activitiesJson.push(cocktailDetailsJson);
 
 
             jsondata["contact"] = contactJson;
             jsondata["activities"] = activitiesJson;
         }
-
-
-
-
     }
 
 

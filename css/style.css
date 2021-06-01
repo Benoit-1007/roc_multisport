@@ -650,11 +650,18 @@ fieldset{
     padding: 2rem;
     text-transform: uppercase;
 }
+.basket tr:nth-child(even){
+    background-color: var(--clearColor);
+}
 .basket th{
     color: var(--rocColorC);
+    border-bottom: 1.5px solid var(--rocColorC);
 }
 .basket td{
     padding: 1rem
+}
+.basket td + td{
+    text-align: right;
 }
 .basket tfoot{
     background-color: var(--rocColorC);

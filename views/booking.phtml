@@ -27,8 +27,8 @@
                 <input class="field" type="tel" name="contact_phone" required placeholder="Téléphone(organisateur)*">
                 <input class="field" type="mail" name="contact_mail" required placeholder="Email*">
                 <input class="field" type="text" name="contact_adress" required placeholder="Adresse*">
-                <input class="field" type="Number" name="contact_postalCode" required placeholder="Code postal">
-                <input class="field" type="text" name="contact_city" required placeholder="Ville">
+                <input class="field" type="Number" name="contact_postalCode" required placeholder="Code postal*">
+                <input class="field" type="text" name="contact_city" required placeholder="Ville*">
                 <div class="checkbox">
                     <input class="field" type="checkbox" id="cgv"><label for="cgv">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT</label>
                 </div>
@@ -75,7 +75,8 @@
                         </div>
                     </div>
                 </fieldset>
-                <button type="button" id="addActivityButton">Ajouter une activité</button>
+                <button type="button" id="addActivityButton">ajouter une activité</button>
+                <button type="button" id="deletActivityButton" class="hide">supprimer une activité</button>
             </div>
             <div id="rocCocktail" class="hide">
                 <fieldset>
