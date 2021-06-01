@@ -59,10 +59,11 @@ class Booking
 
         // execute query
         if ($stmt->execute()) {
-            return true;
+            $lastId = $this->conn->lastInsertId();
+            return $lastId;
         }
 
-        return false;
+        return 0;
     }
 
     // Read one booking with id
