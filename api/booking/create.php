@@ -33,13 +33,17 @@ if(
     $booking->idContact = $data->idContact;
   
     // create the booking
-    if($booking->create()){
+
+    $lastId = $booking->create();
+
+    if($lastId>0){
   
         // set response code - 201 created
         http_response_code(201);
   
         // tell the user
-        echo json_encode(array("message" => "booking was created."));
+        
+        echo json_encode(array("message" => "booking was created.", "id" => $lastId));
     }
   
     // if unable to create the booking, tell the user
