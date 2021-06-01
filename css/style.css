@@ -578,12 +578,20 @@ header{
 .booking{
     color:var(--darkColor);
     text-align: center;
+    background: url("../img/mountain3.png")bottom fixed;
+    background-size: cover;
 }
 .booking h1 span{
     color: var(--rocColorC);
 }
 .booking p{
-    text-align: justify;
+    text-align: center;
+}
+#bookingForm{
+    background: var(--background);
+    padding: 2rem;
+    border: 2px solid var(--background);
+    border-radius: 1rem;
 }
 #bookingForm p{
     text-align: left;
@@ -711,12 +719,16 @@ fieldset{
 .contact{
     color: var(--darkColor);
     text-align: center;
-    background: url("../img/mountain.png") center no-repeat;
+    background: url("../img/mountain2.png") bottom;
+    background-size: cover;
 }
 
 .contact h1 span,
 .contact a{
     color: var(--rocColorC);
+}
+.contact a{
+    font-weight: bolder;
 }
 .contact form{
     display: flex;
