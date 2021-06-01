@@ -390,10 +390,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     reset(myRocActivities);
                     chooseRocDayActivities(myRocActivities);
 
-                    let currentRocActivity = document.querySelector(`select[name='rocActivity_1']`);
-                    currentRocActivity.addEventListener('change', function () {
+                    let activity1 = document.querySelector('.rocActivity_1 select');
+                    activity1.addEventListener('change', function () {
                         chooseRocDayActivities(myRocActivities);
-                        let activity1 = document.querySelector('.rocActivity_1 select');
                         let activityToHide = activity1.value;
                         let options = document.querySelectorAll('.rocActivity_2 option');
                         options.forEach(option => {
@@ -672,7 +671,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         bookingSummaryElmt.innerText = totalPrice + "€";
     }
-
 
 });
 
