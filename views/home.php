@@ -73,7 +73,7 @@
                     </li>
                     <li>
                         <div class="cocktailBottom img">
-                            <img src="img/background/cocktailROC.png" alt="">
+                            <img src="img/background/bgCocktailHome.jpg" alt="">
                             <p>COMPOSEZ LIBREMENT VOTE <span>COCKTAIL D'ACTIVITÉS!</span></p>
                         </div>
                         <div class="cocktail text">

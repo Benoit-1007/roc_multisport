@@ -1,33 +1,31 @@
 'use strict';
 
-// VARIABLES
+// use by basket function
 const bookingData = [
-    { "value": 'bikeAllDayNoLoc', "name": 'VTTAE sans location VTT - journée', "price": '80' },
-    { "value": 'bikeHalfDayNoLoc', "name": 'VTTAE sans location VTT - 1/2 journée', "price": '45' },
-    { "value": 'bikeHalfDay', "name": 'VTTAE avec location VTT - 1/2 journée', "price": '80' },
-    { "value": 'bikeAllDay', "name": 'VTTAE avec location VTT - journée', "price": '130' },
-    { "value": 'paddleHalfDay', "name": 'Paddle - 1/2 journée', "price": '55' },
-    { "value": 'paddleAllDay', "name": 'Paddle - journée', "price": '100' },
-    { "value": 'kayak', "name": 'Kayak - 1/2 journée', "price": '50' },
-    { "value": 'climbingHalfDay', "name": 'Escalade - 1/2 journée', "price": '50' },
-    { "value": 'climbingAllDay', "name": 'Escalade - journée', "price": '90' },
-    { "value": 'viaHalfDay', "name": 'Via Ferrata - 1/2 journée', "price": '60' },
-    { "value": 'viaAllDay', "name": 'Via Ferrata - journée (2 via ferrata)', "price": '110' },
-    { "value": 'archery', "name": 'Tir à l\'arc - 1/2 journée', "price": '50' },
-    { "value": 'snowboardRookeasy', "name": 'Rookeasy - 3 x 1/2 journée (débutant snow)', "price": '180' },
-    { "value": 'snowboardHalfDay', "name": 'Snowboard - 1/2 journée', "price": '160' },
-    { "value": 'snowboardAllDay', "name": 'Snowboard - journée', "price": '330' },
-    { "value": 'splitboardHalfDay', "name": 'Splitboard - 1/2 journée', "price": '180' },
-    { "value": 'splitboardAllDay', "name": 'Splitboard - journée', "price": '330' },
+    {'value': 'bikeAllDayNoLoc', 'name': 'VTTAE sans location VTT - journée', 'price': '80'},
+    {'value': 'bikeHalfDayNoLoc', 'name': 'VTTAE sans location VTT - 1/2 journée', 'price': '45'},
+    {'value': 'bikeHalfDay', 'name': 'VTTAE avec location VTT - 1/2 journée', 'price': '80'},
+    {'value': 'bikeAllDay', 'name': 'VTTAE avec location VTT - journée', 'price': '130'},
+    {'value': 'paddleHalfDay', 'name': 'Paddle - 1/2 journée', 'price': '55'},
+    {'value': 'paddleAllDay', 'name': 'Paddle - journée', 'price': '100'},
+    {'value': 'kayak', 'name': 'Kayak - 1/2 journée', 'price': '50'},
+    {'value': 'climbingHalfDay', 'name': 'Escalade - 1/2 journée', 'price': '50'},
+    {'value': 'climbingAllDay', 'name': 'Escalade - journée', 'price': '90'},
+    {'value': 'viaHalfDay', 'name': 'Via Ferrata - 1/2 journée', 'price': '60'},
+    {'value': 'viaAllDay', 'name': 'Via Ferrata - journée (2 via ferrata)', 'price': '110'},
+    {'value': 'archery', 'name': 'Tir à l\'arc - 1/2 journée', 'price': '50'},
+    {'value': 'snowboardRookeasy', 'name': 'Rookeasy - 3 x 1/2 journée (débutant snow)', 'price': '180'},
+    {'value': 'snowboardHalfDay', 'name': 'Snowboard - 1/2 journée', 'price': '160'},
+    {'value': 'snowboardAllDay', 'name': 'Snowboard - journée', 'price': '330'},
+    {'value': 'splitboardHalfDay', 'name': 'Splitboard - 1/2 journée', 'price': '180'},
+    {'value': 'splitboardAllDay', 'name': 'Splitboard - journée', 'price': '330'},
+    {'value': 'cocktailOneDay', 'name': 'ROC DAY (10% de remise sur vos activités)'},
+    {'value': 'cocktailTwoDay', 'name': 'ROC WEEK-END (15% de remise sur vos activités)'}
+
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
-
-
-
-
-
-
+    // VARIABLES
     let bookingForm = document.querySelector('#bookingForm');
 
     // let select = bookingForm.querySelectorAll('.selector');
@@ -92,7 +90,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         rocCocktailBtn.classList.add('hide');
                         returnBtn.classList.remove('hide');
                         singleActivityFieldset.classList.remove("hide");
-                        // singleActivityBasket.classList.remove("hide");
                         chooseActivity(singleActivitySelector);
                         break;
                     case "rocCocktailButton":
@@ -109,8 +106,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         singleActivityFieldset.classList.add("hide");
                         rocCocktailFieldset.classList.add("hide");
                         reset(myRocActivities);
-                        document.querySelector('.rocWeekEndBasket').classList.add('hide');
-                        document.querySelector('.rocDayBasket').classList.add('hide');
                         let currentSelect = bookingForm.querySelectorAll(`[class*='Selector']`);
                         currentSelect.forEach(element => {
                             element.value = "empty"
@@ -141,41 +136,28 @@ document.addEventListener('DOMContentLoaded', function () {
             selector.addEventListener('change', function () {
                 //get activity
                 let activity = selector.getAttribute('name');
-                console.log("🚀activity", activity)
                 //get activity number
                 let activityNumber = activity.replace(/\D/g, '');
-                console.log("🚀 activityNumber", activityNumber)
                 //get name activity
                 let activityName = this.options[selector.selectedIndex].getAttribute('name');
-                console.log("🚀 activityName", activityName);
                 //get value activity
                 let activityValue = this.options[selector.selectedIndex].getAttribute('value');
-                console.log("🚀 activityValue", activityValue);
                 //get price activity
                 let price = Number(this.options[selector.selectedIndex].getAttribute('data-price'));
-                console.log("🚀 price", price);
                 //get activity duration
                 let activityDuration = this.options[selector.selectedIndex].getAttribute('data-duration');
-                console.log("🚀 activityDuration", activityDuration)
                 //get min numberparticipants
                 let numberMinParticipants = Number(this.options[selector.selectedIndex].getAttribute('data-minParticipants'));
-                console.log("🚀 numberMinParticipants", numberMinParticipants)
                 //get max numberparticipants
                 let numberMaxParticipants = Number(this.options[selector.selectedIndex].getAttribute('data-maxParticipants'));
-                console.log("🚀 numberMaxParticipants", numberMaxParticipants)
                 //get period (display available dates according to chosen activity)
                 let activityPeriod = this.options[selector.selectedIndex].getAttribute('data-period')
-                console.log("🚀 activityPeriod", activityPeriod)
                 //get input date
                 let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`);
-                console.log("🚀 dateSelector", dateSelector)
                 //get input numberparticipants
                 let participantsNumberSelector = document.querySelector(`input[name="participantsCount_activity_` + activityNumber + `"]`);
-                console.log("🚀 participantsNumberSelector", participantsNumberSelector);
                 //get div current activity
                 let currentActivity = document.querySelector('.activity_' + activityNumber);
-                console.log("🚀 currentActivity", currentActivity)
-
 
                 participantsNumberSelector.setAttribute('min', numberMinParticipants);
                 participantsNumberSelector.setAttribute('max', numberMaxParticipants);
@@ -183,14 +165,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 participantsNumberSelector.value = numberMinParticipants;
 
                 displayAvailableDates(activityPeriod, dateSelector);
-
-                // updateBasket();
-
-                // document.querySelector('.name_singleActivityBasket_' + activityNumber).innerHTML = activityName;
-                // document.querySelector('.participantsCount_singleActivityBasket_' + activityNumber).innerHTML = `${participantsNumberSelector.value}x`;
-                // document.querySelector('.price_singleActivityBasket_' + activityNumber).innerHTML = `${price}€`;
-                // document.querySelector('.total_singleActivityBasket_' + activityNumber).innerHTML = Number(participantsNumberSelector.value * price) +'€';
-                // document.querySelector('.totalPrice').innerHTML = Number(document.querySelector('.totalPrice').textContent.replace(/\D/g,'')) + Number(participantsNumberSelector.value * price) +'€';
 
                 switch (activityDuration) {
                     case "halfDay":
@@ -222,21 +196,12 @@ document.addEventListener('DOMContentLoaded', function () {
             let newParticipantsNumber;
 
             if (Math.floor(inputParticipantsNumberSelector.value) < inputParticipantsNumberSelector.min) {
-
-                console.log('test min');
                 inputParticipantsNumberSelector.value = inputParticipantsNumberSelector.min;
-                console.log("🚀 inputParticipantsNumberSelector.value", inputParticipantsNumberSelector.value)
                 newParticipantsNumber = inputParticipantsNumberSelector.value
-                console.log("🚀 newParticipantsNumber", newParticipantsNumber)
-
             } else if (Math.floor(inputParticipantsNumberSelector.value) > inputParticipantsNumberSelector.max) {
-
-                console.log('test max');
                 inputParticipantsNumberSelector.value = inputParticipantsNumberSelector.max;
                 newParticipantsNumber = inputParticipantsNumberSelector.max;
-
             } else {
-
                 newParticipantsNumber = inputParticipantsNumberSelector.value;
             }
 
@@ -248,28 +213,17 @@ document.addEventListener('DOMContentLoaded', function () {
             let newParticipantsNumber;
 
             if (Math.floor(inputParticipantsNumberSelector.value) < inputParticipantsNumberSelector.min) {
-
-                console.log('test min');
                 inputParticipantsNumberSelector.value = inputParticipantsNumberSelector.min;
-                console.log("🚀 inputParticipantsNumberSelector.value", inputParticipantsNumberSelector.value)
                 newParticipantsNumber = inputParticipantsNumberSelector.value
-                console.log("🚀 newParticipantsNumber", newParticipantsNumber)
-
             } else if (Math.floor(inputParticipantsNumberSelector.value) > inputParticipantsNumberSelector.max) {
-
                 console.log('test max');
                 inputParticipantsNumberSelector.value = inputParticipantsNumberSelector.max;
                 newParticipantsNumber = inputParticipantsNumberSelector.max;
-
             } else {
-
                 newParticipantsNumber = inputParticipantsNumberSelector.value;
             }
 
             displayParticipants(currentActivity, newParticipantsNumber);
-
-            // updateBasket();
-
         })
 
     }
@@ -362,11 +316,12 @@ document.addEventListener('DOMContentLoaded', function () {
         let x = document.querySelector('.activities').childElementCount + 1;
 
         let newActivity = document.createElement('div');
-        newActivity.classList.add('activityItem');
+        newActivity.classList.add('activityItem_' + x);
 
         newActivity.innerHTML = `
             <div class="activity_`+ x + `">
                 <p>Activité `+ x + `</p>
+                <button type="button" id="deletActivity` + x + `" class="deletActivity">supprimer l'activité</button>
                 <select class="field singleActivitySelector" name="activity_`+ x + `">
                     <option value="">Séléctionnez votre activité `+ x + `</option>
                     <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
@@ -389,7 +344,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 </select>
                 <input class="field" type="date" name="date_activity_`+ x + `">
                 <input class="field" type="number" name="participantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
-                <button type="button" id="deletActivity` + x + `" class="deletActivity">supprimer l'activité</button>
             </div>
             <div class="activity_`+ x + `_participantsList participantsList">
                 <p>Participants activité `+ x + `</p>
@@ -398,28 +352,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelector('.activities').appendChild(newActivity);
 
-        // let newSingleActivityBasket = document.createElement('tr');
-        // newSingleActivityBasket.classList.add('singleActivityBasket_' + x);
-        // newSingleActivityBasket.innerHTML = `
-        //         <td class="name_singleActivityBasket_`+ x + `"></td>
-        //         <td class="participantsCount_singleActivityBasket_`+ x + `"></td>
-        //         <td class="price_singleActivityBasket_`+ x + `"></td>
-        //         <td class="total_singleActivityBasket_`+ x + `"></td>
-        //     `;
-
-        // document.querySelector('tbody').appendChild(newSingleActivityBasket);
-
         newActivity.querySelector('#deletActivity' + x).addEventListener('click', function () {
-            document.querySelector('.activity_' + x).remove();
-            document.querySelector(`.activity_` + x + `_participantsList`).remove();
-            document.querySelector('.singleActivityBasket_' + x).remove();
+            document.querySelector('.activityItem_' + x).remove();
+            updateBasket();
         })
 
         let singleActivitySelectors = document.querySelectorAll('.singleActivitySelector');
 
         chooseActivity(singleActivitySelectors);
-
     }
+
     /** allows to choose between ROC Day & Roc Week-end, display form according to chosen formula
      * @param {*} field input ROC formula selector
      */
@@ -432,19 +374,12 @@ document.addEventListener('DOMContentLoaded', function () {
         selector.addEventListener('change', function () {
             //get activity (for display participants)
             let activity = document.querySelector('#rocCocktail').id;
-            console.log("🚀activity", activity)
-            //get div rocCocktailActivities (for add activity)
-            let rocCocktailActivities = document.querySelector('.rocCocktailActivities');
-            console.log("🚀 rocCocktailActivities", rocCocktailActivities)
             //get formula value (day or week-end)
             let formulaValue = this.options[selector.selectedIndex].getAttribute('value');
-            console.log("🚀 formulaValue", formulaValue);
             //get min numberparticipants
             let numberMinParticipants = Number(this.options[selector.selectedIndex].getAttribute('data-minParticipants'));
-            console.log("🚀 numberMinParticipants", numberMinParticipants)
             //get input numberparticipants
-            let participantsNumberSelector = document.querySelector(`input[name="participantsCount_rocActivity"]`);
-            console.log("🚀 numberParticipantsSelector", participantsNumberSelector);
+            let participantsNumberSelector = document.querySelector(`input[name="participantsCount_rocCocktail"]`);
             //get div myRocActivities
             let myRocActivities = document.querySelector('.myRocActivities');
 
@@ -453,18 +388,13 @@ document.addEventListener('DOMContentLoaded', function () {
             switch (formulaValue) {
                 case "cocktailOneDay":
                     reset(myRocActivities);
-                    document.querySelector('.rocDayBasket').classList.remove('hide');
-                    document.querySelector('.rocWeekEndBasket').classList.add('hide');
                     chooseRocDayActivities(myRocActivities);
 
                     let currentRocActivity = document.querySelector(`select[name='rocActivity_1']`);
-                    console.log("🚀 currentRocActivity", currentRocActivity)
                     currentRocActivity.addEventListener('change', function () {
                         chooseRocDayActivities(myRocActivities);
                         let activity1 = document.querySelector('.rocActivity_1 select');
-                        console.log("🚀 ~ file: booking.js ~ line 428 ~ activity1", activity1)
                         let activityToHide = activity1.value;
-                        console.log("🚀 ~ file: booking.js ~ line 429 ~ activityToHide", activityToHide)
                         let options = document.querySelectorAll('.rocActivity_2 option');
                         options.forEach(option => {
                             if (option.value === activityToHide) {
@@ -472,13 +402,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             } else {
                                 option.classList.remove('hide');
                             }
+                            let activity2 = document.querySelector('.rocActivity_2 select')
+                            activity2.addEventListener('change',updateBasket);
+
                         })
                     })
                     break;
                 default:
                     reset(myRocActivities);
-                    document.querySelector('.rocWeekEndBasket').classList.remove('hide');
-                    document.querySelector('.rocDayBasket').classList.add('hide');
                     addAllActivities(myRocActivities);
                     chooseRocWeekEndActivities(myRocActivities)
                     break;
@@ -502,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
             newRocActivity.innerHTML = `
             <p>Activité 1</p>
                     <select class="field rocActivitySelector" name="rocActivity_1">
-                        <option value="">Séléctionnez votre activité 1</option>
+                        <option value="empty">Séléctionnez votre activité 1</option>
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
                         <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
                         <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée - 55€/pers.</option>
@@ -513,18 +444,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     </select>
             `;
             divMyRocActivities.appendChild(newRocActivity);
-
-            // let rocDayActivityBasket_1 = document.createElement('tr');
-            // rocDayActivityBasket_1.classList.add('rocDayActivityBasket_1');
-            // rocDayActivityBasket_1.innerHTML=`
-            //     <td class="name_rocDayActivityBasket_1"></td>
-            //     <td class="participantsCount_rocDayActivityBasket_1"></td>
-            //     <td class="price_rocDayActivityBasket_1"></td>
-            //     <td class="total_rocDayActivityBasket_1"></td>
-            // `;
-
-            // document.querySelector('tbody').insertBefore(rocDayActivityBasket_1, document.querySelector('.rocDayBasket'));
-
         } else {
             if (document.querySelector('.rocActivity_2') === null) {
                 let newRocActivity = document.createElement('div');
@@ -532,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 newRocActivity.innerHTML = `
                 <p>Activité 2</p>
                         <select class="field rocActivitySelector" name="rocActivity_2">
-                            <option value="">Séléctionnez votre activité 2</option>
+                            <option value="empty">Séléctionnez votre activité 2</option>
                             <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
                             <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
                             <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée - 55€/pers.</option>
@@ -544,19 +463,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
 
                 divMyRocActivities.appendChild(newRocActivity);
-
-                //     let rocDayActivityBasket_2 = document.createElement('tr');
-                //     rocDayActivityBasket_2.classList.add('rocDayActivityBasket_2');
-                //     rocDayActivityBasket_2.innerHTML=`
-                //     <td class="name_rocDayActivityBasket_2"></td>
-                //     <td class="participantsCount_rocDayActivityBasket_2"></td>
-                //     <td class="price_rocDayActivityBasket_2"></td>
-                //     <td class="total_rocDayActivityBasket_2"></td>
-                // `;
-
-                // document.querySelector('tbody').insertBefore(rocDayActivityBasket_2, document.querySelector('.rocDayBasket'));
             };
         }
+        updateBasket();
     };
 
     /** display ROC week-end activities selectors
@@ -595,7 +504,6 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {*} divMyRocActivities where to display choices
      */
     function chooseRocWeekEndActivities(divMyRocActivities) {
-
         let selectors = divMyRocActivities.querySelectorAll('.rocActivitySelector');
         for (let i = 0; i < selectors.length; i++) {
             const selector = selectors[i];
@@ -670,40 +578,99 @@ document.addEventListener('DOMContentLoaded', function () {
         // Get data from form
         let formData = document.querySelector('#bookingForm');
         let data = new FormData(formData);
-
+        let tableBody = document.querySelector('tbody');
+        tableBody.innerHTML = "";
+        let bookingSummaryElmt = document.querySelector('.totalPrice');
         let totalPrice = 0;
-
-        let bookingSummaryElmt = document.querySelector(".totalPrice");
-        bookingSummaryElmt.innerHTML = "";
+        let totalDiscount = 0;
 
         for (let key of data.keys()) {
-
-            // On cherche les activités
+            // search activities
             if (key.startsWith('activity')) {
                 let activityName = data.get(key).toString();
 
+                if(activityName !== 'empty'){
 
-                // On cherche le nombre de participants
-                let activityNumberParticipants = data.get("participantsCount_" + key);
+                    // get number of participants
+                    let activityNumberParticipants = data.get("participantsCount_" + key);
+    
+                    //get name & price from obj activity of bookingData 
+                    let crtActivity = bookingData.find(activity => activity.value === activityName);
+    
+                    // get activity price & total price
+                    let linePrice = crtActivity.price * activityNumberParticipants;
+                    totalPrice += linePrice;
+    
+                    // display
+                    let newActivityLine = document.createElement('tr');
+                    newActivityLine.innerHTML = `
+                        <td>`+ crtActivity.name + `</td>
+                        <td>`+ activityNumberParticipants + `x</td>
+                        <td>`+ crtActivity.price + `€</td>
+                        <td>`+ linePrice + `€</td>
+                    `;
+                    tableBody.appendChild(newActivityLine);
+                }
 
-                // On recupere le prix par participants et le nom => donc l'objet activity du tableau
-                let crtActivity = bookingData.find(activity => activity.value == activityName);
+            } else if (key.startsWith('rocCocktail')){
+                let activityName = data.get(key).toString();
+                if(activityName !== 'empty'){
 
-                // On ajoute le prix au total
-                let linePrice = crtActivity.price * activityNumberParticipants;
-                totalPrice += linePrice;
+                    // display
+                    let newActivityLine = document.createElement('tr');
+                    newActivityLine.classList.add("rocFormulaBasket")
+    
+                    //get name & price from obj activity of bookingData 
+                    let crtActivity = bookingData.find(activity => activity.value === activityName);
+    
+                    // display
+                    newActivityLine.innerHTML = `
+                        <td colspan="3">`+ crtActivity.name + `</td>
+                        <td class="discount"></td>
+                    `;
+                    tableBody.appendChild(newActivityLine);
+                }
 
-                // On affiche
-                let newActivityLine = document.createElement('h6');
-                newActivityLine.innerText = crtActivity.name + " pour " + activityNumberParticipants + " participants : " + linePrice + "€";
+            } else if (key.startsWith('rocActivity')){
 
-                bookingSummaryElmt.appendChild(newActivityLine);
+                let activityName = data.get(key).toString();
+
+                if(activityName !== 'empty'){
+
+                    // get number of participants
+                    let activityNumberParticipants = data.get("participantsCount_rocCocktail");
+    
+                    //get name & price from obj activity of bookingData 
+                    let crtActivity = bookingData.find(activity => activity.value === activityName);
+    
+                    // get activity price & total price
+                    let linePrice = crtActivity.price * activityNumberParticipants;
+    
+                    // get discount to apply
+                    let rocFormula = document.querySelector('.rocFormulaSelector')
+                    let discountToApply = Number(rocFormula.options[rocFormula.selectedIndex].getAttribute('data-price'));
+                    let lineDiscount = linePrice * discountToApply;
+
+                    totalDiscount += lineDiscount
+                    totalPrice += (linePrice-lineDiscount);
+    
+                    // display
+                    document.querySelector('.discount').innerText = '-' + totalDiscount + '€';
+
+                    let newActivityLine = document.createElement('tr');
+                    newActivityLine.innerHTML = `
+                        <td>`+ crtActivity.name + `</td>
+                        <td>`+ activityNumberParticipants + `x</td>
+                        <td>`+ crtActivity.price + `€</td>
+                        <td>`+ linePrice + `€</td>
+                    `;
+                    let lineRocFormulaBasket = document.querySelector('.rocFormulaBasket')
+
+                    tableBody.insertBefore(newActivityLine, lineRocFormulaBasket);
+                }
             }
         }
-        let newTotalLine = document.createElement('h6');
-        newTotalLine.innerText = "Total : " + totalPrice + "€";
-
-        bookingSummaryElmt.appendChild(newTotalLine);
+        bookingSummaryElmt.innerText = totalPrice + "€";
     }
 
 

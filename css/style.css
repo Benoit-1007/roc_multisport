@@ -910,7 +910,7 @@ footer .network a{
         flex-direction: row;
         justify-content: space-between;
     }
-    .activityItem > div{
+    div[class*='activityItem'] > div{
         display: flex;
         flex-wrap: wrap;
     }

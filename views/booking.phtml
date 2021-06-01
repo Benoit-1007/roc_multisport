@@ -43,13 +43,13 @@
                 <fieldset>
                     <legend>votre activité / vos activités</legend>
                     <div class="activities"> <!-- NE PAS RAJOUTER D'ENFANT A CETTE DIV -->
-                        <div class="activityItem">
+                        <div class="activityItem_1">
                             <div class="activity_1">
                                 <p>Activité 1</p>
                                 <select class="field singleActivitySelector" name="activity_1">
                                     <option value="empty">Séléctionnez votre activité 1</option>
-                                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
                                     <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
+                                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
                                     <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
                                     <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée - 130€/pers.</option>
                                     <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée - 55€/pers.</option>
@@ -76,20 +76,19 @@
                     </div>
                 </fieldset>
                 <button type="button" id="addActivityButton">Ajouter une activité</button>
-                <!-- <button type="button" id="deletActivityButton">Supprimer une activité</button> -->
             </div>
             <div id="rocCocktail" class="hide">
                 <fieldset>
                     <legend>Votre ROC Cocktail</legend>
                     <div class="activityItem">
                         <div class="rocCocktailActivities">
-                            <select class="field rocFormulaSelector" name="rocCocktailFormula">
+                            <select class="field rocFormulaSelector" name="rocCocktail_Formula">
                                 <option value="empty">Séléctionnez votre Cocktail ROC</option>
-                                <option value="cocktailOneDay" name="ROC DAY (10% de remise sur vos activités)" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC DAY - à partir de 85€/pers.</option>
-                                <option value="cocktailTwoDay" name="ROC WEEK-END (15% de remise sur vos activités)" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC WEEK-END - à partir de 170€/pers.</option>
+                                <option value="cocktailOneDay" name="ROC DAY (10% de remise sur vos activités)" data-minParticipants="4" data-maxParticipants="8" data-price="0.10">Cocktail ROC DAY - à partir de 85€/pers.</option>
+                                <option value="cocktailTwoDay" name="ROC WEEK-END (15% de remise sur vos activités)" data-minParticipants="4" data-maxParticipants="8" data-price="0.15">Cocktail ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
-                            <input class="field" type="date" name="date_rocActivity" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
-                            <input class="field" type="number" name="participantsCount_rocActivity" min="4" max="8" placeholder="Nombre de participants">
+                            <input class="field" type="date" name="date_rocCocktail" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
+                            <input class="field" type="number" name="participantsCount_rocCocktail" min="4" max="8" placeholder="Nombre de participants">
                         </div>
                         <div class="myRocActivities">
                         </div>
@@ -107,20 +106,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="singleActivityBasket_1 hide">
-                            <td class="name_singleActivityBasket_1"></td>
-                            <td class="participantsCount_singleActivityBasket_1"></td>
-                            <td class="price_singleActivityBasket_1"></td>
-                            <td class="total_singleActivityBasket_1"></td>
-                        </tr>
-                        <tr class="rocDayBasket hide">
-                            <td colspan = "3">ROC DAY (10% de remise sur vos activités)</td>
-                            <td class="rocDayDiscount"></td>
-                        </tr>
-                        <tr class="rocWeekEndBasket hide">
-                            <td colspan = "3">ROC WEEK-END (15% de remise sur vos activités)</td>
-                            <td class="rocWeekEndDiscount"></td>
-                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -134,8 +119,6 @@
                 <button type="submit" id="validateReservation" onclick="submitform()">Réserver</button>
             </div>
         </form>
-
-        <!-- <p>TOTAL RÉSERVATION: <span id="activity"></span><span id="price"></span></p> -->
 
         
     </main>
