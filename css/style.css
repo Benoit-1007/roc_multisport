@@ -107,7 +107,7 @@ a:not(p a){
 }
 ul:not(.policy ul){
     list-style:none;
-    padding-left: 0;
+    /* padding-left: 0; */
 }
 table{
     border-collapse:collapse;
@@ -333,7 +333,7 @@ header{
     text-align:center;
     margin-top: 0;
     padding-top: 2rem;
-    background: url("../img/mountain.jpg") top;
+    background: url("../img/mountain.jpeg") top;
     background-size: cover;
 }
 .home p{
@@ -516,7 +516,7 @@ header{
 .testimony h2{
     color:var(--cocktailColor);
 }
-.testimony .sliderBloc{
+.sliderBloc{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -528,17 +528,25 @@ header{
     height: 25vh;
     border-radius: 4rem;
 }
-.testimony a{
+.testimony .slider div{
+    text-align: left;
+    padding-left: 2rem;
+    padding-right: 4rem;
+}
+.testimony p + p{
+    color: var(--rocColorO);
+}
+/* .testimony a{
     color: var(--clearColor);
     border: 2px solid var(--clearColor);
     width:unset;
     padding: 1rem 3rem;
-}
+} */
 /* #endregion testimony */
 
 /* #endregion MAIN INDEX */
 
-/* #region SLIDER */
+/* #region SLICK */
 .slick-next::before, 
 .slick-prev::before {
 	font-size: 2rem;
@@ -551,12 +559,6 @@ header{
 	left: 1rem;
 	z-index:1;
 }
-.slider div{
-    text-align: left;
-    padding-left: 2rem;
-    padding-right: 4rem;
-    
-}
 
 /* #endregion SLIDER */
 
@@ -564,7 +566,7 @@ header{
 .booking{
     color:var(--darkColor);
     text-align: center;
-    background: url("../img/mountain3.png")bottom fixed;
+    background: url("../img/mountain3.jpeg")bottom fixed;
     background-size: cover;
 }
 .booking h1 span{
@@ -704,7 +706,7 @@ fieldset{
 .contact{
     color: var(--darkColor);
     text-align: center;
-    background: url("../img/mountain2.png") bottom;
+    background: url("../img/mountain2.jpeg") bottom;
     background-size: cover;
 }
 
@@ -1054,7 +1056,7 @@ footer a{
     .text h2{
         font-size: 1vw;
         margin-bottom: 0;
-        padding: auto 0.5rem;
+        padding-top: 2.5rem;
     }
     .text a{
         margin: 1rem;
@@ -1116,11 +1118,12 @@ footer a{
     }
     .home .cocktail a{
         font-size: 1vw;
-        border: none;
+        background: var(--clearColor);
+        border: 1px solid var(--rocColorO);
         width:auto;
-        margin: 0;
+        /* margin: 0; */
     }
-    .home .cocktail div{
+    /* .home .cocktail div{
         color: var(--clearColor);
         background-color: var(--clearColor);
         border: 1px solid var(--rocColorO);
@@ -1130,7 +1133,7 @@ footer a{
         padding: 0.5rem 0 0 0;
         width:auto;
         height:inherit;
-    }
+    } */
     .cocktailBottom p{
         color: var(--clearColor);
         position: relative;

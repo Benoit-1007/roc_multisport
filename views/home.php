@@ -37,7 +37,7 @@
                     </li>
                     <li>
                         <div class="img">
-                            <img src="img/home_kayak.jpeg" alt="Photo d'un homme en sortie paddle">
+                            <img src="img/home_paddle2.jpeg" alt="Photo d'un homme en sortie paddle">
                         </div>    
                         <div class="blocPADDLE text">
                             <h2>paddle kayak</h2>
@@ -64,7 +64,7 @@
                     </li>
                     <li>
                         <div class="img">
-                            <img src="img/home_snowboard2.jpeg" alt="Photo d'un snowboarder">
+                            <img src="img/home_snowboard.jpeg" alt="Photo d'un snowboarder">
                         </div>    
                         <div class="blocSNOWBOARD text">
                             <h2>snowboard splitboard</h2>
@@ -78,7 +78,8 @@
                         </div>
                         <div class="cocktail text">
                             <h2>c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</h2>
-                            <div><a href="#cocktail">en savoir +</a></div>
+                            <!-- <div><a href="#cocktail">en savoir +</a></div> -->
+                            <a href="#cocktail"> <span>e</span><span>n</span> <span>s</span><span>a</span><span>v</span><span>o</span><span>i</span><span>r</span> <span>+</span> </a>
                         </div>
                     </li>
                 </ul>
@@ -381,9 +382,9 @@
                 <h2>snowboard / splitboard</h2>
                 <div class="left_bloc">
                     <div class="slider">
-                        <div><img src="img/splitboard_1.jpeg" alt="Photo d'un snowboarder"></div>
-                        <div><img src="img/snowboard_5.jpeg" alt="Photo d'un snowboard regardant un paysage de montagnes"></div>
-                        <div><img src="img/snowboard_3.jpeg" alt="Photo d'un groupe en sortie via-ferrata"></div>
+                        <div><img src="img/splitboard_1.jpeg" alt="Photo d'un groupe en sortie splitboard"></div>
+                        <div><img src="img/splitboard_2.jpeg" alt="Photo d'une splitboard devant un paysage de montagnes"></div>
+                        <div><img src="img/snowboard.jpeg" alt="Photo d'un snowboarder"></div>
                     </div>
                     <div class="button desktop-button">
                         <a href="booking.php">réserver</a>
@@ -456,7 +457,11 @@
                 c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> d'activités <span>r</span><span>o</span><span>c</span>
                 </h2>
                 <div class="left_bloc">
-                    <img src="img/paddle_sunset.jpeg" alt="Photo d'un homme en paddle au couché du soleil">
+                    <div class="slider">
+                        <div><img src="img/paddle_sunset.jpeg" alt="Photo d'un homme en paddle au couché du soleil"></div>
+                        <div><img src="img/vtt_6.jpeg" alt="Photo d'un groupe en sortie vttae"></div>
+                        <div><img src="img/archery_4.jpeg" alt="Photo d'un groupe en activité tir à l'arc"></div>
+                    </div>
                     <div class="button desktop-button">
                         <a href="booking.php">réserver</a>
                         <a href="contact.php">contactez-nous</a>
@@ -506,11 +511,17 @@
                 <div class="sliderBloc">
                     <div class="slider">
                         <div>
-                            <p>"Je n'ai qu'un mot ! Wahou !!! Des paysages de dingue, une réelle découverte de la nature avec en prime des sensations fortes !"</p>
+                            <p>"Je n'ai qu'un mot ! Wahou !!! Des paysages de dingue, une magnifique journée en pleine de la nature avec en prime des sensations fortes !"</p>
                             <p>Delphine, ESCALADE</p>
                         </div>
-                        <div>"temoignage 2"</div>
-                        <div>"temoignage 3"</div>
+                        <div>
+                            <p>"Une vraie découverte pour moi. Un moniteur hyper sympa et des vélos qui avancent tout seuls... J'adore."</p>
+                            <p>Jérome, VTTAE</p>
+                        </div>
+                        <div>
+                            <p>Journée exceptionnelle avec des paysages époustouflants. Un kiff à l'état pur ! Je recommande vivement !</p>
+                            <p>Hervé, randonnée splitboard</p>
+                        </div>
                     </div>
                     <!-- <div class="button">
                         <a href="testimony.phtml" title="Consultez les témoignages de tous nos clients en cliquant içi !">tous les témoignages </a>
@@ -533,7 +544,7 @@
             $('.slider').slick({
             // setting-name: setting-value
                 autoplay:true,
-                autoplaySpeed:2000,
+                autoplaySpeed:3000,
                 arrows:true,
             });
         });
