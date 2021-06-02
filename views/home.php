@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="container">
+    <header>
         <?php require('partials/header.php') ?> 
     </header>
 
-    <main class="container">
+    <main>
         <section  id="home" class="home">
             <div class="background">
                 <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
@@ -505,13 +505,16 @@
             <h2>témoignages</h2>
                 <div class="sliderBloc">
                     <div class="slider">
-                        <div>"temoignage 1"</div>
+                        <div>
+                            <p>"Je n'ai qu'un mot ! Wahou !!! Des paysages de dingue, une réelle découverte de la nature avec en prime des sensations fortes !"</p>
+                            <p>Delphine, ESCALADE</p>
+                        </div>
                         <div>"temoignage 2"</div>
                         <div>"temoignage 3"</div>
                     </div>
-                    <div class="button">
+                    <!-- <div class="button">
                         <a href="testimony.phtml" title="Consultez les témoignages de tous nos clients en cliquant içi !">tous les témoignages </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
