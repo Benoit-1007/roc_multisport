@@ -1,12 +1,22 @@
-<img class="logo" src="img/background/logoRocMultisport.png" alt="Logo ROC Multisport">
-<address>
-    <p>165 route des Tappes</p>
-    <p>74230 Dingy-Saint-Clair</p>
-    <p><a href="tel:0658355166">Tél. : 06 58 35 51 66</a></p>
-    <p><a href="mailto:roc.multisport@gmail.com" title="Cliquez içi pour nous contacter">roc.multisport@gmail.com</a></p>
-</address>
-<div class="network">
-    <p>Retrouver-nous sur :</p>
-    <a href="#" class="fab fa-facebook-square" title="Envie de découvrir notre page facebook? Cliquez içi !"></a>
-    <a href="#" class="fab fa-instagram-square" title="Pour découvrir d'autres photos de nos acivités, cliquez içi !"></a>
+<div class="topBlocFooter">
+    <div class="contactInfo">    
+        <img class="logo" src="img/background/logoRocMultisport.png" alt="Logo ROC Multisport">
+        <address>
+            <p>165 route des Tappes</p>
+            <p>74230 Dingy-Saint-Clair</p>
+            <p>Tél : <a href="0658355166">06 58 35 51 66</a></p>
+            <p><a href="mailto:roc.multisport@gmail.com" title="Cliquez içi pour nous contacter">roc.multisport@gmail.com</a></p>
+        </address>
+    </div>
+    <div class="network">
+        <p>Retrouver-nous sur :</p>
+        <a href="#" class="fab fa-facebook-square" title="Envie de découvrir notre page facebook? Cliquez içi !"></a>
+        <a href="#" class="fab fa-instagram-square" title="Pour découvrir d'autres photos de nos acivités, cliquez içi !"></a>
+    </div>
+</div>
+<div class="bottomBlocFooter">
+    <a href="privacyPolicy.php">Politique de confidentialité |</a>
+    <a href="">Conditions générales de vente |</a>
+    <a href="legalNotice.php">Mentions légales |</a>
+    <a href="https://courtincom.fr">Design by COURTIN<span>COM</span></a>
 </div>

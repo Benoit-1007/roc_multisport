@@ -515,8 +515,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- <button class="scrollToTopBtn hide">⇧</button> -->
     </main>
 
     <footer id="footer" class="container">

@@ -53,7 +53,7 @@ body{
 }
 .container{
     /* max-width: 1200px; */
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 /* main{
     margin:0 auto;
@@ -64,7 +64,8 @@ section{
 }
 .activity,
 .booking,
-.contact{
+.contact,
+.policy{
     padding: 2rem;
     /* padding-left: 2rem;
     padding-right: 2rem; */
@@ -116,7 +117,7 @@ h3{
 a:not(p a){
     text-decoration:none;
 }
-ul{
+ul:not(.policy ul){
     list-style:none;
     padding-left: 0;
 }
@@ -574,7 +575,6 @@ header{
 /* #endregion SLIDER */
 
 /* #region BOOKING */
-
 .booking{
     color:var(--darkColor);
     text-align: center;
@@ -715,7 +715,6 @@ fieldset{
 /* #endregion TEMPORARYBOOKING */
 
 /* #region CONTACT */
-
 .contact{
     color: var(--darkColor);
     text-align: center;
@@ -771,6 +770,27 @@ div.form-error {
 }
 /* #endregion CONTACT */
 
+/* #region LEGAL */
+
+.policy{
+    color: var(--darkColor);
+    text-align: justify;
+}
+.policy h1{
+    text-align: center;
+}
+.policy h2{
+    font-size: 2rem;
+}
+.policy h3{
+    font-size: 1.8rem;
+    text-transform: unset;
+}
+.policy span{
+    font-family: DIN-Medium;
+}
+/* #endregion LEGAL */
+
 /* #region FOOTER */
 footer{
     color: var(--rocColorR);
@@ -778,15 +798,29 @@ footer{
     background: url("../img/background/bgFooter.png") bottom no-repeat, var(--clearColor);
     background-size: 100%;
     padding-top: 2rem;
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
 }
 footer a{
     color: var(--rocColorR);
-    text-transform: lowercase;
+    text-decoration: none;
 }
-footer .network a{
+.contactInfo a{
+    text-transform: lowercase;
+    font-family: DIN-Bold;
+}
+.network a{
     font-size: 5rem;
     margin:0 2rem;
+}
+.bottomBlocFooter{
+    margin-top: 4rem;
+}
+.bottomBlocFooter a{
+    text-transform: none;
+    font-size: 1.2rem;
+}
+.bottomBlocFooter span{
+    font-family: DIN-Bold;
 }
 
 /* #endregion FOOTER */
@@ -814,7 +848,7 @@ footer .network a{
     .navbar{
         align-items: center;
         font-size: 1.5rem;
-        padding-left: 2rem;
+        padding-right: 9rem;
     }
     .burger{
         display:none;
@@ -902,24 +936,46 @@ footer .network a{
     footer{
         height: 20rem;
         display:flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: unset;
+    }
+    .topBlocFooter{
+        display: flex;
         justify-content: space-between;
         align-items: center;
-        text-align: left;
-        padding: 0rem 8rem 6rem 8rem;
+        flex-wrap: nowrap;
+        width:100%;
+        padding: 0rem 8rem 0 2rem;
     }
     /* footer img{
         margin: auto 2rem;
-    }
-    footer address{
-        margin-right: 7rem;
     } */
+    .contactInfo{
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+    }
+    address{
+        padding-top: 1rem;
+        margin-left: 10rem;
+    }
     footer p{
+        text-align: left;
         margin: 0;
         font-size: 1rem;
     }
-    footer .network a{
-        font-size: 3rem;
-        /* margin-left: 0; */
+    .network a{
+        font-size: 4rem;
+        margin-left: 0;
+    }
+    .bottomBlocFooter{
+        width: 100%;
+    }
+    .bottomBlocFooter a{
+        color: var(--clearColor);
+        font-size: 1.5rem;
     }
     /* FORM */
     .contact p, #contactForm, .booking p:not(#bookingForm p), #bookingForm{
@@ -958,12 +1014,8 @@ footer .network a{
 
 /* #region DESKTOP (min-width: 980px) */
 @media screen and (min-width:980px){
-    /* header{
-        background: url('../img/background//bgHEADER.png') bottom no-repeat;
-        background-size: 100%;
-    } */
     .navbar{
-        padding: 0 10rem;
+        padding: 0 15rem 0 10rem;
     }
     .navbar_links{
         width:55%;
@@ -1030,7 +1082,7 @@ footer .network a{
         margin: 1rem;
     }
     .blocVTTAE{
-        background: url("../img/background/vttBloc") no-repeat;
+        background: url("../img/background/vttBloc.png") no-repeat;
         background-size: cover;
     }
     .blocVTTAE a{
@@ -1129,7 +1181,7 @@ footer .network a{
         display:flex;
         flex-wrap: wrap;
         justify-content: space-between;
-        align-items: space-between;
+        /* align-items: space-between; */
     }
     h2, h3{
         width:100%;
@@ -1179,6 +1231,17 @@ footer .network a{
         width: 50%;
         margin: unset;
         border-radius: 0 4rem 4rem 0;
+    }
+    .topBlocFooter{
+        padding-left: 10rem;
+    }
+    footer p{
+        font-size: 1.2rem;
+    }
+    .network{
+        width: 43vw;
+        text-align: left;
+        padding-left: 2rem;
     }
     /* FORM */
     .participant{
