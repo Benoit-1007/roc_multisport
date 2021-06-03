@@ -39,11 +39,9 @@ class Contactform {
                 this.lastName = field.value;
             }
             if (field.name === 'telephone'){
-                // if(!field.value || verifyPhoneNumber(field.value) === false){
-                //     // this.error.record({ phone: 'Numéro de téléphone invalide' });
-                //     alert('Tél invalide')
-                // }
-                this.phone = field.value;
+                if(!field.value){
+                    this.phone = field.value;
+                }
             }
             if (field.name === 'message'){
                 if(!field.value){
@@ -71,28 +69,6 @@ class Contactform {
             this.classList.remove('red-border')
         }
     }
-
-
-    // function verifyPhoneNumber(phoneNumber){
-    //     // Definition du motif a matcher
-    //     var regex = new RegExp(/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/);
-        
-    //     // Definition de la variable booleene match
-    //     var match = false;
-        
-    //     // Test sur le motif
-    //     if(regex.test(phoneNumber))
-    //     {
-    //         match = true;
-    //     }
-    //     else
-    //     {
-    //         match = false;
-    //     }
-        
-    //     // On renvoie match
-    //     return match;
-    // }
 
     validateEmail(email) {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

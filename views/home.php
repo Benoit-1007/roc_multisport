@@ -23,7 +23,7 @@
             <div class="background">
                 <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>
                 <p>Envie de s'évader, de profiter de la nature autour d'Annecy et de s'initier aux disciplines sportives entre lac et montagne? ROC MULTISPORT est là pour vous!</p>
-                <p>Venez découvrir nos activités outdoors, été comme hiver, avec des moniteurs passionnés et qualifiés. Composez vous même votre " cocktail d'activités ROC " à la journée ou sur un week-end complet. <span>Vivez votre propre excursion</span></p>
+                <p>Venez découvrir nos activités outdoors, été comme hiver, avec des moniteurs passionnés et qualifiés. Composez vous même votre " cocktail d'activités ROC " à la journée ou sur un week-end complet. <span>Vivez votre propre excursion!</span></p>
                 <p>ROC MULTISPORT vous assure une ambiance unique et une expérience inoubliable !!! Du lac d'Annecy aux sommets des Aravis, venez tester l'aventure : sensations et souvenirs garantis!</p>
                 <ul>
                     <li>
@@ -111,7 +111,7 @@
                         <div class="table">
                             <table>
                                 <tr>
-                                    <th colspan="2">TARIFS SANS VTTAE (matériel personnel)</th>
+                                    <th colspan="2">TARIFS SANS LOCATION VTT</th>
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
@@ -124,7 +124,7 @@
                             </table>
                             <table>
                                 <tr>
-                                    <th colspan="2">TARIFS AVEC VTTAE</th>
+                                    <th colspan="2">TARIFS AVEC LOCATION VTT</th>
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
@@ -531,7 +531,7 @@
         </section>
     </main>
 
-    <footer id="footer" class="container">
+    <footer id="footer">
         <?php require('partials/footer.php') ?>
     </footer>
 

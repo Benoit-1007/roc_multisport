@@ -163,6 +163,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 let dateSelector = document.querySelector(`input[name="date_activity_` + activityNumber + `"]`);
                 //get input numberparticipants
                 let participantsNumberSelector = document.querySelector(`input[name="participantsCount_activity_` + activityNumber + `"]`);
+                //get rookeasy message
+                let rookeasyMessage = document.querySelector('.rookeasy');
                 //get div current activity
                 let currentActivity = document.querySelector('.activity_' + activityNumber);
 
@@ -175,13 +177,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 switch (activityDuration) {
                     case "halfDay":
+                        if (dateSelector.getAttribute('type') === 'week'){
+                            dateSelector.setAttribute('type', 'date')
+                        }
                         if (!dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
                             addHalfDaySelector(activityNumber, currentActivity, participantsNumberSelector);
+                        }
+                        if(!rookeasyMessage.classList.contains('hide')){
+                            rookeasyMessage.classList.add('hide');
+                        }
+                        break;
+                    case "threeHalfDay":
+                        dateSelector.setAttribute('type', 'week');
+                        rookeasyMessage.classList.remove('hide');
+                        if (dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
+                            removeHalfDaySelector(activityNumber);
                         }
                         break;
                     default:
                         if (dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
+                            console.log('test remove 1')
                             removeHalfDaySelector(activityNumber);
+                        }
+                        if (dateSelector.getAttribute('type') === 'week'){
+                            dateSelector.setAttribute('type', 'date')
+                        }
+                        if(!rookeasyMessage.classList.contains('hide')){
+                            rookeasyMessage.classList.add('hide');
                         }
                         break;
                 }
@@ -255,6 +277,7 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {*} numActivity number of current activity (1, 2, ...)
      */
     function removeHalfDaySelector(numActivity) {
+        console.log('remove');
         //get half day selector to remove
         let halfDaySelectorToRemove = document.querySelector('.activity_' + numActivity + '_halfDaySelector');
         //remove half day selector
@@ -275,22 +298,42 @@ document.addEventListener('DOMContentLoaded', function () {
                 let newParticipant = document.createElement('div');
                 newParticipant.classList.add(currentActivity + '_participant_' + currentParticipant);
                 newParticipant.classList.add("participant"); // for css properties
-                newParticipant.innerHTML = ` 
-                    <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
-                    <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
-                    <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
-                    <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
-                    <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
-                        <option value="">Niveau*</option>
-                        <option value="beginner">Débutant</option>
-                        <option value="intermediate">Intermédiaire</option>
-                        <option value="confirmed">Confirmé</option>
-                        <option value="expert">Expert</option>
-                    </select>
-                `;
+                if(currentActivity !== 'rocCocktail'){
+                    newParticipant.innerHTML = ` 
+                        <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
+                        <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
+                        <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
+                        <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
+                        <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
+                            <option value="">Niveau*</option>
+                            <option value="beginner">Débutant</option>
+                            <option value="intermediate">Intermédiaire</option>
+                            <option value="confirmed">Confirmé</option>
+                            <option value="expert">Expert</option>
+                        </select>
+                    `;
+                } else {
+                    newParticipant.innerHTML = ` 
+                        <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
+                        <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
+                        <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
+                        <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
+                    `;
+                }
+                    
                 participantsField.appendChild(newParticipant);
             }
 
+
+
+
+                    // <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
+                    //     <option value="">Niveau*</option>
+                    //     <option value="beginner">Débutant</option>
+                    //     <option value="intermediate">Intermédiaire</option>
+                    //     <option value="confirmed">Confirmé</option>
+                    //     <option value="expert">Expert</option>
+                    // </select>
         } else if (differenceParticipants < 0) {
             for (let i = 0; i < Math.abs(differenceParticipants); i++) {
                 let participantToRemove = document.querySelector('.' + currentActivity + '_participant_' + (currentParticipantsNumber - i));

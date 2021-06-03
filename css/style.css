@@ -628,9 +628,8 @@ fieldset{
     color: var(--darkColor);
     border: 1px solid var(--rocColorR);
 }
-.activityItem > div{
-    padding: 1rem;
-    /* margin-bottom: 2rem; */
+.rookeasy{
+    color:var(--rocColorC);
 }
 .participantsList{
     color: var(--darkColor);
@@ -810,6 +809,9 @@ footer a{
 .bottomBlocFooter span{
     font-family: DIN-Bold;
 }
+/* .bottomBlocFooter img{
+    width: 100px;
+} */
 
 /* #endregion FOOTER */
 

@@ -20,3 +20,6 @@
     <a href="legalNotice.php">Mentions légales |</a>
     <a href="https://courtincom.fr">Design by COURTIN<span>COM</span></a>
 </div>
+
+<!-- <img src="img/picto/courtin1.png" alt=""> -->
+COURTIN<span>COM</span>
