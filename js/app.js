@@ -1,9 +1,7 @@
 'use strict';
 
 // imports
-import Contact from './Contact.js';
-
-// import Bookingform from './Bookingform(test).js';
+import Contactform from './Contactform.js';
 
 document.addEventListener("DOMContentLoaded", function(){
     
@@ -32,56 +30,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     // FORM 
 
-    // test
-
-    // let form = document.querySelector('form');
-
-    // if(form !== null){
-
-    //     if(form.id === 'bookingForm'){
-    //         let booking = new Bookingform;
-    //         let activitiesbtn = document.querySelectorAll('.formulaSelector button');
-
-    //         //Choose between single activity or cocktail ROC
-    //         booking.chooseFormula(activitiesbtn);
-
-    //         let addActivityBtn = document.querySelector('#addActivityButton');
-    //         //add a new single activity
-    //         addActivityBtn.addEventListener('click', booking.addActivity);
-
-    //         let deletActivityBtn = document.querySelector('#deletActivityButton');
-    //         //remove a new single activity
-    //         deletActivityBtn.addEventListener('click', booking.removeActivity);
-    //     }
-        
-            
-    //     form.addEventListener('submit', event => {
-            
-    //         // Get action to do (from form id)
-    //         if(form.id === 'contactForm'){
-    //             let inputs = form.querySelectorAll('.field');
-    //             console.log("🚀 inputs", inputs)
-                
-    //             let contactForm = new Contactform();
-    //             console.log("🚀 contactForm", contactForm)
-    //             if(!contactForm.validate(inputs)){
-    //                 // Block form auto refresh
-    //                 event.preventDefault();
-    //                 // console.log(contactForm.error.errors.messages, "form ko");
-    //                 contactForm.createError();
-    //             };
-    //             inputs.forEach.call(inputs, input => {
-    //                 input.addEventListener('keydown', contactForm.removeError);
-    //             });
-                
-    //         } else {
-    //             // validate bookingForm
-    //         }
-    //     })    
-    // }
-
-    // fin test
-            
     let form = document.querySelector('form')
     console.log(form)
 
@@ -91,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function(){
     form.addEventListener('submit', event => {
         // Get action to do (from form id)
         if(form.id = 'contactForm'){
-            let contactForm = new Contact();
+            let contactForm = new Contactform();
             console.log("🚀 ~ file: app.js ~ line 93 ~ document.addEventListener ~ contactForm", contactForm)
             
             if(!contactForm.validate(inputs)){

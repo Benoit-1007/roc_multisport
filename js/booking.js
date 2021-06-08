@@ -1,7 +1,5 @@
 'use strict';
 
-import Errors from './Errors.js';
-
 // use by basket function
 const bookingData = [
     { 'value': 'bikeAllDayNoLoc', 'name': 'VTTAE sans location VTT - journée', 'price': '80' },
@@ -53,6 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let deletActivityBtn = bookingForm.querySelector('#deletActivityButton');
 
+    let singleActivityBasket = booking.querySelector('.singleActivityBasket_1');
+
+    let rocActivityBasket = booking.querySelector('.rocActivityBasket_1');
+
     let validateReservationBtn = bookingForm.querySelector('#validateReservation');
 
     //Choose between single activity or cocktail ROC
@@ -64,79 +66,18 @@ document.addEventListener('DOMContentLoaded', function () {
     //remove a new single activity
     deletActivityBtn.addEventListener('click', removeActivity);
 
-    toggleMenu();
 
 
 
-    
     //VERIF RECUPERATION INPUTS
     validateReservationBtn.addEventListener('click', function (e) {
         let inputs = bookingForm.querySelectorAll('.field');
-        let error = new Errors();
-
+        e.preventDefault();
         inputs.forEach(input => {
-            // if(input.value === 'empty'){
-            //     if (!singleActivityFieldset.classList.contains('hide')){
-            //         let selectors = document.querySelectorAll(`select[id*=singleActivitySelector]`)
-            //         for (let i = 1; i <= selectors.length; i++) {
-            //             let selector = singleActivitySelector + i
-                        
-            //             error.record({`${selector}`: 'Merci de choisir une activité'})
-                        
-            //         }
-                    
-            //     } 
-            //     if (!rocCocktailFieldset.classList.contains('hide')){
-            //         error.record({rocFormulaSelector: 'Merci de choisir une formule pour le Cocktail ROC'})
-            //     }
-
-            // }
-            // console.log(input.name + ':' + input.value)
-            
-            if (input.name === 'contact_lastName'){
-                if (!input.value || !validateName(input.value)){
-                    error.record({contact_lastName: 'Nom invalide'});
-                }
-            }
-            if (input.name === 'contact_firstName'){
-                if (!input.value || !validateName(input.value)){
-                    error.record({contact_firstName: 'Prénom invalide'});
-                }
-            }
-            if (input.name === 'contact_phone'){
-                if (!input.value || !validatePhone(input.value))
-                error.record({contact_phone: 'Téléphone invalide'});
-            }
-            if (input.name === 'contact_mail'){
-                if (!input.value || !validateEmail(input.value)){
-                    error.record({contact_mail: 'Email invalide'});
-                }
-            }
-            if (input.name === 'contact_address'){
-                if (!input.value){
-                    error.record({contact_address: 'Adresse invalide'});
-                }
-            }
-            if (input.name === 'contact_postalCode'){
-                if (!input.value || isNaN(input.value)){
-                    error.record({contact_postalCode: 'Code postal invalide'});
-                }
-            }
-            if (input.name === 'contact_city'){
-                if (!input.value){
-                    error.record({contact_city: 'Ville invalide'});
-                }
-            }
-            removeError(input);
-            
+            // console.log(input.name);
         });
-        
-        if (error.errors.messages.length > 0){
-            e.preventDefault();
-            error.createError();
-        }
+    })
 
-    });
 
     //FUNCTIONS
 
@@ -204,6 +145,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 let activity = selector.getAttribute('name');
                 //get activity number
                 let activityNumber = activity.replace(/\D/g, '');
+                //get name activity
+                let activityName = this.options[selector.selectedIndex].getAttribute('name');
+                //get value activity
+                let activityValue = this.options[selector.selectedIndex].getAttribute('value');
                 //get price activity
                 let price = Number(this.options[selector.selectedIndex].getAttribute('data-price'));
                 //get activity duration
@@ -348,8 +293,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let currentParticipantsNumber = document.querySelectorAll(`div[class*="` + currentActivity + `_participant_"]`).length;
         let differenceParticipants = numberOfParticipants - currentParticipantsNumber;
         if (differenceParticipants > 0) {
-            for (let i = 1; i <= differenceParticipants; i++) {
-                let currentParticipant = currentParticipantsNumber + i;
+            for (let i = 0; i < differenceParticipants; i++) {
+                let currentParticipant = currentParticipantsNumber + i + 1;
                 let newParticipant = document.createElement('div');
                 newParticipant.classList.add(currentActivity + '_participant_' + currentParticipant);
                 newParticipant.classList.add("participant"); // for css properties
@@ -359,8 +304,8 @@ document.addEventListener('DOMContentLoaded', function () {
                         <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
                         <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
                         <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
-                        <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + ` required">
-                            <option value="empty">Niveau*</option>
+                        <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
+                            <option value="">Niveau*</option>
                             <option value="beginner">Débutant</option>
                             <option value="intermediate">Intermédiaire</option>
                             <option value="confirmed">Confirmé</option>
@@ -426,7 +371,7 @@ document.addEventListener('DOMContentLoaded', function () {
         newActivity.innerHTML = `
             <div class="activity_`+ x + `">
                 <p>Activité `+ x + `</p>
-                <select class="field singleActivitySelector" id="singleActivitySelector`+ x + `" name="activity_`+ x + `">
+                <select class="field singleActivitySelector" name="activity_`+ x + `">
                     <option value="">Séléctionnez votre activité `+ x + `</option>
                     <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
                     <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
@@ -682,7 +627,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    /** display chosen activity, number of participants & price in shopping cart */
     function updateBasket() {
         // Get data from form
         let formData = document.querySelector('#bookingForm');
@@ -782,6 +726,7 @@ document.addEventListener('DOMContentLoaded', function () {
         bookingSummaryElmt.innerText = totalPrice + "€";
     }
 
+<<<<<<< HEAD
     /** display menu for mobile version  */
     function toggleMenu(){
         const navbar = document.querySelector('.navbar');
@@ -844,11 +789,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
     };
+=======
+});
+>>>>>>> parent of d2f2145 (home final + error booking)
 
 
 
     function submitform() {
 
+<<<<<<< HEAD
         // controle !
         
     
@@ -874,6 +823,71 @@ document.addEventListener('DOMContentLoaded', function () {
             if (key.startsWith('contact')) {
                 // Adding contact informations
                 contactJson[key] = data.get(key).toString();
+=======
+    // controle !
+
+    let jsondata = JSON.parse('{ }');;
+    let formData = document.querySelector('#bookingForm');
+    let data = new FormData(formData);
+
+    // console.log(data);
+
+    // Contact :
+    let contactJson = JSON.parse('{ }');
+
+    // Activities :
+    let activitiesJson = JSON.parse('[]');
+
+    // let rocActivityJson = JSON.parse('[]'); ???
+
+    for (let key of data.keys()) {
+
+        // console.log(key + " : "+ data.get(key));
+
+        if (key.startsWith('contact')) {
+            // Adding contact informations
+            contactJson[key] = data.get(key).toString();
+        }
+
+        // Manage Activity
+        if (key.startsWith('activity')) {
+            // Adding activity x
+            let activityDetailsJson = JSON.parse('{ }');
+
+            // If name is empty, we do nothing !
+            if (data.get(key) != "empty") {
+
+                // get activity name
+                activityDetailsJson["name"] = data.get(key);
+                // get activity date 
+                activityDetailsJson["date"] = data.get("date_" + key);
+                // get activity participants number
+                activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
+                // get activity half day 
+                if (data.has("halfDaySelector_" + key)) {
+                    activityDetailsJson["halfDay"] = data.get("halfDaySelector_" + key);
+                }
+
+                // Adding participants for activity x
+                let participantsJson = JSON.parse('[]');
+
+                for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
+                    let participantJson = JSON.parse('{}');
+                    participantJson["lastName"] = data.get("lastName_" + key + "_participant_" + i);
+                    participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
+                    participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
+                    participantJson["size"] = data.get("size_" + key + "_participant_" + i);
+                    participantJson["level"] = data.get("level_" + key + "_participant_" + i);
+                    participantsJson.push(participantJson);
+                }
+
+                activityDetailsJson["participants"] = participantsJson;
+
+                activitiesJson.push(activityDetailsJson);
+
+                jsondata["contact"] = contactJson;
+                jsondata["activities"] = activitiesJson;
+>>>>>>> parent of d2f2145 (home final + error booking)
             }
     
             // Manage Activity

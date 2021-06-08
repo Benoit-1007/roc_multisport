@@ -10,6 +10,7 @@ class Errors {
     }
 
     createError() {
+        console.log(this.errors.messages.length)
         for (let error of this.errors.messages) {
             for (let field in error) {
                 if (error.hasOwnProperty(field)) {
@@ -25,7 +26,6 @@ class Errors {
             }
         }
     }
-
 }
 
 export default Errors;

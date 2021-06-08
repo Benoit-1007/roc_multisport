@@ -2,7 +2,7 @@
 
 import Errors from './Errors.js';
 
-class Contact {
+class Contactform {
     constructor(){
         this.error = new Errors();
         this.isValid = false;
@@ -17,7 +17,6 @@ class Contact {
     validate(fields){
         fields.forEach(field => {
             if (!this.allowed.includes(field.name)) {
-                alert(`Le champ ${field.name} n'est pas valide`)
                 return this.error.record(`Le champ ${field.name} n'est pas valide`);
             }
             if (field.name === 'email') {
@@ -40,7 +39,7 @@ class Contact {
                 this.lastName = field.value;
             }
             if (field.name === 'telephone'){
-                if(field.value){
+                if(!field.value){
                     this.phone = field.value;
                 }
             }
@@ -53,6 +52,7 @@ class Contact {
         });
         if (this.error.errors.messages.length > 0) {
             this.isValid = false;
+            console.log(this.isValid);
         } else {
             this.isValid = true;
         }
@@ -74,11 +74,10 @@ class Contact {
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
-    
     validateName(string) {
         const reg = /^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/;
         return reg.test(string)
     }
 }
 
-export default Contact;
+export default Contactform;
