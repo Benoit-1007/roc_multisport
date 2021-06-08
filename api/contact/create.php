@@ -22,25 +22,25 @@ $data = json_decode(file_get_contents("php://input"));
   
 // make sure data is not empty
 if(
-    !empty($data->firstName) &&
-    !empty($data->lastName) &&
-    !empty($data->organisation) &&
-    !empty($data->phoneNumber) &&
-    !empty($data->mail) &&
-    !empty($data->adress) &&
-    !empty($data->postalCode) &&
-    !empty($data->city) 
+    !empty($data->contact->contact_firstName) &&
+    !empty($data->contact->contact_lastName) &&
+    !empty($data->contact->contact_society) &&
+    !empty($data->contact->contact_phone) &&
+    !empty($data->contact->contact_mail) &&
+    !empty($data->contact->contact_adress) &&
+    !empty($data->contact->contact_postalCode) &&
+    !empty($data->contact->contact_city) 
 ){
   
     // set contact property values
-    $contact->firstName = $data->firstName;
-    $contact->comment = $data->comment;
-    $contact->organisation = $data->organisation;
-    $contact->phoneNumber = $data->phoneNumber;
-    $contact->mail = $data->mail;
-    $contact->adress = $data->adress;
-    $contact->postalCode = $data->postalCode;
-    $contact->city = $data->city;
+    $contact->firstName = $data->contact->contact_firstName;
+    $contact->comment = $data->contact->contact_comment;
+    $contact->organisation = $data->contact->contact_society;
+    $contact->phoneNumber = $data->contact->contact_phone;
+    $contact->mail = $data->contact->contact_mail;
+    $contact->adress = $data->contact->contact_adress;
+    $contact->postalCode = $data->contact->contact_postalCode;
+    $contact->city = $data->contact->contact_city;
   
     // create the contact
 

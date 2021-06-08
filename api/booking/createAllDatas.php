@@ -26,23 +26,42 @@ $contact = new Contact($db);
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
+
+
 //Create contact (if not exists)
 // => Validate data
 // => Insert in db
 // => get last id
 
-$idContact = $contact->create();
+//$idContact = $contact->create();
 
 // Create booking
 
 // => Simple
 /* for each activity
 
+Insert BookingsActivities
+=> last IDBookingsActivities
+
+for each participants
+=> insert user
+=> last IDuser
+=> insert BookingsActivitiesUsers
 
 
 
-// => cocktailOneDay
+// => cocktail
 
+foreach participants
+=> insert
+=> store idUser dans un tableau
 
+=> store dateOfActivities
 
-// => cocktailTwoDay
+/* for each activity
+Insert BookingsActivities
+=> last IDBookingsActivities
+
+for each idUser
+=> Insert BookingsActivitiesUsers
+
