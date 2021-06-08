@@ -16,7 +16,7 @@ Session::init();
 // display form
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
-    // Suppression des msg
+    // delete msg
     unset($_SESSION);
 }
 
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
         
         //test inputs
         foreach($_POST as $key => $input) {
-            if($key !== "téléphone" && empty($input)) {
+            if($key !== "telephone" && empty($input)) {
                 array_push($errors, "Le champ $key est vide");
             }
             else {
@@ -54,14 +54,14 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                     }
                 }
                 // check Firstname
-                else if($key === "prénom"){
+                else if($key === "prenom"){
                     if(preg_match("/^[a-zA-Z -]+$/", $input) === 0){
                         array_push($errors, "Le prénom est incorrect. Merci de ne saisir que des lettres, espaces ou tirets");
                     } else {
                         $body_message .= 'Prénom: '.$input."\n";
                     }
                 }
-                else if($key === "téléphone"){
+                else if($key === "telephone"){
                     if(empty($input)){
                         $body_message .= 'Téléphone: non renseigné'."\n";
                     } else {
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
             extract($_POST);
         
             $mail_to = 'benoit.flipot1007@gmail.com';
-            $subject = 'Demande de renseignement de '.$prénom .$nom;
+            $subject = 'Demande de renseignement de '.$prenom .$nom;
 
             $headers = 'From: '.$email."\r\n";
             $headers .= 'Reply-To: '.$email."\r\n";

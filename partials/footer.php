@@ -16,10 +16,9 @@
 </div>
 <div class="bottomBlocFooter">
     <a href="privacyPolicy.php">Politique de confidentialité |</a>
-    <a href="">Conditions générales de vente |</a>
+    <a href="termsOfSales.php">Conditions générales de vente |</a>
     <a href="legalNotice.php">Mentions légales |</a>
     <a href="https://courtincom.fr">Design by COURTIN<span>COM</span></a>
 </div>
 
 <!-- <img src="img/picto/courtin1.png" alt=""> -->
-COURTIN<span>COM</span>
