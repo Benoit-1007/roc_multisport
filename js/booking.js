@@ -845,178 +845,181 @@ document.addEventListener('DOMContentLoaded', function () {
         })
     };
 
+
+
+    function submitform() {
+
+        // controle !
+        
+    
+    
+        let jsondata = JSON.parse('{ }');;
+        let formData = document.querySelector('#bookingForm');
+        let data = new FormData(formData);
+    
+        // console.log(data);
+    
+        // Contact :
+        let contactJson = JSON.parse('{ }');
+    
+        // Activities :
+        let activitiesJson = JSON.parse('[]');
+    
+        // let rocActivityJson = JSON.parse('[]'); ???
+    
+        for (let key of data.keys()) {
+    
+            // console.log(key + " : "+ data.get(key));
+    
+            if (key.startsWith('contact')) {
+                // Adding contact informations
+                contactJson[key] = data.get(key).toString();
+            }
+    
+            // Manage Activity
+            if (key.startsWith('activity')) {
+                // Adding activity x
+                let activityDetailsJson = JSON.parse('{ }');
+    
+                // If name is empty, we do nothing !
+                if (data.get(key) != "empty") {
+    
+                    // get activity name
+                    activityDetailsJson["name"] = data.get(key);
+                    // get activity date 
+                    activityDetailsJson["date"] = data.get("date_" + key);
+                    // get activity participants number
+                    activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
+                    // get activity half day 
+                    if (data.has("halfDaySelector_" + key)) {
+                        activityDetailsJson["halfDay"] = data.get("halfDaySelector_" + key);
+                    }
+    
+                    // Adding participants for activity x
+                    let participantsJson = JSON.parse('[]');
+    
+                    for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
+                        let participantJson = JSON.parse('{}');
+                        participantJson["lastName"] = data.get("lastName_" + key + "_participant_" + i);
+                        participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
+                        participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
+                        participantJson["size"] = data.get("size_" + key + "_participant_" + i);
+                        participantJson["level"] = data.get("level_" + key + "_participant_" + i);
+                        participantsJson.push(participantJson);
+                    }
+    
+                    activityDetailsJson["participants"] = participantsJson;
+    
+                    activitiesJson.push(activityDetailsJson);
+    
+                    jsondata["contact"] = contactJson;
+                    jsondata["activities"] = activitiesJson;
+                }
+    
+            }
+    
+            // Manage RocActivities
+            if (key.startsWith('rocCocktail')) {
+    
+                let cocktailDetailsJson = JSON.parse('{ }');
+    
+                // If name is empty, we do nothing !
+                if (data.get("rocCocktail_Formula") != "empty") {
+    
+                    // get formula
+                    cocktailDetailsJson["formula"] = data.get("rocCocktail_Formula");
+                    // get date
+                    cocktailDetailsJson["date"] = data.get("date_rocCocktail");
+                    // get activity participants number
+                    cocktailDetailsJson["participantsCount"] = data.get("participantsCount_rocCocktail");
+    
+                    // Adding activities
+                    let cocktailActivitiesJson = JSON.parse('[]');
+    
+                    for (let i = 1; i < 5; i++) {
+    
+                        if (data.get('rocActivity_' + i) !== null) {
+                            let activityJson = JSON.parse('{ }');
+                            activityJson["activity"] = data.get("rocActivity_" + i);
+                            cocktailActivitiesJson.push(activityJson);
+                        }
+                    }
+    
+                    cocktailDetailsJson["activities"] = cocktailActivitiesJson;
+    
+    
+    
+                    // Adding participants for activity x
+                    let cocktailParticipantsJson = JSON.parse('[]');
+    
+                    for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
+                        let participantJson = JSON.parse('{}');
+                        participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
+                        participantJson["lastName"] = data.get("lastName_" + key + "_participant_" + i);
+                        participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
+                        participantJson["size"] = data.get("size_" + key + "_participant_" + i);
+                        participantJson["level"] = data.get("level_" + key + "_participant_" + i);
+                        participantsJson.push(cocktailParticipantsJson);
+                    }
+    
+                    cocktailDetailsJson["participants"] = cocktailParticipantsJson;
+    
+                    activitiesJson.push(cocktailDetailsJson);
+    
+    
+                    jsondata["contact"] = contactJson;
+                    jsondata["coktail"] = activitiesJson;
+                }
+            }
+        }
+    
+    
+    
+        console.log(jsondata);
+    
+        // for debuging only:
+    
+        // for debuging only:
+    
+        let bookingObj = JSON.parse('{ }');
+        bookingObj["dateOfBooking"] = "2021/06/01";
+        bookingObj["comment"] = "Ceci est un commentaire";
+        bookingObj["idContact"] = 1;
+    
+        var formDataTest = JSON.stringify(bookingObj);
+    
+        let crtBookingId = 0;
+    
+        fetchBookingJson(formDataTest).then((value) => {
+            console.log("new id : " + value.id);
+        })
+    
+        // result.then((value)=>{
+        //     console.log(value.id);
+        // })
+    
+    
+    
+    }
+    
+    async function fetchBookingJson(formDataTest) {
+        const response = await fetch('api/booking/create.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: formDataTest
+        })
+        const reponse = await response.json();
+    
+    
+    
+        return reponse;
+    
+    }
+
 });
 
 
 
 // Generate jsonData
-function submitform() {
-
-    // controle !
-    
-
-
-    let jsondata = JSON.parse('{ }');;
-    let formData = document.querySelector('#bookingForm');
-    let data = new FormData(formData);
-
-    // console.log(data);
-
-    // Contact :
-    let contactJson = JSON.parse('{ }');
-
-    // Activities :
-    let activitiesJson = JSON.parse('[]');
-
-    // let rocActivityJson = JSON.parse('[]'); ???
-
-    for (let key of data.keys()) {
-
-        // console.log(key + " : "+ data.get(key));
-
-        if (key.startsWith('contact')) {
-            // Adding contact informations
-            contactJson[key] = data.get(key).toString();
-        }
-
-        // Manage Activity
-        if (key.startsWith('activity')) {
-            // Adding activity x
-            let activityDetailsJson = JSON.parse('{ }');
-
-            // If name is empty, we do nothing !
-            if (data.get(key) != "empty") {
-
-                // get activity name
-                activityDetailsJson["name"] = data.get(key);
-                // get activity date 
-                activityDetailsJson["date"] = data.get("date_" + key);
-                // get activity participants number
-                activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
-                // get activity half day 
-                if (data.has("halfDaySelector_" + key)) {
-                    activityDetailsJson["halfDay"] = data.get("halfDaySelector_" + key);
-                }
-
-                // Adding participants for activity x
-                let participantsJson = JSON.parse('[]');
-
-                for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
-                    let participantJson = JSON.parse('{}');
-                    participantJson["lastName"] = data.get("lastName_" + key + "_participant_" + i);
-                    participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
-                    participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
-                    participantJson["size"] = data.get("size_" + key + "_participant_" + i);
-                    participantJson["level"] = data.get("level_" + key + "_participant_" + i);
-                    participantsJson.push(participantJson);
-                }
-
-                activityDetailsJson["participants"] = participantsJson;
-
-                activitiesJson.push(activityDetailsJson);
-
-                jsondata["contact"] = contactJson;
-                jsondata["activities"] = activitiesJson;
-            }
-
-        }
-
-        // Manage RocActivities
-        if (key.startsWith('rocCocktail')) {
-
-            let cocktailDetailsJson = JSON.parse('{ }');
-
-            // If name is empty, we do nothing !
-            if (data.get("rocCocktail_Formula") != "empty") {
-
-                // get formula
-                cocktailDetailsJson["formula"] = data.get("rocCocktail_Formula");
-                // get date
-                cocktailDetailsJson["date"] = data.get("date_rocCocktail");
-                // get activity participants number
-                cocktailDetailsJson["participantsCount"] = data.get("participantsCount_rocCocktail");
-
-                // Adding activities
-                let cocktailActivitiesJson = JSON.parse('[]');
-
-                for (let i = 1; i < 5; i++) {
-
-                    if (data.get('rocActivity_' + i) !== null) {
-                        let activityJson = JSON.parse('{ }');
-                        activityJson["activity"] = data.get("rocActivity_" + i);
-                        cocktailActivitiesJson.push(activityJson);
-                    }
-                }
-
-                cocktailDetailsJson["activities"] = cocktailActivitiesJson;
-
-
-
-                // Adding participants for activity x
-                let cocktailParticipantsJson = JSON.parse('[]');
-
-                for (let i = 1; i <= data.get("participantsCount_" + key); i++) {
-                    let participantJson = JSON.parse('{}');
-                    participantJson["firstName"] = data.get("firstName_" + key + "_participant_" + i);
-                    participantJson["lastName"] = data.get("lastName_" + key + "_participant_" + i);
-                    participantJson["birthdate"] = data.get("birthdate_" + key + "_participant_" + i);
-                    participantJson["size"] = data.get("size_" + key + "_participant_" + i);
-                    participantJson["level"] = data.get("level_" + key + "_participant_" + i);
-                    participantsJson.push(cocktailParticipantsJson);
-                }
-
-                cocktailDetailsJson["participants"] = cocktailParticipantsJson;
-
-                activitiesJson.push(cocktailDetailsJson);
-
-
-                jsondata["contact"] = contactJson;
-                jsondata["coktail"] = activitiesJson;
-            }
-        }
-    }
-
-
-
-    console.log(jsondata);
-
-    // for debuging only:
-
-    // for debuging only:
-
-    let bookingObj = JSON.parse('{ }');
-    bookingObj["dateOfBooking"] = "2021/06/01";
-    bookingObj["comment"] = "Ceci est un commentaire";
-    bookingObj["idContact"] = 1;
-
-    var formDataTest = JSON.stringify(bookingObj);
-
-    let crtBookingId = 0;
-
-    fetchBookingJson(formDataTest).then((value) => {
-        console.log("new id : " + value.id);
-    })
-
-    // result.then((value)=>{
-    //     console.log(value.id);
-    // })
-
-
-
-}
-
-async function fetchBookingJson(formDataTest) {
-    const response = await fetch('api/booking/create.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: formDataTest
-    })
-    const reponse = await response.json();
-
-
-
-    return reponse;
-
-}

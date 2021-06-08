@@ -7,10 +7,11 @@ class Booking
     private $table_name = "bookings";
 
     // object properties
-    public $id;
+    public $idBooking;
     public $dateOfBooking;
     public $comment;
     public $idContact;
+    public $typeBooking;
 
     public function __construct($db)
     {
@@ -42,7 +43,7 @@ class Booking
         $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-            dateOfBooking=:dateOfBooking, comment=:comment, idContact=:idContact";
+            dateOfBooking=:dateOfBooking, comment=:comment, idContact=:idContact, typeBooking=:typeBooking";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -51,11 +52,13 @@ class Booking
         $this->dateOfBooking = htmlspecialchars(strip_tags($this->dateOfBooking));
         $this->comment = htmlspecialchars(strip_tags($this->comment));
         $this->idContact = htmlspecialchars(strip_tags($this->idContact));
+        $this->typeBooking = htmlspecialchars(strip_tags($this->typeBooking));
 
         // bind values
         $stmt->bindParam(":dateOfBooking", $this->dateOfBooking);
         $stmt->bindParam(":comment", $this->comment);
         $stmt->bindParam(":idContact", $this->idContact);
+        $stmt->bindParam(":typeBooking", $this->typeBooking);
 
         // execute query
         if ($stmt->execute()) {
