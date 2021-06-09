@@ -30,45 +30,50 @@
                         <div class="img">
                             <img src="img/home_vtt.jpeg" alt="Photo de cycliste sur un vttae">
                         </div>    
-                        <div class="blocVTTAE text">
+                        <div class="vttaeBloc text">
                             <h2>vttae</h2>
                             <a href="#bike">en savoir +</a>
+                            <img src="img/picto/vttPicto.png" alt="pictogramme vtt">
                         </div>
                     </li>
                     <li>
                         <div class="img">
                             <img src="img/home_paddle2.jpeg" alt="Photo d'un homme en sortie paddle">
                         </div>    
-                        <div class="blocPADDLE text">
+                        <div class="paddleBloc text">
                             <h2>paddle kayak</h2>
                             <a href="#paddle">en savoir +</a>
+                            <img src="img/picto/paddlePicto.png" alt="pictogramme paddle">
                         </div>
                     </li>
                     <li>
                         <div class="img">
                             <img src="img/home_climbing.jpeg" alt="Photo d'une femme sur une falaise">
                         </div>    
-                        <div class="blocESCALADE text">
+                        <div class="climbingBloc text">
                             <h2>escalade via ferrata</h2>
                             <a href="#climbing">en savoir +</a>
+                            <img src="img/picto/climbingPicto.png" alt="pictogramme climbing">
                         </div>
                     </li>
                     <li>
                         <div class="img">
                             <img src="img/home_archery.jpeg" alt="Photo d'un arc">
                         </div>    
-                        <div class="blocTIR text">
+                        <div class="archeryBloc text">
                             <h2>tir à l'arc</h2>
                             <a href="#archery">en savoir +</a>
+                            <img src="img/picto/archeryPicto.png" alt="pictogramme tir à l'arc">
                         </div>
                     </li>
                     <li>
                         <div class="img">
                             <img src="img/home_snowboard.jpeg" alt="Photo d'un snowboarder">
                         </div>    
-                        <div class="blocSNOWBOARD text">
+                        <div class="snowboardBloc text">
                             <h2>snowboard splitboard</h2>
                             <a href="#snowboard">en savoir +</a>
+                            <img src="img/picto/snowboardPicto.png" alt="pictogramme snowboard">
                         </div>
                     </li>
                     <li>
@@ -78,7 +83,6 @@
                         </div>
                         <div class="cocktail text">
                             <h2>c<span>o</span><span>c</span><span>k</span>t<span>a</span><span>i</span><span>l</span> roc</h2>
-                            <!-- <div><a href="#cocktail">en savoir +</a></div> -->
                             <a href="#cocktail"> <span>e</span><span>n</span> <span>s</span><span>a</span><span>v</span><span>o</span><span>i</span><span>r</span> <span>+</span> </a>
                         </div>
                     </li>
@@ -519,7 +523,7 @@
                             <p>Jérome, VTTAE</p>
                         </div>
                         <div>
-                            <p>Journée exceptionnelle avec des paysages époustouflants. Un kiff à l'état pur ! Je recommande vivement !</p>
+                            <p>"Journée exceptionnelle avec des paysages époustouflants. Un kiff à l'état pur ! Je recommande vivement !"</p>
                             <p>Hervé, randonnée splitboard</p>
                         </div>
                     </div>

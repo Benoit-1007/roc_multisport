@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
             extract($_POST);
         
             $mail_to = 'benoit.flipot1007@gmail.com';
-            $subject = 'Demande de renseignement de '.$prénom .$nom;
+            $subject = 'Demande de renseignement de '.$prenom .$nom;
 
             $headers = 'From: '.$email."\r\n";
             $headers .= 'Reply-To: '.$email."\r\n";

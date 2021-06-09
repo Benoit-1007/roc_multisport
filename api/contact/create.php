@@ -5,21 +5,21 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-  
+
 // get database connection
 include_once '../config/database.php';
-  
+
 // instantiate contact object
 include_once '../objects/contact.php';
-  
+
 $database = new Database();
 $db = $database->getConnection();
-  
+
 $contact = new Contact($db);
-  
+
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
-  
+
 // make sure data is not empty
 if(
     !empty($data->contact->contact_firstName) &&
@@ -31,7 +31,7 @@ if(
     !empty($data->contact->contact_postalCode) &&
     !empty($data->contact->contact_city) 
 ){
-  
+
     // set contact property values
     $contact->firstName = $data->contact->contact_firstName;
     $contact->comment = $data->contact->contact_comment;
