@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,11 +32,11 @@
         <?php endif; ?>
 
         <form id="contactForm" action="contact.php" method="post">
-            <label for="email">E-mail<span>*</span></label><input class="field" type="email" id="email" name="email" require autofocus>
-            <label for="lastName">Nom<span>*</span></label><input class="field" type="text" id="lastName" name="nom" require>
-            <label for="firstName">Prénom<span>*</span></label><input class="field" type="text" id="firstName" name="prenom" require>
+            <label for="email">E-mail<span>*</span></label><input class="field" type="email"  name="email" required autofocus>
+            <label for="lastName">Nom<span>*</span></label><input class="field" type="text" id="lastName" name="nom" required>
+            <label for="firstName">Prénom<span>*</span></label><input class="field" type="text" id="firstName" name="prenom" required>
             <label for="phone">Téléphone</label><input class="field" type="phone" id="phone" name="telephone">
-            <label for="message">Message<span>*</span></label><textarea class="field" id="message" name="message" rows="10" require></textarea>
+            <label for="message">Message<span>*</span></label><textarea class="field" id="message" name="message" rows="10" required></textarea>
             <button type="submit">Envoyer</button>
         </form>
         <p>Vous pouvez également nous contacter par téléphone au <a href="tel:0658355166">06.58.35.51.66.</a></p>
@@ -45,5 +45,11 @@
         <?php require('partials/footer.php') ?>
     </footer>
 
+    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        // jQuery - display alert 5sec
+        $('.alert').delay(6000).fadeOut()
+    </script>
     <script type="module" src="js/app.js"></script>
 </body>
+</html>
