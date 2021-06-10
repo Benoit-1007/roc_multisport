@@ -821,7 +821,7 @@ function submitform() {
 
     for (let key of data.keys()) {
 
-        console.log(key + " : "+ data.get(key));
+        // console.log(key + " : "+ data.get(key));
 
 
         // Manage contact
@@ -832,7 +832,7 @@ function submitform() {
 
         // Manage comment
         if (key.startsWith('comment')) {
-            console.log('test JSON comment')
+            // console.log('test JSON comment')
             // Adding comment
             commentJson[key] = data.get(key).toString();
         }
@@ -849,7 +849,7 @@ function submitform() {
                 // get activity name
                 activityDetailsJson["name"] = data.get(key);
                 // get activity date 
-                activityDetailsJson["date"] = data.get("date_" + key);
+                activityDetailsJson["dateActivity"] = data.get("date_" + key);
                 // get activity participants number
                 activityDetailsJson["participantsCount"] = data.get("participantsCount_" + key);
                 // get activity half day 
@@ -938,50 +938,32 @@ function submitform() {
         }
     }
 
-
-
     console.log(jsondata);
-
-    // for debuging only:
-
-    let contact=jsondata["contact"];
-    console.log(contact.contact_mail)
-
-    // for debuging only:
-
-    // let bookingObj = JSON.parse('{ }');
-    // bookingObj["dateOfBooking"] = "2021/06/01";
-    // bookingObj["comment"] = "Ceci est un commentaire";
-    // bookingObj["idContact"] = 1;
 
     var formDataTest = JSON.stringify(jsondata);
     console.log(formDataTest);
 
     let crtBookingId = 0;
 
-    fetchBookingJson(formDataTest).then((value) => {
-        console.log("new id : " + value.id);
+    fetchBookingJson(formDataTest)
+    .then((data)=>{
+        console.log("message" + data.message);
     })
-
-    // result.then((value)=>{
-    //     console.log(value.id);
-    // })
-
-
+    .catch(err => {
+        console.log('Error: ', err)
+      })
 
 }
 
 async function fetchBookingJson(formDataTest) {
-    const response = await fetch('api/booking/createAllDatas.php', {
+    let response = await fetch('api/booking/createAllDatas.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: formDataTest
     })
-    const reponse = await response.json();
-
-
+    let reponse = await response.json();
 
     return reponse;
 

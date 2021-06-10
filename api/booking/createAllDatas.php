@@ -1,4 +1,11 @@
 <?php
+
+// Display all errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -12,23 +19,20 @@ include_once '../config/database.php';
 // instantiate all object
 include_once '../objects/booking.php';
 include_once '../objects/contact.php';
-// include_once '../objects/bookingsactivities.php';
-// include_once '../objects/bookingactivitiesusers.php';
-// include_once '../objects/users.php';
+include_once '../objects/bookingActivity.php';
+include_once '../objects/bookingactivityuser.php';
+include_once '../objects/user.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
 $booking = new Booking($db);
 $contact = new Contact($db);
-// ... 
-// $bookingActivity = new BookingActivity($db);
-// $user = new User($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
-$dataAreOk = true;
+
 
 // make sure data is not empty
 if (
@@ -41,7 +45,8 @@ if (
     !empty($data->contact->contact_city)
 ) {
 
-    // set contact property values
+    // create the contact
+    // ==================
     $contact->lastName = $data->contact->contact_lastName;
     $contact->firstName = $data->contact->contact_firstName;
     $contact->organisation = $data->contact->contact_society;
@@ -50,55 +55,103 @@ if (
     $contact->adress = $data->contact->contact_adress;
     $contact->postalCode = $data->contact->contact_postalCode;
     $contact->city = $data->contact->contact_city;
-} else {
 
-    // set response code - 400 bad request
-    http_response_code(400);
-
-    // tell the user
-    echo json_encode(array("message" => "Unable to create booking. Data is incomplete."));
-}
-
-if ($dataAreOk) {
-
-    // create the contact
     $contactId = $contact->create();
 
-    // Create booking
-    $typeOfBooking = "";
-    $comment="";
-    if($data->activities !== null){
-        $typeOfBooking = $data->activities{0}->name;
-        // $typeOfBooking = "singleActivity";
-    }else{
-        $typeOfBooking = $data->coktail{0}->formula;
-    }
-
-    $booking->comment = $data->comment->comment;
-    $booking->idContact = $contactId;
-    $booking->typeOfBooking = $typeOfBooking;
-
-    $bookingId = $booking->create();
-
-
-
-    if ($bookingId > 0) {
-
-        // set response code - 201 created
-        http_response_code(201);
-
-        // tell the user
-
-        echo json_encode(array("message" => "booking was created.", "id" => $bookingId));
-    } else {
-
-        // set response code - 503 service unavailable
-        http_response_code(503);
-
+    if ($contactId == 0) {
+        // set response code - 400 bad request
+        http_response_code(400);
         // tell the user
         echo json_encode(array("message" => "Unable to create contact."));
+    } else {
+
+        // Create booking
+        // ==============
+
+        $comment = "";
+        if (isset($data->activities)) {
+            $typeOfBooking = "singleActivity";
+        } else {
+            $typeOfBooking = $data->coktail{0}->formula;
+        }
+
+        $booking->comment = $data->comment->comment;
+        $booking->idContact = $contactId;
+        $booking->typeOfBooking = $typeOfBooking;
+
+        $bookingId = $booking->create();
+
+        if ($bookingId == 0) {
+            // set response code - 400 bad request
+            http_response_code(400);
+            // tell the user
+            echo json_encode(array("message" => "Unable to create booking."));
+        } else {
+
+            // Create Booking activity
+            // =======================
+
+            foreach ($data->activities as $activity) {
+                $bookingActivity = new BookingActivity($db);
+
+                $bookingActivity->idBooking = $bookingId;
+                $bookingActivity->codeActivity = $activity->name;
+                $bookingActivity->dateActivity = $activity->dateActivity;
+                if (isset($activity->halfDay)) {
+                    $bookingActivity->halfDaySelect = $activity->halfDay;
+                } else {
+                    $bookingActivity->halfDaySelect = "allday";
+                }
+                $bookingActivityId = $bookingActivity->create();
+
+
+                // Create Users
+
+                foreach ($activity->participants as $participant) {
+                    $user = new  User($db);
+                    $user->lastName = $participant->lastName;
+                    $user->firstName = $participant->firstName;
+                    $user->birthdate = $participant->birthdate;
+                    $user->size = $participant->size;
+                    $user->level = $participant->level;
+                    $userId =  $user->create();
+
+                    $bookingActivityUser = new Bookingactivityuser($db);
+                    $bookingActivityUser->idBookingActivity = $bookingActivityId;
+                    $bookingActivityUser->idUser = $userId;
+                    $bookingActivityUser->create();
+                }
+            }
+
+            http_response_code(201);
+
+            // tell the user
+
+            echo json_encode(array("message" => "Job done."));
+        }
+
+
+
+        // if ($bookingId > 0) {
+
+        //     // set response code - 201 created
+        //     http_response_code(201);
+
+        //     // tell the user
+        //     echo json_encode(array("message" => "booking was created."));
+        // } else {
+
+        //     // set response code - 503 service unavailable
+        //     http_response_code(503);
+
+        //     // tell the user
+        //     echo json_encode(array("message" => "Unable to create contact."));
+        // }
     }
-} else {
+}
+
+// tell the user data is incomplete
+else {
 
     // set response code - 400 bad request
     http_response_code(400);
@@ -106,8 +159,6 @@ if ($dataAreOk) {
     // tell the user
     echo json_encode(array("message" => "Unable to create booking. Data is incomplete."));
 }
-
-
 //BF
 // foreach ($data->activities as $key => $value) {
 //     $bookingActivity->idBooking = $bookingId;
@@ -118,41 +169,3 @@ if ($dataAreOk) {
 //     $bookingActivityId = $bookingActivity->create();
 
 // }
-
-
-
-
-
-
-?>
-
-
-
-
-// => Simple
-/* for each activity
-
-Insert BookingsActivities
-=> last IDBookingsActivities
-
-for each participants
-=> insert user
-=> last IDuser
-=> insert BookingsActivitiesUsers
-
-
-
-// => cocktail
-
-foreach participants
-=> insert
-=> store idUser dans un tableau
-
-=> store dateOfActivities
-
-/* for each activity
-Insert BookingsActivities
-=> last IDBookingsActivities
-
-for each idUser
-=> Insert BookingsActivitiesUsers

@@ -23,6 +23,8 @@ class BookingActivity
     public function create()
     {
 
+
+
         // query to insert record
         $query = "INSERT INTO
                 " . $this->table_name . "
