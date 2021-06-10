@@ -22,6 +22,8 @@ $db = $database->getConnection();
 $booking = new Booking($db);
 $contact = new Contact($db);
 // ... 
+// $bookingActivity = new BookingActivity($db);
+// $user = new User($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -32,7 +34,6 @@ $dataAreOk = true;
 if (
     !empty($data->contact->contact_lastName) &&
     !empty($data->contact->contact_firstName) &&
-    !empty($data->contact->contact_society) &&
     !empty($data->contact->contact_phone) &&
     !empty($data->contact->contact_mail) &&
     !empty($data->contact->contact_adress) &&
@@ -66,13 +67,14 @@ if ($dataAreOk) {
     // Create booking
     $typeOfBooking = "";
     $comment="";
-    if($data->activities != null){
+    if($data->activities !== null){
         $typeOfBooking = $data->activities{0}->name;
+        // $typeOfBooking = "singleActivity";
     }else{
         $typeOfBooking = $data->coktail{0}->formula;
     }
 
-    $booking->comment = $comment;
+    $booking->comment = $data->comment->comment;
     $booking->idContact = $contactId;
     $booking->typeOfBooking = $typeOfBooking;
 
@@ -104,6 +106,24 @@ if ($dataAreOk) {
     // tell the user
     echo json_encode(array("message" => "Unable to create booking. Data is incomplete."));
 }
+
+
+//BF
+// foreach ($data->activities as $key => $value) {
+//     $bookingActivity->idBooking = $bookingId;
+//     // $bookingActivity->codeActivity = ;
+//     $bookingActivity->dateActivity = $data->activities{key}->date;
+//     $booking->halfDaySelect = $data->activities{key}->halfDay;
+
+//     $bookingActivityId = $bookingActivity->create();
+
+// }
+
+
+
+
+
+
 ?>
 
 

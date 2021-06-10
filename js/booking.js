@@ -57,24 +57,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let validateReservationBtn = bookingForm.querySelector('#validateReservation');
 
-    //Choose between single activity or cocktail ROC
+    // Choose between single activity or cocktail ROC
     chooseFormula(activitiesbtn);
 
-    //add a new single activity
+    // add a new single activity
     addActivityBtn.addEventListener('click', addActivity);
 
-    //remove a new single activity
+    // remove a new single activity
     deletActivityBtn.addEventListener('click', removeActivity);
 
+    // menu mananagement for mobile phone
+    toggleMenu()
 
 
-
-    //VERIF RECUPERATION INPUTS
+    // VERIF RECUPERATION INPUTS
     validateReservationBtn.addEventListener('click', function (e) {
         let inputs = bookingForm.querySelectorAll('.field');
         e.preventDefault();
         inputs.forEach(input => {
-            // console.log(input.name);
         });
     })
 
@@ -196,7 +196,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         break;
                     default:
                         if (dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
-                            console.log('test remove 1')
                             removeHalfDaySelector(activityNumber);
                         }
                         if (dateSelector.getAttribute('type') === 'week') {
@@ -277,7 +276,6 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {*} numActivity number of current activity (1, 2, ...)
      */
     function removeHalfDaySelector(numActivity) {
-        console.log('remove');
         //get half day selector to remove
         let halfDaySelectorToRemove = document.querySelector('.activity_' + numActivity + '_halfDaySelector');
         //remove half day selector
@@ -818,17 +816,26 @@ function submitform() {
     // Activities :
     let activitiesJson = JSON.parse('[]');
 
-    // let rocActivityJson = JSON.parse('[]'); ???
+    // Comment
+    let commentJson = JSON.parse('{}');
 
     for (let key of data.keys()) {
 
-        // console.log(key + " : "+ data.get(key));
+        console.log(key + " : "+ data.get(key));
 
+
+        // Manage contact
         if (key.startsWith('contact')) {
             // Adding contact informations
             contactJson[key] = data.get(key).toString();
         }
 
+        // Manage comment
+        if (key.startsWith('comment')) {
+            console.log('test JSON comment')
+            // Adding comment
+            commentJson[key] = data.get(key).toString();
+        }
 
 
         // Manage Activity
@@ -869,6 +876,7 @@ function submitform() {
 
                 jsondata["contact"] = contactJson;
                 jsondata["activities"] = activitiesJson;
+                jsondata["comment"] = commentJson;
             }
 
         }
@@ -925,6 +933,7 @@ function submitform() {
 
                 jsondata["contact"] = contactJson;
                 jsondata["coktail"] = activitiesJson;
+                jsondata["comment"] = commentJson;
             }
         }
     }
