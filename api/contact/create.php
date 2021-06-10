@@ -22,8 +22,8 @@ $data = json_decode(file_get_contents("php://input"));
 
 // make sure data is not empty
 if(
-    !empty($data->contact->contact_firstName) &&
     !empty($data->contact->contact_lastName) &&
+    !empty($data->contact->contact_firstName) &&
     !empty($data->contact->contact_society) &&
     !empty($data->contact->contact_phone) &&
     !empty($data->contact->contact_mail) &&
@@ -34,6 +34,7 @@ if(
 ){
 
     // set contact property values
+    $contact->lastName = $data->contact->contact_lastName;
     $contact->firstName = $data->contact->contact_firstName;
     $contact->comment = $data->contact->contact_comment;
     $contact->organisation = $data->contact->contact_society;

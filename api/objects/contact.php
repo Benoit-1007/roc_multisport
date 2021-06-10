@@ -8,8 +8,8 @@ class Contact
 
     // object properties
     public $idContact;
-    public $firstName;
     public $lastName;
+    public $firstName;
     public $organisation;
     public $phoneNumber;
     public $mail;
@@ -47,14 +47,14 @@ class Contact
         $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-            firstName=:firstName, lastName=:lastName, organisation=:organisation, phoneNumber=:phoneNumber, mail=:mail, adress=:adress, postalCode=:postalCode, city=:city";
+            lastName=:lastName, firstName=:firstName, organisation=:organisation, phoneNumber=:phoneNumber, mail=:mail, adress=:adress, postalCode=:postalCode, city=:city";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
 
         // sanitize
-        $this->firstName = htmlspecialchars(strip_tags($this->firstName));
         $this->lastName = htmlspecialchars(strip_tags($this->lastName));
+        $this->firstName = htmlspecialchars(strip_tags($this->firstName));
         $this->organisation = htmlspecialchars(strip_tags($this->organisation));
         $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
         $this->mail = htmlspecialchars(strip_tags($this->mail));
@@ -63,8 +63,8 @@ class Contact
         $this->city = htmlspecialchars(strip_tags($this->city));
 
         // bind values
-        $stmt->bindParam(":firstName", $this->firstName);
         $stmt->bindParam(":lastName", $this->lastName);
+        $stmt->bindParam(":firstName", $this->firstName);
         $stmt->bindParam(":organisation", $this->organisation);
         $stmt->bindParam(":phoneNumber", $this->phoneNumber);
         $stmt->bindParam(":mail", $this->mail);

@@ -30,8 +30,8 @@ $dataAreOk = true;
 
 // make sure data is not empty
 if (
-    !empty($data->contact->contact_firstName) &&
     !empty($data->contact->contact_lastName) &&
+    !empty($data->contact->contact_firstName) &&
     !empty($data->contact->contact_society) &&
     !empty($data->contact->contact_phone) &&
     !empty($data->contact->contact_mail) &&
@@ -41,8 +41,8 @@ if (
 ) {
 
     // set contact property values
-    $contact->firstName = $data->contact->contact_firstName;
     $contact->lastName = $data->contact->contact_lastName;
+    $contact->firstName = $data->contact->contact_firstName;
     $contact->organisation = $data->contact->contact_society;
     $contact->phoneNumber = $data->contact->contact_phone;
     $contact->mail = $data->contact->contact_mail;

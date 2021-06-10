@@ -3,7 +3,7 @@ class Database{
   
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "roc2";
+    private $db_name = "benoitfli_roc_multisport";
     private $username = "root";
     private $password = "root";
     public $conn;
