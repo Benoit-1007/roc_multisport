@@ -43,19 +43,17 @@ class Booking
         $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-            dateOfBooking=:dateOfBooking, comment=:comment, idContact=:idContact, typeBooking=:typeBooking";
+            comment=:comment, idContact=:idContact, typeBooking=:typeBooking";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
 
         // sanitize
-        $this->dateOfBooking = htmlspecialchars(strip_tags($this->dateOfBooking));
         $this->comment = htmlspecialchars(strip_tags($this->comment));
         $this->idContact = htmlspecialchars(strip_tags($this->idContact));
         $this->typeBooking = htmlspecialchars(strip_tags($this->typeBooking));
 
         // bind values
-        $stmt->bindParam(":dateOfBooking", $this->dateOfBooking);
         $stmt->bindParam(":comment", $this->comment);
         $stmt->bindParam(":idContact", $this->idContact);
         $stmt->bindParam(":typeBooking", $this->typeBooking);

@@ -940,12 +940,13 @@ function submitform() {
 
     // for debuging only:
 
-    let bookingObj = JSON.parse('{ }');
-    bookingObj["dateOfBooking"] = "2021/06/01";
-    bookingObj["comment"] = "Ceci est un commentaire";
-    bookingObj["idContact"] = 1;
+    // let bookingObj = JSON.parse('{ }');
+    // bookingObj["dateOfBooking"] = "2021/06/01";
+    // bookingObj["comment"] = "Ceci est un commentaire";
+    // bookingObj["idContact"] = 1;
 
     var formDataTest = JSON.stringify(jsondata);
+    console.log(formDataTest);
 
     let crtBookingId = 0;
 
@@ -962,7 +963,7 @@ function submitform() {
 }
 
 async function fetchBookingJson(formDataTest) {
-    const response = await fetch('api/contact/create.php', {
+    const response = await fetch('api/booking/createAllDatas.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

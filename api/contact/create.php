@@ -30,6 +30,7 @@ if(
     !empty($data->contact->contact_adress) &&
     !empty($data->contact->contact_postalCode) &&
     !empty($data->contact->contact_city) 
+
 ){
 
     // set contact property values
@@ -68,12 +69,5 @@ if(
 }
   
 // tell the user data is incomplete
-else{
-  
-    // set response code - 400 bad request
-    http_response_code(400);
-  
-    // tell the user
-    echo json_encode(array("message" => "Unable to create contact. Data is incomplete."));
-}
+
 ?>
