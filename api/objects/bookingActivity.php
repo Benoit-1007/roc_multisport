@@ -1,4 +1,5 @@
-<?phpclass BookingActivity
+<?php
+class BookingActivity
 {
 
     // database connection and table name
@@ -6,14 +7,14 @@
     private $table_name = "bookingsactivities";
 
     // object properties
-    public $idBookingActivity
-    public $idBooking
-    public $codeActivity
-    public $dateActivity
-    public $halfDaySelect
+    public $idBookingActivity;
+    public $idBooking;
+    public $codeActivity;
+    public $dateActivity;
+    public $halfDaySelect;
     
 
-    public_function __construct($db)
+    public function __construct($db)
     {
         $this->conn = $db;
     }
