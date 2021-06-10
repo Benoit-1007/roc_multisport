@@ -64,17 +64,17 @@ if ($dataAreOk) {
     $contactId = $contact->create();
 
     // Create booking
-    $typeBooking = "";
+    $typeOfBooking = "";
     $comment="";
     if($data->activities != null){
-        $typeBooking = $data->activities{0}->name;
+        $typeOfBooking = $data->activities{0}->name;
     }else{
-        $typeBooking = $data->coktail{0}->formula;
+        $typeOfBooking = $data->coktail{0}->formula;
     }
 
     $booking->comment = $comment;
     $booking->idContact = $contactId;
-    $booking->typeBooking = $typeBooking;
+    $booking->typeOfBooking = $typeOfBooking;
 
     $bookingId = $booking->create();
 
