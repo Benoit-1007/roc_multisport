@@ -932,7 +932,7 @@ function submitform() {
 
 
                 jsondata["contact"] = contactJson;
-                jsondata["coktail"] = activitiesJson;
+                jsondata["cocktail"] = activitiesJson;
                 jsondata["comment"] = commentJson;
             }
         }
@@ -951,7 +951,7 @@ function submitform() {
     })
     .catch(err => {
         console.log('Error: ', err)
-      })
+    })
 
 }
 

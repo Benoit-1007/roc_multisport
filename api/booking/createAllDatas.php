@@ -69,66 +69,119 @@ if (
         // ==============
 
         $comment = "";
+
         if (isset($data->activities)) {
             $typeOfBooking = "singleActivity";
-        } else {
-            $typeOfBooking = $data->coktail{0}->formula;
-        }
+        
 
-        $booking->comment = $data->comment->comment;
-        $booking->idContact = $contactId;
-        $booking->typeOfBooking = $typeOfBooking;
+            $booking->comment = $data->comment->comment;
+            $booking->idContact = $contactId;
+            $booking->typeOfBooking = $typeOfBooking;
 
-        $bookingId = $booking->create();
+            $bookingId = $booking->create();
 
-        if ($bookingId == 0) {
-            // set response code - 400 bad request
-            http_response_code(400);
-            // tell the user
-            echo json_encode(array("message" => "Unable to create booking."));
-        } else {
+            if ($bookingId == 0) {
+                // set response code - 400 bad request
+                http_response_code(400);
+                // tell the user
+                echo json_encode(array("message" => "Unable to create booking."));
+            } else {
 
-            // Create Booking activity
-            // =======================
+                // Create Booking activity
+                // =======================
 
-            foreach ($data->activities as $activity) {
-                $bookingActivity = new BookingActivity($db);
+                foreach ($data->activities as $activity) {
+                    $bookingActivity = new BookingActivity($db);
 
-                $bookingActivity->idBooking = $bookingId;
-                $bookingActivity->codeActivity = $activity->name;
-                $bookingActivity->dateActivity = $activity->dateActivity;
-                if (isset($activity->halfDay)) {
-                    $bookingActivity->halfDaySelect = $activity->halfDay;
-                } else {
-                    $bookingActivity->halfDaySelect = "allday";
+                    $bookingActivity->idBooking = $bookingId;
+                    $bookingActivity->codeActivity = $activity->name;
+                    $bookingActivity->dateActivity = $activity->dateActivity;
+                    if (isset($activity->halfDay)) {
+                        $bookingActivity->halfDaySelect = $activity->halfDay;
+                    } else {
+                        $bookingActivity->halfDaySelect = "allday";
+                    }
+                    $bookingActivityId = $bookingActivity->create();
+
+
+                    // Create Users
+
+                    foreach ($activity->participants as $participant) {
+                        $user = new User($db);
+                        $user->lastName = $participant->lastName;
+                        $user->firstName = $participant->firstName;
+                        $user->birthdate = $participant->birthdate;
+                        $user->size = $participant->size;
+                        $user->level = $participant->level;
+                        $userId = $user->create();
+
+                    // Create Activities Users
+                        $bookingActivityUser = new Bookingactivityuser($db);
+                        $bookingActivityUser->idBookingActivity = $bookingActivityId;
+                        $bookingActivityUser->idUser = $userId;
+                        $bookingActivityUser->create();
+                    }
                 }
-                $bookingActivityId = $bookingActivity->create();
+            }
+        } else {
+            $typeOfBooking = $data->cocktail{0}->formula;
 
+            $booking->comment = $data->comment->comment;
+            $booking->idContact = $contactId;
+            $booking->typeOfBooking = $typeOfBooking;
 
+            $bookingId = $booking->create();
+
+            if ($bookingId == 0) {
+                // set response code - 400 bad request
+                http_response_code(400);
+                // tell the user
+                echo json_encode(array("message" => "Unable to create booking."));
+            } else {
+
+                // Create Booking activity
+                // =======================
+                foreach ($data->cocktail{0}->activities as $activity) {
+                    $bookingActivity = new BookingActivity($db);
+                    
+                    $bookingActivity->idBooking = $bookingId;
+                    $bookingActivity->codeActivity = $activity->activity;
+                    $bookingActivity->dateActivity = $data->cocktail{0}->date;
+                    if (count($data->cocktail{0}->activities) === 2){
+                        if($typeOfBooking = 'cocktailOneDay'){
+                            $bookingActivity->halfDaySelect = "halfday";
+                        } else {
+                            $bookingActivity->halfDaySelect = "allday";
+                        }
+                    }
+                    
+                    $bookingActivityId = $bookingActivity->create();
+                }
+                
                 // Create Users
-
-                foreach ($activity->participants as $participant) {
-                    $user = new  User($db);
+                // =======================
+                
+                foreach($data->cocktail{0}->participants as $participant) {
+                    $user = new User($db);
                     $user->lastName = $participant->lastName;
                     $user->firstName = $participant->firstName;
                     $user->birthdate = $participant->birthdate;
                     $user->size = $participant->size;
-                    $user->level = $participant->level;
-                    $userId =  $user->create();
+                    $user->level = "useless";
+                    $userId = $user->create();
 
+                    // Create Activities Users
                     $bookingActivityUser = new Bookingactivityuser($db);
-                    $bookingActivityUser->idBookingActivity = $bookingActivityId;
-                    $bookingActivityUser->idUser = $userId;
-                    $bookingActivityUser->create();
                 }
-            }
-
-            http_response_code(201);
-
-            // tell the user
-
-            echo json_encode(array("message" => "Job done."));
+            }    
         }
+    }
+
+    http_response_code(201);
+
+    // tell the user
+
+    echo json_encode(array("message" => "Job done."));
 
 
 
@@ -147,7 +200,6 @@ if (
         //     // tell the user
         //     echo json_encode(array("message" => "Unable to create contact."));
         // }
-    }
 }
 
 // tell the user data is incomplete
