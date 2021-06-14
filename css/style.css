@@ -198,13 +198,14 @@ header{
     position: absolute;
     top:68px;
     right:0;
-    background: var(--background);
+    background: url("../img/picto/greenVttPicto.png")bottom no-repeat, var(--background);
+    background-size: 10rem;
     margin:0;
+    overflow: hidden;
     transition: width 0.5s ease-in-out, background 1s ease-in-out;
 }
 .show_nav .navbar_links{
     width:100%;
-    background: url("../img/picto/picto_paddle.png")bottom no-repeat, var(--background);
 }
 .navbar_link{
     transform: translateX(101%);
@@ -227,7 +228,8 @@ header{
     transition: all 1s ease-in-out;
 }
 .show_nav .navbar_activities{
-    background:  url("../img/picto/xsmall_picto_climbing.png")right no-repeat;
+    background:  url("../img/picto/greyClimbingPicto.png")right no-repeat;
+    /* background-size: 8rem; */
 }
 .navbar_activity a{
     display: block;
@@ -562,6 +564,7 @@ header{
     text-align: center;
     background: url("../img/mountain3.jpeg")bottom fixed;
     background-size: cover;
+    padding-bottom: 10rem;
 }
 .booking h1 span{
     color: var(--rocColorC);
@@ -615,10 +618,6 @@ fieldset, .booking textarea{
 .checkbox input{
     width: unset;
     margin: 1rem;
-}
-.formulaSelector, .activityManagement{
-    display: flex;
-    justify-content: space-between;
 }
 .singleActivity fieldset, .rocCocktail fieldset{
     color: var(--darkColor);
@@ -777,10 +776,11 @@ div.form-error {
 footer{
     color: var(--rocColorR);
     text-align: center;
-    background: url("../img/background/bgFooter.png") bottom no-repeat, var(--clearColor);
+    background: url("../img/background/bgFooter.png") bottom no-repeat;
     background-size: 100%;
+    background-color: var(--clearColor);
     padding-top: 2rem;
-    padding-bottom: 8rem;
+    /* padding-bottom: 8rem; */
 }
 footer a{
     color: var(--rocColorR);
@@ -796,7 +796,7 @@ footer a{
 }
 .bottomBlocFooter{
     margin-top: 3rem;
-    margin-bottom: 1rem;
+    padding: 0 2rem 8rem 2rem;
 }
 .bottomBlocFooter a{
     text-transform: none;
@@ -814,10 +814,13 @@ footer a{
 /* #region MEDIA QUERIES */
 
 /* #region SMALL MOBILE (max-width: 450px) */
-@media screen and (max-width: 450px) {
-    .button, .formulaSelector, .activityManagement{
+@media screen and (max-width: 500px) {
+    .button{
         flex-direction: column;
         align-items: center;
+    }
+    .basket{
+        font-size: 1rem;
     }
 }
 /* #endregion SMALL MOBILE (max-width: 450px) */
@@ -832,7 +835,7 @@ footer a{
         max-width: 160px;
     }
     .navbar{
-        align-items: center;
+        /* align-items: center; */
         font-size: 1.5rem;
         padding-right: 9rem;
     }
@@ -845,6 +848,7 @@ footer a{
         width: unset;
         height: unset;
         background: unset;
+        overflow: unset;
         transition: unset;
     }
     .navbar_link{
@@ -909,7 +913,6 @@ footer a{
         height: 20rem;
         display:flex;
         flex-wrap: wrap;
-        justify-content: space-between;
         align-items: flex-end;
         padding: unset;
     }
@@ -919,7 +922,7 @@ footer a{
         align-items: center;
         flex-wrap: nowrap;
         width:100%;
-        padding: 0rem 8rem 0 2rem;
+        padding: 2rem 8rem 2rem 2rem;
     }
     .contactInfo{
         display: flex;
@@ -940,6 +943,8 @@ footer a{
     }
     .bottomBlocFooter{
         width: 100%;
+        padding: unset;
+        margin-top: -3rem;
     }
     .bottomBlocFooter a{
         color: var(--clearColor);
@@ -949,10 +954,6 @@ footer a{
     .contact p, #contactForm, .booking p:not(#bookingForm p), #bookingForm{
         width:70%;
         margin: auto;
-    }
-    .formulaSelector{
-        flex-direction: row;
-        justify-content: space-between;
     }
     div[class*='activityItem'] > div{
         display: flex;
@@ -1190,13 +1191,25 @@ footer a{
     .desktop-button{
         display:flex;
     }
+    .testimony{
+        height: 140vh;
+    }
     .testimony .sliderBloc{
         width: 50%;
         margin: unset;
         border-radius: 0 4rem 4rem 0;
     }
+    footer{
+        background-color: unset;
+        height: 45rem;
+        margin-top: -25rem;
+    }
     .topBlocFooter{
+        padding-top: 10rem;
         padding-left: 10rem;
+    }
+    .bottomBlocFooter{
+        margin-top: -3rem;
     }
     footer p{
         font-size: 1.2rem;
@@ -1206,7 +1219,9 @@ footer a{
         text-align: left;
         padding-left: 2rem;
     }
-    /* FORM */
+    .contact, .booking{
+        padding-bottom: 20rem;
+    }
     
 }
 /* #endregion DESKTOP (min-width: 980px) */

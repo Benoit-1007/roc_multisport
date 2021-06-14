@@ -22,10 +22,10 @@
             <fieldset class="contactInformation">
                 <legend>Vos coordonnées</legend>
                 <input class="field" type="text" id="contact_lastName" name="contact_lastName" required placeholder="Nom*">
-                <input class="field" type="text" name="contact_firstName" required placeholder="Prénom*">
+                <input class="field" type="text" id="contact_firstName"name="contact_firstName" required placeholder="Prénom*">
                 <input class="field" type="text" name="contact_society" placeholder="Nom de la société">
-                <input class="field" type="tel" name="contact_phone" required placeholder="Téléphone(organisateur)*">
-                <input class="field" type="mail" name="contact_mail" required placeholder="Email*">
+                <input class="field" type="tel"  id="contact_phone" name="contact_phone" required placeholder="Téléphone(organisateur)*">
+                <input class="field" type="mail" id="contact_mail" name="contact_mail" required placeholder="Email*">
                 <input class="field" type="text" name="contact_adress" required placeholder="Adresse*">
                 <input class="field" type="Number" name="contact_postalCode" required placeholder="Code postal*">
                 <input class="field" type="text" name="contact_city" required placeholder="Ville*">
@@ -33,12 +33,12 @@
                     <input class="field" type="checkbox" id="cgv"><label for="cgv">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT</label>
                 </div>
             </fieldset>
-            <fieldset class="formulaSelector">
-                <legend>Choisissez votre formule</legend>
+            <div class=" button formulaSelector">
+                <!-- <legend>Choisissez votre formule</legend> -->
                 <button type="button" id="singleActivityButton">activité simple</button>
                 <button type="button" id="rocCocktailButton">cocktail roc</button>
                 <button type="button" id="returnButton" class="hide">changer de formule</button>
-            </fieldset>
+            </div>
             <div id="singleActivity" class="hide">
                 <fieldset>
                     <legend>votre activité / vos activités</legend>
@@ -76,8 +76,10 @@
                         </div>
                     </div>
                 </fieldset>
-                <button type="button" id="addActivityButton">ajouter une activité</button>
-                <button type="button" id="deletActivityButton" class="hide">supprimer une activité</button>
+                <div class="button">
+                    <button type="button" id="addActivityButton">ajouter une activité</button>
+                    <button type="button" id="deletActivityButton" class="hide">enlever une activité</button>
+                </div>
             </div>
             <div id="rocCocktail" class="hide">
                 <fieldset>
@@ -102,7 +104,7 @@
             </div>
             <textarea class="field" name="comment" id="comment" rows="5" placeholder="Informations complémentaires"></textarea>
             <div class="basket">
-                <table id="selection">
+                <table>
                     <thead>
                         <tr>
                             <th colspan="4">mon panier</th>
@@ -119,8 +121,8 @@
                 </table>
             </div>
             <div>
-                <button type="submit" id="validateReservation" onclick="submitform()">Réserver</button>
-                <!-- <button type="submit" id="validateReservation">Réserver</button> -->
+                <!-- <button type="submit" id="validateReservation" onclick="submitform()">Réserver</button> -->
+                <button type="submit" id="validateReservation">Réserver</button>
             </div>
         </form>
 
@@ -129,6 +131,7 @@
     <footer>
         <?php require("partials/footer.php") ?>
     </footer>
-    <script type="text/javascript" src="js/booking.js"></script>
+    <!-- <script type="text/javascript" src="js/booking.js"></script> -->
+    <script type="module" src="js/booking.js"></script>
 </body>
 </html>

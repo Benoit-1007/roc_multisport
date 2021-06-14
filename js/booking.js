@@ -1,5 +1,10 @@
 'use strict';
 
+// imports
+import Errors from './Errors.js';
+import Menu from './Menu.js';
+
+
 // use by basket function
 const bookingData = [
     { 'value': 'bikeAllDayNoLoc', 'name': 'VTTAE sans location VTT - journée', 'price': '80' },
@@ -51,11 +56,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let deletActivityBtn = bookingForm.querySelector('#deletActivityButton');
 
-    let singleActivityBasket = booking.querySelector('.singleActivityBasket_1');
-
-    let rocActivityBasket = booking.querySelector('.rocActivityBasket_1');
-
     let validateReservationBtn = bookingForm.querySelector('#validateReservation');
+
+    let menu = new Menu;
+
+    // menu management for mobile phone 
+    menu.toggleMenu();
 
     // Choose between single activity or cocktail ROC
     chooseFormula(activitiesbtn);
@@ -66,15 +72,50 @@ document.addEventListener('DOMContentLoaded', function () {
     // remove a new single activity
     deletActivityBtn.addEventListener('click', removeActivity);
 
-    // menu mananagement for mobile phone
-    toggleMenu()
 
 
     // VERIF RECUPERATION INPUTS
     validateReservationBtn.addEventListener('click', function (e) {
         let inputs = bookingForm.querySelectorAll('.field');
+        console.log("🚀 ~ file: booking.js ~ line 81 ~ inputs", inputs)
+
+        let error = new Errors;
+
         e.preventDefault();
+
         inputs.forEach(input => {
+
+            if (input.name === 'contact_lastName'){
+                if(!input.value || !validateName(input.value)){
+                    error.record({contact_lastName: 'Nom invalide'});
+                }
+            }
+            if (input.name === 'contact_firstName'){
+                if(!input.value || !validateName(input.value)){
+                    error.record({contact_firstName: 'Prénom invalide'});
+                }
+            }
+            if (input.name === 'contact_phone'){
+                if(!input.value || !validatePhone(input.value)){
+                    error.record({contact_phone: 'téléphone invalide'});
+                }
+            }
+            if (input.name === 'contact_mail'){
+                if(!input.value || !validateEmail(input.value)){
+                    error.record({contact_mail: 'Email invalide'});
+                }
+            }
+        });
+
+        if (error.errors.messages.length > 0) {
+            console.log("🚀 ~ file: booking.js ~ line 111 ~ error.errors.messages", error.errors.messages)
+            error.createError();
+        } else {
+            submitform();
+        }
+
+        inputs.forEach.call(inputs, input => {
+            input.addEventListener('keydown', removeError(input));
         });
     })
 
@@ -358,8 +399,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
 
-    /** display new div activityItem in div singleActivity
-     */
+    /** display new div activityItem in div singleActivity */
     function addActivity() {
         let x = document.querySelector('.activities').childElementCount + 1;
 
@@ -724,28 +764,6 @@ document.addEventListener('DOMContentLoaded', function () {
         bookingSummaryElmt.innerText = totalPrice + "€";
     }
 
-
-    /** display menu for mobile version  */
-    function toggleMenu() {
-        const navbar = document.querySelector('.navbar');
-        const burger = document.querySelector('.burger');
-        const links = document.querySelectorAll('a');
-        let width = window.innerWidth;
-
-
-        burger.addEventListener('click', () => {
-            navbar.classList.toggle('show_nav');
-        })
-
-        if (width < 767) {
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    navbar.classList.toggle('show_nav');
-                })
-            });
-        }
-    }
-
     /**check name of participant
      * @param {string} name to check 
      */
@@ -787,11 +805,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         })
     };
-
-
-
-
-
 
 });
 
