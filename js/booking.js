@@ -77,11 +77,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // VERIF RECUPERATION INPUTS
     validateReservationBtn.addEventListener('click', function (e) {
         let inputs = bookingForm.querySelectorAll('.field');
-        console.log("🚀 ~ file: booking.js ~ line 81 ~ inputs", inputs)
-
-        let error = new Errors;
+        // console.log("🚀 ~ file: booking.js ~ line 81 ~ inputs", inputs)
 
         e.preventDefault();
+
+        let error = new Errors;
 
         inputs.forEach(input => {
 
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             if (input.name === 'contact_phone'){
                 if(!input.value || !validatePhone(input.value)){
-                    error.record({contact_phone: 'téléphone invalide'});
+                    error.record({contact_phone: 'Téléphone invalide'});
                 }
             }
             if (input.name === 'contact_mail'){
@@ -108,8 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (error.errors.messages.length > 0) {
-            console.log("🚀 ~ file: booking.js ~ line 111 ~ error.errors.messages", error.errors.messages)
             error.createError();
+            // e.preventDefault();
         } else {
             submitform();
         }
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
                         <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
                         <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
-                            <option value="">Niveau*</option>
+                            <option value="empty">Niveau*</option>
                             <option value="beginner">Débutant</option>
                             <option value="intermediate">Intermédiaire</option>
                             <option value="confirmed">Confirmé</option>
@@ -461,10 +461,6 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function chooseRocFormula(selector) {
 
-        // for (let i = 0; i < field.length; i++) {
-
-        // const selector = field[i];
-
         selector.addEventListener('change', function () {
             //get activity (for display participants)
             let activity = document.querySelector('#rocCocktail').id;
@@ -476,13 +472,18 @@ document.addEventListener('DOMContentLoaded', function () {
             let participantsNumberSelector = document.querySelector(`input[name="participantsCount_rocCocktail"]`);
             //get div myRocActivities
             let myRocActivities = document.querySelector('.myRocActivities');
-
+            //get input date
+            let dateSelector = document.querySelector(`input[name="date_rocCocktail"]`);
+            //get roc week-end message
+            let rocmessage = document.querySelector('.rocWeekend')
             participantsNumberSelector.value = numberMinParticipants;
 
             switch (formulaValue) {
                 case "cocktailOneDay":
                     reset(myRocActivities);
                     chooseRocDayActivities(myRocActivities);
+                    dateSelector.removeAttribute('step');
+                    rocmessage.classList.add('hide');
 
                     let activity1 = document.querySelector('.rocActivity_1 select');
                     activity1.addEventListener('change', function () {
@@ -505,6 +506,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     reset(myRocActivities);
                     addAllActivities(myRocActivities);
                     chooseRocWeekEndActivities(myRocActivities)
+                    dateSelector  .setAttribute('step', '7');
+                    rocmessage.classList.remove('hide');
                     break;
             }
 
@@ -513,7 +516,6 @@ document.addEventListener('DOMContentLoaded', function () {
             validateParticipantsNumber(activity, participantsNumberSelector);
 
         })
-        // }    
     }
 
     /** allows to choose ROC day activities

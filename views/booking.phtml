@@ -30,10 +30,10 @@
                 <input class="field" type="Number" name="contact_postalCode" required placeholder="Code postal*">
                 <input class="field" type="text" name="contact_city" required placeholder="Ville*">
                 <div class="checkbox">
-                    <input class="field" type="checkbox" id="cgv"><label for="cgv">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT</label>
+                    <input class="field" type="checkbox" id="cgv" required><label for="cgv">En cochant cette case, j'accepte les conditions générales de vente de ROC MULTISPORT</label>
                 </div>
             </fieldset>
-            <div class=" button formulaSelector">
+            <div class="button formulaSelector">
                 <!-- <legend>Choisissez votre formule</legend> -->
                 <button type="button" id="singleActivityButton">activité simple</button>
                 <button type="button" id="rocCocktailButton">cocktail roc</button>
@@ -88,9 +88,10 @@
                         <div class="rocCocktailActivities">
                             <select class="field rocFormulaSelector" name="rocCocktail_Formula">
                                 <option value="empty">Séléctionnez votre Cocktail ROC</option>
-                                <option value="cocktailOneDay" name="ROC DAY (10% de remise sur vos activités)" data-minParticipants="4" data-maxParticipants="8" data-price="0.10">Cocktail ROC DAY - à partir de 85€/pers.</option>
-                                <option value="cocktailTwoDay" name="ROC WEEK-END (15% de remise sur vos activités)" data-minParticipants="4" data-maxParticipants="8" data-price="0.15">Cocktail ROC WEEK-END - à partir de 170€/pers.</option>
+                                <option value="cocktailOneDay" name="ROC DAY (10% de remise sur vos activités)" data-price="0.10" data-minParticipants="4" data-maxParticipants="8" >Cocktail ROC DAY - à partir de 85€/pers.</option>
+                                <option value="cocktailTwoDay" name="ROC WEEK-END (15% de remise sur vos activités)" data-price="0.15" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
+                            <p class="rocWeekend hide">Dans le cadre du ROC Week-end, merci de choisir un samedi parmi les dates proposées, le dimanche suivant lui sera associé. Si vous souhaitez pratiquer les activités dans un ordre spécifique, merci de nous l'indiquer en commentaire à la fin du formulaire.</p>
                             <input class="field" type="date" name="date_rocCocktail" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
                             <input class="field" type="number" name="participantsCount_rocCocktail" min="4" max="8" placeholder="Nombre de participants">
                         </div>

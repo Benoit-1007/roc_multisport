@@ -174,7 +174,7 @@
                 </div>
                 <div class="description">
                     <article>
-                        <h3>paddle</h3>
+                        <h3 class="firstActivity">paddle</h3>
                         <p>À la surface de l'eau, venez tester les bienfaits du paddle. Cette discipline accessible à tous, melant équilibre et tonicité, vous permettra d'apprécier les eaux bleues du lac d'Annecy. </p>
                         <p>Parfaitement détendu, déplacez-vous le long des rives jusqu'aux réserves naturelles qui bordent le lac. Vous contemplerez tout au long de votre excursion la faune et la flore ainsi que les magnifiques points de vue qu'offre ce lieu magique. Au ras de l'eau et entouré de somptueuses montagnes, ROC MULTISPORT vous propose de découvrir le paddle dans une atmosphère calme et agréable: une sortie nautique à ne pas manquer!</p>
                     </article>
@@ -259,7 +259,7 @@
                 </div>
                 <div class="description">
                     <article>
-                        <h3>escalade</h3>
+                        <h3 class="firstActivity">escalade</h3>
                         <p>L'escalade vous offrira la possibilité, au contact du rocher, de vous dépasser, de tester votre confiance en vous et surtout d'observer un paysage époustouflant !</p>
                         <p>Du débutant à l'initié, il existe de nombreux lieux de pratique autour d'Annecy. Prendre de la hauteur sur les falaises école du mont Veyrier, vaincre le jeu d'équilibre de la dalle du Roc des Boeufs ou affronter la verticalité des parois du Parmelan; venez découvrir avec ROC MULTISPORT une activité grisante dans un environnement calme et majestueux !</p>
                     </article>

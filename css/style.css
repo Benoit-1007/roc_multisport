@@ -91,6 +91,7 @@ h3{
     font-family: "DIN-Medium";
     margin-top: 0;
 }
+}
 .price{
     margin-bottom: 2rem;
 }
@@ -185,7 +186,7 @@ header{
     font-family: DIN-Regular;
     font-size: 1.8rem;
     white-space: nowrap;
-    padding: 0 2rem
+    padding: 0 2rem;
 }
 .logo{
     max-width: 150px;
@@ -529,6 +530,9 @@ header{
     padding-left: 2rem;
     padding-right: 4rem;
 }
+.testimony p{
+    font-size: 3.5vw;
+}
 .testimony p + p{
     color: var(--rocColorO);
 }
@@ -606,10 +610,10 @@ fieldset, .booking textarea{
     padding: 0.5rem;
     width: 100%;
 }
-.landActivity{
+/* .landActivity{
     background-color: var(--rocColorO);
     color: var(--require);
-}
+} */
 .checkbox{
     display: flex;
     text-align: left;
@@ -623,7 +627,7 @@ fieldset, .booking textarea{
     color: var(--darkColor);
     border: 1px solid var(--rocColorR);
 }
-.rookeasy{
+.rookeasy, .rocWeekend{
     color:var(--rocColorC);
 }
 .participantsList{
@@ -909,6 +913,9 @@ footer a{
     .price .table{
         order: 3;
     }
+    .testimony p{
+        font-size: unset;
+    }
     footer{
         height: 20rem;
         display:flex;
@@ -954,6 +961,11 @@ footer a{
     .contact p, #contactForm, .booking p:not(#bookingForm p), #bookingForm{
         width:70%;
         margin: auto;
+    }
+    .contactInformation{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     div[class*='activityItem'] > div{
         display: flex;
@@ -1152,6 +1164,9 @@ footer a{
     }
     h2, h3{
         width:100%;
+    }
+    .firstActivity{
+        margin-top: unset;
     }
     .left_bloc{
         max-width: 38%;
