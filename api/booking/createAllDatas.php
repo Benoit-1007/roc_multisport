@@ -26,8 +26,8 @@ include_once '../objects/user.php';
 $database = new Database();
 $db = $database->getConnection();
 
-$booking = new Booking($db);
 $contact = new Contact($db);
+$booking = new Booking($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
@@ -147,12 +147,18 @@ if (
                     $bookingActivity->idBooking = $bookingId;
                     $bookingActivity->codeActivity = $activity->activity;
                     $bookingActivity->dateActivity = $data->cocktail{0}->date;
-                    if (count($data->cocktail{0}->activities) === 2){
-                        if($typeOfBooking = 'cocktailOneDay'){
-                            $bookingActivity->halfDaySelect = "halfday";
-                        } else {
+                    if (count($data->cocktail{0}->activities) === 2) {
                             $bookingActivity->halfDaySelect = "allday";
+                    } else if (count($data->cocktail{0}->activities) === 3){
+                        if (strpos($activity->activity, 'All') !== false) {
+                            var_dump($activity->activity);
+                            $bookingActivity->halfDaySelect = "allday";
+                        } else {
+                            $bookingActivity->halfDaySelect = "halfday";
+                            var_dump($activity->activity);
                         }
+                    } else {
+                        $bookingActivity->halfDaySelect = "halfday";
                     }
                     
                     $bookingActivityId = $bookingActivity->create();

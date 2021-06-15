@@ -72,12 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // remove a new single activity
     deletActivityBtn.addEventListener('click', removeActivity);
 
-
-
-    // VERIF RECUPERATION INPUTS
+    // validate form
     validateReservationBtn.addEventListener('click', function (e) {
-        let inputs = bookingForm.querySelectorAll('.field');
-        // console.log("🚀 ~ file: booking.js ~ line 81 ~ inputs", inputs)
+        let inputs = bookingForm.querySelectorAll('.contactInformation .field');
+        console.log("🚀 ~ file: booking.js ~ line 81 ~ inputs", inputs)
 
         e.preventDefault();
 
@@ -104,6 +102,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 if(!input.value || !validateEmail(input.value)){
                     error.record({contact_mail: 'Email invalide'});
                 }
+            }
+            if (input.name === 'cgv' && input.checked === false){
+                error.record({cgv: 'Merci daccepter nos conditions générales de vente'});
             }
         });
 
@@ -644,7 +645,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (selectedDays > 2) {
                     if (emptySelector.length === 1) {
                         if (Number(this.options[currentSelectors[0].selectedIndex].getAttribute('data-duration')) + Number(currentSelectors[1].options[currentSelectors[1].selectedIndex].getAttribute('data-duration')) === 2) {
-                            console.log('test yoyo')
                             currentSelectors[2].value = 'empty';
                             currentSelectors[2].disabled = true;
                         } else if (emptySelector.length === 1) {
@@ -816,10 +816,6 @@ document.addEventListener('DOMContentLoaded', function () {
 function submitform() {
 
     console.log('debug')
-
-
-
-    // controle !
 
     let jsondata = JSON.parse('{ }');;
     let formData = document.querySelector('#bookingForm');
