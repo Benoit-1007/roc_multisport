@@ -64,7 +64,9 @@ function showDetails(identifier) {
     // get booking id
     var id = identifier.getAttribute('data-id');
 
-    // read booking record based on given ID
+    var whereToWrite = document.querySelector("#page-content");
+
+    // read booking record based on given booking ID
     fetch('api/booking/readOneBookingDetails.php?idBooking=' + id)
         .then(res => res.json())
         .then((data) => {
@@ -102,10 +104,10 @@ function showDetails(identifier) {
             
             </table>`;
 
-            document.querySelector("#page-content").innerHTML = read_one_product_html;
+            whereToWrite.innerHTML = read_one_product_html;
         });
 
-    // read contact record based on given ID
+    // read contact record based on given contact ID
     fetch('api/contact/readOneContactDetails.php?idContact=' + id)
         .then(res => res.json())
         .then((data) => {
@@ -164,7 +166,48 @@ function showDetails(identifier) {
                 
                 </table>`;
 
-            document.querySelector("#page-content").innerHTML += read_one_contact_html;
+            whereToWrite.innerHTML += read_one_contact_html;
+        });
+
+    // read activities record based on given booking ID
+    fetch('api/activity/readActivitiesList.php?idBooking=' + id)
+        .then(res => res.json())
+        .then((data) => {
+
+            var read_activities_html = `
+
+            <h3>Activities</h3>
+            <!-- start table -->
+            <table>
+            
+                <tr>
+                    <th>Code</th>
+                    <th>Nom</th>
+                    <th>Date</th>
+                    <th>Journée</th>
+                </tr>`;
+
+            // loop through returned list of data
+            (data.records.forEach((key, val) => {
+
+                console.log(key)
+                // creating new table row per record
+                read_activities_html += `
+                <tr>
+        
+                    <td>` + key.codeActivity + `</td>
+                    <td>` + key.nameActivity + `</td>
+                    <td>` + key.dateActivity + `</td>
+                    <td>` + key.halfDaySelect + `</td>       
+
+        
+                </tr>`;
+            }));
+
+            // end table
+            read_activities_html += `</table>`;
+
+            whereToWrite.innerHTML += read_activities_html;
         });
 }
 
