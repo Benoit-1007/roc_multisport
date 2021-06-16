@@ -21,7 +21,7 @@ $db = $database->getConnection();
 
 $booking = new Booking($db);
 
-$stmt = $booking->readAll();
+$stmt = $booking->readList();
 $num = $stmt->rowCount();
 
 if ($num > 0) {
@@ -48,11 +48,6 @@ if ($num > 0) {
             "postalCode" => $postalCode,
             "city" => $city,
 
-            "codeActivity" => $codeActivity,
-            "dateActivity" => $dateActivity,
-            "halfDaySelect" => $halfDaySelect,
-
-            "nameActivity" => $nameActivity
         );
         array_push($bookings_array["records"], $booking_item);
     }

@@ -27,11 +27,11 @@ class Contact
     {
         //select all data
         $query = "SELECT
-                    id, firstName, lastName, organisation, phoneNumber, mail, adress, postalCode, city
+                    idContact, firstName, lastName, organisation, phoneNumber, mail, adress, postalCode, city
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id";
+                idContact";
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -84,6 +84,30 @@ class Contact
     // Read one booking with id
     function readOne()
     {
+        $query = "SELECT
+                    c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
+                FROM
+                    " . $this->table_name . " c
+                WHERE
+                    c.idContact = ?";
+
+
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->idContact);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // set values to object properties
+        $this->lastName = $row['lastName'];
+        $this->firstName = $row['firstName'];
+        $this->organisation = $row['organisation'];
+        $this->phoneNumber = $row['phoneNumber'];
+        $this->mail = $row['mail'];
+        $this->adress = $row['adress'];
+        $this->postalCode = $row['postalCode'];
+        $this->city = $row['city'];
     }
 
     // Update one booking with id

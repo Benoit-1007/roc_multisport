@@ -19,25 +19,19 @@ class Booking
     }
 
     // Read all bookings
-    public function readAll()
+    public function readList()
     {
         //select all data
         $query = "SELECT
                     b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking,
-                    c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city,
-                    ba.codeActivity, ba.dateActivity, ba.halfDaySelect,
-                    a.name as nameActivity
+                    c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
+                    
                 FROM
                     " . $this->table_name . " b
                     LEFT JOIN
                         contacts c
                             ON b.idContact = c.idContact
-                    INNER JOIN 
-                        bookingsactivities ba
-                            ON b.idBooking = ba.idBooking
-                    INNER JOIN 
-                        activities a
-                            ON ba.codeActivity = a.codeActivity
+                    
                 ORDER BY
                     idBooking";
 
@@ -48,7 +42,74 @@ class Booking
 
         return $stmt;
     }
+
+    public function readOne()
+    {
+        $query = "SELECT
+                    b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking
+                FROM
+                    " . $this->table_name . " b
+                WHERE
+                    b.idBooking = ?
+                ORDER BY
+                    idBooking";
+
+
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->idBooking);
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // set values to object properties
+        $this->dateOfBooking = $row['dateOfBooking'];
+        $this->comment = $row['comment'];
+        $this->idContact = $row['idContact'];
+        $this->typeOfBooking = $row['typeOfBooking'];
+    }
+
     // Read all bookings
+    public function readDetails()
+    {
+        //select all data
+        $query = "SELECT
+                        b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking,
+                        c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city,
+                        ba.codeActivity, ba.dateActivity, ba.halfDaySelect,
+                        a.name as nameActivity,
+                        u.lastName as uLastName, u.firstName as uFirstName
+                    FROM
+                        " . $this->table_name . " b
+                        LEFT JOIN
+                            contacts c
+                                ON b.idContact = c.idContact
+                        INNER JOIN 
+                            bookingsactivities ba
+                                ON b.idBooking = ba.idBooking
+                        INNER JOIN 
+                            activities a
+                                ON ba.codeActivity = a.codeActivity
+                        INNER JOIN
+                            bookingsActivitiesUsers bau
+                                ON ba.idBookingActivity = bau.idBookingActivity
+                        INNER JOIN
+                            users u
+                                ON u.idUser = bau.idUser
+                    WHERE
+                        b.idBooking = ?
+                    ORDER BY
+                        idBooking";
+
+
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->idBooking);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
     public function read()
     {
         //select all data
@@ -97,10 +158,7 @@ class Booking
         return 0;
     }
 
-    // Read one booking with id
-    function readOne()
-    {
-    }
+
 
     // Update one booking with id
     function update()

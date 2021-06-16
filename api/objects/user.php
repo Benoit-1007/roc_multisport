@@ -13,7 +13,7 @@ class User
     public $birthdate;
     public $size;
     public $level;
-    
+
 
     public function __construct($db)
     {
@@ -29,6 +29,7 @@ class User
                 " . $this->table_name . "
             SET
             lastName=:lastName, firstName=:firstName, birthdate=:birthdate, size=:size, level=:level";
+
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -54,6 +55,5 @@ class User
         }
 
         return 0;
-
     }
 }
