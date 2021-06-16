@@ -23,11 +23,41 @@ class Booking
     {
         //select all data
         $query = "SELECT
-                    id, dateOfBooking, comment, idContact
+                    b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking,
+                    c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city,
+                    ba.codeActivity, ba.dateActivity, ba.halfDaySelect,
+                    a.name as nameActivity
+                FROM
+                    " . $this->table_name . " b
+                    LEFT JOIN
+                        contacts c
+                            ON b.idContact = c.idContact
+                    INNER JOIN 
+                        bookingsactivities ba
+                            ON b.idBooking = ba.idBooking
+                    INNER JOIN 
+                        activities a
+                            ON ba.codeActivity = a.codeActivity
+                ORDER BY
+                    idBooking";
+
+
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
+    }
+    // Read all bookings
+    public function read()
+    {
+        //select all data
+        $query = "SELECT
+                    idBooking, dateOfBooking, comment, idContact, typeOfBooking
                 FROM
                     " . $this->table_name . "
                 ORDER BY
-                    id";
+                    idBooking";
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
