@@ -116,7 +116,7 @@ public function readActivityDetails()
     //select all data
     $query = "SELECT
                     b.idBooking,
-                    ba.codeActivity, ba.dateActivity, ba.halfDaySelect,
+                    ba.codeActivity, ba.dateActivity, ba.halfDaySelect, ba.idBookingActivity,
                     a.name as nameActivity
                 FROM
                     " . $this->table_name . " b
@@ -127,14 +127,14 @@ public function readActivityDetails()
                         activities a
                             ON ba.codeActivity = a.codeActivity
                 WHERE
-                    b.idBooking = ?
+                    b.idBooking = :idBooking
                 ORDER BY
                     idBooking";
 
 
 
     $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(1, $this->idBooking);
+    $stmt->bindParam(':idBooking', $this->idBooking);
     $stmt->execute();
 
     return $stmt;

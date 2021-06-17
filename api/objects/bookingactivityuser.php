@@ -10,7 +10,7 @@ class Bookingactivityuser
     public $idBookingActivityUser;
     public $idBookingActivity;
     public $idUser;
-    
+
 
     public function __construct($db)
     {
@@ -45,6 +45,31 @@ class Bookingactivityuser
         }
 
         return 0;
+    }
 
+    public function readAllUsers()
+    {
+        //select all data
+        $query = "SELECT
+                    u.lastName, u.firstName
+                FROM
+                " . $this->table_name . " bau
+                INNER JOIN 
+                    users u
+                        ON u.idUser = bau.idUser
+                WHERE
+                    bau.idBookingActivity = :idBookingActivity
+                ORDER BY
+                    bau.idBookingActivity";
+
+
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':idBookingActivity', $this->idBookingActivity);
+        $stmt->execute();
+
+
+
+        return $stmt;
     }
 }
