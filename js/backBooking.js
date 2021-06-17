@@ -105,9 +105,9 @@ function showDetails(identifier) {
             </table>`;
 
             whereToWrite.innerHTML = read_one_product_html;
-
+            
             // read contact record based on given contact ID
-            fetch('api/contact/readOneContactDetails.php?idContact=' + id)
+            fetch('api/contact/readOneContactDetails.php?idContact=' + data.idContact)
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data)
