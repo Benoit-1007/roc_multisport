@@ -34,7 +34,6 @@
                 </div>
             </fieldset>
             <div class="button formulaSelector">
-                <!-- <legend>Choisissez votre formule</legend> -->
                 <button type="button" id="singleActivityButton">activité simple</button>
                 <button type="button" id="rocCocktailButton">cocktail roc</button>
                 <button type="button" id="returnButton" class="hide">changer de formule</button>
@@ -67,8 +66,8 @@
                                     <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
                                 </select>
                                 <p class="rookeasy hide">Dans le cadre du rookeasy, merci de sélectionner une semaine complète, nous vous contacterons rapidement pour choisir ensemble les trois 1/2 journées de cours selon nos disponibilités.</p>
-                                <input class="field" type="date" name="date_activity_1">
-                                <input class="field" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
+                                <input class="field singleActivityDate" type="date" name="date_activity_1">
+                                <input class="field singleActivityParticipantsCount" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
                             </div>
                             <div class="activity_1_participantsList participantsList">
                                 <p>Participants activité 1</p>
@@ -92,8 +91,8 @@
                                 <option value="cocktailTwoDay" name="ROC WEEK-END (15% de remise sur vos activités)" data-price="0.15" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
                             <p class="rocWeekend hide">Dans le cadre du ROC Week-end, merci de choisir un samedi parmi les dates proposées, le dimanche suivant lui sera associé. Si vous souhaitez pratiquer les activités dans un ordre spécifique, merci de nous l'indiquer en commentaire à la fin du formulaire.</p>
-                            <input class="field" type="date" name="date_rocCocktail" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
-                            <input class="field" type="number" name="participantsCount_rocCocktail" min="4" max="8" placeholder="Nombre de participants">
+                            <input class="field rocDate" type="date" name="date_rocCocktail" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
+                            <input class="field rocParticipantsCount" type="number" name="participantsCount_rocCocktail" min="4" max="8" placeholder="Nombre de participants">
                         </div>
                         <div class="myRocActivities">
                         </div>
@@ -124,6 +123,7 @@
             <div>
                 <!-- <button type="submit" id="validateReservation" onclick="submitform()">Réserver</button> -->
                 <button type="submit" id="validateReservation">Réserver</button>
+                <div></div>
             </div>
         </form>
 

@@ -74,32 +74,40 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // validate form
     validateReservationBtn.addEventListener('click', function (e) {
-        let inputs = bookingForm.querySelectorAll('.contactInformation .field');
-        console.log("🚀 ~ file: booking.js ~ line 81 ~ inputs", inputs)
-
+        let inputs = bookingForm.querySelectorAll('.field');
+        
         e.preventDefault();
-
+        
         let error = new Errors;
 
         inputs.forEach(input => {
 
+            if(input.name !== "contact_society" && input.name !== 'comment') {
+                if (!input.disabled) {
+                    if(input.value === '' || input.value === 'empty') {
+                        input.classList.add('red-border');
+                        error.record({validateReservation: 'Merci de renseigner tous les champs obligatoires'})
+                    }
+                }
+            }          
+
             if (input.name === 'contact_lastName'){
-                if(!input.value || !validateName(input.value)){
+                if(!validateName(input.value)){
                     error.record({contact_lastName: 'Nom invalide'});
                 }
             }
             if (input.name === 'contact_firstName'){
-                if(!input.value || !validateName(input.value)){
+                if(!validateName(input.value)){
                     error.record({contact_firstName: 'Prénom invalide'});
                 }
             }
             if (input.name === 'contact_phone'){
-                if(!input.value || !validatePhone(input.value)){
+                if(!validatePhone(input.value)){
                     error.record({contact_phone: 'Téléphone invalide'});
                 }
             }
             if (input.name === 'contact_mail'){
-                if(!input.value || !validateEmail(input.value)){
+                if(!validateEmail(input.value)){
                     error.record({contact_mail: 'Email invalide'});
                 }
             }
@@ -110,6 +118,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (error.errors.messages.length > 0) {
             error.createError();
+            if(error.errors.messages[0].validateReservation === 'Merci de renseigner tous les champs obligatoires') {
+                setTimeout(hide, 5000);
+            }
+
             // e.preventDefault();
         } else {
             submitform();
@@ -139,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         rocCocktailBtn.classList.add('hide');
                         returnBtn.classList.remove('hide');
                         singleActivityFieldset.classList.remove("hide");
+                        document.querySelector('.rocFormulaSelector').disabled = true;
+                        document.querySelector('.rocDate').disabled = true;
+                        document.querySelector('.rocParticipantsCount').disabled = true;
                         chooseActivity(singleActivitySelector);
                         break;
                     case "rocCocktailButton":
@@ -146,6 +161,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         rocCocktailBtn.classList.add('hide');
                         returnBtn.classList.remove('hide');
                         rocCocktailFieldset.classList.remove("hide");
+                        document.querySelector('.singleActivitySelector').disabled = true;
+                        document.querySelector('.singleActivityDate').disabled = true;
+                        document.querySelector('.singleActivityParticipantsCount').disabled = true;
                         chooseRocFormula(rocFormulaSelector);
                         break;
                     default:
@@ -153,7 +171,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         rocCocktailBtn.classList.remove('hide');
                         returnBtn.classList.add('hide');
                         singleActivityFieldset.classList.add("hide");
+                        document.querySelector('.singleActivitySelector').disabled = false;
+                        document.querySelector('.singleActivityDate').disabled = false;
+                        document.querySelector('.singleActivityParticipantsCount').disabled = false;
                         rocCocktailFieldset.classList.add("hide");
+                        document.querySelector('.rocFormulaSelector').disabled = false;
+                        document.querySelector('.rocDate').disabled = false;
+                        document.querySelector('.rocParticipantsCount').disabled = false;
                         reset(myRocActivities);
                         let currentSelect = bookingForm.querySelectorAll(`[class*='Selector']`);
                         currentSelect.forEach(element => {
@@ -177,7 +201,6 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {NodeList} field All inputs select
      */
     function chooseActivity(selectors) {
-        console.log('enter chooseActivity')
         for (let i = 0; i < selectors.length; i++) {
 
             const selector = selectors[i];
@@ -461,7 +484,6 @@ document.addEventListener('DOMContentLoaded', function () {
      * @param {*} field input ROC formula selector
      */
     function chooseRocFormula(selector) {
-
         selector.addEventListener('change', function () {
             //get activity (for display participants)
             let activity = document.querySelector('#rocCocktail').id;
@@ -801,13 +823,18 @@ document.addEventListener('DOMContentLoaded', function () {
         //     }
         // })
         field.addEventListener('focusout', function () {
-            if (field.nextElementSibling.classList.contains('form-error')) {
+            field.classList.remove('red-border');
+            if (field.nextElementSibling !== null && field.nextElementSibling.classList.contains('form-error')) {
                 field.nextElementSibling.remove();
-                field.classList.remove('red-border')
             }
         })
     };
 
+    /** hide error message 'field empty' */
+    function hide() {
+        document.querySelector('#validateReservation').nextElementSibling.remove();
+        document.querySelector('#validateReservation').classList.remove('red-border');
+    }
 });
 
 

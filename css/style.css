@@ -167,6 +167,10 @@ p a{
 .cocktail span:nth-child(3n+3){
     color:var(--rocColorC);
 }
+div.form-error, .emptyField {
+    color: var(--require);
+    width: 100%;
+}
 
 /* #endregion COMMUM */
 
@@ -678,7 +682,10 @@ fieldset, .booking textarea{
 .booking .hide{
     display:none;
 }
-
+.booking .red-border{
+    border: 2px solid var(--require);
+    border-radius: 5px;
+}
 /* #endregion BOOKING */
 
 /* #region TEMPORARYBOOKING */
@@ -746,14 +753,11 @@ fieldset, .booking textarea{
 .contact .alert{
     color: var(--require);
 }
-div.form-error {
-    color: var(--require);
-    width: 100%;
-}
 .contact .red-border{
     border: 2px solid var(--require);
     border-radius: 5px;
 }
+
 /* #endregion CONTACT */
 
 /* #region LEGAL */
