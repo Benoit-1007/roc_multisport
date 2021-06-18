@@ -35,6 +35,7 @@ if ($num > 0) {
         extract($row);
 
         $user_item = array(
+            "idBookingActivity" => $idBookingActivity,
             "lastName" => $lastName,
             "firstName" => $firstName
         );

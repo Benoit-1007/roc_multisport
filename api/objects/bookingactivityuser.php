@@ -51,7 +51,7 @@ class Bookingactivityuser
     {
         //select all data
         $query = "SELECT
-                    u.lastName, u.firstName
+                    bau.idBookingActivity, u.lastName, u.firstName
                 FROM
                 " . $this->table_name . " bau
                 INNER JOIN 

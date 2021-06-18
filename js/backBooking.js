@@ -188,6 +188,7 @@ async function showDetails(identifier) {
                             (data.records.forEach((key, val) => {
                                 // creating new table row per record
                                 read_activities_html += '<h5>' + key.codeActivity + ` ` + key.nameActivity + ` ` + key.dateActivity + ` ` + key.halfDaySelect + '</h5>';
+                                read_activities_html += '<div id="usersActivity'+key.idBookingActivity+'"></div>';
 
                                 whereToWrite.innerHTML += read_activities_html;
                                 read_activities_html = ''
@@ -216,7 +217,7 @@ async function showDetails(identifier) {
                                                 read_users_html += keyUser.lastName + " " + keyUser.firstName + " / ";
                                                 // console.log(read_users_html)
 
-                                                whereToWrite.innerHTML += read_users_html;
+                                                document.querySelector("#usersActivity"+keyUser.idBookingActivity).innerHTML += read_users_html;
                                                 read_users_html = ''
 
                                             }))
