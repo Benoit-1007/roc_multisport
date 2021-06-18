@@ -25,11 +25,6 @@
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-        <?php if (isset($_SESSION) && empty($_SESSION['error']) && !empty($_SESSION['info'])): ?>
-            <div class="alert">
-                <p><?= $_SESSION['info'] ?></p>
-            </div>
-        <?php endif; ?>
 
         <form id="contactForm" action="contact.php" method="post">
             <label for="email">E-mail<span>*</span></label><input class="field" type="email" id="email" name="email" required autofocus>
@@ -38,6 +33,11 @@
             <label for="phone">Téléphone</label><input class="field" type="phone" id="phone" name="telephone">
             <label for="message">Message<span>*</span></label><textarea class="field" id="message" name="message" rows="10" required></textarea>
             <button type="submit">Envoyer</button>
+            <?php if (isset($_SESSION) && empty($_SESSION['error']) && !empty($_SESSION['info'])): ?>
+                <div class="validate">
+                    <p><?= $_SESSION['info'] ?></p>
+                </div>
+            <?php endif; ?>
         </form>
         <p>Vous pouvez également nous contacter par téléphone au <a href="tel:0658355166">06.58.35.51.66.</a></p>
     </main>
@@ -48,7 +48,7 @@
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <script>
         // jQuery - display alert 6sec
-        $('.alert').delay(6000).fadeOut()
+        $('.alert, .validate').delay(6000).fadeOut()
     </script>
     <script type="module" src="js/app.js"></script>
 </body>

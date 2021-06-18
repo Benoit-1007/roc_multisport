@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 }
                 // //check Lastname
                 else if($key === "nom"){
-                    if(preg_match("/^[a-zA-Z -]+$/", $input) === 0){
+                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $input) === 0){
                         array_push($errors, "Le nom est incorrect. Merci de ne saisir que des lettres, espaces ou tirets");
                     } else {
                         $body_message .= 'Nom: '.$input."\n";
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 }
                 // check Firstname
                 else if($key === "prenom"){
-                    if(preg_match("/^[a-zA-Z -]+$/", $input) === 0){
+                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $input) === 0){
                         array_push($errors, "Le prénom est incorrect. Merci de ne saisir que des lettres, espaces ou tirets");
                     } else {
                         $body_message .= 'Prénom: '.$input."\n";
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
             $mail_status = mail($mail_to, $subject, $body_message, $headers);
                     
             if($mail_status){
-                $info = "Merci pour votre message. On vous recontacte très vite!";
+                $info = "Merci pour votre message " .$prenom. ". On vous recontacte très vite!";
             } else {
                 $info = "Erreur dans l'envoi de votre mail. Merci d'envoyer un email à roc.multisport@gmail.com";
             }

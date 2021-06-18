@@ -41,7 +41,7 @@
             <div id="singleActivity" class="hide">
                 <fieldset>
                     <legend>votre activité / vos activités</legend>
-                    <div class="activities"> <!-- NE PAS RAJOUTER D'ENFANT A CETTE DIV -->
+                    <div class="activities"> <!-- DON'T ADD CHILD TO THIS DIV -->
                         <div class="activityItem_1">
                             <div class="activity_1">
                                 <p>Activité 1</p>
@@ -121,9 +121,9 @@
                 </table>
             </div>
             <div>
-                <!-- <button type="submit" id="validateReservation" onclick="submitform()">Réserver</button> -->
                 <button type="submit" id="validateReservation">Réserver</button>
-                <div></div>
+                <div class="message form-error">
+                </div>
             </div>
         </form>
 
@@ -132,8 +132,6 @@
     <footer>
         <?php require("partials/footer.php") ?>
     </footer>
-    <!-- <script type="text/javascript" src="js/booking.js"></script> -->
     <script type="module" src="js/booking.js"></script>
-    <!-- <script type="module" src="js/backBooking.js"></script> -->
 </body>
 </html>

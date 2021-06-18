@@ -15,6 +15,7 @@
     </div>
 </div>
 <div class="bottomBlocFooter">
+    <a href="backBooking.php" class="fas fa-lock" title="Espace professionnel sécurisé"></a>
     <a href="privacyPolicy.php">Politique de confidentialité |</a>
     <a href="termsOfSales.php">Conditions générales de vente |</a>
     <a href="legalNotice.php">Mentions légales |</a>

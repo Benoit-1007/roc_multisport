@@ -544,12 +544,11 @@
     <script type="module" src="js/app.js"></script>
     <script>
         $(document).ready(function(){
-            // on selectionne la classe .slider et on utilse la fonction slick()
             $('.slider').slick({
             // setting-name: setting-value
-                autoplay:true,
-                autoplaySpeed:3000,
-                arrows:true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
             });
         });
     </script>

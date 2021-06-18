@@ -74,62 +74,65 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // validate form
     validateReservationBtn.addEventListener('click', function (e) {
-        let inputs = bookingForm.querySelectorAll('.field');
+        // let inputs = bookingForm.querySelectorAll('.field');
         
         e.preventDefault();
+
+        submitform();
         
-        let error = new Errors;
+        // let error = new Errors;
 
-        inputs.forEach(input => {
+        // inputs.forEach(input => {
 
-            if(input.name !== "contact_society" && input.name !== 'comment') {
-                if (!input.disabled) {
-                    if(input.value === '' || input.value === 'empty') {
-                        input.classList.add('red-border');
-                        error.record({validateReservation: 'Merci de renseigner tous les champs obligatoires'})
-                    }
-                }
-            }          
+        //     if(input.name !== "contact_society" && input.name !== 'comment') {
+        //         if (!input.disabled) {
+        //             if(input.value === '' || input.value === 'empty') {
+        //                 input.classList.add('red-border');
+        //                 error.record({validateReservation: 'Merci de renseigner tous les champs obligatoires'})
+        //             }
+        //         }
+        //     }          
 
-            if (input.name === 'contact_lastName'){
-                if(!validateName(input.value)){
-                    error.record({contact_lastName: 'Nom invalide'});
-                }
-            }
-            if (input.name === 'contact_firstName'){
-                if(!validateName(input.value)){
-                    error.record({contact_firstName: 'Prénom invalide'});
-                }
-            }
-            if (input.name === 'contact_phone'){
-                if(!validatePhone(input.value)){
-                    error.record({contact_phone: 'Téléphone invalide'});
-                }
-            }
-            if (input.name === 'contact_mail'){
-                if(!validateEmail(input.value)){
-                    error.record({contact_mail: 'Email invalide'});
-                }
-            }
-            if (input.name === 'cgv' && input.checked === false){
-                error.record({cgv: 'Merci daccepter nos conditions générales de vente'});
-            }
-        });
+        //     if (input.name === 'contact_lastName'){
+        //         if(!validateName(input.value)){
+        //             error.record({contact_lastName: 'Nom invalide'});
+        //         }
+        //     }
+        //     if (input.name === 'contact_firstName'){
+        //         if(!validateName(input.value)){
+        //             error.record({contact_firstName: 'Prénom invalide'});
+        //         }
+        //     }
+        //     if (input.name === 'contact_phone'){
+        //         if(!validatePhone(input.value)){
+        //             error.record({contact_phone: 'Téléphone invalide'});
+        //         }
+        //     }
+        //     if (input.name === 'contact_mail'){
+        //         if(!validateEmail(input.value)){
+        //             error.record({contact_mail: 'Email invalide'});
+        //         }
+        //     }
+        //     if (input.name === 'cgv' && input.checked === false){
+        //         error.record({cgv: 'Merci daccepter nos conditions générales de vente'});
+        //     }
+        // });
 
-        if (error.errors.messages.length > 0) {
-            error.createError();
-            if(error.errors.messages[0].validateReservation === 'Merci de renseigner tous les champs obligatoires') {
-                setTimeout(hide, 5000);
-            }
+        // if (error.errors.messages.length > 0) {
+        //     error.createError();
+        //     if(error.errors.messages[0].validateReservation === 'Merci de renseigner tous les champs obligatoires') {
+        //         setTimeout(hide, 5000);
+        //         console.log('test hide');
+        //     }
 
-            // e.preventDefault();
-        } else {
-            submitform();
-        }
+        //     // e.preventDefault();
+        // } else {
+        //     submitform();
+        // }
 
-        inputs.forEach.call(inputs, input => {
-            input.addEventListener('keydown', removeError(input));
-        });
+        // inputs.forEach.call(inputs, input => {
+        //     input.addEventListener('keydown', removeError(input));
+        // });
     })
 
 
@@ -369,10 +372,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
                         <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
                             <option value="empty">Niveau*</option>
-                            <option value="beginner">Débutant</option>
-                            <option value="intermediate">Intermédiaire</option>
-                            <option value="confirmed">Confirmé</option>
-                            <option value="expert">Expert</option>
+                            <option value="Débutant">Débutant</option>
+                            <option value="Intermediaire">Intermédiaire</option>
+                            <option value="Confirmé">Confirmé</option>
+                            <option value="Expert">Expert</option>
                         </select>
                     `;
                 } else {
@@ -450,8 +453,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="1" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
                     <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée - 160€/pers.</option>
                     <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
-                    <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="4" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
-                    <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330" data-minParticipants="4" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
+                    <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
+                    <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
                 </select>
                 <input class="field" type="date" name="date_activity_`+ x + `">
                 <input class="field" type="number" name="participantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
@@ -842,7 +845,8 @@ document.addEventListener('DOMContentLoaded', function () {
 // Generate jsonData
 function submitform() {
 
-    console.log('debug')
+    let messageArea = document.querySelector('.message');
+    messageArea.innerHTML='';
 
     let jsondata = JSON.parse('{ }');;
     let formData = document.querySelector('#bookingForm');
@@ -978,28 +982,34 @@ function submitform() {
 
     console.log(jsondata);
 
-    var formDataTest = JSON.stringify(jsondata);
-    console.log(formDataTest);
+    let crtFormData = JSON.stringify(jsondata);
+    console.log(crtFormData);
 
-    let crtBookingId = 0;
-
-    fetchBookingJson(formDataTest)
+    fetchBookingJson(crtFormData)
     .then((data)=>{
-        console.log("message" + data.message);
+        console.log("message " + data.message);
+        if (data.message = "Unable to create booking final.") {
+            messageArea.innerText = "Impossible d'enregistrer votre réservation. Données manquantes ou erronées.";
+        } else if (data.message = "Unable to create booking activity.") {
+            messageArea.innerText = "Impossible d'enregistrer votre réservation. Activité(s) incomplète(s).";
+        } else if (data.message = "Unable to create participants List.") {
+            messageArea.innerText = "Impossible d'enregistrer les participants. Données manquantes ou erronées.";
+        }
     })
     .catch(err => {
-        console.log('Error: ', err)
+        console.log('Error: ', err);
+        
     })
 
 }
 
-async function fetchBookingJson(formDataTest) {
+async function fetchBookingJson(formData) {
     let response = await fetch('api/booking/createAllDatas.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: formDataTest
+        body: formData
     })
     let reponse = await response.json();
 

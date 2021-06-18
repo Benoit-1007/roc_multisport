@@ -753,6 +753,11 @@ fieldset, .booking textarea{
 .contact .alert{
     color: var(--require);
 }
+.contact .validate{
+    color: var(--rocColorO);
+    font-size: 2rem;
+    width: 100%
+}
 .contact .red-border{
     border: 2px solid var(--require);
     border-radius: 5px;
@@ -1249,19 +1254,7 @@ footer a{
 
 /* #region DESKTOP (min-width: 1400px) */
 @media screen and (min-width:1400px){
-    /* .home p:last-of-type{
-        padding-bottom: unset;
-    } */
-    /* .home li{
-        max-width: 12%;
-    } */
-    /* .testimony{
-        background-size:100%;
-        height: 100vh;
-    } */
-    /* .home ul{
-        justify-content:space-around;
-    }*/
+    
 }
 /* #endregion DESKTOP (min-width: 1400px) */
 
