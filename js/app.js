@@ -2,12 +2,10 @@
 
 // imports
 import Contact from './Contact.js';
-import Menu from './Menu.js';
+import * as menu from './menu.js';
 
 document.addEventListener("DOMContentLoaded", function(){
 
-    let menu = new Menu;
-    
     // menu management for mobile phone 
     menu.toggleMenu();
             

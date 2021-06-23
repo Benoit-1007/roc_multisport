@@ -2,7 +2,7 @@
 
 // imports
 import Errors from './Errors.js';
-import Menu from './Menu.js';
+import * as menu from './menu.js';
 
 
 // use by basket function
@@ -58,8 +58,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let validateReservationBtn = bookingForm.querySelector('#validateReservation');
 
-    let menu = new Menu;
-
     // menu management for mobile phone 
     menu.toggleMenu();
 
@@ -73,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
     deletActivityBtn.addEventListener('click', removeActivity);
 
     // validate form
-    validateReservationBtn.addEventListener('click', function (e) {
+    validateReservationBtn.addEventListener('click', function(e) {
         // let inputs = bookingForm.querySelectorAll('.field');
         
         e.preventDefault();
@@ -988,18 +986,19 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=>{
         console.log("message " + data.message);
-        if (data.message = "Unable to create booking final.") {
+        if (data.message === "Unable to create booking final.") {
             messageArea.innerText = "Impossible d'enregistrer votre réservation. Données manquantes ou erronées.";
-        } else if (data.message = "Unable to create booking activity.") {
+        }  else if (data.message === "Unable to create booking activity.") {
             messageArea.innerText = "Impossible d'enregistrer votre réservation. Activité(s) incomplète(s).";
-        } else if (data.message = "Unable to create participants List.") {
+        } else if (data.message === "Unable to create participants List.") {
             messageArea.innerText = "Impossible d'enregistrer les participants. Données manquantes ou erronées.";
-        }
+        }  
     })
     .catch(err => {
         console.log('Error: ', err);
         
     })
+    
 
 }
 

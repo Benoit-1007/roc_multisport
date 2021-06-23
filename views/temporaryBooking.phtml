@@ -10,17 +10,19 @@
     <link rel="stylesheet" href="" type="css/normalize/css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body id="temporaryBooking">
-    <header  class="container">
+<body class="form">
+    <header>
         <?php require('partials/header.php') ?> 
     </header>
-    <div class="alert">
-        <p>Encore un peu de patience... la réservation en ligne arrive prochainement!</p>
-        <p>D'içi là, vous pouvez nous contacter par <a href="contact.php">mail</a> ou par téléphone au <a href="tel:0658355166">O6.58.35.51.66.</a></p>
-    </div>
+    <main class="temporaryBooking">
+        <div class="alert">
+            <p>Encore un peu de patience... la réservation en ligne arrive prochainement !</p>
+            <p>Pour le moment, vous pouvez nous contacter par <a href="contact.php">mail</a> ou par téléphone au <a href="tel:0658355166">O6.58.35.51.66.</a></p>
+        </div>
+    </main>
     <footer>
         <?php require('partials/footer.php') ?>
     </footer>
-    <script type="text/javascript" src="../js/booking.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

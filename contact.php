@@ -97,8 +97,6 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
             $_SESSION['info'] = $info;
         }
     }
-    // var_dump($_SESSION);
-    // var_dump($body_message);
 }
         
         

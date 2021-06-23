@@ -2,10 +2,55 @@
 
 // On charge les resa quand la page est prete :
 document.addEventListener("DOMContentLoaded", function (event) {
-    showBookings();
+
+    // menu management for mobile phone 
+    let show = document.querySelector('.show');
+    
+    if(show){
+        show.addEventListener('click', function(e){
+
+            showBookings();
+        });
+    }
+
+
+    // let logout = document.querySelector('.logout');
+
+    // logout.addEventListener('click', logout());
+    
 });
+    
 
 
+
+
+// function login(form) {
+//     // console.log('login')
+
+//     fetch('api/admin/login.php', {
+//         method: 'post',
+//         body: form
+//     })
+//         .then(res => res.text())
+//         .then(msg => {
+//             console.log(msg)
+//             if (msg.includes('[')) {
+//                 let user = JSON.parse(msg);
+//                 console.log("🚀 user", user[0])
+//                 document.querySelector('.alert').innerHTML = 'Salut ' + user[0] + ' !';
+//                 document.querySelector('form').classList.add('hide');
+//                 document.querySelector('.logout').classList.remove('hide');
+//                 showBookings();
+//             };
+//         })
+//         .catch(err =>{
+//             console.log('Error: ', err);
+//         })
+// }
+
+function logout(){
+    
+}
 
 function showBookings() {
 
@@ -31,7 +76,7 @@ function showBookings() {
             // loop through returned list of data
             (data.records.forEach((key, val) => {
 
-                console.log(key)
+                // console.log(key)
                 // creating new table row per record
                 read_bookings_html += `
                 <tr>
@@ -77,7 +122,7 @@ async function showDetails(identifier) {
             typeBooking = data.typeOfBooking
 
             var read_one_booking_html = `
- 
+    
             
             <button id='read-bookings' onclick='showBookings()' >
                 Back
@@ -261,4 +306,26 @@ async function showDetails(identifier) {
         });
 
 }
+
+function toggleMenu(){
+    const navbar = document.querySelector('.navbar');
+    const burger = document.querySelector('.burger');
+    const links = document.querySelectorAll('a');
+    let width = window.innerWidth;
+    
+    
+    burger.addEventListener('click', () => {
+        navbar.classList.toggle('show_nav');
+    })
+    
+    if(width < 767){
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navbar.classList.toggle('show_nav');
+            })
+        });
+    } 
+}
+
+
 

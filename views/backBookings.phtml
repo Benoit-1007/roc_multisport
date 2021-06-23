@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROC Multisport - Back</title>
+    <link rel="icon" href="img/background/logoRocMultisport.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="" type="css/normalize/css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <?php require('partials/header.php') ?> 
+    </header>
+
+    <main class="booking">
+
+        <?php if (array_key_exists('user', $_SESSION) && !empty($_SESSION['user'])): ?>
+            <div >
+                <p>Salut <?= $_SESSION['user']['firstName'] ?> !</p>
+                <a href='logout.php'>Déconnexion</a>
+                <button class="show">show</button>
+            </div>
+        <?php else: ?>
+            <form action = "backBooking.php" method="post">
+                <label for="mail">Email</label>
+                <input type="text" id="mail" name="mail" placeholder="email@example.com" required>
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password">
+                <button type="submit">Se connecter</button>
+            </form>
+        <?php endif; ?>
+
+        <?php if (array_key_exists('error', $_SESSION) && !empty($_SESSION['error'])): ?>
+            <p><?= $_SESSION['error'][0] ?></p>
+        <?php endif; ?>
+
+        <div id="page-content">
+        </div>
+    </main>
+    <footer>
+        <?php require("partials/footer.php") ?>
+    </footer>
+    <!-- <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        // jQuery - display alert 6sec
+        $('.alert, .validate').delay(6000).fadeOut()
+    </script> -->
+    <script type="text/javascript" src="js/backBooking.js"></script>
+</body>
+</html>

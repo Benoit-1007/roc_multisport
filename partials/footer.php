@@ -10,8 +10,8 @@
     </div>
     <div class="network">
         <p>Retrouver-nous sur :</p>
-        <a href="#" class="fab fa-facebook-square" title="Envie de découvrir notre page facebook? Cliquez içi !"></a>
-        <a href="#" class="fab fa-instagram-square" title="Pour découvrir d'autres photos de nos acivités, cliquez içi !"></a>
+        <a href="#" class="fab fa-facebook-square" title="Envie de découvrir notre page facebook? Cliquez içi !" target="_blank"></a>
+        <a href="https://www.instagram.com/roc.multisport/" class="fab fa-instagram-square" title="Pour découvrir d'autres photos de nos acivités, cliquez içi !" target="_blank"></a>
     </div>
 </div>
 <div class="bottomBlocFooter">
@@ -19,7 +19,5 @@
     <a href="privacyPolicy.php">Politique de confidentialité |</a>
     <a href="termsOfSales.php">Conditions générales de vente |</a>
     <a href="legalNotice.php">Mentions légales |</a>
-    <a href="https://courtincom.fr">Design by COURTIN<span>COM</span></a>
+    <a href="https://courtincom.fr" title="Découvrez sont travail" target="_blank">Design by COURTIN<span>COM</span></a>
 </div>
-
-<!-- <img src="img/picto/courtin1.png" alt=""> -->

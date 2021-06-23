@@ -13,7 +13,6 @@
     --cocktailColor: #002136;
     --bookingColor: #c8c4c5;
     --require: red;
-    /* --soft-blue: #2187c6; */
 }
 /* #endregion variables CSS */
 
@@ -57,6 +56,7 @@ section{
 }
 .activity,
 .booking,
+.temporaryBooking,
 .contact,
 .policy{
     padding: 2rem;
@@ -167,6 +167,9 @@ p a{
 .cocktail span:nth-child(3n+3){
     color:var(--rocColorC);
 }
+.form{
+    background-color: var(--clearColor);
+}
 div.form-error, .emptyField {
     color: var(--require);
     width: 100%;
@@ -209,7 +212,7 @@ header{
     background-size: 10rem;
     margin:0;
     overflow: hidden;
-    transition: width 0.5s ease-in-out, background 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .show_nav .navbar_links{
     width:100%;
@@ -236,7 +239,6 @@ header{
 }
 .show_nav .navbar_activities{
     background:  url("../img/picto/greyClimbingPicto.png")right no-repeat;
-    /* background-size: 8rem; */
 }
 .navbar_activity a{
     display: block;
@@ -343,7 +345,6 @@ header{
     font-size: 1.8rem;
     color: var(--rocColorR);
     padding: 0 2rem
-    /* padding-top: 1rem; */
 }
 .home p:last-of-type{
     padding-bottom: 10rem;
@@ -413,7 +414,6 @@ header{
     color:var(--rocColorO);
 }
 .climbing .price h3{
-    /* color:var(--rocColorR); */
     background-color: var(--clearColor);
 }
 .climbing .button a{
@@ -689,18 +689,25 @@ fieldset, .booking textarea{
 /* #endregion BOOKING */
 
 /* #region TEMPORARYBOOKING */
-#temporaryBooking{
+.temporaryBooking{
     text-align: center;
     color: var(--rocColorR);
     font-size: 2rem;
+    background: url("../img/mountain3.jpeg")bottom fixed;
+    background-size: cover;
+    height: 80vh;
 }
-#temporaryBooking .alert{
+.temporaryBooking .alert{
+    position: absolute;
     width: 75vw;
     border: 2px solid var(--rocColorO);
     border-radius: 3.5rem;
-    margin: 25vh auto;
+    padding: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-#temporaryBooking .alert a{
+.temporaryBooking .alert a{
     text-transform:capitalize;
     color: var(--rocColorO);
 }
@@ -795,7 +802,6 @@ footer{
     background-size: 100%;
     background-color: var(--clearColor);
     padding-top: 2rem;
-    /* padding-bottom: 8rem; */
 }
 footer a{
     color: var(--rocColorR);
@@ -820,10 +826,6 @@ footer a{
 .bottomBlocFooter span{
     font-family: DIN-Bold;
 }
-/* .bottomBlocFooter img{
-    width: 100px;
-} */
-
 /* #endregion FOOTER */
 
 /* #region MEDIA QUERIES */
@@ -850,7 +852,6 @@ footer a{
         max-width: 160px;
     }
     .navbar{
-        /* align-items: center; */
         font-size: 1.5rem;
         padding-right: 9rem;
     }
@@ -899,12 +900,9 @@ footer a{
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
         border-radius: 0 0 30px 30px;
-        /* max-height: 0;
-        overflow: hidden; */
         transition: display 1.5s;
     }
     .navbar_link:hover .navbar_activities {
-        /* max-height: 20em; */
         display: block;
     }
     .navbar_activities li:last-of-type a{
@@ -961,7 +959,7 @@ footer a{
     }
     .bottomBlocFooter{
         width: 100%;
-        padding: unset;
+        padding: 0;
         margin-top: -3rem;
     }
     .bottomBlocFooter a{
@@ -1137,19 +1135,7 @@ footer a{
         background: var(--clearColor);
         border: 1px solid var(--rocColorO);
         width:auto;
-        /* margin: 0; */
     }
-    /* .home .cocktail div{
-        color: var(--clearColor);
-        background-color: var(--clearColor);
-        border: 1px solid var(--rocColorO);
-        border-radius: 3rem;
-        width:auto;
-        margin: 1rem;
-        padding: 0.5rem 0 0 0;
-        width:auto;
-        height:inherit;
-    } */
     .cocktailBottom p{
         color: var(--clearColor);
         position: relative;
@@ -1227,15 +1213,13 @@ footer a{
     }
     footer{
         background-color: unset;
-        height: 45rem;
-        margin-top: -25rem;
+        height: 45vh;
+        margin-top: -25vh;
     }
     .topBlocFooter{
         padding-top: 10rem;
         padding-left: 10rem;
-    }
-    .bottomBlocFooter{
-        margin-top: -3rem;
+        margin-bottom: -4rem;
     }
     footer p{
         font-size: 1.2rem;
