@@ -56,6 +56,7 @@ section{
 }
 .activity,
 .booking,
+.backBooking,
 .temporaryBooking,
 .contact,
 .policy{
@@ -173,6 +174,16 @@ p a{
 div.form-error, .emptyField {
     color: var(--require);
     width: 100%;
+}
+.validate {
+    color: var(--rocColorO);
+    font-size: 2rem;
+}
+.alert{
+    color: var(--require);
+}
+.hide{
+    display:none;
 }
 
 /* #endregion COMMUM */
@@ -679,14 +690,90 @@ fieldset, .booking textarea{
     border: 1px solid var(--require);
     color: var(--require);
 }
-.booking .hide{
-    display:none;
-}
 .booking .red-border{
     border: 2px solid var(--require);
     border-radius: 5px;
 }
 /* #endregion BOOKING */
+
+/* #region BACK BOOKING */
+.backBooking{
+    position: relative;
+    color:var(--darkColor);
+    text-align: center;
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+}
+.backBooking form{
+    border: 2px solid var(--rocColorO);
+    border-radius: 3rem;
+    background-color: var(--bookingColor);
+    padding: 1rem;
+    width: 70vw;
+    margin: 0 auto;
+}
+.connect, .showBookings{
+    color:var(--clearColor);
+    border: 2px solid var(--rocColorO);
+    background-color: var(--rocColorO);
+    margin: 0;
+
+}
+.backBooking input, .backBooking select{
+    margin: 1rem 0;
+    padding: 0.5rem;
+    width: 100%;
+    border: 1px solid var(--rocColorO);
+}
+.showBookings{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.showBookings:hover{
+    transform:scale(0);
+}
+.logout, .more, .readBookings{
+    color:var(--rocColorC);
+    text-transform: capitalize;
+}
+.more, .readBookings{
+    width: unset;
+    padding: unset;
+    border: unset;
+    background: unset;
+    text-align: left;
+}
+.logout{
+    font-size: 2rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+.readBookings{
+    font-family: 'DIN-Regular';
+    font-size: 2rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+.backBooking table{
+    color: var(--rocColorR);
+    margin: 1rem;
+}
+.backBooking td{
+    width: 20%
+}
+.backBooking table a{
+    text-transform: unset;
+    color:var(--rocColorO);
+}
+
+
+
+
+/* #endregion BACK BOOKING */
 
 /* #region TEMPORARYBOOKING */
 .temporaryBooking{
@@ -697,7 +784,7 @@ fieldset, .booking textarea{
     background-size: cover;
     height: 80vh;
 }
-.temporaryBooking .alert{
+.temporaryBooking .message{
     position: absolute;
     width: 75vw;
     border: 2px solid var(--rocColorO);
@@ -707,7 +794,7 @@ fieldset, .booking textarea{
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.temporaryBooking .alert a{
+.temporaryBooking .message a{
     text-transform:capitalize;
     color: var(--rocColorO);
 }
@@ -756,13 +843,10 @@ fieldset, .booking textarea{
     border: 2px solid var(--rocColorC);
     border-radius: 3rem;
 }
-.contact span,
-.contact .alert{
+.contact span{
     color: var(--require);
 }
 .contact .validate{
-    color: var(--rocColorO);
-    font-size: 2rem;
     width: 100%
 }
 .contact .red-border{

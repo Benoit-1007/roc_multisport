@@ -2,12 +2,9 @@
 
 include_once 'Session.php';
 
-unset($_SESSION['user']);
+Session::init();
 
 Session::logout();
 
-// Notif
 
-
-header('Location: index.php');
-exit;
+require 'views/backBookings.phtml';

@@ -8,7 +8,6 @@
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
-// header("Access-Control-Allow-Methods: SESSION");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
@@ -28,7 +27,9 @@ Session::init();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    var_dump($_POST);
+    // var_dump($_POST);
+
+    unset($_SESSION['info']);
 
     if (isset($_POST) && !empty($_POST)) {
         
@@ -44,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if (count($errors) > 0) {
             $_SESSION['error'] = $errors;
-            var_dump($_SESSION);
 
         } else {
 
@@ -63,20 +63,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if (count($errors) > 0) {
                 $_SESSION['error'] = $errors;  
-                var_dump($_SESSION);
             }  else {
                 Session::login($user);
+                unset($_SESSION['error']);
             } 
         }
     }
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    var_dump($_GET);
+    // var_dump($_GET);
     // Delete messages
-    // unset($_SESSION['error']);
-    // unset($_SESSION['user']);
-    Session::logout();
+    unset($_SESSION['error']);
+    unset($_SESSION['info']);
 }
 
 

@@ -101,11 +101,10 @@ if (
                     if (isset($activity->halfDay)) {
                         $bookingActivity->halfDaySelect = $activity->halfDay;
                     } else {
-                        $bookingActivity->halfDaySelect = "allday";
+                        $bookingActivity->halfDaySelect = "Journée";
                     }
                     $bookingActivityId = $bookingActivity->create();
-                    
-                    
+
                     if ($bookingActivityId === 0) {
                         // set response code - 400 bad request
                         http_response_code(400);

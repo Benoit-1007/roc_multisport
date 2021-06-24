@@ -4,8 +4,8 @@
         <address>
             <p>165 route des Tappes</p>
             <p>74230 Dingy-Saint-Clair</p>
-            <p>Tél : <a href="0658355166">06 58 35 51 66</a></p>
-            <p><a href="mailto:roc.multisport@gmail.com" title="Cliquez içi pour nous contacter">roc.multisport@gmail.com</a></p>
+            <p>Tél : <a href="tel:0658355166">06 58 35 51 66</a></p>
+            <p><a href="contact.php" title="Cliquez içi pour nous contacter">remi@rocmultisport.fr</a></p>
         </address>
     </div>
     <div class="network">

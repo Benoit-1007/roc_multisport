@@ -37,7 +37,10 @@ if ($num > 0) {
         $user_item = array(
             "idBookingActivity" => $idBookingActivity,
             "lastName" => $lastName,
-            "firstName" => $firstName
+            "firstName" => $firstName,
+            "birthdate" => $birthdate,
+            "size" => $size,
+            "level" => $level
         );
         array_push($users_array["records"], $user_item);
     }

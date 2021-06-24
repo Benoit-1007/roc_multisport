@@ -4,24 +4,21 @@
 document.addEventListener("DOMContentLoaded", function (event) {
 
     // menu management for mobile phone 
-    let show = document.querySelector('.show');
-    
-    if(show){
-        show.addEventListener('click', function(e){
+    toggleMenu();
 
+    let showBookingsButton = document.querySelector('.showBookings');
+    
+    if(showBookingsButton){
+        showBookingsButton.addEventListener('click', function(e){
+
+            showBookingsButton.classList.add('hide');
             showBookings();
+
         });
     }
 
-
-    // let logout = document.querySelector('.logout');
-
-    // logout.addEventListener('click', logout());
     
 });
-    
-
-
 
 
 // function login(form) {
@@ -48,10 +45,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 //         })
 // }
 
-function logout(){
-    
-}
-
 function showBookings() {
 
     // On recupere les données
@@ -60,15 +53,15 @@ function showBookings() {
         .then((data) => {
 
             // html for listing products
-            var read_bookings_html = `
+            let read_bookings_html = `
 
             <!-- start table -->
             <table>
             
                 <tr>
-                    <th>Date</th>
+                    <th>Date de réservation</th>
                     <th>Nom</th>
-                    <th>Prenom</th>
+                    <th>Prénom</th>
                     <th>Commentaire</th>
                     <th>Action</th>
                 </tr>`;
@@ -81,15 +74,15 @@ function showBookings() {
                 read_bookings_html += `
                 <tr>
         
-                    <td>` + key.dateOfBooking + `</td>
+                    <td>` + convertDate(key.dateOfBooking) + `</td>
                     <td>` + key.lastName + `</td>
                     <td>` + key.firstName + `</td>
                     <td>` + key.comment + `</td>       
                     <!-- 'action' buttons -->
                     <td>
                         <!-- read product button -->
-                        <button  onclick='showDetails(this)' data-id='` + key.idBooking + `'>
-                            Read
+                        <button class="more"  onclick='showDetails(this)' data-id='` + key.idBooking + `'>
+                            consulter
                         </button>
                     </td>
         
@@ -108,11 +101,11 @@ async function showDetails(identifier) {
 
 
     // get booking id
-    var id = identifier.getAttribute('data-id');
+    let id = identifier.getAttribute('data-id');
 
     let typeBooking = "";
     let read_activities_html = ""
-    var whereToWrite = document.querySelector("#page-content");
+    let whereToWrite = document.querySelector("#page-content");
 
     // read booking record based on given booking ID
     fetch('api/booking/readOneBookingDetails.php?idBooking=' + id)
@@ -121,27 +114,21 @@ async function showDetails(identifier) {
 
             typeBooking = data.typeOfBooking
 
-            var read_one_booking_html = `
+            let read_one_booking_html = `
     
             
-            <button id='read-bookings' onclick='showBookings()' >
-                Back
+            <button class='readBookings' onclick='showBookings()' >
+                Retour
             </button>
 
             <h3>Reservation</h3>
             <!-- booking data will be shown in this table -->
             <table>
             
-                <!-- Booking Id -->
-                <tr>
-                    <td>ID</td>
-                    <td>` + data.idBooking + `</td>
-                </tr>
-            
                 <!-- Booking Date -->
                 <tr>
                     <td>Date de reservation</td>
-                    <td>` + data.dateOfBooking + `</td>
+                    <td>` + convertDate(data.dateOfBooking) + `</td>
                 </tr>
             
                 <!-- Booking Type -->
@@ -161,16 +148,10 @@ async function showDetails(identifier) {
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data)
-                    var read_one_contact_html = `
+                    let read_one_contact_html = `
                     <h3>Contact</h3>
                     <!-- contact data will be shown in this table -->
                     <table>
-                    
-                        <!-- Contact Id -->
-                        <tr>
-                            <td>ID</td>
-                            <td>` + data.idContact + `</td>
-                        </tr>
                     
                         <!-- Contact details -->
                         <tr>
@@ -190,12 +171,12 @@ async function showDetails(identifier) {
 
                         <tr>
                             <td>Téléphone</td>
-                            <td>` + data.phoneNumber + `</td>
+                            <td><a href="tel:` + data.phoneNumber +`">` + data.phoneNumber + `</a></td>
                         </tr>
 
                         <tr>
                             <td>Mail</td>
-                            <td>` + data.mail + `</td>
+                            <td><a href="mailto:` + data.mail + `" target="_blank">` + data.mail + `</a></td>
                         </tr>
 
                         <tr>
@@ -225,14 +206,19 @@ async function showDetails(identifier) {
                         .then(res => res.json())
                         .then((data) => {
 
-                            read_activities_html = `<h3>Activities</h3>`;
+                            read_activities_html = `<h3>Activité(s)</h3>`;
 
 
 
                             // loop through returned list of data
                             (data.records.forEach((key, val) => {
                                 // creating new table row per record
-                                read_activities_html += '<h5>' + key.codeActivity + ` ` + key.nameActivity + ` ` + key.dateActivity + ` ` + key.halfDaySelect + '</h5>';
+                                // read_activities_html += '<h5>' + key.codeActivity + ` ` + key.nameActivity + ` ` + key.dateActivity + ` ` + key.halfDaySelect + '</h5>';
+                                // let date = new Date(key.dateActivity);
+                                // let split = date.toLocaleString().split(',');
+                                // let myDate = split[0];
+                                // console.log("🚀 ~ file: backBooking.js ~ line 220 ~ myDate", myDate)
+                                read_activities_html += '<p>' + key.nameActivity + ` , ` + convertDate(key.dateActivity) + ` , ` + key.halfDaySelect + '</p>';
                                 read_activities_html += '<div id="usersActivity'+key.idBookingActivity+'"></div>';
 
                                 whereToWrite.innerHTML += read_activities_html;
@@ -240,7 +226,7 @@ async function showDetails(identifier) {
 
                                 crtIdBookingActivity = key.idBookingActivity
 
-                                var read_users_html = ''
+                                let read_users_html = ''
 
                                 if (typeBooking === "singleActivity") {
 
@@ -254,16 +240,48 @@ async function showDetails(identifier) {
 
                                             // console.log(dataUsers)
 
-                                            read_users_html = `<h3>Users</h3>`;
+                                            // read_users_html = '<h3>Participants</h3>';
+                                            read_users_html = `
+                                                
+                                                <table class="participantsList`+ key.idBookingActivity +`">
+                                                    <tr>
+                                                        <td>Nom</td>
+                                                        <td>Prénom</td>
+                                                        <td>Date de naissance</td>
+                                                        <td>Taille</td>
+                                                        <td>Niveau</td>
+                                                    </tr>
+                                                    
+                                                </table>
+                                                `;
+                                                
 
                                             (dataUsers.records.forEach((keyUser, valUser) => {
 
-                                                // console.log(keyUser.lastName)
-                                                read_users_html += keyUser.lastName + " " + keyUser.firstName + " / ";
-                                                // console.log(read_users_html)
+                                                // // console.log(keyUser.lastName)
+                                                // read_users_html += keyUser.firstName + " " + keyUser.lastName + " / ";
+                                                // // console.log(read_users_html)
+
+                                                // document.querySelector("#usersActivity"+keyUser.idBookingActivity).innerHTML += read_users_html;
+                                                // read_users_html = ''
+
+                                                let user = `
+                                                    <tr>
+                                                        <td>` + keyUser.lastName + `</td>
+                                                        <td>` + keyUser.firstName + `</td>
+                                                        <td>` + keyUser.birthdate + `</td>
+                                                        <td>` + keyUser.size + `</td>
+                                                        <td>` + keyUser.level + `</td>
+                                                    </tr>
+                                                `;
 
                                                 document.querySelector("#usersActivity"+keyUser.idBookingActivity).innerHTML += read_users_html;
-                                                read_users_html = ''
+
+                                                let table = document.querySelector('.participantsList'+key.idBookingActivity);
+                                                console.log("🚀 ~ file: backBooking.js ~ line 276 ~ table", table)
+                                                table.innerHTML += user;
+
+                                                read_users_html='';
 
                                             }))
 
@@ -282,7 +300,7 @@ async function showDetails(identifier) {
 
                                         console.log("coktail")
 
-                                        var read_users_html = `<h3>Users</h3>`;
+                                        let read_users_html = `<h3>Users</h3>`;
 
                                         (dataUsers.records.forEach((keyUser, valUser) => {
 
@@ -325,6 +343,14 @@ function toggleMenu(){
             })
         });
     } 
+}
+
+function convertDate(date) {
+    let dateToConvert = new Date(date);
+    let split = dateToConvert.toLocaleString().split(',');
+    let myDate = split[0];
+
+    return myDate;
 }
 
 

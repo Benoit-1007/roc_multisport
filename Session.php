@@ -18,8 +18,8 @@ class Session {
 
     public static function logout(): void {
         if(!empty($_SESSION)) {
-            unset($_SESSION);
-            session_destroy();
+            $_SESSION['info'] = "Vous êtes bien déconnecté ! A bientôt. ";
+            unset($_SESSION['user']);
         }
     }
 

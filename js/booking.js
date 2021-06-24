@@ -332,8 +332,8 @@ document.addEventListener('DOMContentLoaded', function () {
         halfDaySelector.name = 'halfDaySelector' + '_activity_' + numActivity
         halfDaySelector.classList.add('activity_' + numActivity + '_halfDaySelector')
         halfDaySelector.innerHTML = `
-        <option value='morning'>Matin</option>
-        <option value='afternoon'>Après-midi</option>
+        <option value='Matinée'>Matin</option>
+        <option value='Après-midi'>Après-midi</option>
         `;
         divActivity.insertBefore(halfDaySelector, inputParticipantsNumberSelector);
     }
