@@ -12,6 +12,7 @@ class Errors {
     createError() {
         for (let error of this.errors.messages) {
             for (let field in error) {
+                console.log(field);
                 if (error.hasOwnProperty(field)) {
                     const div = document.createElement('div');
                     div.innerText = error[field];

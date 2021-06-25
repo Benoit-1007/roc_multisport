@@ -42,7 +42,7 @@ html {
 	font-size: 62.5%; /* 1rem = 10px */
 }
 body{
-    background-color: var(--background);
+    background-color: var(--clearColor);
     font-family: DIN-Regular;
     font-size:1.8rem;
     color:var(--clearColor);
@@ -78,7 +78,7 @@ h1{
     color: var(--darkColor);
     margin-top: 0;
 }
-h1 span{
+.h1 span, .home span{
     color: var(--rocColorC);
 }
 h2{
@@ -168,9 +168,6 @@ p a{
 .cocktail span:nth-child(3n+3){
     color:var(--rocColorC);
 }
-.form{
-    background-color: var(--clearColor);
-}
 div.form-error, .emptyField {
     color: var(--require);
     width: 100%;
@@ -184,6 +181,14 @@ div.form-error, .emptyField {
 }
 .hide{
     display:none;
+}
+.form{
+    background-color: var(--clearColor);
+}
+.grid{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
 }
 
 /* #endregion COMMUM */
@@ -353,7 +358,6 @@ header{
     background-size: cover;
 }
 .home p{
-    font-size: 1.8rem;
     color: var(--rocColorR);
     padding: 0 2rem
 }
@@ -436,7 +440,7 @@ header{
 /* #region archery */
 .archery{
     color:var(--rocColorR);
-    background: url('../img/background/snowboardTransition.png')bottom no-repeat;
+    background: url('../img/background/snowboardTransition.png')bottom no-repeat, var(--background);
     background-size: 100%;
     padding-bottom: 10rem;
 }
@@ -730,6 +734,7 @@ fieldset, .booking textarea{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: unset;
 }
 .showBookings:hover{
     transform:scale(0);
@@ -770,9 +775,6 @@ fieldset, .booking textarea{
     color:var(--rocColorO);
 }
 
-
-
-
 /* #endregion BACK BOOKING */
 
 /* #region TEMPORARYBOOKING */
@@ -782,7 +784,7 @@ fieldset, .booking textarea{
     font-size: 2rem;
     background: url("../img/mountain3.jpeg")bottom fixed;
     background-size: cover;
-    height: 80vh;
+    height: 70vh;
 }
 .temporaryBooking .message{
     position: absolute;
@@ -790,7 +792,7 @@ fieldset, .booking textarea{
     border: 2px solid var(--rocColorO);
     border-radius: 3.5rem;
     padding: 1rem;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -1313,10 +1315,6 @@ footer a{
         text-align: left;
         padding-left: 2rem;
     }
-    .contact, .booking{
-        padding-bottom: 20rem;
-    }
-    
 }
 /* #endregion DESKTOP (min-width: 980px) */
 

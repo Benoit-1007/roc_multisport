@@ -72,65 +72,65 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // validate form
     validateReservationBtn.addEventListener('click', function(e) {
-        // let inputs = bookingForm.querySelectorAll('.field');
+        let inputs = bookingForm.querySelectorAll('.field');
         
         e.preventDefault();
-
-        submitform();
         
-        // let error = new Errors;
+        let error = new Errors;
 
-        // inputs.forEach(input => {
+        inputs.forEach(input => {
 
-        //     if(input.name !== "contact_society" && input.name !== 'comment') {
-        //         if (!input.disabled) {
-        //             if(input.value === '' || input.value === 'empty') {
-        //                 input.classList.add('red-border');
-        //                 error.record({validateReservation: 'Merci de renseigner tous les champs obligatoires'})
-        //             }
-        //         }
-        //     }          
+            if(input.name !== "contact_society" && input.name !== 'comment') {
+                if (!input.disabled) {
+                    if(input.value === '' || input.value === 'empty') {
+                        input.classList.add('red-border');
+                        error.record({validateReservation: 'Merci de renseigner tous les champs obligatoires'})
+                    }
+                }
+            }          
 
-        //     if (input.name === 'contact_lastName'){
-        //         if(!validateName(input.value)){
-        //             error.record({contact_lastName: 'Nom invalide'});
-        //         }
-        //     }
-        //     if (input.name === 'contact_firstName'){
-        //         if(!validateName(input.value)){
-        //             error.record({contact_firstName: 'Prénom invalide'});
-        //         }
-        //     }
-        //     if (input.name === 'contact_phone'){
-        //         if(!validatePhone(input.value)){
-        //             error.record({contact_phone: 'Téléphone invalide'});
-        //         }
-        //     }
-        //     if (input.name === 'contact_mail'){
-        //         if(!validateEmail(input.value)){
-        //             error.record({contact_mail: 'Email invalide'});
-        //         }
-        //     }
-        //     if (input.name === 'cgv' && input.checked === false){
-        //         error.record({cgv: 'Merci daccepter nos conditions générales de vente'});
-        //     }
-        // });
+            if (input.name === 'contact_lastName'){
+                if(!validateName(input.value)){
+                    error.record({contact_lastName: 'Nom invalide'});
+                }
+            }
+            if (input.name === 'contact_firstName'){
+                if(!validateName(input.value)){
+                    error.record({contact_firstName: 'Prénom invalide'});
+                }
+            }
+            if (input.name === 'contact_phone'){
+                if(!validatePhone(input.value)){
+                    error.record({contact_phone: 'Téléphone invalide'});
+                }
+            }
+            if (input.name === 'contact_mail'){
+                if(!validateEmail(input.value)){
+                    error.record({contact_mail: 'Email invalide'});
+                }
+            }
+            if (input.name === 'cgv' && input.checked === false){
+                error.record({cgv: 'Merci daccepter nos conditions générales de vente'});
+            }
+        });
 
-        // if (error.errors.messages.length > 0) {
-        //     error.createError();
-        //     if(error.errors.messages[0].validateReservation === 'Merci de renseigner tous les champs obligatoires') {
-        //         setTimeout(hide, 5000);
-        //         console.log('test hide');
-        //     }
+        if (error.errors.messages.length > 0) {
+            e.preventDefault();
 
-        //     // e.preventDefault();
-        // } else {
-        //     submitform();
-        // }
+            error.createError();
+            if(error.errors.messages[0].validateReservation === 'Merci de renseigner tous les champs obligatoires') {
+                setTimeout(hide, 5000);
+                console.log('test hide');
+                console.log('Merci de renseigner tous les champs obligatoires');
+            }
 
-        // inputs.forEach.call(inputs, input => {
-        //     input.addEventListener('keydown', removeError(input));
-        // });
+        } else {
+            submitform();
+        }
+
+        inputs.forEach.call(inputs, input => {
+            input.addEventListener('keydown', removeError(input));
+        });
     })
 
 
@@ -452,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée - 160€/pers.</option>
                     <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
                     <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
-                    <option value="splitboarAllfDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
+                    <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
                 </select>
                 <input class="field" type="date" name="date_activity_`+ x + `">
                 <input class="field" type="number" name="participantsCount_activity_`+ x + `" placeholder="Nombre de participants" min="2" max="12">
@@ -986,12 +986,21 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=>{
         console.log("message " + data.message);
-        if (data.message === "Unable to create booking final.") {
-            messageArea.innerText = "Impossible d'enregistrer votre réservation. Données manquantes ou erronées.";
+        if (data.message === "Unable to create contact.") {
+            messageArea.innerText = "Impossible d'enregistrer votre réservation. Coordonnées manquantes ou erronées.";
+        }  else if (data.message === "Unable to create booking activity. invalid date") {
+            messageArea.innerText = "Impossible d'enregistrer votre réservation. Date d'activité invalide.";
         }  else if (data.message === "Unable to create booking activity.") {
             messageArea.innerText = "Impossible d'enregistrer votre réservation. Activité(s) incomplète(s).";
         } else if (data.message === "Unable to create participants List.") {
             messageArea.innerText = "Impossible d'enregistrer les participants. Données manquantes ou erronées.";
+        }  else if (
+            data.message === "Unable to create booking. Technical error." || 
+            data.message === "Unable to create booking activity. Technical error." ||
+            data.message === "Unable to create participants List.  Technical error." ||
+            data.message === "Unable to create bookingActivityUser. Technical error.." 
+            ) {
+            messageArea.innerText = "Impossible d'enregistrer votre réservation. Merci de nous contacter par mail ou téléphone.";
         }  
     })
     .catch(err => {

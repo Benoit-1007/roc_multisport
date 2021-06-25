@@ -14,11 +14,14 @@ class Contact {
         this.message='';
     }
 
+    /**check if inputs of contactForm are allowed & not empty
+     * @param {*} fields all inputs of contactForm
+     * @returns a Boolean value that indicates if form is valid or not
+     */
     validate(fields){
         fields.forEach(field => {
             if (!this.allowed.includes(field.name)) {
                 alert(`Le champ ${field.name} n'est pas valide`)
-                return this.error.record(`Le champ ${field.name} n'est pas valide`);
             }
             if (field.name === 'email') {
                 if (this.validateEmail(field.value)) {

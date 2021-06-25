@@ -39,7 +39,6 @@ if (
     !empty($data->contact->contact_firstName) &&
     preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $data->contact->contact_firstName) &&
     !empty($data->contact->contact_phone) &&
-    // $contact->validatePhoneNumber($data->contact->contact_phone)&&
     !empty($data->contact->contact_mail) &&
     filter_var($data->contact->contact_mail, FILTER_VALIDATE_EMAIL) &&
     !empty($data->contact->contact_adress) &&
@@ -86,70 +85,97 @@ if (
                 // set response code - 400 bad request
                 http_response_code(400);
                 // tell the user
-                echo json_encode(array("message" => "Unable to create booking.")); die;
+                echo json_encode(array("message" => "Unable to create booking. Technical error.")); die;
             } else {
 
                 // Create Booking activity
                 // =======================
 
                 foreach ($data->activities as $activity) {
-                    $bookingActivity = new BookingActivity($db);
+                    if(isValid($activity->dateActivity)){
 
-                    $bookingActivity->idBooking = $bookingId;
-                    $bookingActivity->codeActivity = $activity->name;
-                    $bookingActivity->dateActivity = $activity->dateActivity;
-                    if (isset($activity->halfDay)) {
-                        $bookingActivity->halfDaySelect = $activity->halfDay;
+                        $bookingActivity = new BookingActivity($db);
+
+                        $bookingActivity->idBooking = $bookingId;
+                        $bookingActivity->codeActivity = $activity->name;
+                        $bookingActivity->dateActivity = $activity->dateActivity;
+                        if (isset($activity->halfDay)) {
+                            $bookingActivity->halfDaySelect = $activity->halfDay;
+                        } else {
+                            $bookingActivity->halfDaySelect = "Journée";
+                        }
+                        $bookingActivityId = $bookingActivity->create();
+
+                        if ($bookingActivityId === 0) {
+                            // set response code - 400 bad request
+                            http_response_code(400);
+                            // tell the user
+                            echo json_encode(array("message" => "Unable to create booking activity. Technical error.")); die;
+                        } else {
+                            
+                            // Create Users
+                            // ============
+                            
+                            foreach ($activity->participants as $participant) {
+
+                                if(
+                                    !empty($participant->lastName) && 
+                                    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $participant->lastName) &&
+                                    !empty($participant->firstName) &&
+                                    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $participant->firstName) &&
+                                    !empty($participant->birthdate) &&
+                                    isValid($participant->birthdate,'d/m/Y') &&
+                                    !empty($participant->size) &&
+                                    is_int(intval($participant->size)) &&
+                                    strlen($participant->size) <= 3
+                                ) {
+                                
+                                    $user = new User($db);
+
+                                    $user->lastName = $participant->lastName;
+                                    $user->firstName = $participant->firstName;
+                                    $user->birthdate = $participant->birthdate;
+                                    $user->size = $participant->size;
+                                    $user->level = $participant->level;
+                                    $userId = $user->create();
+                                    
+                                    if ($userId === 0) {
+                                        // set response code - 400 bad request
+                                        http_response_code(400);
+                                        // tell the user
+                                        echo json_encode(array("message" => "Unable to create participants List. Technical error."));die;
+                                    } else {
+                                        
+                                        // Create Activities Users
+                                        // =======================      
+                                        
+                                        $bookingActivityUser = new Bookingactivityuser($db);
+
+                                        $bookingActivityUser->idBookingActivity = $bookingActivityId;
+                                        $bookingActivityUser->idUser = $userId;
+                                        $bookingActivityUserId = $bookingActivityUser->create();
+                                        
+                                        if ($bookingActivityUserId === 0) {
+                                            // set response code - 400 bad request
+                                            http_response_code(400);
+                                            // tell the user
+                                            echo json_encode(array("message" => "Unable to create bookingActivityUser. Technical error.")); die;
+                                        } 
+                                        
+                                    } 
+                                } else {
+                                    // set response code - 400 bad request
+                                http_response_code(400);
+                                // tell the user
+                                echo json_encode(array("message" => "Unable to create participants List.")); die;
+                                }
+                            }
+                        }
                     } else {
-                        $bookingActivity->halfDaySelect = "Journée";
-                    }
-                    $bookingActivityId = $bookingActivity->create();
-
-                    if ($bookingActivityId === 0) {
                         // set response code - 400 bad request
                         http_response_code(400);
                         // tell the user
-                        echo json_encode(array("message" => "Unable to create booking activity.")); die;
-                    } else {
-                        
-                        // Create Users
-                        // ============
-                        
-                        foreach ($activity->participants as $participant) {
-                            
-                            
-                            
-                            $user = new User($db);
-                            $user->lastName = $participant->lastName;
-                            $user->firstName = $participant->firstName;
-                            $user->birthdate = $participant->birthdate;
-                            $user->size = $participant->size;
-                            $user->level = $participant->level;
-                            $userId = $user->create();
-                            
-                            if ($userId === 0) {
-                                // set response code - 400 bad request
-                                http_response_code(400);
-                                // tell the user
-                                echo json_encode(array("message" => "Unable to create participants List."));die;
-                            } else {
-                                
-                                // Create Activities Users
-                                // =======================      
-                                
-                                $bookingActivityUser = new Bookingactivityuser($db);
-                                $bookingActivityUser->idBookingActivity = $bookingActivityId;
-                                $bookingActivityUser->idUser = $userId;
-                                $bookingActivityUserId = $bookingActivityUser->create();
-                                
-                                if ($bookingActivityUserId === 0) {
-                                    // set response code - 400 bad request
-                                    http_response_code(400);
-                                    // tell the user
-                                    echo json_encode(array("message" => "Unable to create booking user activity.")); die;
-                                } 
-                            }
-                        }
+                        echo json_encode(array("message" => "Unable to create booking activity. invalid date")); die;
                     }
                 }
             }
@@ -166,78 +192,103 @@ if (
                 // set response code - 400 bad request
                 http_response_code(400);
                 // tell the user
-                echo json_encode(array("message" => "Unable to create booking.")); die;
+                echo json_encode(array("message" => "Unable to create booking. Technical error.")); die;
             } else {
 
                 $bookingActivitiesId_Array = [];
 
                 // Create Booking activity
                 // =======================
-                foreach ($data->cocktail[0]->activities as $activity) {
-                    $bookingActivity = new BookingActivity($db);
+                if(isValid($data->cocktail[0]->date)){
 
-                    $bookingActivity->idBooking = $bookingId;
-                    $bookingActivity->codeActivity = $activity->activity;
-                    $bookingActivity->dateActivity = $data->cocktail[0]->date;
+                    foreach ($data->cocktail[0]->activities as $activity) {
+                        $bookingActivity = new BookingActivity($db);
 
-                    if (count($data->cocktail[0]->activities) === 2) {
-                        $bookingActivity->halfDaySelect = "allday";
-                    } else if (count($data->cocktail[0]->activities) === 3) {
-                        if (strpos($activity->activity, 'All') !== false) {
+                        $bookingActivity->idBooking = $bookingId;
+                        $bookingActivity->codeActivity = $activity->activity;
+                        $bookingActivity->dateActivity = $data->cocktail[0]->date;
+
+                        if (count($data->cocktail[0]->activities) === 2) {
                             $bookingActivity->halfDaySelect = "allday";
+                        } else if (count($data->cocktail[0]->activities) === 3) {
+                            if (strpos($activity->activity, 'All') !== false) {
+                                $bookingActivity->halfDaySelect = "allday";
+                            } else {
+                                $bookingActivity->halfDaySelect = "halfday";
+                            }
                         } else {
                             $bookingActivity->halfDaySelect = "halfday";
                         }
-                    } else {
-                        $bookingActivity->halfDaySelect = "halfday";
-                    }
 
-                    $bookingActivityId = $bookingActivity->create();
+                        $bookingActivityId = $bookingActivity->create();
 
-                    if ($bookingActivityId == 0) {
-                        // set response code - 400 bad request
-                        http_response_code(400);
-                        // tell the user
-                        echo json_encode(array("message" => "Unable to create booking activity.")); die;
-                    } else {
-                    array_push($bookingActivitiesId_Array, $bookingActivityId);
+                        if ($bookingActivityId == 0) {
+                            // set response code - 400 bad request
+                            http_response_code(400);
+                            // tell the user
+                            echo json_encode(array("message" => "Unable to create booking activity. Technical error.")); die;
+                        } else {
+                        array_push($bookingActivitiesId_Array, $bookingActivityId);
+                        }
                     }
+                } else {
+                    // set response code - 400 bad request
+                    http_response_code(400);
+                    // tell the user
+                    echo json_encode(array("message" => "Unable to create booking activity. invalid date")); die;
                 }
-
                 // Create Users
                 // =======================
 
                 foreach ($data->cocktail[0]->participants as $participant) {
-                    $user = new User($db);
-                    $user->lastName = $participant->lastName;
-                    $user->firstName = $participant->firstName;
-                    $user->birthdate = $participant->birthdate;
-                    $user->size = $participant->size;
-                    $user->level = "useless";
-                    $userId = $user->create();
 
-                    if ($userId == 0) {
-                        // set response code - 400 bad request
-                        http_response_code(400);
-                        // tell the user
-                        echo json_encode(array("message" => "Unable to create participants List.")); die;
-                    } else {
-                        foreach ($bookingActivitiesId_Array as $bookingActivityId) {
-                            // Create Activities Users
-                            $bookingActivityUser = new Bookingactivityuser($db);
-                            $bookingActivityUser->idUser = $userId;
-                            $bookingActivityUser->idBookingActivity = $bookingActivityId;
-                            $bookingActivityUserId = $bookingActivityUser->create();
-                        }
-                        
-                        if ($bookingActivityUserId == 0) {
+                    if(
+                        !empty($participant->lastName) && 
+                        preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $participant->lastName) &&
+                        !empty($participant->firstName) &&
+                        preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $participant->firstName) &&
+                        !empty($participant->birthdate) &&
+                        isValid($participant->birthdate,'d/m/Y') &&
+                        !empty($participant->size) &&
+                        is_int(intval($participant->size)) &&
+                        strlen($participant->size) <= 3
+                    ) {
+                        $user = new User($db);
+
+                        $user->lastName = $participant->lastName;
+                        $user->firstName = $participant->firstName;
+                        $user->birthdate = $participant->birthdate;
+                        $user->size = $participant->size;
+                        $user->level = "useless";
+                        $userId = $user->create();
+
+                        if ($userId == 0) {
                             // set response code - 400 bad request
                             http_response_code(400);
                             // tell the user
-                            echo json_encode(array("message" => "Unable to create booking.")); die;
+                            echo json_encode(array("message" => "Unable to create participants List.  Technical error.")); die;
+                        } else {
+                            foreach ($bookingActivitiesId_Array as $bookingActivityId) {
+                                // Create Activities Users
+                                $bookingActivityUser = new Bookingactivityuser($db);
+                                $bookingActivityUser->idUser = $userId;
+                                $bookingActivityUser->idBookingActivity = $bookingActivityId;
+                                $bookingActivityUserId = $bookingActivityUser->create();
+                            }
+                            
+                            if ($bookingActivityUserId === 0) {
+                                // set response code - 400 bad request
+                                http_response_code(400);
+                                // tell the user
+                                echo json_encode(array("message" => "Unable to create bookingActivityUser. Technical error.")); die;
+                            }
                         }
+                    } else {
+                        // set response code - 400 bad request
+                    http_response_code(400);
+                    // tell the user
+                    echo json_encode(array("message" => "Unable to create participants List.")); die;
                     }
-                        
                 }
             }
         }
@@ -275,7 +326,12 @@ else {
     http_response_code(400);
 
     // tell the user
-    echo json_encode(array("message" => "Unable to create booking final."));
+    echo json_encode(array("message" => "Unable to create contact."));
     
+}
+
+function isValid($date, $format = 'Y-m-d'){
+    $dt = DateTime::createFromFormat($format, $date);
+    return $dt && $dt->format($format) === $date;
 }
 
