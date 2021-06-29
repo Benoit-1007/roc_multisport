@@ -545,6 +545,7 @@ header{
     margin: 0 auto;
     height: 25vh;
     border-radius: 4rem;
+    overflow: hidden;
 }
 .testimony .slider div{
     text-align: left;
@@ -729,6 +730,9 @@ fieldset, .booking textarea{
     width: 100%;
     border: 1px solid var(--rocColorO);
 }
+.backBooking p{
+    font-size: 2rem;
+}
 .showBookings{
     position: absolute;
     top: 50%;
@@ -773,6 +777,13 @@ fieldset, .booking textarea{
 .backBooking table a{
     text-transform: unset;
     color:var(--rocColorO);
+}
+.backBooking th, .backBooking td{
+    padding: 1rem;
+}
+.backBooking th{
+    background-color: var(--rocColorC);
+    color: var(--clearColor);
 }
 
 /* #endregion BACK BOOKING */
@@ -1300,7 +1311,7 @@ footer a{
     footer{
         background-color: unset;
         height: 45vh;
-        margin-top: -25vh;
+        margin-top: -25rem;
     }
     .topBlocFooter{
         padding-top: 10rem;
@@ -1314,6 +1325,9 @@ footer a{
         width: 43vw;
         text-align: left;
         padding-left: 2rem;
+    }
+    .booking, .contact{
+        padding-bottom: 25rem;
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */

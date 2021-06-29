@@ -300,23 +300,6 @@ if (
 
     echo json_encode(array("message" => "Job done."));
     
-
-
-    // if ($bookingId > 0) {
-
-    //     // set response code - 201 created
-    //     http_response_code(201);
-
-    //     // tell the user
-    //     echo json_encode(array("message" => "booking was created."));
-    // } else {
-
-    //     // set response code - 503 service unavailable
-    //     http_response_code(503);
-
-    //     // tell the user
-    //     echo json_encode(array("message" => "Unable to create contact."));
-    // }
 }
 
 // tell the user data is incomplete

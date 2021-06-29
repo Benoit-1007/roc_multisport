@@ -72,9 +72,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // validate form
     validateReservationBtn.addEventListener('click', function(e) {
-        let inputs = bookingForm.querySelectorAll('.field');
-        
+
         e.preventDefault();
+        
+        let inputs = bookingForm.querySelectorAll('.field');
         
         let error = new Errors;
 
@@ -112,18 +113,44 @@ document.addEventListener('DOMContentLoaded', function () {
             if (input.name === 'cgv' && input.checked === false){
                 error.record({cgv: 'Merci daccepter nos conditions générales de vente'});
             }
+            if (input.name.includes('lastName_activity') && (!validateName(input.value))) {
+                input.classList.add('red-border');
+                error.record({validateReservation: "Nom invalide"});
+            }
+            if (input.name.includes('firstName_activity') && (!validateName(input.value))) {
+                input.classList.add('red-border');
+                error.record({validateReservation: "Prénom invalide"});
+            }
+            if (input.name.includes('birthdate') && validatedate(input.value) === false){
+                console.log(input.name);
+                input.classList.add('red-border');
+                error.record({validateReservation: "Date de naissance erronée pour l'un des participants. Merci de respecter le format jj/mm/aaaa."});
+            }
+            if (input.name.includes('size')){
+                console.log(input.name);
+                if (isNaN(parseInt(input.value))){
+                    input.classList.add('red-border');
+                    error.record({validateReservation: "Taille erronée pour l'un des participants. Merci de renseigner une taille en cm."});
+                } else if (parseInt(input.value) < 50 || parseInt(input.value) > 250){
+                    input.classList.add('red-border');
+                    error.record({validateReservation: "La taille renseignée pour l'un des participants semble erronées. Merci de vérifier vos saisies."});
+                }
+            }
+            if (input.name.includes('level')){
+                if(input.value !== 'Débutant' && input.value !== 'Intermédiaire' && input.value !== 'Confirmé' && input.value !== 'Expert'){
+                    input.classList.add('red-border');
+                    error.record({validateReservation: "Le niveau renseignée pour l'un des participants semble erronée. Merci de vérifier vos saisies."});
+                }
+            }
         });
 
         if (error.errors.messages.length > 0) {
-            e.preventDefault();
 
             error.createError();
-            if(error.errors.messages[0].validateReservation === 'Merci de renseigner tous les champs obligatoires') {
-                setTimeout(hide, 5000);
-                console.log('test hide');
-                console.log('Merci de renseigner tous les champs obligatoires');
-            }
 
+            if(error.errors.messages[0].hasOwnProperty('validateReservation')) {
+                setTimeout(hide, 5000);
+            }
         } else {
             submitform();
         }
@@ -211,12 +238,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 let activity = selector.getAttribute('name');
                 //get activity number
                 let activityNumber = activity.replace(/\D/g, '');
-                //get name activity
-                let activityName = this.options[selector.selectedIndex].getAttribute('name');
-                //get value activity
-                let activityValue = this.options[selector.selectedIndex].getAttribute('value');
-                //get price activity
-                let price = Number(this.options[selector.selectedIndex].getAttribute('data-price'));
                 //get activity duration
                 let activityDuration = this.options[selector.selectedIndex].getAttribute('data-duration');
                 //get min numberparticipants
@@ -243,9 +264,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 switch (activityDuration) {
                     case "halfDay":
-                        if (dateSelector.getAttribute('type') === 'week') {
-                            dateSelector.setAttribute('type', 'date')
-                        }
                         if (!dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
                             addHalfDaySelector(activityNumber, currentActivity, participantsNumberSelector);
                         }
@@ -254,18 +272,14 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                         break;
                     case "threeHalfDay":
-                        dateSelector.setAttribute('type', 'week');
                         rookeasyMessage.classList.remove('hide');
-                        if (dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
-                            removeHalfDaySelector(activityNumber);
+                        if (!dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
+                            addHalfDaySelector(activityNumber, currentActivity, participantsNumberSelector);
                         }
                         break;
                     default:
                         if (dateSelector.nextElementSibling.classList.contains('activity_' + activityNumber + '_halfDaySelector')) {
                             removeHalfDaySelector(activityNumber);
-                        }
-                        if (dateSelector.getAttribute('type') === 'week') {
-                            dateSelector.setAttribute('type', 'date')
                         }
                         if (!rookeasyMessage.classList.contains('hide')) {
                             rookeasyMessage.classList.add('hide');
@@ -364,14 +378,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 newParticipant.classList.add("participant"); // for css properties
                 if (currentActivity !== 'rocCocktail') {
                     newParticipant.innerHTML = ` 
-                        <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
-                        <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
+                        <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
+                        <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
                         <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
                         <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
                         <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
                             <option value="empty">Niveau*</option>
                             <option value="Débutant">Débutant</option>
-                            <option value="Intermediaire">Intermédiaire</option>
+                            <option value="Intermédiaire">Intermédiaire</option>
                             <option value="Confirmé">Confirmé</option>
                             <option value="Expert">Expert</option>
                         </select>
@@ -388,16 +402,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 participantsField.appendChild(newParticipant);
             }
 
-
-
-
-            // <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
-            //     <option value="">Niveau*</option>
-            //     <option value="beginner">Débutant</option>
-            //     <option value="intermediate">Intermédiaire</option>
-            //     <option value="confirmed">Confirmé</option>
-            //     <option value="expert">Expert</option>
-            // </select>
         } else if (differenceParticipants < 0) {
             for (let i = 0; i < Math.abs(differenceParticipants); i++) {
                 let participantToRemove = document.querySelector('.' + currentActivity + '_participant_' + (currentParticipantsNumber - i));
@@ -788,63 +792,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         bookingSummaryElmt.innerText = totalPrice + "€";
     }
-
-    /**check name of participant
-     * @param {string} name to check 
-     */
-    function validateName(string) {
-        const stringRegex = /^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/;
-        return stringRegex.test(string)
-    }
-
-    /**check email of participant
-     * @param {string} email to check 
-     */
-    function validateEmail(email) {
-        const mailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return mailRegex.test(String(email).toLowerCase());
-    }
-
-    /**check phone number of participant
-     * @param {string} phone number to check 
-     */
-    function validatePhone(phoneNumber) {
-        const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
-        return phoneRegex.test(phoneNumber);
-    }
-
-    /** remove error messages
-     * @param {*} field input in error
-     */
-    function removeError(field) {
-        // field.addEventListener('keydown', function(){
-        //     if (field.nextElementSibling.classList.contains('form-error')) {
-        //         field.nextElementSibling.remove();
-        //         field.classList.remove('red-border')
-        //     }
-        // })
-        field.addEventListener('focusout', function () {
-            field.classList.remove('red-border');
-            if (field.nextElementSibling !== null && field.nextElementSibling.classList.contains('form-error')) {
-                field.nextElementSibling.remove();
-            }
-        })
-    };
-
-    /** hide error message 'field empty' */
-    function hide() {
-        document.querySelector('#validateReservation').nextElementSibling.remove();
-        document.querySelector('#validateReservation').classList.remove('red-border');
-    }
 });
 
-
-
-// Generate jsonData
+/** Generate jsonData */ 
 function submitform() {
-
     let messageArea = document.querySelector('.message');
-    messageArea.innerHTML='';
 
     let jsondata = JSON.parse('{ }');;
     let formData = document.querySelector('#bookingForm');
@@ -861,9 +813,6 @@ function submitform() {
 
     for (let key of data.keys()) {
 
-        // console.log(key + " : "+ data.get(key));
-
-
         // Manage contact
         if (key.startsWith('contact')) {
             // Adding contact informations
@@ -872,11 +821,9 @@ function submitform() {
 
         // Manage comment
         if (key.startsWith('comment')) {
-            // console.log('test JSON comment')
             // Adding comment
             commentJson[key] = data.get(key).toString();
         }
-
 
         // Manage Activity
         if (key.startsWith('activity')) {
@@ -951,8 +898,6 @@ function submitform() {
 
                 cocktailDetailsJson["activities"] = cocktailActivitiesJson;
 
-
-
                 // Adding participants for activity x
                 let cocktailParticipantsJson = JSON.parse('[]');
 
@@ -978,7 +923,7 @@ function submitform() {
         }
     }
 
-    console.log(jsondata);
+    // console.log(jsondata);
 
     let crtFormData = JSON.stringify(jsondata);
     console.log(crtFormData);
@@ -986,7 +931,12 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=>{
         console.log("message " + data.message);
-        if (data.message === "Unable to create contact.") {
+        if(data.message === "Job done."){
+            messageArea.classList.add('validate');
+            messageArea.innerText = "Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail " + jsondata.contact.contact_mail + ". Nos équipes vous recontactent au plus vite pour finaliser votre réservation.";
+            setTimeout(refresh, 8000);
+
+        } else if (data.message === "Unable to create contact.") {
             messageArea.innerText = "Impossible d'enregistrer votre réservation. Coordonnées manquantes ou erronées.";
         }  else if (data.message === "Unable to create booking activity. invalid date") {
             messageArea.innerText = "Impossible d'enregistrer votre réservation. Date d'activité invalide.";
@@ -994,6 +944,7 @@ function submitform() {
             messageArea.innerText = "Impossible d'enregistrer votre réservation. Activité(s) incomplète(s).";
         } else if (data.message === "Unable to create participants List.") {
             messageArea.innerText = "Impossible d'enregistrer les participants. Données manquantes ou erronées.";
+            message = 'test message';
         }  else if (
             data.message === "Unable to create booking. Technical error." || 
             data.message === "Unable to create booking activity. Technical error." ||
@@ -1005,12 +956,10 @@ function submitform() {
     })
     .catch(err => {
         console.log('Error: ', err);
-        
     })
-    
-
 }
 
+/** Send data to server */
 async function fetchBookingJson(formData) {
     let response = await fetch('api/booking/createAllDatas.php', {
         method: 'POST',
@@ -1022,5 +971,85 @@ async function fetchBookingJson(formData) {
     let reponse = await response.json();
 
     return reponse;
-
 }
+
+/** redirection to home page after validation of the form */
+function refresh(){
+    window.location.href="index.php";
+}
+
+/**check name of participant
+     * @param {string} name to check 
+     */
+function validateName(string) {
+    const stringRegex = /^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î\ -]+$/;
+    return stringRegex.test(string)
+}
+
+/**check email of participant
+ * @param {string} email to check 
+ */
+function validateEmail(email) {
+    const mailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return mailRegex.test(String(email).toLowerCase());
+}
+
+/**check phone number of participant
+ * @param {string} phone number to check 
+ */
+function validatePhone(phoneNumber) {
+    const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    return phoneRegex.test(phoneNumber);
+}
+
+/** validate birthdate of participant */
+function validatedate(value) {
+    let dateformat = /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/;
+    // Match the date format through regular expression
+    if(value.match(dateformat)) {
+        let pdate = value.split('/');
+        let dd = parseInt(pdate[0]);
+        let mm  = parseInt(pdate[1]);
+        let yy = parseInt(pdate[2]);
+        // Create list of days of a month [assume there is no leap year by default]
+        let ListofDays = [31,28,31,30,31,30,31,31,30,31,30,31];
+        if (mm==1 || mm>2) {
+            if (dd>ListofDays[mm-1]) {
+                return false;
+            }
+        }
+        if (mm==2) {
+            let lyear = false;
+            if ( (!(yy % 4) && yy % 100) || !(yy % 400)) {
+                lyear = true; 
+            }
+            if ((lyear==false) && (dd>=29)) {   
+                return false;
+            }
+            if ((lyear==true) && (dd>29)) {
+                return false;
+            }
+        }
+    } else {
+        return false;
+    }
+}
+
+/** remove error messages
+ * @param {*} field input in error
+ */
+function removeError(field) {
+    field.addEventListener('focusout', function () {
+        field.classList.remove('red-border');
+        if (field.nextElementSibling !== null && field.nextElementSibling.classList.contains('form-error')) {
+            field.nextElementSibling.remove();
+        }
+    })
+};
+
+/** hide error message 'field empty' */
+function hide() {
+    document.querySelector('#validateReservation').nextElementSibling.remove();
+    document.querySelector('#validateReservation').classList.remove('red-border');
+}
+
