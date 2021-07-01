@@ -9,6 +9,10 @@ class Session {
         }
     }
 
+    public static function status() {
+        return self::init();
+    }
+
     public static function login(...$params): void {
         $_SESSION['user']['id']     = $params[0]['idAdmin'];
         $_SESSION['user']['lastName']   = $params[0]['lastName'];

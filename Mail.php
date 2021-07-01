@@ -3,25 +3,27 @@
 class Mail
 
 {
-    public $contact_lastName
-    public $contact_firstName
-    public $contact_mail
-    public $booking
+    public $contact_lastName;
+    public $contact_firstName;
+    public $contact_mail;
+    public $booking;
     
-    public function __construct(string $lastName, string $firstName, string $email, int $bookingId) {
+    public function __construct(string $lastName, string $firstName, string $email, int $bookingId)
+    {
         $this->$contact_firstName = $lastName; 
         $this->$contact_firstName = $firstName; 
         $this->$contact_mail = $email; 
         $this->$booking = $bookingId; 
     }
     
-    public function sendMailToContact{
+    public function sendMailToContact()
+    {
         $mail_to = $this->$contact_mail;
         $subject = 'Demande de reservation N°'. $this->$booking;
-        $message = 'Bonjour '. $this->$contact_firstName .'. Votre demande de réservation N°' . $this->$booking .' a bien été prise en compte. Nous vous recontacterons dans les plus brefs délais pour la finaliser.'
+        $message = 'Bonjour '. $this->$contact_firstName .'. Votre demande de réservation N°' . $this->$booking .' a bien été prise en compte. Nous vous recontacterons dans les plus brefs délais pour la finaliser.';
         
-        $headers = 'From: remi@rocmultisport.fr'"\r\n";
-        $headers .= 'Reply-To: remi@rocmultisport.fr'"\r\n";
+        $headers = 'From: remi@rocmultisport.fr\r\n';
+        $headers .= 'Reply-To: remi@rocmultisport.fr\r\n';
         
         $mail_status = mail($mail_to, $subject, $message, $headers);
         
@@ -33,13 +35,14 @@ class Mail
         $_SESSION['info'] = $info;
     }
     
-    public function sendMailToAdmin{
+    public function sendMailToAdmin()
+    {
         $mail_to = 'remi@rocmultisport.fr';
         $subject = 'Demande de reservation N°'. $this->$booking;
-        $message = 'Nouvelle demande de réservation N°' . $this->$booking .' reçue de '. $this->$contact_firstName . $this->$contact_firstName .'
+        $message = 'Nouvelle demande de réservation N°' . $this->$booking .' reçue de '. $this->$contact_firstName . $this->$contact_firstName;
         
-        $headers = 'From: '. $this->$contact_mail ."\r\n";
-        $headers .= 'Reply-To: '. $this->$contact_mail ."\r\n";
+        $headers = 'From: '. $this->$contact_mail .'\r\n';
+        $headers .= 'Reply-To: '. $this->$contact_mail .'\r\n';
         
         $mail_status = mail($mail_to, $subject, $message, $headers);
     }

@@ -24,10 +24,11 @@ document.addEventListener("DOMContentLoaded", function(){
                 event.preventDefault();
                 // console.log(contactForm.error.errors.messages, "form ko");
                 contactForm.createError();
-            };
+            }
             inputs.forEach.call(inputs, input => {
                 input.addEventListener('keydown', contactForm.removeError);
             });
         })
     }
 })
+

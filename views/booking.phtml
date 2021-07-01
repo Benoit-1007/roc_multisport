@@ -7,7 +7,7 @@
     <title>ROC Multisport - Reservation Page</title>
     <link rel="icon" href="img/background/logoRocMultisport.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="" type="css/normalize/css" />
+    <link rel="stylesheet" type="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body id="booking">
@@ -124,6 +124,11 @@
                 <button type="submit" id="validateReservation">Réserver</button>
                 <div class="message">
                 </div>
+                <?php if (isset($_SESSION) && empty($_SESSION['error']) && !empty($_SESSION['info'])): ?>
+                    <div class="validate">
+                        <p><?= $_SESSION['info'] ?></p>
+                    </div>
+                <?php endif; ?>
             </div>
         </form>
 
