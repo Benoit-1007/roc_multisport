@@ -4,7 +4,6 @@
 import Errors from './Errors.js';
 import * as menu from './menu.js';
 
-
 // use by basket function
 const bookingData = [
     { 'value': 'bikeAllDayNoLoc', 'name': 'VTTAE sans location VTT - journée', 'price': '80' },
@@ -76,92 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
         e.preventDefault();
         
         let inputs = bookingForm.querySelectorAll('.field');
+
+        checkValues(inputs);
         
-        let error = new Errors;
+    });
 
-        inputs.forEach(input => {
-
-            if(input.name !== "contact_society" && input.name !== 'comment') {
-                if (!input.disabled) {
-                    if(input.value === '' || input.value === 'empty') {
-                        input.classList.add('red-border');
-                        error.record({validateReservation: 'Merci de renseigner tous les champs obligatoires'})
-                    }
-                }
-            }          
-
-            if (input.name === 'contact_lastName'){
-                if(!validateName(input.value)){
-                    error.record({contact_lastName: 'Nom invalide'});
-                }
-            }
-            if (input.name === 'contact_firstName'){
-                if(!validateName(input.value)){
-                    error.record({contact_firstName: 'Prénom invalide'});
-                }
-            }
-            if (input.name === 'contact_phone'){
-                if(!validatePhone(input.value)){
-                    error.record({contact_phone: 'Téléphone invalide'});
-                }
-            }
-            if (input.name === 'contact_mail'){
-                if(!validateEmail(input.value)){
-                    error.record({contact_mail: 'Email invalide'});
-                }
-            }
-            if (input.name === 'cgv' && input.checked === false){
-                error.record({cgv: 'Merci daccepter nos conditions générales de vente'});
-            }
-            if (input.name.includes('lastName_activity') && (!validateName(input.value))) {
-                input.classList.add('red-border');
-                error.record({validateReservation: "Nom invalide"});
-            }
-            if (input.name.includes('firstName_activity') && (!validateName(input.value))) {
-                input.classList.add('red-border');
-                error.record({validateReservation: "Prénom invalide"});
-            }
-            if (input.name.includes('birthdate') && validatedate(input.value) === false){
-                console.log(input.name);
-                input.classList.add('red-border');
-                error.record({validateReservation: "Date de naissance erronée pour l'un des participants. Merci de respecter le format jj/mm/aaaa."});
-            }
-            if (input.name.includes('size')){
-                console.log(input.name);
-                if (isNaN(parseInt(input.value))){
-                    input.classList.add('red-border');
-                    error.record({validateReservation: "Taille erronée pour l'un des participants. Merci de renseigner une taille en cm."});
-                } else if (parseInt(input.value) < 50 || parseInt(input.value) > 250){
-                    input.classList.add('red-border');
-                    error.record({validateReservation: "La taille renseignée pour l'un des participants semble erronées. Merci de vérifier vos saisies."});
-                }
-            }
-            if (input.name.includes('level')){
-                if(input.value !== 'Débutant' && input.value !== 'Intermédiaire' && input.value !== 'Confirmé' && input.value !== 'Expert'){
-                    input.classList.add('red-border');
-                    error.record({validateReservation: "Le niveau renseignée pour l'un des participants semble erronée. Merci de vérifier vos saisies."});
-                }
-            }
-        });
-
-        if (error.errors.messages.length > 0) {
-
-            error.createError();
-
-            if(error.errors.messages[0].hasOwnProperty('validateReservation')) {
-                setTimeout(hide, 5000);
-            }
-        } else {
-            submitform();
-        }
-
-        inputs.forEach.call(inputs, input => {
-            input.addEventListener('keydown', removeError(input));
-        });
-    })
-
-
-    //FUNCTIONS
+    // SELECTION FUNCTIONS
 
     /** display div singleActivity + returnButton or div rocCocktail + returnButton or singleActivityButton + rocCocktailButton
     * @param {NodeList} buttons singleActivityButton, rocCocktailButton, returnButton
@@ -182,6 +101,9 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.querySelector('.rocFormulaSelector').disabled = true;
                         document.querySelector('.rocDate').disabled = true;
                         document.querySelector('.rocParticipantsCount').disabled = true;
+                        bookingForm.querySelectorAll(`[name*='activity_']`).forEach(element => {
+                            element.setAttribute("required","required");
+                        });
                         chooseActivity(singleActivitySelector);
                         break;
                     case "rocCocktailButton":
@@ -192,6 +114,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         document.querySelector('.singleActivitySelector').disabled = true;
                         document.querySelector('.singleActivityDate').disabled = true;
                         document.querySelector('.singleActivityParticipantsCount').disabled = true;
+                        bookingForm.querySelectorAll(`[name*='rocCocktail']`).forEach(element => {
+                            element.setAttribute("required","required");
+                        });
+                        bookingForm.querySelectorAll(`[name*='rocActivity']`).forEach(element => {
+                            element.setAttribute("required");
+                        });
                         chooseRocFormula(rocFormulaSelector);
                         break;
                     default:
@@ -210,6 +138,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         let currentSelect = bookingForm.querySelectorAll(`[class*='Selector']`);
                         currentSelect.forEach(element => {
                             element.value = "empty"
+                        });
+                        bookingForm.querySelectorAll(`[name*='_activity']`).forEach(element => {
+                            element.removeAttribute("required");
+                        });
+                        bookingForm.querySelectorAll(`[name*='rocCocktail']`).forEach(element => {
+                            element.removeAttribute("required");
+                        });
+                        bookingForm.querySelectorAll(`[name*='rocActivity']`).forEach(element => {
+                            element.removeAttribute("required");
                         });
                         updateBasket();
                         break;
@@ -324,7 +261,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 inputParticipantsNumberSelector.value = inputParticipantsNumberSelector.min;
                 newParticipantsNumber = inputParticipantsNumberSelector.value
             } else if (Math.floor(inputParticipantsNumberSelector.value) > inputParticipantsNumberSelector.max) {
-                console.log('test max');
                 inputParticipantsNumberSelector.value = inputParticipantsNumberSelector.max;
                 newParticipantsNumber = inputParticipantsNumberSelector.max;
             } else {
@@ -343,8 +279,9 @@ document.addEventListener('DOMContentLoaded', function () {
      */
     function addHalfDaySelector(numActivity, divActivity, inputParticipantsNumberSelector) {
         let halfDaySelector = document.createElement('select');
-        halfDaySelector.name = 'halfDaySelector' + '_activity_' + numActivity
-        halfDaySelector.classList.add('activity_' + numActivity + '_halfDaySelector')
+        halfDaySelector.name = 'halfDaySelector' + '_activity_' + numActivity;
+        halfDaySelector.classList.add('field');
+        halfDaySelector.classList.add('activity_' + numActivity + '_halfDaySelector');
         halfDaySelector.innerHTML = `
         <option value='Matinée'>Matin</option>
         <option value='Après-midi'>Après-midi</option>
@@ -382,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
                         <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
                         <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
-                        <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `">
+                        <select class="field" name="level_` + currentActivity + `_participant_` + currentParticipant + `" required>
                             <option value="empty">Niveau*</option>
                             <option value="Débutant">Débutant</option>
                             <option value="Intermédiaire">Intermédiaire</option>
@@ -392,8 +329,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     `;
                 } else {
                     newParticipant.innerHTML = ` 
-                        <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
-                        <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
+                        <input class="field" type="text" name="lastName` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
+                        <input class="field" type="text" name="_firstName` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
                         <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
                         <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
                     `;
@@ -555,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function () {
             newRocActivity.classList.add('rocActivity_1');
             newRocActivity.innerHTML = `
             <p>Activité 1</p>
-                    <select class="field rocActivitySelector" name="rocActivity_1">
+                    <select class="field rocActivitySelector" name="rocActivity_1" required>
                         <option value="empty">Séléctionnez votre activité 1</option>
                         <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
                         <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
@@ -573,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 newRocActivity.classList.add('rocActivity_2');
                 newRocActivity.innerHTML = `
                 <p>Activité 2</p>
-                        <select class="field rocActivitySelector" name="rocActivity_2">
+                        <select class="field rocActivitySelector" name="rocActivity_2" required>
                             <option value="empty">Séléctionnez votre activité 2</option>
                             <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
                             <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
@@ -600,7 +537,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let newRocActivity = document.createElement('div');
             newRocActivity.innerHTML = `
                 <p>Activité ` + x + `</p>
-                <select class="field rocActivitySelector" name="rocActivity_` + x + `">
+                <select class="field rocActivitySelector" name="rocActivity_` + x + `"required>
                     <option value="empty">Séléctionnez votre activité ` + x + `</option> 
                     <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-duration="0.5">VTTAE sans location VTT - 1/2 journée</option>
                     <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-duration="1">VTTAE sans location VTT - journée</option>
@@ -794,6 +731,102 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+
+// VALIDATION FUNCTIONS
+
+/** check the value all inputs before submit
+ * @param {NodeList} all required form inputs
+ */
+function checkValues(inputs) {
+        
+    let error = new Errors;
+
+    inputs.forEach(input => {
+
+        if(input.hasAttribute('required')) {
+            if(input.name !== "contact_society" && input.name !== 'comment') {
+                if (!input.disabled) {
+                    if(input.value === '' || input.value === 'empty') {
+                        input.classList.add('red-border');
+                        error.record({validateReservation: 'Merci de renseigner tous les champs obligatoires.'})
+                    }
+                }
+            }          
+
+            if (input.name === 'contact_lastName'){
+                if(!validateName(input.value)){
+                    error.record({contact_lastName: 'Nom invalide'});
+                }
+            }
+            if (input.name === 'contact_firstName'){
+                if(!validateName(input.value)){
+                    error.record({contact_firstName: 'Prénom invalide'});
+                }
+            }
+            if (input.name === 'contact_phone'){
+                if(!validatePhone(input.value)){
+                    error.record({contact_phone: 'Téléphone invalide'});
+                }
+            }
+            if (input.name === 'contact_mail'){
+                if(!validateEmail(input.value)){
+                    error.record({contact_mail: 'Email invalide'});
+                }
+            }
+            if (input.name === 'cgv' && input.checked === false){
+                error.record({cgv: 'Merci daccepter nos conditions générales de vente.'});
+            }
+            if(input.name.includes('halfDaySelector_activity')) {
+                if(input.value !== 'Matinée' && input.value !== 'Après-midi') {
+                    input.classList.add('red-border');
+                    error.record({validateReservation: 'Demi-journée sélectionnée non valide'});
+                }
+            }
+            if (input.name.includes('lastName_activity') || input.name.includes('lastName_rocCocktail') && (!validateName(input.value))) {
+                input.classList.add('red-border');
+                error.record({validateReservation: 'Nom invalide'});
+            }
+            if (input.name.includes('firstName_activity') || input.name.includes('firstName_rocCocktail') && (!validateName(input.value))) {
+                input.classList.add('red-border');
+                error.record({validateReservation: 'Prénom invalide'});
+            }
+            if (input.name.includes('birthdate') && validatedate(input.value) === false) {
+                input.classList.add('red-border');
+                error.record({validateReservation: 'Date de naissance erronée pour l\'un des participants. Merci de respecter le format jj/mm/aaaa.'});
+            }
+            if (input.name.includes('size')){
+                if (isNaN(parseInt(input.value))){
+                    input.classList.add('red-border');
+                    error.record({validateReservation: 'Taille erronée pour l\'un des participants. Merci de renseigner une taille en cm.'});
+                } else if (parseInt(input.value) < 50 || parseInt(input.value) > 250){
+                    input.classList.add('red-border');
+                    error.record({validateReservation: 'La taille renseignée pour l\'un des participants semble erronées. Merci de vérifier vos saisies.'});
+                }
+            }
+            if (input.name.includes('level')) {
+                if(input.value !== 'Débutant' && input.value !== 'Intermédiaire' && input.value !== 'Confirmé' && input.value !== 'Expert') {
+                    input.classList.add('red-border');
+                    error.record({validateReservation: 'Le niveau renseignée pour l\'un des participants semble erronée. Merci de vérifier vos saisies.'});
+                }
+            }
+        }
+    });
+
+    if (error.errors.messages.length > 0) {
+
+        error.createError();
+
+        if(error.errors.messages[0].hasOwnProperty('validateReservation')) {
+            setTimeout(hide, 5000);
+        }
+    } else {
+        submitform();
+    }
+    inputs.forEach.call(inputs, input => {
+        input.addEventListener('keydown', removeError(input));
+    });
+}
+
 /** Generate jsonData */ 
 function submitform() {
     let messageArea = document.querySelector('.message');
@@ -864,6 +897,7 @@ function submitform() {
                 jsondata["contact"] = contactJson;
                 jsondata["activities"] = activitiesJson;
                 jsondata["comment"] = commentJson;
+
             }
 
         }
@@ -923,36 +957,44 @@ function submitform() {
         }
     }
 
-    // console.log(jsondata);
+    console.log(jsondata);
 
     let crtFormData = JSON.stringify(jsondata);
-    console.log(crtFormData);
 
     fetchBookingJson(crtFormData)
     .then((data)=>{
-        console.log("message " + data.message);
-        if(data.message === "Job done."){
+        console.log(data);
+        if(data.message === "Job done.") {
+            messageArea.classList.remove('form-error');
             messageArea.classList.add('validate');
             messageArea.innerText = "Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail " + jsondata.contact.contact_mail + ". Nos équipes vous recontactent au plus vite pour finaliser votre réservation.";
-            setTimeout(refresh, 8000);
-
-        } else if (data.message === "Unable to create contact.") {
-            messageArea.innerText = "Impossible d'enregistrer votre réservation. Coordonnées manquantes ou erronées.";
-        }  else if (data.message === "Unable to create booking activity. invalid date") {
-            messageArea.innerText = "Impossible d'enregistrer votre réservation. Date d'activité invalide.";
-        }  else if (data.message === "Unable to create booking activity.") {
-            messageArea.innerText = "Impossible d'enregistrer votre réservation. Activité(s) incomplète(s).";
-        } else if (data.message === "Unable to create participants List.") {
-            messageArea.innerText = "Impossible d'enregistrer les participants. Données manquantes ou erronées.";
-            message = 'test message';
-        }  else if (
-            data.message === "Unable to create booking. Technical error." || 
-            data.message === "Unable to create booking activity. Technical error." ||
-            data.message === "Unable to create participants List.  Technical error." ||
-            data.message === "Unable to create bookingActivityUser. Technical error.." 
-            ) {
-            messageArea.innerText = "Impossible d'enregistrer votre réservation. Merci de nous contacter par mail ou téléphone.";
-        }  
+        } else if(data.message === "Job done. No mail.") {
+            messageArea.classList.remove('form-error');
+            messageArea.classList.add('validate');
+            messageArea.innerText = "Votre demande a bien été enregistrée mais nous rencontrons un problème lors de l'envoi du mail récapitulatif. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.";
+        } else {
+            messageArea.classList.add('form-error');
+            if (data.message === "Unable to create contact.") {
+                messageArea.innerText = "Impossible d'enregistrer votre réservation. Coordonnées de contact manquantes ou erronées.";
+            } else if (data.message === "Unable to create booking activity. invalid date") {
+                messageArea.innerText = "Impossible d'enregistrer votre réservation. Date d'activité invalide.";
+            } else if (data.message === "Unable to create booking activity.") {
+                messageArea.innerText = "Impossible d'enregistrer votre réservation. Activité(s) incomplète(s).";
+            } else if (data.message === "Unable to create booking. Invalid formula") {
+                messageArea.innerText = "Impossible d'enregistrer votre réservation. Formule invalide.";
+            } else if (data.message === "Unable to create participants List.") {
+                messageArea.innerText = "Impossible d'enregistrer les participants. Données manquantes ou erronées.";
+                message = 'test message';
+            } else if (
+                data.message === "Unable to create booking. Technical error." || 
+                data.message === "Unable to create booking activity. Technical error." ||
+                data.message === "Unable to create participants List.  Technical error." ||
+                data.message === "Unable to create bookingActivityUser. Technical error.." 
+                ) {
+                    messageArea.innerText = "Impossible d'enregistrer votre réservation. Merci de nous contacter par mail ou téléphone.";
+            }
+        } 
+        setTimeout(refresh, 8000);
     })
     .catch(err => {
         console.log('Error: ', err);
@@ -979,10 +1021,10 @@ function refresh(){
 }
 
 /**check name of participant
-     * @param {string} name to check 
-     */
+ * @param {string} name to check 
+ */
 function validateName(string) {
-    const stringRegex = /^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î\ -]+$/;
+    const stringRegex = /^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/;
     return stringRegex.test(string)
 }
 

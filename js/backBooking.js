@@ -1,19 +1,17 @@
 'use strict';
 
 // On charge les resa quand la page est prete :
-document.addEventListener("DOMContentLoaded", function (event) {
-
+document.addEventListener("DOMContentLoaded", function() {
+    
     // menu management for mobile phone 
     toggleMenu();
 
     let showBookingsButton = document.querySelector('.showBookings');
     
     if(showBookingsButton){
-        showBookingsButton.addEventListener('click', function(e){
-
+        showBookingsButton.addEventListener('click', function(){
             showBookingsButton.classList.add('hide');
             showBookings();
-
         });
     }
 
@@ -21,9 +19,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 
 function showBookings() {
-    console.log('show');
 
-    // On recupere les données
+    // get data
     fetch('api/booking/readBookingsList.php')
         .then(res => res.json())
         .then((data) => {
@@ -45,7 +42,6 @@ function showBookings() {
             // loop through returned list of data
             (data.records.forEach((key, val) => {
 
-                // console.log(key)
                 // creating new table row per record
                 read_bookings_html += `
                 <tr>
@@ -174,7 +170,6 @@ async function showDetails(identifier) {
                     fetch('api/activity/readActivitiesList.php?idBooking=' + id)
                         .then(res => res.json())
                         .then((data) => {
-                            console.log(data);
 
                             read_activities_html = `<h3>Activité(s)</h3>`;
 
@@ -193,14 +188,13 @@ async function showDetails(identifier) {
 
                                 if (typeBooking === "singleActivity") {
 
-                                    console.log('Single Activity')
 
                                     //read activities record based on given booking ID
 
                                     fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
                                         .then(res => res.json())
                                         .then((dataUsers) => {
-
+                                            
                                             read_users_html = `
                                                 
                                                 <table class="backParticipantsList`+ key.idBookingActivity +`">

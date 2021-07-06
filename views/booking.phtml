@@ -7,7 +7,7 @@
     <title>ROC Multisport - Reservation Page</title>
     <link rel="icon" href="img/background/logoRocMultisport.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <link rel="stylesheet" type="css/normalize.css">
+    <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body id="booking">
@@ -15,7 +15,6 @@
         <?php require('partials/header.php') ?> 
     </header>
     <main class="booking">
-        <!-- <div id="formResult"></div> -->
         <h1>Formulaire de <span>demande de réservation</span></h1>
         <p>Dans le cadre de votre demande de réservation, celle-ci doit obligatoirement être validée par un retour de notre part en fonction de nos disponibilités.</p>
         <form id="bookingForm" action="booking.php" method='post'>
@@ -69,8 +68,8 @@
                                 <input class="field singleActivityDate" type="date" name="date_activity_1">
                                 <input class="field singleActivityParticipantsCount" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
                             </div>
+                            <p>Participants activité 1</p>
                             <div class="activity_1_participantsList participantsList">
-                                <p>Participants activité 1</p>
                             </div>
                         </div>
                     </div>
@@ -90,14 +89,14 @@
                                 <option value="cocktailOneDay" name="ROC DAY (10% de remise sur vos activités)" data-price="0.10" data-minParticipants="4" data-maxParticipants="8" >Cocktail ROC DAY - à partir de 85€/pers.</option>
                                 <option value="cocktailTwoDay" name="ROC WEEK-END (15% de remise sur vos activités)" data-price="0.15" data-minParticipants="4" data-maxParticipants="8">Cocktail ROC WEEK-END - à partir de 170€/pers.</option>
                             </select>
-                            <p class="rocWeekend hide">Dans le cadre du ROC Week-end, merci de choisir un samedi parmi les dates proposées, le dimanche suivant lui sera associé. Si vous souhaitez pratiquer les activités dans un ordre spécifique, merci de nous l'indiquer en commentaire à la fin du formulaire.</p>
+                            <p class="rocWeekend hide">Dans le cadre du ROC Week-end, merci de choisir un samedi parmi les dates proposées, le dimanche suivant lui sera associé. Si vous souhaitez pratiquer les activités dans un ordre spécifique, merci de le préciser en commentaire à la fin du formulaire.</p>
                             <input class="field rocDate" type="date" name="date_rocCocktail" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
                             <input class="field rocParticipantsCount" type="number" name="participantsCount_rocCocktail" min="4" max="8" placeholder="Nombre de participants">
                         </div>
                         <div class="myRocActivities">
                         </div>
+                        <p>Participants</p>
                         <div class="rocCocktail_participantsList participantsList">
-                            <p>Participants</p>
                         </div>
                     </div>
                 </fieldset>
@@ -120,23 +119,25 @@
                     </tfoot>    
                 </table>
             </div>
+            
             <div>
                 <button type="submit" id="validateReservation">Réserver</button>
                 <div class="message">
                 </div>
-                <?php if (isset($_SESSION) && empty($_SESSION['error']) && !empty($_SESSION['info'])): ?>
-                    <div class="validate">
-                        <p><?= $_SESSION['info'] ?></p>
-                    </div>
-                <?php endif; ?>
+                
             </div>
         </form>
-
         
     </main>
     <footer>
         <?php require("partials/footer.php") ?>
     </footer>
+    
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <!-- <script>
+        // jQuery - display alert 6sec
+        $(".validate, .form-error").delay(6000).fadeOut();
+    </script> -->
     <script type="module" src="js/booking.js"></script>
 </body>
 </html>

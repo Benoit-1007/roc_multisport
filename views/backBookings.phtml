@@ -7,7 +7,7 @@
     <title>ROC Multisport - Back</title>
     <link rel="icon" href="img/background/logoRocMultisport.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
-    <link rel="stylesheet" type="css/normalize.css">
+    <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="form grid">
@@ -21,9 +21,9 @@
         <?php endif; ?>
 
         <?php if (array_key_exists('user', $_SESSION) && !empty($_SESSION['user'])): ?>
-                <p class="validate">Salut <?= $_SESSION['user']['firstName'] ?> !</p>
-                <a href='logout.php' class="logout">Déconnexion</a>
-            <button class="showBookings">Réservations à venir</button>
+            <p class="validate">Salut <?= $_SESSION['user']['firstName'] ?> !</p>
+            <a href='logout.php' class="logout">Déconnexion</a>
+            <button type="button" class="showBookings">Réservations à venir</button>
         <?php else: ?>
             <form action = "backBooking.php" method="post">
                 <label for="mail">Email</label>
@@ -44,11 +44,11 @@
     <footer>
         <?php require("partials/footer.php") ?>
     </footer>
-    <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
     <script>
         // jQuery - display alert 4sec
         $('.alert, .validate').delay(4000).fadeOut()
     </script>
-    <script type="text/javascript" src="js/backBooking.js"></script>
+    <script src="js/backBooking.js"></script>
 </body>
 </html>

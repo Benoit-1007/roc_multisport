@@ -6,8 +6,6 @@ require_once 'Session.php';
 // Fill Session
 Session::init();
 
-var_dump($_SESSION);
-
 // display form
 if ($_SERVER['REQUEST_METHOD'] === 'GET')
 {
@@ -42,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 }
                 // //check Lastname
                 else if($key === "nom"){
-                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $input) === 0){
+                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $input) === 0){
                         array_push($errors, "Le nom est incorrect. Merci de ne saisir que des lettres, espaces ou tirets");
                     } else {
                         $body_message .= 'Nom: '.$input."\n";
@@ -50,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 }
                 // check Firstname
                 else if($key === "prenom"){
-                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/", $input) === 0){
+                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $input) === 0){
                         array_push($errors, "Le prénom est incorrect. Merci de ne saisir que des lettres, espaces ou tirets");
                     } else {
                         $body_message .= 'Prénom: '.$input."\n";
@@ -90,11 +88,6 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 $info = "Erreur dans l'envoi de votre mail. Merci d'envoyer un email à roc.multisport@gmail.com";
             }
             $_SESSION['info'] = $info;
-
-            // var_dump($_SESSION);
-
-            // header('Location: index.php');
-            // exit;
         }
     }
 }

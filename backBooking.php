@@ -1,10 +1,5 @@
 <?php
 
-// Display all errors
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST");
@@ -26,8 +21,6 @@ $db = $database->getConnection();
 Session::init();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // var_dump($_POST);
 
     unset($_SESSION['info']);
 
@@ -72,7 +65,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    // var_dump($_GET);
     // Delete messages
     unset($_SESSION['error']);
     unset($_SESSION['info']);

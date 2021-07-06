@@ -110,35 +110,35 @@ class Booking
         return $stmt;
     }
 
-// Read all bookings
-public function readActivityDetails()
-{
-    //select all data
-    $query = "SELECT
-                    b.idBooking,
-                    ba.codeActivity, ba.dateActivity, ba.halfDaySelect, ba.idBookingActivity,
-                    a.name as nameActivity
-                FROM
-                    " . $this->table_name . " b
-                    INNER JOIN 
-                        bookingsactivities ba
-                            ON b.idBooking = ba.idBooking
-                    INNER JOIN 
-                        activities a
-                            ON ba.codeActivity = a.codeActivity
-                WHERE
-                    b.idBooking = :idBooking
-                ORDER BY
-                    idBooking";
+    // Read all bookings
+    public function readActivityDetails()
+    {
+        //select all data
+        $query = "SELECT
+                        b.idBooking,
+                        ba.codeActivity, ba.dateActivity, ba.halfDaySelect, ba.idBookingActivity,
+                        a.name as nameActivity
+                    FROM
+                        " . $this->table_name . " b
+                        INNER JOIN 
+                            bookingsactivities ba
+                                ON b.idBooking = ba.idBooking
+                        INNER JOIN 
+                            activities a
+                                ON ba.codeActivity = a.codeActivity
+                    WHERE
+                        b.idBooking = :idBooking
+                    ORDER BY
+                        idBooking";
 
 
 
-    $stmt = $this->conn->prepare($query);
-    $stmt->bindParam(':idBooking', $this->idBooking);
-    $stmt->execute();
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':idBooking', $this->idBooking);
+        $stmt->execute();
 
-    return $stmt;
-}
+        return $stmt;
+    }
 
     public function read()
     {

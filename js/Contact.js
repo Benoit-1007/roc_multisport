@@ -43,9 +43,10 @@ class Contact {
                 this.lastName = field.value;
             }
             if (field.name === 'telephone'){
-                if(field.value){
-                    this.phone = field.value;
+                if(field.value && !this.validatePhone(field.value)){
+                    this.error.record({phone: 'Téléphone invalide'});
                 }
+                this.phone = field.value;
             }
             if (field.name === 'message'){
                 if(!field.value){
@@ -79,8 +80,14 @@ class Contact {
     }
     
     validateName(string) {
-        const reg = /^[A-Za-z\à\â\ä\é\è\ê\ë\ê\ô\î-]+$/;
+        const reg = /^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/;
         return reg.test(string)
+    }
+
+
+    validatePhone(phoneNumber) {
+    const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
+    return phoneRegex.test(phoneNumber);
     }
 }
 

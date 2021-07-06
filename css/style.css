@@ -50,7 +50,7 @@ body{
     line-height: 1.5;
     margin: 0;
 }
-section{
+.anchor{
     padding-top: 10rem; /* offset management anchors vs header*/
     margin-top: -10rem;
 }
@@ -63,10 +63,11 @@ section{
     padding: 2rem;
 }
 .activity{
-    margin-top:-1rem; /*management space between sections*/
+    margin-top:-0.5rem; /*management space between sections*/
 }
 img{
     max-width:100%;
+    width:100%;
 }
 h1, h2, h3, a, button{
     text-transform: uppercase;
@@ -523,7 +524,7 @@ header{
     background-color: var(--cocktailColor);
 }
 .testimony{
-    background: url('../img/background/bgSnowTestimony.png') top no-repeat;
+    background: url('../img/background/bgClimbingTestimony.png') top no-repeat;
     background-size: cover;
     height:100vh;
     display:flex;
@@ -580,6 +581,9 @@ header{
 .slick-prev {
 	left: 1rem;
 	z-index:1;
+}
+.slick-slide img{
+    width:100%;
 }
 
 /* #endregion SLIDER */

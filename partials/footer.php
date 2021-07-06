@@ -19,5 +19,5 @@
     <a href="privacyPolicy.php">Politique de confidentialité |</a>
     <a href="termsOfSales.php">Conditions générales de vente |</a>
     <a href="legalNotice.php">Mentions légales |</a>
-    <a href="https://courtincom.fr" title="Découvrez sont travail" target="_blank">Design by COURTIN<span>COM</span></a>
+    <a href="https://courtincom.fr" title="Découvrez son travail" target="_blank">Design by COURTIN<span>COM</span></a>
 </div>
