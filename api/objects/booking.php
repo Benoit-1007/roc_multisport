@@ -1,7 +1,5 @@
 <?php
-class Booking
-{
-
+class Booking {
     // database connection and table name
     private $conn;
     private $table_name = "bookings";

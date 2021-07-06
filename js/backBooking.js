@@ -19,54 +19,62 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function showBookings() {
-
+    
     // get data
     fetch('api/booking/readBookingsList.php')
-        .then(res => res.json())
-        .then((data) => {
+    .then(res => res.json())
+    .then((data) => {
+
+        if(data.message === "No bookings found.") {
+            let message = "Pas de réservation à afficher"
+
+            // inject to 'page-content' of our app
+        document.querySelector("#page-content").innerHTML = message;
+        } else {
 
             // html for listing products
             let read_bookings_html = `
-
+            
             <!-- start table -->
             <table>
             
-                <tr>
-                    <th>Date de réservation</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Commentaire</th>
-                    <th>Action</th>
-                </tr>`;
-
+            <tr>
+            <th>Date de réservation</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Commentaire</th>
+            <th>Action</th>
+            </tr>`;
+            
             // loop through returned list of data
             (data.records.forEach((key, val) => {
-
+                
                 // creating new table row per record
                 read_bookings_html += `
                 <tr>
-        
-                    <td>` + convertDate(key.dateOfBooking) + `</td>
-                    <td>` + key.lastName + `</td>
-                    <td>` + key.firstName + `</td>
-                    <td>` + key.comment + `</td>       
-                    <!-- 'action' buttons -->
-                    <td>
-                        <!-- read product button -->
-                        <button class="more"  onclick='showDetails(this)' data-id='` + key.idBooking + `'>
-                            consulter
-                        </button>
-                    </td>
-        
+                
+                <td>` + convertDate(key.dateOfBooking) + `</td>
+                <td>` + key.lastName + `</td>
+                <td>` + key.firstName + `</td>
+                <td>` + key.comment + `</td>       
+                <!-- 'action' buttons -->
+                <td>
+                <!-- read product button -->
+                <button class="more"  onclick='showDetails(this)' data-id='` + key.idBooking + `'>
+                consulter
+                </button>
+                </td>
+                
                 </tr>`;
             }));
-
+            
             // end table
             read_bookings_html += `</table>`;
-
+            
             // inject to 'page-content' of our app
             document.querySelector("#page-content").innerHTML = read_bookings_html;
-        });
+        }
+    });
 }
 
 async function showDetails(identifier) {

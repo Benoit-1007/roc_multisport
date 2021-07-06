@@ -1,7 +1,5 @@
 <?php
-class Activities
-{
-
+class Activities {
     // database connection and table name
     private $conn;
     private $table_name = "activities";
@@ -20,7 +18,6 @@ class Activities
     // Create bookingActivity
     public function create()
     {
-
         // query to insert record
         $query = "INSERT INTO
                 " . $this->table_name . "
@@ -47,8 +44,6 @@ class Activities
             $lastId = $this->conn->lastInsertId();
             return $lastId;
         }
-
         return 0;
-
     }
 }

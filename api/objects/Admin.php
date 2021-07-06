@@ -1,7 +1,6 @@
 <?php
 
-class Admin
-{
+class Admin {
     // database connection and table name
     private $conn;
     private $table_name = "admin";
@@ -64,7 +63,6 @@ class Admin
         $user = $stmt->fetch();
 
         return $user;
-
     }
 
 }

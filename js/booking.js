@@ -957,13 +957,10 @@ function submitform() {
         }
     }
 
-    console.log(jsondata);
-
     let crtFormData = JSON.stringify(jsondata);
 
     fetchBookingJson(crtFormData)
     .then((data)=>{
-        console.log(data);
         if(data.message === "Job done.") {
             messageArea.classList.remove('form-error');
             messageArea.classList.add('validate');

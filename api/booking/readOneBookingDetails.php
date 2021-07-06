@@ -28,16 +28,13 @@ if ($booking->idContact > 0) {
         "idContact" => $booking->idContact,
         "typeOfBooking" => $booking->typeOfBooking
     );
-
     // set response code - 200 OK
     http_response_code(200);
-
     // show products data in json format
     echo json_encode($booking_item);
 } else {
     // set response code - 404 Not found
     http_response_code(404);
-
     // tell the user no products found
     echo json_encode(
         array("message" => "No booking found.")

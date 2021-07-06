@@ -206,7 +206,6 @@ if (
                     // Create Booking activity
                     // =======================
                     if(isValid($data->cocktail[0]->date)){
-    
                         foreach ($data->cocktail[0]->activities as $activity) {
                             $bookingActivity = new BookingActivity($db);
     
@@ -248,10 +247,8 @@ if (
                         echo json_encode(array("message" => "Unable to create booking activity. invalid date")); die;
                     }
                     // Create Users
-                    // =======================
-    
+                    // ============
                     foreach ($data->cocktail[0]->participants as $participant) {
-    
                         if(
                             !empty($participant->lastName) && 
                             preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->lastName) &&
@@ -280,6 +277,7 @@ if (
                             } else {
                                 foreach ($bookingActivitiesId_Array as $bookingActivityId) {
                                     // Create Activities Users
+                                    // =======================
                                     $bookingActivityUser = new Bookingactivityuser($db);
                                     $bookingActivityUser->idUser = $userId;
                                     $bookingActivityUser->idBookingActivity = $bookingActivityId;
@@ -295,9 +293,9 @@ if (
                             }
                         } else {
                             // set response code - 400 bad request
-                        http_response_code(400);
-                        // tell the user
-                        echo json_encode(array("message" => "Unable to create participants List.")); die;
+                            http_response_code(400);
+                            // tell the user
+                            echo json_encode(array("message" => "Unable to create participants List.")); die;
                         }
                     }
                 }
@@ -310,31 +308,23 @@ if (
     $confirmationMail = $email->sendMail();
 
     if($confirmationMail){
-
+        // set response code - 201 created
         http_response_code(201);
-    
         // tell the user
-    
         echo json_encode(array("message" => "Job done."));
     } else {
-
+        // set response code - 201 created
         http_response_code(201);
-    
         // tell the user
-    
         echo json_encode(array("message" => "Job done. No mail."));
     }
 }
-
 // tell the user data is incomplete
 else {
-    
    // set response code - 400 bad request
     http_response_code(400);
-
     // tell the user
     echo json_encode(array("message" => "Unable to create contact."));
-    
 }
 
 function isValid($date, $format = 'Y-m-d'){

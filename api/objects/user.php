@@ -1,7 +1,5 @@
 <?php
-class User
-{
-
+class User {
     // database connection and table name
     private $conn;
     private $table_name = "users";
@@ -23,13 +21,11 @@ class User
     // Create bookingActivity
     public function create()
     {
-
         // query to insert record
         $query = "INSERT INTO
                 " . $this->table_name . "
             SET
             lastName=:lastName, firstName=:firstName, birthdate=:birthdate, size=:size, level=:level";
-
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -53,7 +49,6 @@ class User
             $lastId = $this->conn->lastInsertId();
             return $lastId;
         }
-
         return 0;
     }
 }

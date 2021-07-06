@@ -1,6 +1,5 @@
 <?php
 
-
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -16,7 +15,7 @@ $db = $database->getConnection();
 
 $contact = new Contact($db);
 
-// On recup l'id depuis l'url
+// get id from url
 $contact->idContact = isset($_GET['idContact']) ? $_GET['idContact'] : die();
 
 $contact->readOne();

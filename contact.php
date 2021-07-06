@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
     unset($_SESSION);
 }
 
-
 if ($_SERVER['REQUEST_METHOD']=== 'POST'){
     if(isset($_POST) && !empty($_POST)){
         // var_dump($_POST);
@@ -68,13 +67,11 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
             
         }
         if (count($errors) > 0){
-            // Accéder à la session, afin d'y référencer les erreurs trouvées
             $_SESSION['error'] = $errors;
         } else {
-
             extract($_POST);
         
-            $mail_to = 'remi@rocmultisport.com, benoit.flipot1007@gmail.com';
+            $mail_to = 'benoit@rocmultisport.fr';
             $subject = 'Demande de renseignement de '.$prenom .$nom;
 
             $headers = 'From: '.$email."\r\n";

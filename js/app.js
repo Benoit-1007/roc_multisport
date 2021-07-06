@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
             if(!contactForm.validate(inputs)){
                 // Block form auto refresh
                 event.preventDefault();
-                // console.log(contactForm.error.errors.messages, "form ko");
+                
                 contactForm.createError();
             }
             inputs.forEach.call(inputs, input => {

@@ -1,7 +1,5 @@
 <?php
-class Bookingactivityuser
-{
-
+class Bookingactivityuser {
     // database connection and table name
     private $conn;
     private $table_name = "bookingsactivitiesusers";
@@ -20,7 +18,6 @@ class Bookingactivityuser
     // Create bookingActivity
     public function create()
     {
-
         // query to insert record
         $query = "INSERT INTO
                 " . $this->table_name . "
@@ -43,7 +40,6 @@ class Bookingactivityuser
             $lastId = $this->conn->lastInsertId();
             return $lastId;
         }
-
         return 0;
     }
 
@@ -62,13 +58,9 @@ class Bookingactivityuser
                 ORDER BY
                     bau.idBookingActivity";
 
-
-
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':idBookingActivity', $this->idBookingActivity);
         $stmt->execute();
-
-
 
         return $stmt;
     }

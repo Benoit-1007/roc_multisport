@@ -106,6 +106,10 @@ h3{
 a:not(p a){
     text-decoration:none;
 }
+p a{
+    color: var(--clearColor);
+    text-transform: lowercase;
+}
 ul:not(.policy ul, .home ul){
     list-style:none;
     padding-left: 0;
@@ -156,10 +160,6 @@ td{
 .desktop-button a{
     font-size: 1vw;
 }
-p a{
-    color: var(--clearColor);
-    text-transform: lowercase;
-}
 .cocktail span:nth-child(3n+1){
     color:var(--rocColorR);
 }
@@ -202,7 +202,6 @@ header{
     height: 10rem;
     z-index: 100;
 }
-
 .navbar{
     display: flex;
     justify-content: space-between;
@@ -636,10 +635,6 @@ fieldset, .booking textarea{
     padding: 0.5rem;
     width: 100%;
 }
-/* .landActivity{
-    background-color: var(--rocColorO);
-    color: var(--require);
-} */
 .checkbox{
     display: flex;
     text-align: left;
@@ -825,7 +820,6 @@ fieldset, .booking textarea{
     background: url("../img/mountain2.jpeg") bottom;
     background-size: cover;
 }
-
 .contact h1 span,
 .contact a{
     color: var(--rocColorC);
@@ -1286,7 +1280,6 @@ footer a{
     .cocktail .table{
         max-width: 58%;
     }
-
     .paddle th,
     .climbing th,
     .archery th{
@@ -1335,11 +1328,5 @@ footer a{
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */
-
-/* #region DESKTOP (min-width: 1400px) */
-@media screen and (min-width:1400px){
-    
-}
-/* #endregion DESKTOP (min-width: 1400px) */
 
 /* #endregion MEDIA QUERIES */

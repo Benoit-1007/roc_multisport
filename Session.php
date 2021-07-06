@@ -26,5 +26,4 @@ class Session {
             unset($_SESSION['user']);
         }
     }
-
 }

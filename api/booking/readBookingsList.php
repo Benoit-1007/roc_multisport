@@ -1,11 +1,5 @@
 <?php
 
-// Display all errors
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -25,7 +19,6 @@ $stmt = $booking->readList();
 $num = $stmt->rowCount();
 
 if ($num > 0) {
-
     $bookings_array = array();
     $bookings_array["records"] = array();
 
@@ -47,20 +40,17 @@ if ($num > 0) {
             "adress" => $adress,
             "postalCode" => $postalCode,
             "city" => $city,
-
         );
         array_push($bookings_array["records"], $booking_item);
     }
         // set response code - 200 OK
         http_response_code(200);
-
         // show products data in json format
         echo json_encode($bookings_array);
     
 } else {
     // set response code - 404 Not found
     http_response_code(404);
-
     // tell the user no products found
     echo json_encode(
         array("message" => "No bookings found.")

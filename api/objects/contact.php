@@ -1,8 +1,6 @@
 <?php
 
-class Contact
-{
-
+class Contact {
     // database connection and table name
     private $conn;
     private $table_name = "contacts";
