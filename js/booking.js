@@ -329,8 +329,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     `;
                 } else {
                     newParticipant.innerHTML = ` 
-                        <input class="field" type="text" name="lastName` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
-                        <input class="field" type="text" name="_firstName` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
+                        <input class="field" type="text" name="lastName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Nom*">
+                        <input class="field" type="text" name="firstName_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Prénom*">
                         <input class="field" type="text" name="birthdate_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Date de naissance* (jj/mm/aaaa)">
                         <input class="field" type="text" name="size_` + currentActivity + `_participant_` + currentParticipant + `" required placeholder="Taille (cm)*">
                     `;
@@ -782,13 +782,17 @@ function checkValues(inputs) {
                     error.record({validateReservation: 'Demi-journée sélectionnée non valide'});
                 }
             }
-            if (input.name.includes('lastName_activity') || input.name.includes('lastName_rocCocktail') && (!validateName(input.value))) {
-                input.classList.add('red-border');
-                error.record({validateReservation: 'Nom invalide'});
+            if (input.name.includes('lastName_activity') || input.name.includes('lastName_rocCocktail')) {
+                if(!validateName(input.value)) {
+                    input.classList.add('red-border');
+                    error.record({validateReservation: 'Nom invalide'});
+                }
             }
-            if (input.name.includes('firstName_activity') || input.name.includes('firstName_rocCocktail') && (!validateName(input.value))) {
-                input.classList.add('red-border');
-                error.record({validateReservation: 'Prénom invalide'});
+            if (input.name.includes('firstName_activity') || input.name.includes('firstName_rocCocktail')) {
+                if(!validateName(input.value)) {
+                    input.classList.add('red-border');
+                    error.record({validateReservation: 'Prénom invalide'});
+                }
             }
             if (input.name.includes('birthdate') && validatedate(input.value) === false) {
                 input.classList.add('red-border');

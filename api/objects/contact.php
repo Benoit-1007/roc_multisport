@@ -75,7 +75,6 @@ class Contact {
             $lastId = $this->conn->lastInsertId();
             return $lastId;
         }
-
         return 0;
     }
 
@@ -114,8 +113,20 @@ class Contact {
     }
 
     // Delete one booking with id
-    function delete()
+    function remove()
     {
+        $query = "DELETE FROM 
+                    " . $this->table_name . "
+                WHERE 
+                    contacts.idContact = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->idContact);
+
+        if($stmt->execute()) {
+            return 1;
+        }
+        return 0;
     }
 
     // Search one booking with keywords

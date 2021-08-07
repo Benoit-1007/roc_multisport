@@ -63,6 +63,11 @@ function showBookings() {
                 <button class="more"  onclick='showDetails(this)' data-id='` + key.idBooking + `'>
                 consulter
                 </button>
+                
+                <!-- delete product button -->
+                <button class="more"  onclick='remove(this)' data-id='` + key.idBooking + `'>
+                supprimer
+                </button>
                 </td>
                 
                 </tr>`;
@@ -77,8 +82,35 @@ function showBookings() {
     });
 }
 
-async function showDetails(identifier) {
+async function remove(identifier) {
 
+    // get booking id
+    let id = identifier.getAttribute('data-id');
+
+    // remove booking record based on given booking ID
+    fetch('api/contact/removeOneContact.php?idContact=' + id)
+    // fetch('api/contact/removeOneContact.php?idContact=33')
+        .then(res => res.json())
+        .then( data => {
+            if(data.message === "Unable to remove contact.") {
+                console.log("test");
+                let modale = document.querySelector(".modale");
+                modale.classList.remove('hide');
+                modale.classList.add('red-border');
+
+                let modaleButton = document.querySelector("#modaleButton");
+                modaleButton.addEventListener('click', function(){
+                    modale.classList.add('hide');
+                    modale.classList.remove('red-border');
+                });
+
+            } else if (data.message === "contact removed."){
+                showBookings();
+            }
+        })
+}
+
+async function showDetails(identifier) {
 
     // get booking id
     let id = identifier.getAttribute('data-id');

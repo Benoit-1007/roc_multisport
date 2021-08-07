@@ -151,7 +151,7 @@ td{
     font-size: 1.5rem;
     margin:1rem;
 }
-.button a:hover, button:hover{
+.button a:hover, .index button:hover{
     transform:scale(1.1);
 }
 .desktop-button{
@@ -191,7 +191,10 @@ div.form-error, .emptyField {
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
-
+.red-border{
+    border: 2px solid var(--require);
+    border-radius: 5px;
+}
 /* #endregion COMMUM */
 
 /* #region HEADER */
@@ -694,10 +697,10 @@ fieldset, .booking textarea{
     border: 1px solid var(--require);
     color: var(--require);
 }
-.booking .red-border{
+/* .booking .red-border{
     border: 2px solid var(--require);
     border-radius: 5px;
-}
+} */
 /* #endregion BOOKING */
 
 /* #region BACK BOOKING */
@@ -738,9 +741,6 @@ fieldset, .booking textarea{
     left: 50%;
     transform: translate(-50%, -50%);
     transition: unset;
-}
-.showBookings:hover{
-    transform:scale(0);
 }
 .logout, .more, .readBookings{
     color:var(--rocColorC);
@@ -783,6 +783,30 @@ fieldset, .booking textarea{
 .backBooking th{
     background-color: var(--rocColorC);
     color: var(--clearColor);
+}
+.backBooking .modale{
+    position: fixed;
+    color: var(--require);
+    width: 50%;
+    margin: 0 auto;
+    padding: 2rem;
+    top: 40%;
+    left: 25%;
+    background: var(--bookingColor);
+}
+.modaleButton{
+    color: var(--clearColor);
+    background-color: var(--require);
+    border: 2px solid var(--require);
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    line-height: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: unset;
 }
 
 /* #endregion BACK BOOKING */
@@ -860,10 +884,10 @@ fieldset, .booking textarea{
 .contact .validate{
     width: 100%
 }
-.contact .red-border{
+/* .contact .red-border{
     border: 2px solid var(--require);
     border-radius: 5px;
-}
+} */
 
 /* #endregion CONTACT */
 
