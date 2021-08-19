@@ -719,7 +719,7 @@ fieldset, .booking textarea{
     width: 70vw;
     margin: 0 auto;
 }
-.connect, .showBookings{
+.connect, .showBookings, .updateContact{
     color:var(--clearColor);
     border: 2px solid var(--rocColorO);
     background-color: var(--rocColorO);
@@ -807,6 +807,11 @@ fieldset, .booking textarea{
     top: 0;
     right: 0;
     transition: unset;
+}
+.update{
+    border: none;
+    width: unset;
+    padding: unset;
 }
 
 /* #endregion BACK BOOKING */

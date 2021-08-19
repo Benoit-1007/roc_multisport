@@ -43,9 +43,9 @@ class Contact {
     {
         // query to insert record
         $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-            lastName=:lastName, firstName=:firstName, organisation=:organisation, phoneNumber=:phoneNumber, mail=:mail, adress=:adress, postalCode=:postalCode, city=:city";
+                    " . $this->table_name . "
+                SET
+                    lastName=:lastName, firstName=:firstName, organisation=:organisation, phoneNumber=:phoneNumber, mail=:mail, adress=:adress, postalCode=:postalCode, city=:city";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -108,8 +108,32 @@ class Contact {
     }
 
     // Update one booking with id
-    function update()
+    function updateOne()
     {
+        $query = "UPDATE
+                    " . $this->table_name . "
+                SET
+                    lastName=:lastName, firstName=:firstName, organisation=:organisation, phoneNumber=:phoneNumber, mail=:mail, adress=:adress, postalCode=:postalCode, city=:city
+                WHERE 
+                    idContact =:id";
+
+        $stmt = $this->conn->prepare($query);
+        
+        // bind values
+        $stmt->bindParam(":id", $this->idContact);
+        $stmt->bindParam(":lastName", $this->lastName);
+        $stmt->bindParam(":firstName", $this->firstName);
+        $stmt->bindParam(":organisation", $this->organisation);
+        $stmt->bindParam(":phoneNumber", $this->phoneNumber);
+        $stmt->bindParam(":mail", $this->mail);
+        $stmt->bindParam(":adress", $this->adress);
+        $stmt->bindParam(":postalCode", $this->postalCode);
+        $stmt->bindParam(":city", $this->city);
+
+        if($stmt->execute()) {
+            return 1;
+        }
+        return 0;
     }
 
     // Delete one booking with id

@@ -84,16 +84,14 @@ function showBookings() {
 
 async function remove(identifier) {
 
-    // get booking id
+    // get booking ID
     let id = identifier.getAttribute('data-id');
 
     // remove booking record based on given booking ID
     fetch('api/contact/removeOneContact.php?idContact=' + id)
-    // fetch('api/contact/removeOneContact.php?idContact=33')
         .then(res => res.json())
         .then( data => {
             if(data.message === "Unable to remove contact.") {
-                console.log("test");
                 let modale = document.querySelector(".modale");
                 modale.classList.remove('hide');
                 modale.classList.add('red-border');
@@ -109,6 +107,80 @@ async function remove(identifier) {
             }
         })
 }
+
+function showContact(identifier) {
+
+    // get contact ID
+    let id = identifier.getAttribute('data-id');
+    let whereToWrite = document.querySelector("#page-content");
+
+    // read contact record based on given contact ID
+    fetch('api/contact/readOneContactDetails.php?idContact=' + id)
+    .then(res => res.json())
+    .then((data) => {
+        
+        let update_one_contact_html = `
+
+        <!-- contact data will be shown in this form -->
+        <form method="post" action="api/contact/updateOneContact.php">
+        
+            <!-- Contact details -->
+                <label>Nom</label>
+                <input type="text" name="contact_lastName" value=` + data.lastName + `>
+                <label>Prénom</label>
+                <input type="text" name="contact_firstName" value=` + data.firstName + `>
+                <label>Société</label>
+                <input type="text" name="contact_society" value=` + data.organisation + `>
+                <label>Téléphone</label>
+                <input type="tel" name="contact_phone" value=` + data.phoneNumber + `>
+                <label>Mail</label>
+                <input type="mail" name="contact_mail" value=` + data.mail + `>
+                <label>Adresse</label>
+                <input type="text" name="contact_adress" value=` + data.adress + `>
+                <label>Code Postal</label>
+                <input type="Number" name="contact_postalCode" value=` + data.postalCode + `>
+                <label>Ville</label>
+                <input type="text" name="contact_city" value=` + data.city + `>
+                <input type="hidden" id="idContact" name="contact_id" data-id = `+ id +` value=` + id + `>
+                <button type="submit" class="updateContact">Modifier</button> 
+        
+        </form>`;
+        
+        whereToWrite.innerHTML = update_one_contact_html;
+
+        let form = document.querySelector('form');
+
+        console.log(form);
+
+        form.addEventListener('submit',e => {
+            // e.preventDefault();
+
+            let idContact = document.querySelector('#idContact');
+
+            // inputs.forEach(input => {
+            //     console.log(input.value)
+            // })
+            showDetails(idContact)
+            
+        } )
+
+    })
+}
+
+// function updateContact() {
+
+//     // get contact ID
+//     // let id = document.querySelector('#idContact').value;
+
+//     // console.log(id);
+
+//     // update contact based on given contact ID
+//     fetch('api/contact/updateOneContact.php')
+//         .then(res => res.json)
+//         .then(data => {
+//             console.log(data.message)
+//         })
+// }
 
 async function showDetails(identifier) {
 
@@ -155,7 +227,8 @@ async function showDetails(identifier) {
                 .then((data) => {
                     
                     let read_one_contact_html = `
-                    <h3>Contact</h3>
+                    <h3>Contact<button class="update fas fa-pen" onclick='showContact(this)' data-id='`+ data.idContact +`'</button></h3>
+
                     <!-- contact data will be shown in this table -->
                     <table>
                     
@@ -319,6 +392,7 @@ async function showDetails(identifier) {
                 });
         });
 }
+
 
 function convertDate(date) {
     let dateToConvert = new Date(date);
