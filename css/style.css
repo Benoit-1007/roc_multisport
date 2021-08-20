@@ -742,11 +742,11 @@ fieldset, .booking textarea{
     transform: translate(-50%, -50%);
     transition: unset;
 }
-.logout, .more, .readBookings{
+.logout, .more, .back{
     color:var(--rocColorC);
     text-transform: capitalize;
 }
-.more, .readBookings{
+.more, .back{
     width: unset;
     padding: unset;
     border: unset;
@@ -759,7 +759,7 @@ fieldset, .booking textarea{
     top: 1rem;
     right: 1rem;
 }
-.readBookings{
+.back{
     font-family: 'DIN-Regular';
     font-size: 2rem;
     position: absolute;

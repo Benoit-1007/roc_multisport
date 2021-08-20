@@ -82,7 +82,6 @@ function showBookings() {
     });
 }
 
-
 async function showDetails(identifier) {
 
     // get booking id
@@ -100,7 +99,7 @@ async function showDetails(identifier) {
             typeBooking = data.typeOfBooking
 
             let read_one_booking_html = `
-            <button class='readBookings' onclick='showBookings()' >
+            <button class='back' onclick='showBookings()' >
                 Retour
             </button>
 
@@ -330,29 +329,33 @@ function showContact(identifier) {
     fetch('api/contact/readOneContactDetails.php?idContact=' + id)
     .then(res => res.json())
     .then((data) => {
-        
+
         let update_one_contact_html = `
+
+        <button class='back' onclick='showDetails(this)' data-id='` + id + `'>
+            Retour
+        </button>
 
         <!-- contact data will be shown in this form -->
         <!-- <form method="post" action="api/contact/updateOneContact.php"> -->
         <form>
             <!-- Contact details -->
                 <label>Nom</label>
-                <input type="text" name="contact_lastName" value=` + data.lastName + `>
+                <input type="text" name="contact_lastName" value='` + data.lastName + `'>
                 <label>Prénom</label>
-                <input type="text" name="contact_firstName" value=` + data.firstName + `>
+                <input type="text" name="contact_firstName" value='` + data.firstName + `'>
                 <label>Société</label>
-                <input type="text" name="contact_society" value=` + data.organisation + `>
+                <input type="text" name="contact_society" value='` + data.organisation + `'>
                 <label>Téléphone</label>
-                <input type="tel" name="contact_phone" value=` + data.phoneNumber + `>
+                <input type="tel" name="contact_phone" value='` + data.phoneNumber + `'>
                 <label>Mail</label>
                 <input type="mail" name="contact_mail" value=` + data.mail + `>
                 <label>Adresse</label>
-                <input type="text" name="contact_adress" value=` + data.adress + `>
+                <input type="text" name="contact_adress" value='` + data.adress + `'>
                 <label>Code Postal</label>
-                <input type="Number" name="contact_postalCode" value=` + data.postalCode + `>
+                <input type="Number" name="contact_postalCode" value='` + data.postalCode + `'>
                 <label>Ville</label>
-                <input type="text" name="contact_city" value=` + data.city + `>
+                <input type="text" name="contact_city" value='` + data.city + `'>
                 <input type="hidden" id="idContact" name="contact_id" data-id = `+ id +` value=` + id + `>
                 <button type="submit" class="updateContact" data-id= `+ id +` >Modifier</button> 
         
@@ -365,7 +368,6 @@ function showContact(identifier) {
         form.addEventListener('submit',e => {
             e.preventDefault();
 
-            
             let idContact = document.querySelector('#idContact');
             updateContact();
 
