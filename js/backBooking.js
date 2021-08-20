@@ -60,7 +60,7 @@ function showBookings() {
                 <!-- 'action' buttons -->
                 <td>
                 <!-- read product button -->
-                <button class="more"  onclick='showDetails(this)' data-id='` + key.idBooking + `'>
+                <button type="button" class="more" onclick='showDetails(this)'  data-id='` + key.idBooking + `'>
                 consulter
                 </button>
                 
@@ -82,105 +82,6 @@ function showBookings() {
     });
 }
 
-async function remove(identifier) {
-
-    // get booking ID
-    let id = identifier.getAttribute('data-id');
-
-    // remove booking record based on given booking ID
-    fetch('api/contact/removeOneContact.php?idContact=' + id)
-        .then(res => res.json())
-        .then( data => {
-            if(data.message === "Unable to remove contact.") {
-                let modale = document.querySelector(".modale");
-                modale.classList.remove('hide');
-                modale.classList.add('red-border');
-
-                let modaleButton = document.querySelector("#modaleButton");
-                modaleButton.addEventListener('click', function(){
-                    modale.classList.add('hide');
-                    modale.classList.remove('red-border');
-                });
-
-            } else if (data.message === "contact removed."){
-                showBookings();
-            }
-        })
-}
-
-function showContact(identifier) {
-
-    // get contact ID
-    let id = identifier.getAttribute('data-id');
-    let whereToWrite = document.querySelector("#page-content");
-
-    // read contact record based on given contact ID
-    fetch('api/contact/readOneContactDetails.php?idContact=' + id)
-    .then(res => res.json())
-    .then((data) => {
-        
-        let update_one_contact_html = `
-
-        <!-- contact data will be shown in this form -->
-        <form method="post" action="api/contact/updateOneContact.php">
-        
-            <!-- Contact details -->
-                <label>Nom</label>
-                <input type="text" name="contact_lastName" value=` + data.lastName + `>
-                <label>Prénom</label>
-                <input type="text" name="contact_firstName" value=` + data.firstName + `>
-                <label>Société</label>
-                <input type="text" name="contact_society" value=` + data.organisation + `>
-                <label>Téléphone</label>
-                <input type="tel" name="contact_phone" value=` + data.phoneNumber + `>
-                <label>Mail</label>
-                <input type="mail" name="contact_mail" value=` + data.mail + `>
-                <label>Adresse</label>
-                <input type="text" name="contact_adress" value=` + data.adress + `>
-                <label>Code Postal</label>
-                <input type="Number" name="contact_postalCode" value=` + data.postalCode + `>
-                <label>Ville</label>
-                <input type="text" name="contact_city" value=` + data.city + `>
-                <input type="hidden" id="idContact" name="contact_id" data-id = `+ id +` value=` + id + `>
-                <button type="submit" class="updateContact">Modifier</button> 
-        
-        </form>`;
-        
-        whereToWrite.innerHTML = update_one_contact_html;
-
-        let form = document.querySelector('form');
-
-        console.log(form);
-
-        form.addEventListener('submit',e => {
-            // e.preventDefault();
-
-            let idContact = document.querySelector('#idContact');
-
-            // inputs.forEach(input => {
-            //     console.log(input.value)
-            // })
-            showDetails(idContact)
-            
-        } )
-
-    })
-}
-
-// function updateContact() {
-
-//     // get contact ID
-//     // let id = document.querySelector('#idContact').value;
-
-//     // console.log(id);
-
-//     // update contact based on given contact ID
-//     fetch('api/contact/updateOneContact.php')
-//         .then(res => res.json)
-//         .then(data => {
-//             console.log(data.message)
-//         })
-// }
 
 async function showDetails(identifier) {
 
@@ -393,6 +294,108 @@ async function showDetails(identifier) {
         });
 }
 
+async function remove(identifier) {
+
+    // get booking ID
+    let id = identifier.getAttribute('data-id');
+
+    // remove booking record based on given booking ID
+    fetch('api/contact/removeOneContact.php?idContact=' + id)
+        .then(res => res.json())
+        .then( data => {
+            if(data.message === "Unable to remove contact.") {
+                let modale = document.querySelector(".modale");
+                modale.classList.remove('hide');
+                modale.classList.add('red-border');
+
+                let modaleButton = document.querySelector("#modaleButton");
+                modaleButton.addEventListener('click', function(){
+                    modale.classList.add('hide');
+                    modale.classList.remove('red-border');
+                });
+
+            } else if (data.message === "contact removed."){
+                showBookings();
+            }
+        })
+}
+
+function showContact(identifier) {
+
+    // get contact ID
+    let id = identifier.getAttribute('data-id');
+    let whereToWrite = document.querySelector("#page-content");
+
+    // read contact record based on given contact ID
+    fetch('api/contact/readOneContactDetails.php?idContact=' + id)
+    .then(res => res.json())
+    .then((data) => {
+        
+        let update_one_contact_html = `
+
+        <!-- contact data will be shown in this form -->
+        <!-- <form method="post" action="api/contact/updateOneContact.php"> -->
+        <form>
+            <!-- Contact details -->
+                <label>Nom</label>
+                <input type="text" name="contact_lastName" value=` + data.lastName + `>
+                <label>Prénom</label>
+                <input type="text" name="contact_firstName" value=` + data.firstName + `>
+                <label>Société</label>
+                <input type="text" name="contact_society" value=` + data.organisation + `>
+                <label>Téléphone</label>
+                <input type="tel" name="contact_phone" value=` + data.phoneNumber + `>
+                <label>Mail</label>
+                <input type="mail" name="contact_mail" value=` + data.mail + `>
+                <label>Adresse</label>
+                <input type="text" name="contact_adress" value=` + data.adress + `>
+                <label>Code Postal</label>
+                <input type="Number" name="contact_postalCode" value=` + data.postalCode + `>
+                <label>Ville</label>
+                <input type="text" name="contact_city" value=` + data.city + `>
+                <input type="hidden" id="idContact" name="contact_id" data-id = `+ id +` value=` + id + `>
+                <button type="submit" class="updateContact" data-id= `+ id +` >Modifier</button> 
+        
+        </form>`;
+        
+        whereToWrite.innerHTML = update_one_contact_html;
+
+        let form = document.querySelector('form');
+
+        form.addEventListener('submit',e => {
+            e.preventDefault();
+
+            
+            let idContact = document.querySelector('#idContact');
+            updateContact();
+
+            showDetails(idContact)
+            
+        } )
+
+    })
+}
+
+function updateContact() {
+
+    // get contact ID
+    let id = document.querySelector('#idContact').value;
+
+    console.log(id);
+
+    let form = document.querySelector('form');
+    let dataContact = new FormData(form);
+
+    // update contact
+    fetch('api/contact/updateOneContact.php', {
+        method: 'post',
+        body: dataContact
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.message)
+        })
+}
 
 function convertDate(date) {
     let dateToConvert = new Date(date);

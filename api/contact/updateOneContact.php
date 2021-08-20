@@ -15,14 +15,10 @@ $db = $database->getConnection();
 
 $contact = new Contact($db);
 
-// var_dump($_SERVER['REQUEST_METHOD']);
-// var_dump($_POST);
-
 extract($_POST);
 
-
-
-// get id from url
+// update the contact
+// ==================
 $contact->idContact = $contact_id;
 $contact->lastName = $contact_lastName;
 $contact->firstName = $contact_firstName;
