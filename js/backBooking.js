@@ -65,7 +65,7 @@ function showBookings() {
                 </button>
                 
                 <!-- delete product button -->
-                <button class="more"  onclick='remove(this)' data-id='` + key.idBooking + `'>
+                <button type="button" class="more"  onclick='checkRemove(this)' data-id='` + key.idBooking + `' data-lastName='`+ key.lastName +`' data-firstName='`+ key.firstName + `'>
                 supprimer
                 </button>
                 </td>
@@ -293,7 +293,24 @@ async function showDetails(identifier) {
         });
 }
 
-async function remove(identifier) {
+function checkRemove(identifier){
+
+    // get booking ID
+    let id = identifier.getAttribute('data-id');
+    let lastName = identifier.getAttribute('data-lastName');
+    let firstName = identifier.getAttribute('data-firstName');
+
+    let check_message = `<p>Etes-vous sûr de vouloir supprimer la réseravation de ` + firstName + ` ` + lastName + `?
+    <div>
+        <button type="button" onclick='remove(this)' class="validateButton" data-id='` + id + `'>oui</button> 
+        <button type="button" onclick="hideModale()" class="cancelButton">non</button> 
+    </div>
+    `;
+
+    displayModale(check_message);
+}
+
+function remove(identifier) {
 
     // get booking ID
     let id = identifier.getAttribute('data-id');
@@ -302,20 +319,19 @@ async function remove(identifier) {
     fetch('api/contact/removeOneContact.php?idContact=' + id)
         .then(res => res.json())
         .then( data => {
-            if(data.message === "Unable to remove contact.") {
-                let modale = document.querySelector(".modale");
-                modale.classList.remove('hide');
-                modale.classList.add('red-border');
 
-                let modaleButton = document.querySelector("#modaleButton");
-                modaleButton.addEventListener('click', function(){
-                    modale.classList.add('hide');
-                    modale.classList.remove('red-border');
-                });
+            if(data.message === "Unable to remove contact.") {
+                let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
+
+                displayModale(error_message);
 
             } else if (data.message === "contact removed."){
-                showBookings();
+                let success_message = `<p>La réservation a été supprimée avec succès.</p>`;
+
+                displayModale(success_message);
+
             }
+            showBookings();
         })
 }
 
@@ -368,12 +384,8 @@ function showContact(identifier) {
         form.addEventListener('submit',e => {
             e.preventDefault();
 
-            let idContact = document.querySelector('#idContact');
             updateContact();
-
-            showDetails(idContact)
-            
-        } )
+        })
 
     })
 }
@@ -396,7 +408,55 @@ function updateContact() {
         .then(res => res.json())
         .then(data => {
             console.log(data.message)
+
+            if (data.message === "Unable to update contact."){
+                let error_message = `<p>Impossible de modifier ce contact.</p><p>Votre saisie est erronée.</p>`;
+
+                displayModale(error_message);
+
+            } else if (data.message === "contact updated."){
+                let success_message = `<p>Le contacta été modifié avec succès.</p>`;
+
+                displayModale(success_message);
+            }
+
+            showDetails(idContact)
         })
+}
+
+function displayModale(message) {
+    console.log('test display');
+    console.log(message);
+    let modale = document.querySelector(".modale");
+    let modale_message = document.querySelector("#modale-message");
+
+    if (message === `<p>La réservation a été supprimée avec succès.</p>` || message === `<p>Le contacta été modifié avec succès.</p>`) {
+        console.log('test if')
+        modale.classList.remove('hide');
+        modale.classList.remove('red-border');
+        modale.classList.add('green-border');
+        modale_message.innerHTML = message;
+    } else if (message ===`<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>` 
+    || message === `<p>Impossible de modifier ce contact.</p><p>Votre saisie est erronée.</p>`) {
+        modale.classList.remove('hide');
+        modale.classList.add('red-border');
+        modale_message.innerHTML = message;
+    } else if (message.startsWith(`<p>Etes-vous sûr de vouloir supprimer la réseravation de `)){
+        modale.classList.remove('hide');
+        modale.classList.add('red-border');
+        modale_message.innerHTML = message;
+    }
+}
+
+function hideModale() {
+    console.log('hide');
+    let modale = document.querySelector(".modale");
+    modale.classList.add('hide');
+    if (modale.classList.contains('red-border')){
+        modale.classList.remove('red-border');
+    } else {
+        modale.classList.remove('green-border');
+    }
 }
 
 function convertDate(date) {

@@ -191,6 +191,10 @@ div.form-error, .emptyField {
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
+.green-border{
+    border: 2px solid var(--rocColorO);
+    border-radius: 5px;
+}
 .red-border{
     border: 2px solid var(--require);
     border-radius: 5px;
@@ -786,7 +790,7 @@ fieldset, .booking textarea{
 }
 .backBooking .modale{
     position: fixed;
-    color: var(--require);
+    color: var(--darkColor);
     width: 50%;
     margin: 0 auto;
     padding: 2rem;
@@ -796,8 +800,8 @@ fieldset, .booking textarea{
 }
 .modaleButton{
     color: var(--clearColor);
-    background-color: var(--require);
-    border: 2px solid var(--require);
+    background-color: var(--rocColorR);
+    border: 2px solid var(--rocColorR);
     border-radius: 50%;
     width: 3rem;
     height: 3rem;
@@ -807,6 +811,16 @@ fieldset, .booking textarea{
     top: 0;
     right: 0;
     transition: unset;
+}
+.validateButton{
+    color: var(--clearColor);
+    background-color: var(--rocColorO);
+    border: 2px solid var(--rocColorO);
+}
+.cancelButton{
+    color: var(--clearColor);
+    background-color: var(--require);
+    border: 2px solid var(--require);
 }
 .update{
     border: none;
