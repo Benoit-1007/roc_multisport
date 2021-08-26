@@ -202,8 +202,7 @@ async function showDetails(identifier) {
                                 if (typeBooking === "singleActivity") {
 
 
-                                    //read activities record based on given booking ID
-
+                                    //read activities record based on given bookingActivity ID
                                     fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
                                         .then(res => res.json())
                                         .then((dataUsers) => {
@@ -300,7 +299,7 @@ function checkRemove(identifier){
     let lastName = identifier.getAttribute('data-lastName');
     let firstName = identifier.getAttribute('data-firstName');
 
-    let check_message = `<p>Etes-vous sûr de vouloir supprimer la réseravation de ` + firstName + ` ` + lastName + `?
+    let check_message = `<p>Etes-vous sûr de vouloir supprimer la réservation de ` + firstName + ` ` + lastName + `?
     <div>
         <button type="button" onclick='remove(this)' class="validateButton" data-id='` + id + `'>oui</button> 
         <button type="button" onclick="hideModale()" class="cancelButton">non</button> 
@@ -310,29 +309,91 @@ function checkRemove(identifier){
     displayModale(check_message);
 }
 
-function remove(identifier) {
+async function remove(identifier) {
+
+    hideModale();
 
     // get booking ID
     let id = identifier.getAttribute('data-id');
 
-    // remove booking record based on given booking ID
+    let crtIdBookingActivity = 0
+
+    // read activities record based on given booking ID
+    fetch('api/activity/readActivitiesList.php?idBooking=' + id)
+    .then(res => res.json())
+    .then((data) => {
+
+        // loop through returned list of data
+        (data.records.forEach((key, val) => {
+
+            crtIdBookingActivity = key.idBookingActivity;
+        
+            //read activities record based on given bookingActivity ID
+            fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+            .then(res => res.json())
+            .then((dataUsers) => {
+
+                (dataUsers.records.forEach((keyUser, valUser) => {
+
+                    let crtUserId = keyUser.idUser 
+                    
+                    // remove user record based on given user ID
+                    fetch('api/user/removeOneUser.php?idUser=' + crtUserId)
+                        .then(res => res.json())
+                        .then(data => {
+                            
+                            console.log(data.message);
+
+                            if(data.message === "user removed.") {
+                                console.log('user removed')
+                                // remove booking record based on given booking ID
     fetch('api/contact/removeOneContact.php?idContact=' + id)
-        .then(res => res.json())
-        .then( data => {
+    .then(res => res.json())
+    .then(data => {
 
-            if(data.message === "Unable to remove contact.") {
-                let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
+        if(data.message === "Unable to remove contact.") {
+            let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
 
-                displayModale(error_message);
+            displayModale(error_message);
 
-            } else if (data.message === "contact removed."){
-                let success_message = `<p>La réservation a été supprimée avec succès.</p>`;
+        } else if (data.message === "contact removed."){
+            let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
 
-                displayModale(success_message);
+            displayModale(success_message);
 
-            }
-            showBookings();
-        })
+        }
+        showBookings();
+    })
+                                
+                            } else if(data.message === "Unable to remove user.") {
+                                let error_message = `<p>Problème lors de la suppression d'un participant.</p><p>Merci de contacter l'administrateur du site.</p>`
+                            
+                                displayModale(error_message);
+                            }
+                        })
+                }))
+            })
+        }));
+    });
+
+    // // remove booking record based on given booking ID
+    // fetch('api/contact/removeOneContact.php?idContact=' + id)
+    // .then(res => res.json())
+    // .then(data => {
+
+    //     if(data.message === "Unable to remove contact.") {
+    //         let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
+
+    //         displayModale(error_message);
+
+    //     } else if (data.message === "contact removed."){
+    //         let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
+
+    //         displayModale(success_message);
+
+    //     }
+    //     showBookings();
+    // })
 }
 
 function showContact(identifier) {
@@ -430,7 +491,7 @@ function displayModale(message) {
     let modale = document.querySelector(".modale");
     let modale_message = document.querySelector("#modale-message");
 
-    if (message === `<p>La réservation a été supprimée avec succès.</p>` || message === `<p>Le contacta été modifié avec succès.</p>`) {
+    if (message === `<p>La réservation et les participants associés ont été supprimés avec succès.</p>` || message === `<p>Le contacta été modifié avec succès.</p>`) {
         console.log('test if')
         modale.classList.remove('hide');
         modale.classList.remove('red-border');
@@ -441,7 +502,7 @@ function displayModale(message) {
         modale.classList.remove('hide');
         modale.classList.add('red-border');
         modale_message.innerHTML = message;
-    } else if (message.startsWith(`<p>Etes-vous sûr de vouloir supprimer la réseravation de `)){
+    } else if (message.startsWith(`<p>Etes-vous sûr de vouloir supprimer la réservation de `)){
         modale.classList.remove('hide');
         modale.classList.add('red-border');
         modale_message.innerHTML = message;

@@ -7,26 +7,26 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../config/database.php';
 
 // instantiate all object
-include_once '../objects/contact.php';
+include_once '../objects/user.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$contact = new Contact($db);
+$user = new User($db);
 
 // get ID from url
-$contact->idContact = isset($_GET['idContact']) ? $_GET['idContact'] : die();
+$user->idUser = isset($_GET['idUser']) ? $_GET['idUser'] : die();
 
-$removedContact = $contact->remove();
+$removedUser = $user->remove();
 
-if ($removedContact === 0) {
+if ($removedUser === 0) {
     // set response code - 400 bad request
     http_response_code(400);
     // tell the user
-    echo json_encode(array("message" => "Unable to remove contact."));
+    echo json_encode(array("message" => "Unable to remove user."));
 } else {
     // set response code 200 - ok
     http_response_code(200);
     // tell the user
-    echo json_encode(array("message" => "contact removed."));
+    echo json_encode(array("message" => "user removed."));
 }

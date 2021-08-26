@@ -18,7 +18,7 @@ class User {
         $this->conn = $db;
     }
 
-    // Create bookingActivity
+    // Create user
     public function create()
     {
         // query to insert record
@@ -48,6 +48,25 @@ class User {
         if ($stmt->execute()) {
             $lastId = $this->conn->lastInsertId();
             return $lastId;
+        }
+        return 0;
+    }
+
+    // Delete one user with ID
+    public function remove()
+    {
+        // var_dump("remove");
+
+        $query = "DELETE FROM 
+                    " . $this->table_name . "
+                WHERE 
+                    users.idUser = ?";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(1, $this->idUser);
+
+        if($stmt->execute()) {
+            return 1;
         }
         return 0;
     }

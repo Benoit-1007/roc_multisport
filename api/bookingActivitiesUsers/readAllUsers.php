@@ -29,6 +29,7 @@ if ($num > 0) {
 
         $user_item = array(
             "idBookingActivity" => $idBookingActivity,
+            "idUser" => $idUser,
             "lastName" => $lastName,
             "firstName" => $firstName,
             "birthdate" => $birthdate,

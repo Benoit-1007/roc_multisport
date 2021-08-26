@@ -39,7 +39,7 @@ class Contact {
     }
 
     // Create booking
-    function create()
+    public function create()
     {
         // query to insert record
         $query = "INSERT INTO
@@ -79,7 +79,7 @@ class Contact {
     }
 
     // Read one booking with id
-    function readOne()
+    public function readOne()
     {
         $query = "SELECT
                     c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
@@ -108,7 +108,7 @@ class Contact {
     }
 
     // Update one booking with id
-    function updateOne()
+    public function updateOne()
     {
         $query = "UPDATE
                     " . $this->table_name . "
@@ -136,8 +136,8 @@ class Contact {
         return 0;
     }
 
-    // Delete one booking with id
-    function remove()
+    // Delete one booking with ID
+    public function remove()
     {
         $query = "DELETE FROM 
                     " . $this->table_name . "
