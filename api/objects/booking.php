@@ -186,20 +186,4 @@ class Booking {
         return 0;
     }
 
-
-
-    // Update one booking with id
-    function update()
-    {
-    }
-
-    // Delete one booking with id
-    function delete()
-    {
-    }
-
-    // Search one booking with keywords
-    function search()
-    {
-    }
 }

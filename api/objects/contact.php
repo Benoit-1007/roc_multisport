@@ -21,23 +21,6 @@ class Contact {
         $this->conn = $db;
     }
 
-    // Read all bookings
-    public function readAll()
-    {
-        //select all data
-        $query = "SELECT
-                    idContact, firstName, lastName, organisation, phoneNumber, mail, adress, postalCode, city
-                FROM
-                    " . $this->table_name . "
-                ORDER BY
-                idContact";
-
-        $stmt = $this->conn->prepare($query);
-        $stmt->execute();
-
-        return $stmt;
-    }
-
     // Create booking
     public function create()
     {
@@ -76,6 +59,23 @@ class Contact {
             return $lastId;
         }
         return 0;
+    }
+
+    // Read all bookings
+    public function readAll()
+    {
+        //select all data
+        $query = "SELECT
+                    idContact, firstName, lastName, organisation, phoneNumber, mail, adress, postalCode, city
+                FROM
+                    " . $this->table_name . "
+                ORDER BY
+                idContact";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        return $stmt;
     }
 
     // Read one booking with id
@@ -117,7 +117,18 @@ class Contact {
                 WHERE 
                     idContact =:id";
 
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        // sanitize
+        $this->lastName = htmlspecialchars(strip_tags($this->lastName));
+        $this->firstName = htmlspecialchars(strip_tags($this->firstName));
+        $this->organisation = htmlspecialchars(strip_tags($this->organisation));
+        $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
+        $this->mail = htmlspecialchars(strip_tags($this->mail));
+        $this->adress = htmlspecialchars(strip_tags($this->adress));
+        $this->postalCode = htmlspecialchars(strip_tags($this->postalCode));
+        $this->city = htmlspecialchars(strip_tags($this->city));
         
         // bind values
         $stmt->bindParam(":id", $this->idContact);

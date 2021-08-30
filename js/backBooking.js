@@ -65,7 +65,7 @@ function showBookings() {
                 </button>
                 
                 <!-- delete product button -->
-                <button type="button" class="more"  onclick='checkRemove(this)' data-id='` + key.idBooking + `' data-lastName='`+ key.lastName +`' data-firstName='`+ key.firstName + `'>
+                <button type="button" class="more"  onclick='checkRemove(this)' data-id='` + key.idBooking + `' data-lastName='`+ key.lastName +`' data-firstName='`+ key.firstName + `' data-typeOfBooking='`+ key.typeOfBooking +`'>
                 supprimer
                 </button>
                 </td>
@@ -297,10 +297,11 @@ function checkRemove(identifier){
     let id = identifier.getAttribute('data-id');
     let lastName = identifier.getAttribute('data-lastName');
     let firstName = identifier.getAttribute('data-firstName');
+    let typeOfBooking = identifier.getAttribute('data-typeOfBooking');
 
     let check_message = `<p>Etes-vous sûr de vouloir supprimer la réservation de ` + firstName + ` ` + lastName + `?
     <div>
-        <button type="button" onclick='remove(this)' class="validateButton" data-id='` + id + `'>oui</button> 
+        <button type="button" onclick='remove(this)' class="validateButton" data-id='` + id + `' data-typeOfBooking='`+ typeOfBooking +`'>oui</button> 
         <button type="button" onclick="hideModale()" class="cancelButton">non</button> 
     </div>
     `;
@@ -314,6 +315,9 @@ async function remove(identifier) {
 
     // get booking ID
     let id = identifier.getAttribute('data-id');
+    // get typde of booking
+    let typeOfBooking = identifier.getAttribute('data-typeOfBooking');
+    console.log("🚀 ~ file: backBooking.js ~ line 320 ~ remove ~ typeOfBooking", typeOfBooking)
 
     let crtIdBookingActivity = 0
 
@@ -322,15 +326,80 @@ async function remove(identifier) {
     .then(res => res.json())
     .then((data) => {
 
-        // loop through returned list of data
-        (data.records.forEach((key, val) => {
+        if (typeOfBooking === "singleActivity") {
 
-            crtIdBookingActivity = key.idBookingActivity;
-        
+            // loop through returned list of data
+            (data.records.forEach((key, val) => {
+
+                crtIdBookingActivity = key.idBookingActivity;
+            
+                //read activities record based on given bookingActivity ID
+                fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+                .then(res => res.json())
+                .then((dataUsers) => {
+
+                    console.log(dataUsers.records)
+
+                    let n = 0;
+
+                    (dataUsers.records.forEach((keyUser, valUser) => {
+
+                        let crtUserId = keyUser.idUser 
+                        
+                        // remove user record based on given user ID
+                        fetch('api/user/removeOneUser.php?idUser=' + crtUserId)
+                            .then(res => res.json())
+                            .then(data => {
+
+                                if (data.message === "Unable to remove user.") {
+                                    let error_message = `<p>Problème lors de la suppression d'un participant.</p><p>Merci de contacter l'administrateur du site.</p>`
+                                
+                                    displayModale(error_message);
+
+                                } else if (data.message === "user removed.") {
+                                    
+                                    n++
+                                    console.log('participant '+n+' supprimé')
+
+                                    if (dataUsers.records.length === n) {
+                                        // remove booking record based on given booking ID
+                                        fetch('api/contact/removeOneContact.php?idContact=' + id)
+                                            .then(res => res.json())
+                                            .then(data => {
+
+                                                console.log('remove contact')
+
+                                                if(data.message === "Unable to remove contact.") {
+                                                    let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
+
+                                                    displayModale(error_message);
+
+                                                } else if (data.message === "contact removed."){
+                                                    let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
+
+                                                    displayModale(success_message);
+
+                                                }
+                                                showBookings();
+                                            })
+                                    }
+                                }
+                            })
+                    }))
+                })
+            }));
+        } else {
+
+            console.log('cock');
+
+            crtIdBookingActivity = data.records[0].idBookingActivity;
+            
             //read activities record based on given bookingActivity ID
             fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
             .then(res => res.json())
             .then((dataUsers) => {
+
+                console.log(dataUsers.records)
 
                 let n = 0;
 
@@ -349,8 +418,9 @@ async function remove(identifier) {
                                 displayModale(error_message);
 
                             } else if (data.message === "user removed.") {
-
+                                
                                 n++
+                                console.log('participant '+n+' supprimé')
 
                                 if (dataUsers.records.length === n) {
                                     // remove booking record based on given booking ID
@@ -377,28 +447,9 @@ async function remove(identifier) {
                             }
                         })
                 }))
-            })
-        }));
+            })    
+        }
     });
-
-    // // remove booking record based on given booking ID
-    // fetch('api/contact/removeOneContact.php?idContact=' + id)
-    // .then(res => res.json())
-    // .then(data => {
-
-    //     if(data.message === "Unable to remove contact.") {
-    //         let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
-
-    //         displayModale(error_message);
-
-    //     } else if (data.message === "contact removed."){
-    //         let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
-
-    //         displayModale(success_message);
-
-    //     }
-    //     showBookings();
-    // })
 }
 
 function showContact(identifier) {
@@ -439,7 +490,7 @@ function showContact(identifier) {
                 <label>Ville</label>
                 <input type="text" name="contact_city" value='` + data.city + `'>
                 <input type="hidden" id="idContact" name="contact_id" data-id = `+ id +` value=` + id + `>
-                <button type="submit" class="updateContact" data-id= `+ id +` >Modifier</button> 
+                <button type="submit" class="updateContact" >Modifier</button> 
         
         </form>`;
         
@@ -473,7 +524,6 @@ function updateContact() {
     })
         .then(res => res.json())
         .then(data => {
-            console.log(data.message)
 
             if (data.message === "Unable to update contact."){
                 let error_message = `<p>Impossible de modifier ce contact.</p><p>Votre saisie est erronée.</p>`;
@@ -486,18 +536,16 @@ function updateContact() {
                 displayModale(success_message);
             }
 
-            showDetails(idContact)
+            showDetails(idContact);
         })
 }
 
 function displayModale(message) {
-    console.log('test display');
     console.log(message);
     let modale = document.querySelector(".modale");
     let modale_message = document.querySelector("#modale-message");
 
     if (message === `<p>La réservation et les participants associés ont été supprimés avec succès.</p>` || message === `<p>Le contacta été modifié avec succès.</p>`) {
-        console.log('test if')
         modale.classList.remove('hide');
         modale.classList.remove('red-border');
         modale.classList.add('green-border');
@@ -515,7 +563,6 @@ function displayModale(message) {
 }
 
 function hideModale() {
-    console.log('hide');
     let modale = document.querySelector(".modale");
     modale.classList.add('hide');
     if (modale.classList.contains('red-border')){
