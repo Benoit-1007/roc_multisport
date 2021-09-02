@@ -23,9 +23,9 @@ class User {
     {
         // query to insert record
         $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-            lastName=:lastName, firstName=:firstName, birthdate=:birthdate, size=:size, level=:level";
+                    {$this->table_name}
+                SET
+                    lastName = :lastName, firstName = :firstName, birthdate = :birthdate, size = :size, level = :level";
 
         // prepare query
         $stmt = $this->conn->prepare($query);

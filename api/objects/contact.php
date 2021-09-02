@@ -26,9 +26,9 @@ class Contact {
     {
         // query to insert record
         $query = "INSERT INTO
-                    " . $this->table_name . "
+                    {$this->table_name}
                 SET
-                    lastName=:lastName, firstName=:firstName, organisation=:organisation, phoneNumber=:phoneNumber, mail=:mail, adress=:adress, postalCode=:postalCode, city=:city";
+                    lastName = :lastName, firstName = :firstName, organisation = :organisation, phoneNumber = :phoneNumber, mail = :mail, adress = :adress, postalCode = :postalCode, city = :city";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -68,11 +68,14 @@ class Contact {
         $query = "SELECT
                     idContact, firstName, lastName, organisation, phoneNumber, mail, adress, postalCode, city
                 FROM
-                    " . $this->table_name . "
+                    {$this->table_name}
                 ORDER BY
-                idContact";
+                    idContact";
 
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        // execute query
         $stmt->execute();
 
         return $stmt;
@@ -84,14 +87,17 @@ class Contact {
         $query = "SELECT
                     c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
                 FROM
-                    " . $this->table_name . " c
+                    {$this->table_name} c
                 WHERE
                     c.idContact = ?";
 
-
-
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        // bind value
         $stmt->bindParam(1, $this->idContact);
+
+        //execute query
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -111,11 +117,11 @@ class Contact {
     public function updateOne()
     {
         $query = "UPDATE
-                    " . $this->table_name . "
+                    {$this->table_name}
                 SET
-                    lastName=:lastName, firstName=:firstName, organisation=:organisation, phoneNumber=:phoneNumber, mail=:mail, adress=:adress, postalCode=:postalCode, city=:city
+                    lastName = :lastName, firstName = :firstName, organisation = :organisation, phoneNumber = :phoneNumber, mail = :mail, adress = :adress, postalCode = :postalCode, city = :city
                 WHERE 
-                    idContact =:id";
+                    idContact = :id";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -141,6 +147,7 @@ class Contact {
         $stmt->bindParam(":postalCode", $this->postalCode);
         $stmt->bindParam(":city", $this->city);
 
+        // execute query
         if($stmt->execute()) {
             return 1;
         }
@@ -148,16 +155,20 @@ class Contact {
     }
 
     // Delete one booking with ID
-    public function remove()
+    public function removeOne()
     {
         $query = "DELETE FROM 
-                    " . $this->table_name . "
+                    {$this->table_name}
                 WHERE 
-                    contacts.idContact = ?";
+                    idContact = ?";
 
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        // bind value
         $stmt->bindParam(1, $this->idContact);
 
+        // execute query
         if($stmt->execute()) {
             return 1;
         }

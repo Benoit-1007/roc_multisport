@@ -20,9 +20,9 @@ class Bookingactivityuser {
     {
         // query to insert record
         $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-            idBookingActivity=:idBookingActivity, idUser=:idUser";
+                    {$this->table_name}
+                SET
+                    idBookingActivity = :idBookingActivity, idUser = :idUser";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -49,7 +49,7 @@ class Bookingactivityuser {
         $query = "SELECT
                     bau.idBookingActivity, u.idUser, u.lastName, u.firstName, u.birthdate, u.size, u.level
                 FROM
-                " . $this->table_name . " bau
+                        {$this->table_name} bau
                 INNER JOIN 
                     users u
                         ON u.idUser = bau.idUser
@@ -58,8 +58,13 @@ class Bookingactivityuser {
                 ORDER BY
                     bau.idBookingActivity";
 
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        // bind values
         $stmt->bindParam(':idBookingActivity', $this->idBookingActivity);
+
+        // execute query
         $stmt->execute();
 
         return $stmt;

@@ -19,10 +19,10 @@ class Admin {
 
     public function create()
     {
-        $query = "INSERT INTO
-        " . $this->table_name . "
-        SET
-        lastName=:lastName, firstName=:firstName, mail=:mail, password=:password";
+        $query = "INSERT INTO 
+                    {$this->table_name}
+                SET 
+                    lastName = :lastName, firstName = :firstName, mail = :mail, password = :password";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -50,7 +50,12 @@ class Admin {
      * @param string $mail
      */
     public function findByEmail(string $email) {
-        $query = "SELECT idAdmin, lastName, firstName, mail, password FROM  " . $this->table_name . " WHERE mail= :mail";
+        $query = "SELECT 
+                    idAdmin, lastName, firstName, mail, password
+                FROM 
+                    {$this->table_name} 
+                WHERE 
+                    mail = :mail";
         
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -58,6 +63,7 @@ class Admin {
         // bind values
         $stmt->bindParam(":mail", $email);
 
+        // execute query
         $stmt->execute();
 
         $user = $stmt->fetch();

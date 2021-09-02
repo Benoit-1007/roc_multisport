@@ -21,13 +21,13 @@ class BookingActivity {
     public function create()
     {
         // query to insert record
-        $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-            idBooking=:idBooking, codeActivity=:codeActivity, dateActivity=:dateActivity, halfDaySelect=:halfDaySelect";
+        $query = "INSERT INTO 
+                    {$this->table_name}
+                SET
+                    idBooking = :idBooking, codeActivity = :codeActivity, dateActivity = :dateActivity, halfDaySelect = :halfDaySelect";
 
         // prepare query
-        $stmt = $this->conn->prepare($query);
+        $stmt =  $this->conn->prepare($query);
 
         // sanitize
         $this->idBooking = htmlspecialchars(strip_tags($this->idBooking));

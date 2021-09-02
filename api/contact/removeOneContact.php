@@ -17,7 +17,7 @@ $contact = new Contact($db);
 // get ID from url
 $contact->idContact = isset($_GET['idContact']) ? $_GET['idContact'] : die();
 
-$removedContact = $contact->remove();
+$removedContact = $contact->removeOne();
 
 if ($removedContact === 0) {
     // set response code - 400 bad request

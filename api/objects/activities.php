@@ -15,14 +15,14 @@ class Activities {
         $this->conn = $db;
     }
 
-    // Create bookingActivity
+    // Create activity
     public function create()
     {
         // query to insert record
-        $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-            codeActivity=:codeActivity, name=:name, minCount=:minCount, maxCount=:maxCount";
+        $query = "INSERT INTO 
+                    {$this->table_name}
+                SET
+                    codeActivity = :codeActivity, name = :name, minCount = :minCount, maxCount = :maxCount";
 
         // prepare query
         $stmt = $this->conn->prepare($query);

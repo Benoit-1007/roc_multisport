@@ -46,16 +46,19 @@ class Booking {
         $query = "SELECT
                     b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking
                 FROM
-                    " . $this->table_name . " b
+                    {$this->table_name} b
                 WHERE
                     b.idBooking = ?
                 ORDER BY
                     idBooking";
 
-
-
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        // bind param
         $stmt->bindParam(1, $this->idBooking);
+
+        //execute query
         $stmt->execute();
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -78,31 +81,34 @@ class Booking {
                         a.name as nameActivity,
                         u.lastName as uLastName, u.firstName as uFirstName
                     FROM
-                        " . $this->table_name . " b
-                        LEFT JOIN
-                            contacts c
-                                ON b.idContact = c.idContact
-                        INNER JOIN 
-                            bookingsactivities ba
-                                ON b.idBooking = ba.idBooking
-                        INNER JOIN 
-                            activities a
-                                ON ba.codeActivity = a.codeActivity
-                        INNER JOIN
-                            bookingsActivitiesUsers bau
-                                ON ba.idBookingActivity = bau.idBookingActivity
-                        INNER JOIN
-                            users u
-                                ON u.idUser = bau.idUser
+                        {$this->table_name} b
+                    LEFT JOIN
+                        contacts c
+                            ON b.idContact = c.idContact
+                    INNER JOIN 
+                        bookingsactivities ba
+                            ON b.idBooking = ba.idBooking
+                    INNER JOIN 
+                        activities a
+                            ON ba.codeActivity = a.codeActivity
+                    INNER JOIN
+                        bookingsActivitiesUsers bau
+                            ON ba.idBookingActivity = bau.idBookingActivity
+                    INNER JOIN
+                        users u
+                            ON u.idUser = bau.idUser
                     WHERE
                         b.idBooking = ?
                     ORDER BY
                         idBooking";
 
-
-
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        // bind param
         $stmt->bindParam(1, $this->idBooking);
+
+        //execute query
         $stmt->execute();
 
         return $stmt;
@@ -117,22 +123,25 @@ class Booking {
                         ba.codeActivity, ba.dateActivity, ba.halfDaySelect, ba.idBookingActivity,
                         a.name as nameActivity
                     FROM
-                        " . $this->table_name . " b
-                        INNER JOIN 
-                            bookingsactivities ba
-                                ON b.idBooking = ba.idBooking
-                        INNER JOIN 
-                            activities a
-                                ON ba.codeActivity = a.codeActivity
+                        {$this->table_name} b
+                    INNER JOIN 
+                        bookingsactivities ba
+                            ON b.idBooking = ba.idBooking
+                    INNER JOIN 
+                        activities a
+                            ON ba.codeActivity = a.codeActivity
                     WHERE
                         b.idBooking = :idBooking
                     ORDER BY
                         idBooking";
 
-
-
+        //prepare query
         $stmt = $this->conn->prepare($query);
+
+        // bind param
         $stmt->bindParam(':idBooking', $this->idBooking);
+
+        // execute query
         $stmt->execute();
 
         return $stmt;
@@ -144,7 +153,7 @@ class Booking {
         $query = "SELECT
                     idBooking, dateOfBooking, comment, idContact, typeOfBooking
                 FROM
-                    " . $this->table_name . "
+                    {$this->table_name}
                 ORDER BY
                     idBooking";
 
@@ -157,12 +166,11 @@ class Booking {
     // Create booking
     function create()
     {
-
         // query to insert record
         $query = "INSERT INTO
-                " . $this->table_name . "
-            SET
-            comment=:comment, idContact=:idContact, typeOfBooking=:typeOfBooking";
+                    {$this->table_name}
+                SET
+                    comment = :comment, idContact = :idContact, typeOfBooking = :typeOfBooking";
 
         // prepare query
         $stmt = $this->conn->prepare($query);

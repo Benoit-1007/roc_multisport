@@ -362,7 +362,7 @@ async function remove(identifier) {
                                     console.log('participant '+n+' supprimé')
 
                                     if (dataUsers.records.length === n) {
-                                        // remove booking record based on given booking ID
+                                        // remove booking record based on given contact ID
                                         fetch('api/contact/removeOneContact.php?idContact=' + id)
                                             .then(res => res.json())
                                             .then(data => {
