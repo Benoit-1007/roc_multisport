@@ -20,9 +20,9 @@ class Bookingactivityuser {
     {
         // query to insert record
         $query = "INSERT INTO
-                    {$this->table_name}
-                SET
-                    idBookingActivity = :idBookingActivity, idUser = :idUser";
+                    {$this->table_name} (idBookingActivity, idUser)
+                VALUES 
+                    (:idBookingActivity, :idUser)";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -47,12 +47,15 @@ class Bookingactivityuser {
     {
         //select all data
         $query = "SELECT
-                    bau.idBookingActivity, u.idUser, u.lastName, u.firstName, u.birthdate, u.size, u.level
+                    bau.idBookingActivity, u.idUser, u.lastName, u.firstName, u.birthdate, u.size, u.level, ba.idBooking
                 FROM
                         {$this->table_name} bau
                 INNER JOIN 
                     users u
                         ON u.idUser = bau.idUser
+                INNER JOIN
+                    bookingsactivities ba
+                        ON ba.idBookingActivity = bau.idBookingActivity
                 WHERE
                     bau.idBookingActivity = :idBookingActivity
                 ORDER BY

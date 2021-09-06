@@ -25,10 +25,10 @@ class Contact {
     public function create()
     {
         // query to insert record
-        $query = "INSERT INTO
-                    {$this->table_name}
-                SET
-                    lastName = :lastName, firstName = :firstName, organisation = :organisation, phoneNumber = :phoneNumber, mail = :mail, adress = :adress, postalCode = :postalCode, city = :city";
+        $query = "INSERT INTO 
+                    {$this->table_name} (lastName, firstName, organisation, phoneNumber, mail, adress, postalCode, city)
+                VALUES 
+                    (:lastName, :firstName, :organisation, :phoneNumber, :mail, :adress, :postalCode, :city)";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -81,15 +81,15 @@ class Contact {
         return $stmt;
     }
 
-    // Read one booking with id
+    // Read one booking with ID
     public function readOne()
     {
         $query = "SELECT
-                    c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
+                    lastName, firstName, organisation, phoneNumber, mail, adress, postalCode, city
                 FROM
-                    {$this->table_name} c
+                    {$this->table_name}
                 WHERE
-                    c.idContact = ?";
+                    idContact = ?";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -113,7 +113,7 @@ class Contact {
         $this->city = $row['city'];
     }
 
-    // Update one booking with id
+    // Update one booking with ID
     public function updateOne()
     {
         $query = "UPDATE

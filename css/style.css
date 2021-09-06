@@ -723,7 +723,7 @@ fieldset, .booking textarea{
     width: 70vw;
     margin: 0 auto;
 }
-.connect, .showBookings, .updateContact{
+.connect, .showBookings, .update{
     color:var(--clearColor);
     border: 2px solid var(--rocColorO);
     background-color: var(--rocColorO);
@@ -775,7 +775,7 @@ fieldset, .booking textarea{
     margin: 1rem;
 }
 .backBooking td{
-    width: 20%
+    width: 16,5%;
 }
 .backBooking table a{
     text-transform: unset;
@@ -822,10 +822,11 @@ fieldset, .booking textarea{
     background-color: var(--require);
     border: 2px solid var(--require);
 }
-.update{
+.action{
     border: none;
     width: unset;
     padding: unset;
+    color: var(--rocColorR);
 }
 
 /* #endregion BACK BOOKING */

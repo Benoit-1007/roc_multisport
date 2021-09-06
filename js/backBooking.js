@@ -1,6 +1,8 @@
 'use strict';
 
-// On charge les resa quand la page est prete :
+//NB: for every booking, idBooking & idContact are the same
+
+// We load the resa when the page is ready :
 document.addEventListener("DOMContentLoaded", function() {
     
     // menu management for mobile phone 
@@ -17,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     
 });
+
+// Actions on reservation
 
 function showBookings() {
     
@@ -65,7 +69,7 @@ function showBookings() {
                 </button>
                 
                 <!-- delete product button -->
-                <button type="button" class="more"  onclick='checkRemove(this)' data-id='` + key.idBooking + `' data-lastName='`+ key.lastName +`' data-firstName='`+ key.firstName + `' data-typeOfBooking='`+ key.typeOfBooking +`'>
+                <button type="button" class="more"  onclick='confirmRemovation(this)' data-id='` + key.idBooking + `' data-lastName='`+ key.lastName +`' data-firstName='`+ key.firstName + `' data-typeOfBooking='`+ key.typeOfBooking +`'>
                 supprimer
                 </button>
                 </td>
@@ -84,7 +88,7 @@ function showBookings() {
 
 async function showDetails(identifier) {
 
-    // get booking id
+    // get booking ID (same as contact ID) 
     let id = identifier.getAttribute('data-id');
 
     let typeBooking = "";
@@ -127,7 +131,7 @@ async function showDetails(identifier) {
                 .then((data) => {
                     
                     let read_one_contact_html = `
-                    <h3>Contact<button class="update fas fa-pen" onclick='showContact(this)' data-id='`+ data.idContact +`'</button></h3>
+                    <h3>Contact<button class="action fas fa-pen" onclick='showContact(this)' data-idContact='`+ data.idContact +`'</button></h3>
 
                     <!-- contact data will be shown in this table -->
                     <table>
@@ -206,6 +210,8 @@ async function showDetails(identifier) {
                                         .then(res => res.json())
                                         .then((dataUsers) => {
                                             
+
+                                            console.log(dataUsers)
                                             read_users_html = `
                                                 
                                                 <table class="backParticipantsList`+ key.idBookingActivity +`">
@@ -215,6 +221,7 @@ async function showDetails(identifier) {
                                                         <th>Date de naissance</th>
                                                         <th>Taille</th>
                                                         <th>Niveau</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                     
                                                 </table>
@@ -224,12 +231,16 @@ async function showDetails(identifier) {
                                             (dataUsers.records.forEach((keyUser, valUser) => {
 
                                                 let user = `
-                                                    <tr>
+                                                    <tr id='`+ keyUser.idUser +`'>
                                                         <td>` + keyUser.lastName + `</td>
                                                         <td>` + keyUser.firstName + `</td>
                                                         <td>` + keyUser.birthdate + `</td>
                                                         <td>` + keyUser.size + `</td>
                                                         <td>` + keyUser.level + `</td>
+                                                        <td>
+                                                            <button class="action fas fa-pen" onclick='showOneUser(this)' data-id='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
+                                                            <button class="action fas fa-trash" onclick='removeOneUser(this)' data-id='`+ keyUser.idBooking +`' data-id='`+ keyUser.idUser +`'</button>
+                                                        </td>
                                                     </tr>
                                                 `;
 
@@ -251,6 +262,8 @@ async function showDetails(identifier) {
                                     .then(res => res.json())
                                     .then((dataUsers) => {
 
+                                        console.log(dataUsers)
+
                                         let read_users_html = `
                                         
                                         <table class="backParticipantsList">
@@ -259,6 +272,7 @@ async function showDetails(identifier) {
                                         <th>Prénom</th>
                                         <th>Date de naissance</th>
                                         <th>Taille</th>
+                                        <th>Action</th>
                                         </tr>
                                         
                                         </table>
@@ -271,18 +285,21 @@ async function showDetails(identifier) {
                                         (dataUsers.records.forEach((keyUser, valUser) => {
 
                                             let user = `
-                                                    <tr>
+                                                    <tr id='`+ keyUser.idUser +`'>
                                                         <td>` + keyUser.lastName + `</td>
                                                         <td>` + keyUser.firstName + `</td>
                                                         <td>` + keyUser.birthdate + `</td>
                                                         <td>` + keyUser.size + `</td>
+                                                        <td>
+                                                            <button class="action fas fa-pen" onclick='showOneUser(this)' data-id='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
+                                                            <button class="action fas fa-trash" onclick='removeOneUser(this)' data-id='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
+                                                        </td>
                                                     </tr>
                                                 `;
 
                                             table.innerHTML += user;
 
                                             user='';
-
                                         }))
                                     })
                             }
@@ -291,7 +308,7 @@ async function showDetails(identifier) {
         });
 }
 
-function checkRemove(identifier){
+function confirmRemovation(identifier){
 
     // get booking ID
     let id = identifier.getAttribute('data-id');
@@ -313,27 +330,27 @@ async function remove(identifier) {
 
     hideModale();
 
-    // get booking ID
-    let id = identifier.getAttribute('data-id');
+    // get contact ID
+    let idContact = identifier.getAttribute('data-idContact');
     // get typde of booking
     let typeOfBooking = identifier.getAttribute('data-typeOfBooking');
-    console.log("🚀 ~ file: backBooking.js ~ line 320 ~ remove ~ typeOfBooking", typeOfBooking)
 
     let crtIdBookingActivity = 0
 
     // read activities record based on given booking ID
-    fetch('api/activity/readActivitiesList.php?idBooking=' + id)
+    fetch('api/activity/readActivitiesList.php?idBooking=' + idContact)
     .then(res => res.json())
     .then((data) => {
 
         if (typeOfBooking === "singleActivity") {
 
+        // to remove ?
             // loop through returned list of data
             (data.records.forEach((key, val) => {
 
                 crtIdBookingActivity = key.idBookingActivity;
             
-                //read activities record based on given bookingActivity ID
+                //read users record based on given bookingActivity ID
                 fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
                 .then(res => res.json())
                 .then((dataUsers) => {
@@ -363,7 +380,7 @@ async function remove(identifier) {
 
                                     if (dataUsers.records.length === n) {
                                         // remove booking record based on given contact ID
-                                        fetch('api/contact/removeOneContact.php?idContact=' + id)
+                                        fetch('api/contact/removeOneContact.php?idContact=' + idContact)
                                             .then(res => res.json())
                                             .then(data => {
 
@@ -388,13 +405,14 @@ async function remove(identifier) {
                     }))
                 })
             }));
+        // endto remove ?
         } else {
 
             console.log('cock');
 
             crtIdBookingActivity = data.records[0].idBookingActivity;
             
-            //read activities record based on given bookingActivity ID
+            //read users record based on given bookingActivity ID
             fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
             .then(res => res.json())
             .then((dataUsers) => {
@@ -424,7 +442,7 @@ async function remove(identifier) {
 
                                 if (dataUsers.records.length === n) {
                                     // remove booking record based on given booking ID
-                                    fetch('api/contact/removeOneContact.php?idContact=' + id)
+                                    fetch('api/contact/removeOneContact.php?idContact=' + idContact)
                                         .then(res => res.json())
                                         .then(data => {
 
@@ -452,45 +470,46 @@ async function remove(identifier) {
     });
 }
 
+// Actions on contact
+
 function showContact(identifier) {
 
     // get contact ID
-    let id = identifier.getAttribute('data-id');
+    let idContact = identifier.getAttribute('data-idContact');
     let whereToWrite = document.querySelector("#page-content");
 
     // read contact record based on given contact ID
-    fetch('api/contact/readOneContactDetails.php?idContact=' + id)
+    fetch('api/contact/readOneContactDetails.php?idContact=' + idContact)
     .then(res => res.json())
     .then((data) => {
 
         let update_one_contact_html = `
 
-        <button class='back' onclick='showDetails(this)' data-id='` + id + `'>
+        <button class='back' onclick='showDetails(this)' data-id='` + idContact + `'>
             Retour
         </button>
 
+        <p>Informations de contact</p>
         <!-- contact data will be shown in this form -->
-        <!-- <form method="post" action="api/contact/updateOneContact.php"> -->
         <form>
-            <!-- Contact details -->
-                <label>Nom</label>
-                <input type="text" name="contact_lastName" value='` + data.lastName + `'>
-                <label>Prénom</label>
-                <input type="text" name="contact_firstName" value='` + data.firstName + `'>
-                <label>Société</label>
-                <input type="text" name="contact_society" value='` + data.organisation + `'>
-                <label>Téléphone</label>
-                <input type="tel" name="contact_phone" value='` + data.phoneNumber + `'>
-                <label>Mail</label>
-                <input type="mail" name="contact_mail" value=` + data.mail + `>
-                <label>Adresse</label>
-                <input type="text" name="contact_adress" value='` + data.adress + `'>
-                <label>Code Postal</label>
-                <input type="Number" name="contact_postalCode" value='` + data.postalCode + `'>
-                <label>Ville</label>
-                <input type="text" name="contact_city" value='` + data.city + `'>
-                <input type="hidden" id="idContact" name="contact_id" data-id = `+ id +` value=` + id + `>
-                <button type="submit" class="updateContact" >Modifier</button> 
+            <label>Nom</label>
+            <input type="text" name="contact_lastName" value='` + data.lastName + `'>
+            <label>Prénom</label>
+            <input type="text" name="contact_firstName" value='` + data.firstName + `'>
+            <label>Société</label>
+            <input type="text" name="contact_society" value='` + data.organisation + `'>
+            <label>Téléphone</label>
+            <input type="tel" name="contact_phone" value='` + data.phoneNumber + `'>
+            <label>Mail</label>
+            <input type="mail" name="contact_mail" value=` + data.mail + `>
+            <label>Adresse</label>
+            <input type="text" name="contact_adress" value='` + data.adress + `'>
+            <label>Code Postal</label>
+            <input type="Number" name="contact_postalCode" value='` + data.postalCode + `'>
+            <label>Ville</label>
+            <input type="text" name="contact_city" value='` + data.city + `'>
+            <input type="hidden" id="idContact" name="contact_id" data-id=` + idContact + ` value=` + idContact + `>
+            <button type="submit" class="update">Modifier</button> 
         
         </form>`;
         
@@ -510,12 +529,14 @@ function showContact(identifier) {
 function updateContact() {
 
     // get contact ID
-    let id = document.querySelector('#idContact').value;
-
-    console.log(id);
+    let idContact = document.querySelector('#idContact');
 
     let form = document.querySelector('form');
     let dataContact = new FormData(form);
+
+    for (let key of dataContact.keys()) {
+        console.log(key + " : "+ dataContact.get(key));
+        }
 
     // update contact
     fetch('api/contact/updateOneContact.php', {
@@ -531,31 +552,133 @@ function updateContact() {
                 displayModale(error_message);
 
             } else if (data.message === "contact updated."){
-                let success_message = `<p>Le contacta été modifié avec succès.</p>`;
+                let success_message = `<p>Le contact a été modifié avec succès.</p>`;
 
                 displayModale(success_message);
-            }
 
-            showDetails(idContact);
+                showDetails(idContact);
+            }
         })
 }
+
+// Actions on user (or participant)
+
+function showOneUser(identifier){
+    
+    let idContact = identifier.getAttribute('data-id');
+    let idUser = identifier.getAttribute('data-idUser');
+
+    // read user record based on given user ID
+    fetch('api/user/readOneUserDetails.php?idUser=' + idUser)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+
+            let update_one_user_html =`
+
+            <button class='back' onclick='showDetails(this)' data-id='` + idContact + `'>
+                Retour
+            </button>
+
+            <p>Informations du participant</p>
+            <!-- user data will be shown in this form -->
+            <form>
+                <input type="text" name="participant_lastName" value='` + data.lastName + `'>
+                <input type="text" name="participant_firstName" value='` + data.firstName + `'>
+                <input type="text" name="participant_birthdate" value='` + data.birthdate + `'>
+                <input type="text" name="participant_size" value='` + data.size + `'>
+                <input type="hidden" name="participant_id" value='` + idUser + `'>
+                <input type="hidden" id="idContact" data-id=` + idContact + `>
+                <button type="submit" class="update">Modifier</button> 
+            </form>`;
+
+            let whereToWrite = document.querySelector("#page-content");
+            whereToWrite.innerHTML = update_one_user_html;
+
+            let form = document.querySelector('form');
+
+            form.addEventListener('submit',e => {
+                e.preventDefault();
+
+                updateOneUser();
+            })
+        })
+}
+    
+function updateOneUser() {
+
+    // get contact ID
+    let idContact = document.querySelector('#idContact');
+
+    let form = document.querySelector('form');
+    let dataParticipant = new FormData(form);
+
+    // update contact
+    fetch('api/user/updateOneUser.php', {
+        method: 'post',
+        body: dataParticipant
+    })
+        .then(res => res.json())
+        .then(data => {
+
+            if (data.message === "Unable to update user."){
+                let error_message = `<p>Impossible de modifier ce participant.</p><p>Votre saisie est erronée.</p>`;
+
+                displayModale(error_message);
+
+            } else if (data.message === "user updated."){
+                let success_message = `<p>Le  participant a été modifié avec succès.</p>`;
+
+                displayModale(success_message);
+
+                showDetails(idContact);
+            }
+
+        })
+}
+
+function removeOneUser(identifier) {
+
+    console.log(identifier);
+    let idUser = identifier.getAttribute('data-idUser');
+
+    // remove user record based on given user ID
+    fetch('api/user/removeOneUser.php?idUser=' + idUser)
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.message === "Unable to remove user.") {
+            let error_message = `<p>Problème lors de la suppression d'un participant.</p><p>Merci de contacter l'administrateur du site.</p>`
+        
+            displayModale(error_message);
+
+        } else if (data.message === "user removed.") {
+            let success_message = `<p>Le  participant a été supprimé avec succès.</p>`;
+
+            displayModale(success_message);
+
+            showDetails(identifier);
+        }
+    })
+}
+
+// // Actions on reservation
 
 function displayModale(message) {
     console.log(message);
     let modale = document.querySelector(".modale");
     let modale_message = document.querySelector("#modale-message");
 
-    if (message === `<p>La réservation et les participants associés ont été supprimés avec succès.</p>` || message === `<p>Le contacta été modifié avec succès.</p>`) {
+    if (message.includes('succès')) {
         modale.classList.remove('hide');
         modale.classList.remove('red-border');
         modale.classList.add('green-border');
         modale_message.innerHTML = message;
-    } else if (message ===`<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>` 
-    || message === `<p>Impossible de modifier ce contact.</p><p>Votre saisie est erronée.</p>`) {
+    } else if (message.startsWith('<p>Impossible')) {
         modale.classList.remove('hide');
         modale.classList.add('red-border');
         modale_message.innerHTML = message;
-    } else if (message.startsWith(`<p>Etes-vous sûr de vouloir supprimer la réservation de `)){
+    } else if (message.startsWith('<p>Etes-vous sûr de vouloir supprimer la réservation de ')){
         modale.classList.remove('hide');
         modale.classList.add('red-border');
         modale_message.innerHTML = message;

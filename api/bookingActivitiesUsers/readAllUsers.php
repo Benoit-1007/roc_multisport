@@ -34,7 +34,8 @@ if ($num > 0) {
             "firstName" => $firstName,
             "birthdate" => $birthdate,
             "size" => $size,
-            "level" => $level
+            "level" => $level,
+            "idBooking" => $idBooking
         );
         array_push($users_array["records"], $user_item);
     }

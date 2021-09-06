@@ -18,6 +18,7 @@ $contact = new Contact($db);
 extract($_POST);
 
 if (
+    !empty($contact_id) &&
     !empty($contact_lastName) && 
     preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $contact_lastName) &&
     !empty($contact_firstName) &&

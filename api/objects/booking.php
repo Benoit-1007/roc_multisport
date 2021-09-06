@@ -16,6 +16,37 @@ class Booking {
         $this->conn = $db;
     }
 
+// Create booking
+function create()
+    {
+        // query to insert record
+        $query = "INSERT INTO 
+                    {$this->table_name} (comment, idContact, typeOfBooking)
+                VALUES 
+                    (:comment, :idContact, :typeOfBooking)";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // sanitize
+        $this->comment = htmlspecialchars(strip_tags($this->comment));
+        $this->idContact = htmlspecialchars(strip_tags($this->idContact));
+        $this->typeOfBooking = htmlspecialchars(strip_tags($this->typeOfBooking));
+
+        // bind values
+        $stmt->bindParam(":comment", $this->comment);
+        $stmt->bindParam(":idContact", $this->idContact);
+        $stmt->bindParam(":typeOfBooking", $this->typeOfBooking);
+
+        // execute query
+        if ($stmt->execute()) {
+            $lastId = $this->conn->lastInsertId();
+            return $lastId;
+        }
+
+        return 0;
+    }
+
     // Read all bookings
     public function readList()
     {
@@ -162,36 +193,4 @@ class Booking {
 
         return $stmt;
     }
-
-    // Create booking
-    function create()
-    {
-        // query to insert record
-        $query = "INSERT INTO
-                    {$this->table_name}
-                SET
-                    comment = :comment, idContact = :idContact, typeOfBooking = :typeOfBooking";
-
-        // prepare query
-        $stmt = $this->conn->prepare($query);
-
-        // sanitize
-        $this->comment = htmlspecialchars(strip_tags($this->comment));
-        $this->idContact = htmlspecialchars(strip_tags($this->idContact));
-        $this->typeOfBooking = htmlspecialchars(strip_tags($this->typeOfBooking));
-
-        // bind values
-        $stmt->bindParam(":comment", $this->comment);
-        $stmt->bindParam(":idContact", $this->idContact);
-        $stmt->bindParam(":typeOfBooking", $this->typeOfBooking);
-
-        // execute query
-        if ($stmt->execute()) {
-            $lastId = $this->conn->lastInsertId();
-            return $lastId;
-        }
-
-        return 0;
-    }
-
 }

@@ -19,10 +19,10 @@ class Admin {
 
     public function create()
     {
-        $query = "INSERT INTO 
-                    {$this->table_name}
-                SET 
-                    lastName = :lastName, firstName = :firstName, mail = :mail, password = :password";
+        $query = "INSERT INTO
+                    {$this->table_name} (lastName, firstname, mail, password)
+                VALUES 
+                    (:lastName, :firstName, :mail, :password)";
 
         // prepare query
         $stmt = $this->conn->prepare($query);

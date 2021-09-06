@@ -22,9 +22,9 @@ class BookingActivity {
     {
         // query to insert record
         $query = "INSERT INTO 
-                    {$this->table_name}
-                SET
-                    idBooking = :idBooking, codeActivity = :codeActivity, dateActivity = :dateActivity, halfDaySelect = :halfDaySelect";
+                    {$this->table_name} (idBooking, codeActivity, dateActivity, halfDaySelect)
+                VALUES 
+                    (:idBooking, :codeActivity, :dateActivity, :halfDaySelect)";
 
         // prepare query
         $stmt =  $this->conn->prepare($query);
