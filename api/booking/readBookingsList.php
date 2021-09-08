@@ -32,6 +32,7 @@ if ($num > 0) {
             "idContact" => $idContact,
             "typeOfBooking" => $typeOfBooking,
 
+            "idContact" => $idContact,
             "lastName" => $lastName,
             "firstName" => $firstName,
             "organisation" => $organisation,

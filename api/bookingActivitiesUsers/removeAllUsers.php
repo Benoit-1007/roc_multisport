@@ -7,26 +7,26 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../config/database.php';
 
 // instantiate all object
-include_once '../objects/user.php';
+include_once '../objects/bookingactivityuser.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$user = new User($db);
+$bookingactivityuser = new Bookingactivityuser($db);
 
-// get user ID from url
-$user->idUser = isset($_GET['idUser']) ? $_GET['idUser'] : die();
+// get BookingActivity ID from url
+$bookingactivityuser->idBookingActivity = isset($_GET['idBookingActivity']) ? $_GET['idBookingActivity'] : die();
 
-$removedUser = $user->remove();
+$removedUsers = $bookingactivityuser->removeAllUsers();
 
-if ($removedUser === 0) {
+if ($removedUsers === 0) {
     // set response code - 400 bad request
     http_response_code(400);
     // tell the user
-    echo json_encode(array("message" => "Unable to remove user."));
+    echo json_encode(array("message" => "Unable to remove users."));
 } else {
     // set response code 200 - ok
     http_response_code(200);
     // tell the user
-    echo json_encode(array("message" => "user removed."));
+    echo json_encode(array("message" => "users removed."));
 }

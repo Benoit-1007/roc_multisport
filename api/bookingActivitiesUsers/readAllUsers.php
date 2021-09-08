@@ -14,7 +14,8 @@ $database = new Database();
 $db = $database->getConnection();
 
 $bookingactivityuser = new Bookingactivityuser($db);
-// On recup l'id depuis l'url
+
+// get bookingActivity id from l'url
 $bookingactivityuser->idBookingActivity = isset($_GET['idBookingActivity']) ? $_GET['idBookingActivity'] : die();
 
 $stmt = $bookingactivityuser->readAllUsers();

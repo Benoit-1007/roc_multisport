@@ -49,7 +49,7 @@ class Bookingactivityuser {
         $query = "SELECT
                     bau.idBookingActivity, u.idUser, u.lastName, u.firstName, u.birthdate, u.size, u.level, ba.idBooking
                 FROM
-                        {$this->table_name} bau
+                    {$this->table_name} bau
                 INNER JOIN 
                     users u
                         ON u.idUser = bau.idUser
@@ -71,5 +71,28 @@ class Bookingactivityuser {
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function removeAllUsers()
+    {
+        // var_dump($this->idBookingActivity);
+        $query = "DELETE 
+                    u.*
+                FROM 
+                    users u
+                LEFT JOIN
+                    {$this->table_name} bau
+                        ON u.idUser = bau.idUser
+                WHERE
+                    bau.idBookingActivity = :idBookingActivity
+                    ";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':idBookingActivity', $this->idBookingActivity);
+
+        if($stmt->execute()) {
+            return 1;
+        }
+        return 0;
     }
 }

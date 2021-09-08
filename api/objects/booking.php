@@ -53,7 +53,7 @@ function create()
         //select all data
         $query = "SELECT
                     b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking,
-                    c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
+                    c.idContact, c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
                     
                 FROM
                     " . $this->table_name . " b

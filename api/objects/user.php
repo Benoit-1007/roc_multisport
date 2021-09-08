@@ -119,8 +119,6 @@ class User {
     // Delete one user with ID
     public function remove()
     {
-        // var_dump("remove");
-
         $query = "DELETE FROM 
                     " . $this->table_name . "
                 WHERE 

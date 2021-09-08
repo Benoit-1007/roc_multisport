@@ -774,9 +774,6 @@ fieldset, .booking textarea{
     color: var(--rocColorR);
     margin: 1rem;
 }
-.backBooking td{
-    width: 16,5%;
-}
 .backBooking table a{
     text-transform: unset;
     color:var(--rocColorO);
@@ -788,6 +785,9 @@ fieldset, .booking textarea{
     background-color: var(--rocColorC);
     color: var(--clearColor);
 }
+/* .backBooking td{
+    width: 16,5%;
+} */
 .backBooking .modale{
     position: fixed;
     color: var(--darkColor);
