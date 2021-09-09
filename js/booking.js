@@ -835,7 +835,7 @@ function checkValues(inputs) {
 function submitform() {
     let messageArea = document.querySelector('.message');
 
-    let jsondata = JSON.parse('{ }');;
+    let jsondata = JSON.parse('{ }');
     let formData = document.querySelector('#bookingForm');
     let data = new FormData(formData);
 

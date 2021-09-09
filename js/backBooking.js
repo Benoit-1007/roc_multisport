@@ -131,7 +131,7 @@ async function showDetails(identifier) {
                 .then((dataContact) => {
                     
                     let read_one_contact_html = `
-                    <h3>Contact<button class="action fas fa-pen" onclick='showContact(this)'data-idBooking='`+ idBooking + `' data-idContact='`+ dataContact.idContact +`'</button></h3>
+                    <h3>Contact<button class="action fas fa-pen" onclick='showContact(this)' data-idBooking='`+ idBooking + `' data-idContact='`+ dataContact.idContact +`'</button></h3>
 
                     <!-- contact data will be shown in this table -->
                     <table>
@@ -187,12 +187,11 @@ async function showDetails(identifier) {
                     fetch('api/activity/readActivitiesList.php?idBooking=' + idBooking)
                         .then(res => res.json())
                         .then((dataActivities) => {
-                        console.log("🚀 ~ file: backBooking.js ~ line 190 ~ .then ~ data", dataActivities)
 
-                            read_activities_html = `<h3>Activité(s)<button class="action fas fa-pen" onclick='showActivities(this)' data-idBooking='`+ idBooking +`'</button></h3>`;
+                            read_activities_html = `<h3>Activité(s)<button class="action fas fa-pen" onclick='showActivities(this)' data-idBooking='`+ idBooking +`' data-typeOfBooking='` + typeBooking + `'</button></h3>`;
 
                             // loop through returned list of data
-                            (dataActivities.records.forEach((keyActivity, val) => {
+                            (dataActivities.records.forEach((keyActivity, valActivity) => {
                                 // creating new table row per record
                                 read_activities_html += '<p>' + keyActivity.nameActivity + ` , ` + convertDate(keyActivity.dateActivity) + ` , ` + keyActivity.halfDaySelect + '</p>';
                                 read_activities_html += '<div id="usersActivity'+keyActivity.idBookingActivity+'"></div>';
@@ -264,16 +263,15 @@ async function showDetails(identifier) {
 
                                         let read_users_html = `
                                         
-                                        <table class="backParticipantsList">
-                                        <tr>
-                                        <th>Nom</th>
-                                        <th>Prénom</th>
-                                        <th>Date de naissance</th>
-                                        <th>Taille</th>
-                                        <th>Action</th>
-                                        </tr>
-                                        
-                                        </table>
+                                            <table class="backParticipantsList">
+                                                <tr>
+                                                    <th>Nom</th>
+                                                    <th>Prénom</th>
+                                                    <th>Date de naissance</th>
+                                                    <th>Taille</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </table>
                                         `;
                                         
                                         whereToWrite.innerHTML += read_users_html
@@ -283,17 +281,17 @@ async function showDetails(identifier) {
                                         (dataUsers.records.forEach((keyUser, valUser) => {
 
                                             let user = `
-                                                    <tr id='`+ keyUser.idUser +`'>
-                                                        <td>` + keyUser.lastName + `</td>
-                                                        <td>` + keyUser.firstName + `</td>
-                                                        <td>` + keyUser.birthdate + `</td>
-                                                        <td>` + keyUser.size + `</td>
-                                                        <td>
-                                                            <button class="action fas fa-pen" onclick='showOneUser(this)' data-idBooking='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
-                                                            <button class="action fas fa-trash" onclick='removeOneUser(this)' data-idBooking='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
-                                                        </td>
-                                                    </tr>
-                                                `;
+                                                <tr id='`+ keyUser.idUser +`'>
+                                                    <td>` + keyUser.lastName + `</td>
+                                                    <td>` + keyUser.firstName + `</td>
+                                                    <td>` + keyUser.birthdate + `</td>
+                                                    <td>` + keyUser.size + `</td>
+                                                    <td>
+                                                        <button class="action fas fa-pen" onclick='showOneUser(this)' data-idBooking='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
+                                                        <button class="action fas fa-trash" onclick='removeOneUser(this)' data-idBooking='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
+                                                    </td>
+                                                </tr>
+                                            `;
 
                                             table.innerHTML += user;
 
@@ -338,7 +336,6 @@ async function remove(identifier) {
     // get contact ID
     let idContact = identifier.getAttribute('data-idContact');
 
-
     // read activities record based on given booking ID
     fetch('api/activity/readActivitiesList.php?idBooking=' + idBooking)
     .then(res => res.json())
@@ -371,7 +368,7 @@ async function remove(identifier) {
                                     .then(res => res.json())
                                     .then(dataContact => {
 
-                                        console.log('remove contact')
+                                        console.log(dataContact.message)
 
                                         if(dataContact.message === "Unable to remove contact.") {
                                             let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
@@ -382,7 +379,6 @@ async function remove(identifier) {
                                             let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
 
                                             displayModale(success_message);
-
                                         }
                                         showBookings();
                                     })
@@ -391,7 +387,6 @@ async function remove(identifier) {
                     })
                 
             }
-
 
         // }
     // })
@@ -482,7 +477,7 @@ async function remove(identifier) {
                                 .then(res => res.json())
                                 .then(dataContact => {
 
-                                    console.log('remove contact')
+                                    console.log(dataContact.message)
 
                                     if(dataContact.message === "Unable to remove contact.") {
                                         let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
@@ -493,7 +488,6 @@ async function remove(identifier) {
                                         let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
 
                                         displayModale(success_message);
-
                                     }
                                     showBookings();
                                 })
@@ -563,12 +557,8 @@ async function remove(identifier) {
 
 function showContact(identifier) {
 
-    // get Booking ID
     let idBooking = identifier.getAttribute('data-idBooking');
-    
-    // get contact ID
     let idContact = identifier.getAttribute('data-idContact');
-
     let whereToWrite = document.querySelector("#page-content");
 
     // read contact record based on given contact ID
@@ -603,7 +593,6 @@ function showContact(identifier) {
             <input type="text" name="contact_city" value='` + dataContact.city + `'>
             <input type="hidden" id="idBooking" name="contact_id" data-idBooking=` + idBooking + ` value=` + idBooking + `>
             <button type="submit" class="update">Modifier</button> 
-        
         </form>`;
         
         whereToWrite.innerHTML = update_one_contact_html;
@@ -654,12 +643,212 @@ function updateContact() {
         })
 }
 
-// Actions on user (or participant)
+// Actions on Activities
+
+function showActivities(identifier) {
+
+    let idBooking = identifier.getAttribute('data-idBooking');
+    let typeOfBooking = identifier.getAttribute('data-typeOfBooking');
+    let whereToWrite = document.querySelector("#page-content");
+
+    // read activities record based on given booking ID
+    fetch('api/activity/readActivitiesList.php?idBooking=' + idBooking)
+        .then(res => res.json())
+        .then((dataActivities) => {
+
+            console.log(dataActivities);
+
+            let update_activities_html = `
+            <button class='back' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+                Retour
+            </button>
+            
+            <p>Liste des activités</p>
+            <!-- activities data will be shown in this form -->
+            <form>
+                <div id="activities">
+                </div>
+                <input type="hidden" id="idBooking" name="booking_id" data-idBooking=` + idBooking + ` value=` + idBooking + `>
+                <button type="submit" class="update">Modifier</button> 
+            </form>
+            `;
+
+            whereToWrite.innerHTML = update_activities_html;
+
+            let activities = document.querySelector('#activities');
+            console.log("🚀 " , activities)
+            
+            if (typeOfBooking === "singleActivity") {
+            console.log("🚀 ", typeOfBooking)
+                
+                dataActivities.records.forEach((keyActivity,valActivity) => {
+
+                    if (keyActivity.halfDaySelect === "Journée") {
+                        let activity_html = `
+                            <input type="hidden" name="bookingActivity_id_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.idBookingActivity + `>
+                            <select class="field singleActivitySelector" name="activity_` + keyActivity.idBookingActivity + `">
+                                <option value="` + keyActivity.nameActivity + `">` + keyActivity.nameActivity + `</option>
+                                <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
+                                <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée - 130€/pers.</option>
+                                <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée - 100€/pers.</option>
+                                <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée - 90€/pers.</option>
+                                <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
+                                <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
+                                <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
+                            </select>
+                            <input class="field singleActivityDate" type="date" name="date_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.dateActivity + `>
+                        `;
+                        activities.innerHTML += activity_html;
+                    } else {
+                        let activity_html = `
+                            <input type="hidden" name="bookingActivity_id_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.idBookingActivity + `>
+                            <select class="field singleActivitySelector" name="activity_` + keyActivity.idBookingActivity + `">
+                                <option value="` + keyActivity.nameActivity + `">` + keyActivity.nameActivity + `</option>
+                                <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
+                                <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
+                                <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée - 55€/pers.</option>
+                                <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée - 50€/pers.</option>
+                                <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée - 50€/pers.</option>
+                                <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Via Ferrata - 1/2 journée - 60€/pers.</option>
+                                <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay" data-period="may/october">Tir à l'arc - 1/2 journée - 50€/pers.</option>
+                                <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="1" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
+                                <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée - 160€/pers.</option>
+                                <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
+                            </select>
+                            <input class="field singleActivityDate" type="date" name="date_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.dateActivity + `>
+                        `;
+                        activities.innerHTML += activity_html;
+                    }
+                });
+            } else {
+                dataActivities.records.forEach((keyActivity,valActivity) => {
+
+                    if (keyActivity.halfDaySelect === "Journée") {
+                        let activity_html = `
+                            <input type="hidden" name="bookingActivity_id_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.idBookingActivity + `>
+                            <select class="field singleActivitySelector" name="activity_` + keyActivity.idBookingActivity + `">
+                                <option value="` + keyActivity.nameActivity + `">` + keyActivity.nameActivity + `</option>
+                                <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
+                                <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée - 130€/pers.</option>
+                                <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée - 100€/pers.</option>
+                                <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée - 90€/pers.</option>
+                                <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
+                                <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
+                                <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
+                            </select>
+                        `;
+                        activities.innerHTML += activity_html;
+                    } else {
+                        let activity_html = `
+                            <input type="hidden" name="bookingActivity_id_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.idBookingActivity + `>
+                            <select class="field singleActivitySelector" name="activity_` + keyActivity.idBookingActivity + `">
+                                <option value="` + keyActivity.nameActivity + `">` + keyActivity.nameActivity + `</option>
+                                <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
+                                <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
+                                <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée - 55€/pers.</option>
+                                <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée - 50€/pers.</option>
+                                <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée - 50€/pers.</option>
+                                <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Via Ferrata - 1/2 journée - 60€/pers.</option>
+                                <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay" data-period="may/october">Tir à l'arc - 1/2 journée - 50€/pers.</option>
+                                <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="1" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
+                                <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée - 160€/pers.</option>
+                                <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
+                            </select>
+                        `;
+                        activities.innerHTML += activity_html;
+                    }
+                });
+                let date_html =`
+                    <input class="field rocDate" type="date" name="date_rocCocktail" value=` + dataActivities.records[0].dateActivity + `>
+                `;
+                activities.innerHTML += date_html;
+            }
+
+            let form = document.querySelector('form');
+
+            form.addEventListener('submit',e => {
+                e.preventDefault();
+
+                updateActivities();
+            })
+        })
+}
+
+function updateActivities() {
+    console.log('updateActivities');
+
+    let idBooking = document.querySelector('#idBooking');
+    let jsondata = JSON.parse('{ }');
+    let form = document.querySelector('form');
+    let dataActivities = new FormData(form);
+    let activitiesJson = JSON.parse('[]');
+
+    for (let key of dataActivities.keys()) {
+        console.log(key + " : "+ dataActivities.get(key));
+
+        if (key.startsWith('activity')) {
+            // Adding activity x
+            let activityDetailsJson = JSON.parse('{ }');
+
+            // If name is empty, we do nothing !
+            if (dataActivities.get(key) != "empty") {
+
+                // get activity name
+                activityDetailsJson["name"] = dataActivities.get(key);
+                // get activity date 
+                activityDetailsJson["dateActivity"] = dataActivities.get("date_" + key);
+                // get activity id 
+                activityDetailsJson["idActivity"] = dataActivities.get("bookingActivity_id_" + key);
+            }
+
+            jsondata["activities"] = activitiesJson;
+
+            activitiesJson.push(activityDetailsJson);
+        }
+    }
+
+    console.log(jsondata);
+    
+    let crtFormData = JSON.stringify(jsondata);
+    console.log("🚀 ~ file: backBooking.js ~ line 801 ~ updateActivities ~ crtFormData", crtFormData)
+
+
+
+    // update contact
+    // fetch('api/activity/updateActivities.php', {
+    //     method: 'post',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: crtFormData
+    // })
+    //     .then(res => res.json())
+    //     .then(data => {
+
+    //         console.log(data.message);
+    //         // if (data.message === "Unable to update user."){
+    //         //     let error_message = `<p>Impossible de modifier ce participant.</p><p>Votre saisie est erronée.</p>`;
+
+    //         //     displayModale(error_message);
+
+    //         // } else if (data.message === "user updated."){
+    //         //     let success_message = `<p>Le  participant a été modifié avec succès.</p>`;
+
+    //         //     displayModale(success_message);
+
+    //             showDetails(idBooking);
+    //         // }
+
+    //     })
+}
+
+// Actions on users (or participant)
 
 function showOneUser(identifier){
     
     let idBooking = identifier.getAttribute('data-idBooking');
     let idUser = identifier.getAttribute('data-idUser');
+    let whereToWrite = document.querySelector("#page-content");
 
     // read user record based on given user ID
     fetch('api/user/readOneUserDetails.php?idUser=' + idUser)
@@ -685,7 +874,6 @@ function showOneUser(identifier){
                 <button type="submit" class="update">Modifier</button> 
             </form>`;
 
-            let whereToWrite = document.querySelector("#page-content");
             whereToWrite.innerHTML = update_one_user_html;
 
             let form = document.querySelector('form');
@@ -700,9 +888,7 @@ function showOneUser(identifier){
     
 function updateOneUser() {
 
-    // get contact ID
     let idBooking = document.querySelector('#idBooking');
-
     let form = document.querySelector('form');
     let dataParticipant = new FormData(form);
 
@@ -732,7 +918,6 @@ function updateOneUser() {
 
 function removeOneUser(identifier) {
 
-    console.log(identifier);
     let idUser = identifier.getAttribute('data-idUser');
 
     // remove user record based on given user ID
@@ -755,7 +940,7 @@ function removeOneUser(identifier) {
     })
 }
 
-// // Actions on reservation
+// others actions
 
 function displayModale(message) {
     console.log(message);
@@ -815,6 +1000,3 @@ function toggleMenu(){
         });
     } 
 }
-
-
-
