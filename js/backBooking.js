@@ -463,62 +463,98 @@ async function remove(identifier) {
 
             console.log('cock');
 
-            let crtIdBookingActivity = data.records[0].idBookingActivity;
+            let crtIdBookingActivity = dataActivities.records[0].idBookingActivity;
+
+            fetch('api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+                    .then(res =>res.json())
+                    .then((dataUsers) => {
+                        console.log(dataUsers.message)
+
+                        if (dataUsers.message === "Unable to remove users.") {
+                            let error_message = `<p>Impossible de supprimer cette réservation (problème lors de la suppression des participants).</p><p>Merci de contacter l'administrateur du site.</p>`;
+        
+                            displayModale(error_message);
+
+                        } else if (dataUsers.message === "users removed.") {
+
+                            // remove booking record based on given contact ID
+                            fetch('api/contact/removeOneContact.php?idContact=' + idContact)
+                                .then(res => res.json())
+                                .then(dataContact => {
+
+                                    console.log('remove contact')
+
+                                    if(dataContact.message === "Unable to remove contact.") {
+                                        let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
+
+                                        displayModale(error_message);
+
+                                    } else if (dataContact.message === "contact removed."){
+                                        let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
+
+                                        displayModale(success_message);
+
+                                    }
+                                    showBookings();
+                                })
+                        }
+                    })
             
-            //read users record based on given bookingActivity ID
-            fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
-            .then(res => res.json())
-            .then((dataUsers) => {
+            // to remove ?
+            // //read users record based on given bookingActivity ID
+            // fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+            // .then(res => res.json())
+            // .then((dataUsers) => {
 
-                console.log(dataUsers.records)
+            //     console.log(dataUsers.records)
 
-                let n = 0;
+            //     let n = 0;
 
-                (dataUsers.records.forEach((keyUser, valUser) => {
+            //     (dataUsers.records.forEach((keyUser, valUser) => {
 
-                    let crtUserId = keyUser.idUser 
+            //         let crtUserId = keyUser.idUser 
                     
-                    // remove user record based on given user ID
-                    fetch('api/user/removeOneUser.php?idUser=' + crtUserId)
-                        .then(res => res.json())
-                        .then(data => {
+            //         // remove user record based on given user ID
+            //         fetch('api/user/removeOneUser.php?idUser=' + crtUserId)
+            //             .then(res => res.json())
+            //             .then(data => {
 
-                            if (data.message === "Unable to remove user.") {
-                                let error_message = `<p>Problème lors de la suppression d'un participant.</p><p>Merci de contacter l'administrateur du site.</p>`
+            //                 if (data.message === "Unable to remove user.") {
+            //                     let error_message = `<p>Problème lors de la suppression d'un participant.</p><p>Merci de contacter l'administrateur du site.</p>`
                             
-                                displayModale(error_message);
+            //                     displayModale(error_message);
 
-                            } else if (data.message === "user removed.") {
+            //                 } else if (data.message === "user removed.") {
                                 
-                                n++
-                                console.log('participant '+n+' supprimé')
+            //                     n++
+            //                     console.log('participant '+n+' supprimé')
 
-                                if (dataUsers.records.length === n) {
-                                    // remove booking record based on given contact ID
-                                    fetch('api/contact/removeOneContact.php?idContact=' + idContact)
-                                        .then(res => res.json())
-                                        .then(data => {
+            //                     if (dataUsers.records.length === n) {
+            //                         // remove booking record based on given contact ID
+            //                         fetch('api/contact/removeOneContact.php?idContact=' + idContact)
+            //                             .then(res => res.json())
+            //                             .then(data => {
 
-                                            console.log('remove contact')
+            //                                 console.log('remove contact')
 
-                                            if(data.message === "Unable to remove contact.") {
-                                                let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
+            //                                 if(data.message === "Unable to remove contact.") {
+            //                                     let error_message = `<p>Impossible de supprimer cette réservation.</p><p>Merci de contacter l'administrateur du site.</p>`;
 
-                                                displayModale(error_message);
+            //                                     displayModale(error_message);
 
-                                            } else if (data.message === "contact removed."){
-                                                let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
+            //                                 } else if (data.message === "contact removed."){
+            //                                     let success_message = `<p>La réservation et les participants associés ont été supprimés avec succès.</p>`;
 
-                                                displayModale(success_message);
+            //                                     displayModale(success_message);
 
-                                            }
-                                            showBookings();
-                                        })
-                                }
-                            }
-                        })
-                }))
-            })    
+            //                                 }
+            //                                 showBookings();
+            //                             })
+            //                     }
+            //                 }
+            //             })
+            //     }))
+            // })    
         }
     });
 }
