@@ -48,4 +48,52 @@ class BookingActivity {
         }
         return 0;
     }
+
+    public function readOneActivity()
+    {
+        $query = "SELECT
+                    ba.idBookingActivity, ba.codeActivity, ba.dateActivity, ba.halfDaySelect, a.name as nameActivity
+                FROM
+                    {$this->table_name} ba
+                INNER JOIN
+                    activities a
+                        ON ba.codeActivity = a.codeActivity 
+                WHERE 
+                    ba.idBookingActivity = :idBookingActivity";
+
+        //prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // bind param
+        $stmt->bindParam(':idBookingActivity', $this->idBookingActivity);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    public function updateOneActivity()
+    {
+        $query = "UPDATE
+                    {$this->table_name}
+                SET
+                    codeActivity = :codeActivity, dateActivity = :dateActivity, halfDaySelect = :halfDaySelect
+                WHERE 
+                    idBookingActivity = :idBookingActivity";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+        
+        // bind values
+        $stmt->bindParam(":codeActivity", $this->codeActivity);
+        $stmt->bindParam(":dateActivity", $this->dateActivity);
+        $stmt->bindParam(":halfDaySelect", $this->halfDaySelect);
+        $stmt->bindParam(":idBookingActivity", $this->idBookingActivity);
+
+        if($stmt->execute()) {
+            return 1;
+        }
+        return 0;
+    }
 }

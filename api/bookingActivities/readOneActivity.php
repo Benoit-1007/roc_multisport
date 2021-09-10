@@ -8,42 +8,38 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../config/database.php';
 
 // instantiate all object
-include_once '../objects/booking.php';
+include_once '../objects/bookingActivity.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$booking = new Booking($db);
-// On recup l'id depuis l'url
-$booking->idBooking = isset($_GET['idBooking']) ? $_GET['idBooking'] : die();
+$bookingActivity = new bookingActivity($db);
 
-$stmt = $booking->readActivityDetails();
+// get id from url
+$bookingActivity->idBookingActivity = isset($_GET[idBookingActivity]) ? $_GET[idBookingActivity] : die();
+
+$stmt = $bookingActivity->readOneActivity();
 $num = $stmt->rowCount();
 
 if ($num > 0) {
-
-    $activities_array = array();
-    $activities_array["records"] = array();
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         extract($row);
 
         $activity_item = array(
-            "idBooking" => $idBooking,
+            "idBookingActivity" => $idBookingActivity,
             "codeActivity" => $codeActivity,
             "dateActivity" => $dateActivity,
             "halfDaySelect" => $halfDaySelect,
             "nameActivity" => $nameActivity,
-            "idBookingActivity" => $idBookingActivity
         );
-        array_push($activities_array["records"], $activity_item);
+        
     }
         // set response code - 200 OK
         http_response_code(200);
 
         // show products data in json format
-        echo json_encode($activities_array);
-    
+        echo json_encode($activity_item);
 } else {
     // set response code - 404 Not found
     http_response_code(404);

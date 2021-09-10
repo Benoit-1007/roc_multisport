@@ -16,8 +16,8 @@ class Booking {
         $this->conn = $db;
     }
 
-// Create booking
-function create()
+    // Create booking
+    function create()
     {
         // query to insert record
         $query = "INSERT INTO 
@@ -72,6 +72,7 @@ function create()
         return $stmt;
     }
 
+    // Read One booking
     public function readOne()
     {
         $query = "SELECT
