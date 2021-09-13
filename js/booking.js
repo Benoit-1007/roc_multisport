@@ -73,11 +73,12 @@ document.addEventListener('DOMContentLoaded', function () {
     validateReservationBtn.addEventListener('click', function(e) {
 
         e.preventDefault();
+
+        validateReservationBtn.classList.add('hide');
         
         let inputs = bookingForm.querySelectorAll('.field');
 
         checkValues(inputs);
-        
     });
 
     // SELECTION FUNCTIONS
@@ -1082,10 +1083,14 @@ function validatedate(value) {
  * @param {*} field input in error
  */
 function removeError(field) {
+    let validateReservationBtn = document.querySelector('#validateReservation');
     field.addEventListener('focusout', function () {
         field.classList.remove('red-border');
         if (field.nextElementSibling !== null && field.nextElementSibling.classList.contains('form-error')) {
             field.nextElementSibling.remove();
+        }
+        if (validateReservationBtn.classList.contains('hide')) {
+            validateReservationBtn.classList.remove('hide');
         }
     })
 };

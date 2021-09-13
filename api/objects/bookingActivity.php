@@ -49,7 +49,7 @@ class BookingActivity {
         return 0;
     }
 
-    public function readOneActivity()
+    public function readOne()
     {
         $query = "SELECT
                     ba.idBookingActivity, ba.codeActivity, ba.dateActivity, ba.halfDaySelect, a.name as nameActivity
@@ -73,7 +73,7 @@ class BookingActivity {
         return $stmt;
     }
 
-    public function updateOneActivity()
+    public function updateOne()
     {
         $query = "UPDATE
                     {$this->table_name}
@@ -91,6 +91,46 @@ class BookingActivity {
         $stmt->bindParam(":halfDaySelect", $this->halfDaySelect);
         $stmt->bindParam(":idBookingActivity", $this->idBookingActivity);
 
+        if($stmt->execute()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public function removeOne()
+    {
+        $query = "DELETE FROM
+                    {$this->table_name}
+                WHERE
+                    idBookingActivity = ?";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // bind value
+        $stmt->bindParam(1, $this->idBookingActivity);
+
+        // execute query
+        if($stmt->execute()) {
+            return 1;
+        }
+        return 0;
+    }
+
+    public function removeAll()
+    {
+        $query = "DELETE FROM
+                    {$this->table_name}
+                WHERE
+                    idBooking = ?";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // bind value
+        $stmt->bindParam(1, $this->idBooking);
+
+        // execute query
         if($stmt->execute()) {
             return 1;
         }

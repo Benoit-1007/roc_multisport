@@ -154,7 +154,7 @@ class Contact {
         return 0;
     }
 
-    // Delete one booking with ID
+    // Delete one contact with ID
     public function removeOne()
     {
         $query = "DELETE FROM 

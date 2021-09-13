@@ -18,7 +18,7 @@ $bookingActivity = new bookingActivity($db);
 // get id from url
 $bookingActivity->idBookingActivity = isset($_GET[idBookingActivity]) ? $_GET[idBookingActivity] : die();
 
-$stmt = $bookingActivity->readOneActivity();
+$stmt = $bookingActivity->readOne();
 $num = $stmt->rowCount();
 
 if ($num > 0) {

@@ -31,8 +31,7 @@ foreach ($data->activities as $activity) {
     } else {
         $bookingActivity->halfDaySelect = "Journée";
     }
-    $updatedBookingActivity = $bookingActivity->updateOneActivity();
-
+    $updatedBookingActivity = $bookingActivity->updateOne();
 
     if ($updatedBookingActivity === 0 ) {
         array_push($bookingActivitiesError, $updatedBookingActivity);
@@ -45,10 +44,10 @@ if(count($bookingActivitiesError) !== 0) {
     //     // tell the admin
         echo json_encode(array("message" => "Unable to update activities."));
 }else {
-    //     // set response code 200 - ok
+       // set response code 200 - ok
         http_response_code(200);
 
-    //     // tell the admin
+        // tell the admin
         echo json_encode(array("message" => "Actvities updated."));
 }
 

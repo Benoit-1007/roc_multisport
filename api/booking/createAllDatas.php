@@ -1,5 +1,5 @@
 <?php
-
+// Unable to create contact.
 // required headers
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -42,7 +42,6 @@ if (
     !empty($data->contact->contact_postalCode) &&
     !empty($data->contact->contact_city)
 ) {
-
     // create the contact
     // ==================
     $contact->lastName = $data->contact->contact_lastName;
@@ -55,7 +54,6 @@ if (
     $contact->city = $data->contact->contact_city;
 
     $contactId = $contact->create();
-
 
     if ($contactId === 0) {
         // set response code - 400 bad request
@@ -318,10 +316,9 @@ if (
         // tell the user
         echo json_encode(array("message" => "Job done. No mail."));
     }
-}
-// tell the user data is incomplete
-else {
-   // set response code - 400 bad request
+} else {
+    
+    // set response code - 400 bad request
     http_response_code(400);
     // tell the user
     echo json_encode(array("message" => "Unable to create contact."));
