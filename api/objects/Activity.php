@@ -1,5 +1,5 @@
 <?php
-class Activities {
+class Activity {
     // database connection and table name
     private $conn;
     private $table_name = "activities";
@@ -7,6 +7,7 @@ class Activities {
     // object properties
     public $codeActivity;
     public $name;
+    public $price;
     public $minCount;
     public $maxCount;
 
@@ -46,4 +47,18 @@ class Activities {
         }
         return 0;
     }
+
+    // Read all activities
+    public function readAll()
+    {
+        $query = "SELECT * From {$this->table_name}";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+
+        // var_dump($stmt);
+
+        return $stmt;
+    }
+    
 }

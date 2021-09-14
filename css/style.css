@@ -103,10 +103,10 @@ h3{
     margin-bottom: 1rem;
     padding:0.5rem 1rem 0;
 }
-a:not(p a){
+a:not(p a, td a){
     text-decoration:none;
 }
-p a{
+p a, td a{
     color: var(--clearColor);
     text-transform: lowercase;
 }
@@ -347,7 +347,6 @@ header{
 .show_nav .fifth{
     transition: all 1.4s ease-out
 }
-
 /* #endregion HEADER */
 
 /* #region MAIN INDEX */
@@ -591,7 +590,6 @@ header{
 .slick-slide img{
     width:100%;
 }
-
 /* #endregion SLIDER */
 
 /* #region BOOKING */
@@ -723,12 +721,28 @@ fieldset, .booking textarea{
     width: 70vw;
     margin: 0 auto;
 }
-.connect, .showBookings, .update{
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.dashboardAction {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background);
+    border: 2px solid var(--rocColorC);
+    border-radius: 3rem;
+    width: 25%;
+    padding: 1rem;
+
+}
+.connect, .dashboardButton, .update{
     color:var(--clearColor);
     border: 2px solid var(--rocColorO);
     background-color: var(--rocColorO);
     margin: 0;
-
 }
 .backBooking input, .backBooking select{
     margin: 1rem 0;
@@ -739,11 +753,7 @@ fieldset, .booking textarea{
 .backBooking p{
     font-size: 2rem;
 }
-.showBookings{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.dashboardButton{
     transition: unset;
 }
 .logout, .more, .back{
@@ -785,9 +795,9 @@ fieldset, .booking textarea{
     background-color: var(--rocColorC);
     color: var(--clearColor);
 }
-/* .backBooking td{
-    width: 16,5%;
-} */
+.backBooking tr + tr{
+    border-top: 2px solid var(--bookingColor);
+}
 .backBooking .modale{
     position: fixed;
     color: var(--darkColor);
@@ -797,6 +807,7 @@ fieldset, .booking textarea{
     top: 40%;
     left: 25%;
     background: var(--bookingColor);
+    box-shadow: 1px 1px 1px grey;
 }
 .modaleButton{
     color: var(--clearColor);

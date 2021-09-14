@@ -6,7 +6,7 @@ header("Content-Type: application/json; charset=UTF-8");
 // get database connection
 include_once '../config/database.php';
 
-// instantiate all object
+// instantiate all objects
 include_once '../objects/bookingActivity.php';
 
 $database = new Database();
@@ -14,7 +14,7 @@ $db = $database->getConnection();
 
 $bookingActivity = new bookingActivity($db);
 
-// get ID from url
+// get bookingActivity ID from url
 $bookingActivity->idBookingActivity = isset($_GET['idBookingActivity']) ? $_GET['idBookingActivity'] : die();
 
 $removedBookingActivity = $bookingActivity->removeOne();

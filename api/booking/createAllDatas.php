@@ -61,15 +61,12 @@ if (
         // tell the user
         echo json_encode(array("message" => "Unable to create contact.")); die;
     } else {
-
         // Create booking
         // ==============
-
         $comment = "";
         
         if (isset($data->activities)) {
             $typeOfBooking = "singleActivity";
-
 
             $booking->comment = $data->comment->comment;
             $booking->idContact = $contactId;
@@ -83,13 +80,10 @@ if (
                 // tell the user
                 echo json_encode(array("message" => "Unable to create booking. Technical error.")); die;
             } else {
-
                 // Create Booking activity
                 // =======================
-
                 foreach ($data->activities as $activity) {
                     if(isValid($activity->dateActivity)){
-
                         $bookingActivity = new BookingActivity($db);
 
                         $bookingActivity->idBooking = $bookingId;
@@ -108,12 +102,9 @@ if (
                             // tell the user
                             echo json_encode(array("message" => "Unable to create booking activity. Technical error.")); die;
                         } else {
-                            
                             // Create Users
                             // ============
-                            
                             foreach ($activity->participants as $participant) {
-
                                 if(
                                     !empty($participant->lastName) && 
                                     preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->lastName) &&
@@ -127,7 +118,6 @@ if (
                                     !empty($participant->level) &&
                                     $participant->level === 'Débutant' || $participant->level === 'Intermédiaire' || $participant->level === 'Confirmé' || $participant->level === 'Expert'
                                 ) {
-                                
                                     $user = new User($db);
 
                                     $user->lastName = $participant->lastName;
@@ -143,10 +133,8 @@ if (
                                         // tell the user
                                         echo json_encode(array("message" => "Unable to create participants List. Technical error."));die;
                                     } else {
-                                        
                                         // Create Activities Users
                                         // =======================      
-                                        
                                         $bookingActivityUser = new Bookingactivityuser($db);
 
                                         $bookingActivityUser->idBookingActivity = $bookingActivityId;
@@ -159,7 +147,6 @@ if (
                                             // tell the user
                                             echo json_encode(array("message" => "Unable to create bookingActivityUser. Technical error.")); die;
                                         } 
-                                        
                                     } 
                                 } else {
                                     // set response code - 400 bad request
@@ -198,9 +185,7 @@ if (
                     // tell the user
                     echo json_encode(array("message" => "Unable to create booking. Technical error.")); die;
                 } else {
-    
                     $bookingActivitiesId_Array = [];
-    
                     // Create Booking activity
                     // =======================
                     if(isValid($data->cocktail[0]->date)){
@@ -281,7 +266,6 @@ if (
                                     $bookingActivityUser->idBookingActivity = $bookingActivityId;
                                     $bookingActivityUserId = $bookingActivityUser->create();
                                 }
-                                
                                 if ($bookingActivityUserId === 0) {
                                     // set response code - 400 bad request
                                     http_response_code(400);
@@ -317,7 +301,6 @@ if (
         echo json_encode(array("message" => "Job done. No mail."));
     }
 } else {
-    
     // set response code - 400 bad request
     http_response_code(400);
     // tell the user

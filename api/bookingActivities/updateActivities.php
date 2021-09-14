@@ -7,7 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 // get database connection
 include_once '../config/database.php';
 
-// instantiate all object
+// instantiate all objects
 include_once '../objects/BookingActivity.php';
 
 $database = new Database();
@@ -46,7 +46,6 @@ if(count($bookingActivitiesError) !== 0) {
 }else {
        // set response code 200 - ok
         http_response_code(200);
-
         // tell the admin
         echo json_encode(array("message" => "Actvities updated."));
 }

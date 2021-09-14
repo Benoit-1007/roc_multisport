@@ -7,7 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 // get database connection
 include_once '../config/database.php';
 
-// instantiate all object
+// instantiate all objects
 include_once '../objects/contact.php';
 
 $database = new Database();
@@ -31,7 +31,6 @@ if (
     !empty($contact_postalCode) &&
     !empty($contact_city)
 ) {
-
     // update the contact
     // ==================
     $contact->idContact = $contact_id;

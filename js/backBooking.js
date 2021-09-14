@@ -1,18 +1,17 @@
 'use strict';
 
-//NB: for every booking, idBooking & idContact are the same
-
 // We load the resa when the page is ready :
 document.addEventListener("DOMContentLoaded", function() {
     
     // menu management for mobile phone 
     toggleMenu();
 
-    let showBookingsButton = document.querySelector('.showBookings');
+    let dashboard = document.querySelector('.dashboard');
+    let showBookingsButton = document.querySelector('#showBookings');
     
     if(showBookingsButton){
         showBookingsButton.addEventListener('click', function(){
-            showBookingsButton.classList.add('hide');
+            dashboard.style.display = 'none';
             showBookings();
         });
     }
@@ -28,23 +27,30 @@ function showBookings() {
     fetch('api/booking/readBookingsList.php')
     .then(res => res.json())
     .then((data) => {
+        console.log(data);
         if(data.message === "No bookings found.") {
-            let message = `<h2 class="alert">Pas de réservation à afficher</2>`
+            let message = `<button class='back' onclick="window.location.href = 'backBooking.php';" >
+                                Dashboard
+                            </button>
+                            <h2 class="alert">Pas de réservation à afficher</2>`
 
             // inject to 'page-content' of our app
         document.querySelector("#page-content").innerHTML = message;
         } else {
             // html for listing products
-            let read_bookings_html = `<h2>Liste des réservations</h2>
-                                        <!-- start table -->
-                                        <table>
-                                            <tr>
-                                                <th>Date de réservation</th>
-                                                <th>Nom</th>
-                                                <th>Prénom</th>
-                                                <th>Commentaire</th>
-                                                <th>Action</th>
-                                            </tr>`;
+            let read_bookings_html = `<button class='back' onclick="window.location.href = 'http://localhost:8888/GitHub/roc_multisport/backBooking.php';" >
+                                        Dashboard
+                                    </button>
+                                    <h2>Liste des réservations</h2>
+                                    <!-- start table -->
+                                    <table>
+                                        <tr>
+                                            <th>Date de réservation</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Commentaire</th>
+                                            <th>Action</th>
+                                        </tr>`;
             
             // loop through returned list of data
             (data.records.forEach((key, val) => {
@@ -896,7 +902,7 @@ function removeBookingActivities(identifier) {
     })
 }
 
-// Actions on users (or participant)
+// Actions on users (or participants)
 
 function showOneUser(identifier){
     

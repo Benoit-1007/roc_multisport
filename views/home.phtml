@@ -118,11 +118,11 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">45€/personne</td>
+                                    <td class="tablePrice"><?= $activities[bikeHalfDayNoLoc][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée</td>
-                                    <td class="tablePrice">80€/personne</td>
+                                    <td class="tablePrice"><?= $activities[bikeAllDayNoLoc][price] ?>€/personne</td>
                                 </tr>
                             </table>
                             <table>
@@ -131,14 +131,14 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">80€/personne</td>
+                                    <td class="tablePrice"><?= $activities[bikeHalfDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée</td>
-                                    <td class="tablePrice">130€/personne</td>
+                                    <td class="tablePrice"><?= $activities[bikeAllDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de <?= $activities[bikeHalfDayNoLoc][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[bikeHalfDayNoLoc][minCount] ?> participants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -184,14 +184,14 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">55€/personne</td>
+                                    <td class="tablePrice"><?= $activities[paddleHalfDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée</td>
-                                    <td class="tablePrice">100€/personne</td>
+                                    <td class="tablePrice"><?= $activities[paddleAllDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de <?= $activities[paddleHalfDay][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[paddleHalfDay][minCount] ?> participants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -215,10 +215,10 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">50€/personne</td>
+                                    <td class="tablePrice"><?= $activities[kayak][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de <?= $activities[kayak][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[kayak][minCount] ?> participants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>    
                         </div>
@@ -265,14 +265,14 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">50€/personne</td>
+                                    <td class="tablePrice"><?= $activities[climbingHalfDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée</td>
-                                    <td class="tablePrice">90€/personne</td>
+                                    <td class="tablePrice"><?= $activities[climbingAllDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de <?= $activities[climbingHalfDay][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[climbingHalfDay][minCount] ?> participants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -296,14 +296,14 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">60€/personne</td>
+                                    <td class="tablePrice"><?= $activities[viaHalfDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée (2 via-ferrata)</td>
-                                    <td class="tablePrice">110€/personne</td>
+                                    <td class="tablePrice"><?= $activities[viaAllDay][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 4 participants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de <?= $activities[viaHalfDay][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[viaHalfDay][minCount] ?> participants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -348,10 +348,10 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">50€/personne</td>
+                                    <td class="tablePrice"><?= $activities[archery][price] ?>€/personne</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 12 personnes maximum, activité disponible à partir de 6 participants, sauf si vous avez opté pour un "Cocktail d'activités.</td>
+                                    <td colspan="2">Groupe de <?= $activities[archery][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[archery][minCount] ?> participants, sauf si vous avez opté pour un "<a href="#cocktail">Cocktail d'activités<a>".</td>
                                 </tr>
                             </table>
                         </div>
@@ -396,18 +396,18 @@
                                 </tr>
                                 <tr>
                                     <td>Stage Rookeasy (débutant) 3x 1/2 journée</td>
-                                    <td class="tablePrice">180€/pers.</td>
+                                    <td class="tablePrice"><?= $activities[snowboardRookeasy][price] ?>€/pers.</td>
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">160€/pers.</td>
+                                    <td class="tablePrice"><?= $activities[snowboardHalfDay][price] ?>€/pers.</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée</td>
-                                    <td class="tablePrice">330€/pers.</td>
+                                    <td class="tablePrice"><?= $activities[snowboardAllDay][price] ?>€/pers.</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 8 personnes maximum, activité disponible à partir de 2 participants (3 pour le Rookeasy). Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de <?= $activities[snowboardHalfDay][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[snowboardHalfDay][minCount] ?> participants (3 pour le Rookeasy). Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                             <table>
@@ -416,14 +416,14 @@
                                 </tr>
                                 <tr>
                                     <td>1/2 journée</td>
-                                    <td class="tablePrice">180€/pers.</td>
+                                    <td class="tablePrice"><?= $activities[splitboardHalfDay][price] ?>€/pers.</td>
                                 </tr>
                                 <tr>
                                     <td>1 journée</td>
-                                    <td class="tablePrice">330€/pers.</td>
+                                    <td class="tablePrice"><?= $activities[splitboardAllDay][price] ?>€/pers.</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="2">Groupe de 6 personnes maximum, activité disponible à partir de 2 participants. Possibilité de compléter un groupe déjà inscrit.</td>
+                                    <td colspan="2">Groupe de <?= $activities[splitboardHalfDay][maxCount] ?> personnes maximum, activité disponible à partir de <?= $activities[splitboardHalfDay][minCount] ?> participants. Possibilité de compléter un groupe déjà inscrit.</td>
                                 </tr>
                             </table>
                         </div>
@@ -478,11 +478,11 @@
                                 </tr>
                                 <tr>
                                     <td><span>ROC Day (10% de remise)</span><br>2 activités différentes au choix<br></td>
-                                    <td class="tablePrice">à partir de 85€/personne</td>
+                                    <td class="tablePrice">à partir de <?= (($activities[bikeHalfDayNoLoc][price] + $activities[archery][price])*0.9) ?>€/personne</td>
                                 </tr>
                                 <tr>
                                     <td><span>ROC Week-end (15% de remise)</span><br>jusqu'à 4 activités différentes au choix</td>
-                                    <td class="tablePrice">à partir de 170€/personne</td>
+                                    <td class="tablePrice">à partir de <?= ((($activities[bikeHalfDayNoLoc][price] + $activities[archery][price])*2)*0.85) ?>€/personne</td>
                                 </tr>
                             </table>
                         </div>    

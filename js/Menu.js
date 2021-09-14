@@ -5,7 +5,6 @@ function toggleMenu(){
     const links = document.querySelectorAll('a');
     let width = window.innerWidth;
     
-    
     burger.addEventListener('click', () => {
         navbar.classList.toggle('show_nav');
     })

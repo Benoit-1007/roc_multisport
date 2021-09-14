@@ -10,11 +10,8 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 include_once 'api/config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    
-    // var_dump($_POST);
     include_once 'api/objects/Admin.php';
 
-    
     $database = new Database();
     $db = $database->getConnection();
 
@@ -28,10 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $admin->password = $password;
 
     $adminId = $admin->create();
-
-    // var_dump($adminId);
-
-    
 }
 
 require 'views/register.phtml';

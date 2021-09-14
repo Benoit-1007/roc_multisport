@@ -14,7 +14,7 @@ $db = $database->getConnection();
 
 $bookingActivity = new bookingActivity($db);
 
-// get ID from url
+// get bookingActivity ID from url
 $bookingActivity->idBooking = isset($_GET['idBooking']) ? $_GET['idBooking'] : die();
 
 $removedBookingActivities = $bookingActivity->removeAll();

@@ -15,7 +15,7 @@ include_once 'Session.php';
 
 $database = new Database();
 $db = $database->getConnection();
-
+var_dump($_SERVER['REQUEST_METHOD']);
 
 // Fill Session
 Session::init();
@@ -25,22 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     unset($_SESSION['info']);
 
     if (isset($_POST) && !empty($_POST)) {
-        
         $errors = [];
 
         // test inputs
         foreach($_POST as $key => $value) {
             if(empty($value)){
-                
                 array_push($errors, "Le champ $key est vide");
             }
         }
         
         if (count($errors) > 0) {
             $_SESSION['error'] = $errors;
-
         } else {
-
             extract($_POST);
 
             $admin = new Admin($db);         
@@ -48,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (!$user = $admin->findByEmail($mail)) {
                 array_push($errors, "Email inconnu");
             } else {
-
                 if (!password_verify($password, $user['password'])) {
                     array_push($errors, "Mot de passe incorrect"); 
                 }

@@ -7,7 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 // get database connection
 include_once '../config/database.php';
 
-// instantiate all object
+// instantiate all objects
 include_once '../objects/bookingactivityuser.php';
 
 $database = new Database();
@@ -15,7 +15,7 @@ $db = $database->getConnection();
 
 $bookingactivityuser = new Bookingactivityuser($db);
 
-// get bookingActivity id from l'url
+// get bookingActivity ID from l'url
 $bookingactivityuser->idBookingActivity = isset($_GET['idBookingActivity']) ? $_GET['idBookingActivity'] : die();
 
 $stmt = $bookingactivityuser->readAllUsers();

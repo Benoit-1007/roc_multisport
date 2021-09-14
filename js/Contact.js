@@ -84,7 +84,6 @@ class Contact {
         return reg.test(string)
     }
 
-
     validatePhone(phoneNumber) {
     const phoneRegex = /^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/;
     return phoneRegex.test(phoneNumber);

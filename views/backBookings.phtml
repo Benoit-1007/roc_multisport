@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/normalize.css"/>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="form grid">
+<body class="grid">
     <header>
         <?php require('partials/header.php') ?> 
     </header>
@@ -23,7 +23,17 @@
         <?php if (array_key_exists('user', $_SESSION) && !empty($_SESSION['user'])): ?>
             <p class="validate">Salut <?= $_SESSION['user']['firstName'] ?> !</p>
             <a href='logout.php' class="logout">Déconnexion</a>
-            <button type="button" class="showBookings">Réservations à venir</button>
+            <div class="dashboard">
+                <div class="dashboardAction">
+                    <p>Consulter, modifier, supprimer une réservation, un contact...</p> 
+                    <button type="button" id="showBookings" class="dashboardButton">acceder</button>
+                </div>
+                <div class="dashboardAction">
+                    <p>Consulter, modifier la liste des préstations <em>(tarif, nombre de participants)</em></p>
+                    <button type="button" onclick="window.location.href = 'backActivities.php';" class="dashboardButton">acceder</button>
+                </div>
+
+            </div>
         <?php else: ?>
             <form action = "backBooking.php" method="post">
                 <label for="mail">Email</label>
@@ -39,15 +49,6 @@
         <?php endif; ?>
 
         <div id="page-content">
-            <!-- <table>
-                <tr>
-                    <form>
-                        <input type="text" value="test">
-                        <input type="text" value="test2">
-                        <input type="text" value="test3">
-                    </form> 
-                </tr>
-            </table> -->
         </div>
             
         <div class="modale hide">

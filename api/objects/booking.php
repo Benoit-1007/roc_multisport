@@ -56,15 +56,13 @@ class Booking {
                     c.idContact, c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
                     
                 FROM
-                    " . $this->table_name . " b
+                    {$this->table_name} b
                     LEFT JOIN
                         contacts c
                             ON b.idContact = c.idContact
                     
                 ORDER BY
                     idBooking";
-
-
 
         $stmt = $this->conn->prepare($query);
         $stmt->execute();

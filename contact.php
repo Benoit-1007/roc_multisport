@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 
 if ($_SERVER['REQUEST_METHOD']=== 'POST'){
     if(isset($_POST) && !empty($_POST)){
-        // var_dump($_POST);
         unset($_SESSION);
 
         //error table
