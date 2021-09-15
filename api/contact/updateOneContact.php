@@ -49,12 +49,12 @@ if (
         // set response code - 400 bad request
         http_response_code(400);
         // tell the admin
-        echo json_encode(array("message" => "Unable to update contact."));
+        echo json_encode(array("message" => "Unable to update contact. Technical error."));
     } else {
         // set response code 200 - ok
         http_response_code(200);
         // tell the admin
-        echo json_encode(array("message" => "contact updated."));
+        echo json_encode(array("message" => "Contact updated."));
     }
 } else {
     // set response code - 400 bad request

@@ -15,144 +15,146 @@
         <?php require('partials/header.php') ?> 
     </header>
 
-    <main class="backBooking">
+    <main class="backPage backActivities">
 
         <?php if (array_key_exists('user', $_SESSION) && !empty($_SESSION['user'])): ?>
-            <button class='back' onclick="window.location.href = 'backBooking.php';" >
+            <button class='backButton' onclick="window.location.href = 'backBooking.php';" >
                 Dashboard
             </button>
             <a href='logout.php' class="logout">Déconnexion</a>
 
-            <h1>Liste des prestations</h1>
-            <table>
-                <tr>
-                    <th>Activité</th>
-                    <th>Tarif</th>
-                    <th>Minimum</th>
-                    <th>Maximum</th>
-                    <th>Action</th>
-                </tr>
-                <tr>
-                    <td><?= $activities[bikeHalfDayNoLoc][name] ?></td>
-                    <td><?= $activities[bikeHalfDayNoLoc][price] ?>€</td>
-                    <td><?= $activities[bikeHalfDayNoLoc][minCount] ?> participants </td>
-                    <td><?= $activities[bikeHalfDayNoLoc][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[bikeAllDayNoLoc][name] ?></td>
-                    <td><?= $activities[bikeAllDayNoLoc][price] ?>€</td>
-                    <td><?= $activities[bikeAllDayNoLoc][minCount] ?> participants </td>
-                    <td><?= $activities[bikeAllDayNoLoc][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[bikeHalfDay][name] ?></td>
-                    <td><?= $activities[bikeHalfDay][price] ?>€</td>
-                    <td><?= $activities[bikeHalfDay][minCount] ?> participants </td>
-                    <td><?= $activities[bikeHalfDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[bikeAllDay][name] ?></td>
-                    <td><?= $activities[bikeAllDay][price] ?>€</td>
-                    <td><?= $activities[bikeAllDay][minCount] ?> participants </td>
-                    <td><?= $activities[bikeAllDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[paddleHalfDay][name] ?></td>
-                    <td><?= $activities[paddleHalfDay][price] ?>€</td>
-                    <td><?= $activities[paddleHalfDay][minCount] ?> participants </td>
-                    <td><?= $activities[paddleHalfDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[paddleAllDay][name] ?></td>
-                    <td><?= $activities[paddleAllDay][price] ?>€</td>
-                    <td><?= $activities[paddleAllDay][minCount] ?> participants </td>
-                    <td><?= $activities[paddleAllDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[kayak][name] ?></td>
-                    <td><?= $activities[kayak][price] ?>€</td>
-                    <td><?= $activities[kayak][minCount] ?> participants </td>
-                    <td><?= $activities[kayak][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[climbingHalfDay][name] ?></td>
-                    <td><?= $activities[climbingHalfDay][price] ?>€</td>
-                    <td><?= $activities[climbingHalfDay][minCount] ?> participants </td>
-                    <td><?= $activities[climbingHalfDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[climbingAllDay][name] ?></td>
-                    <td><?= $activities[climbingAllDay][price] ?>€</td>
-                    <td><?= $activities[climbingAllDay][minCount] ?> participants </td>
-                    <td><?= $activities[climbingAllDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[viaHalfDay][name] ?></td>
-                    <td><?= $activities[viaHalfDay][price] ?>€</td>
-                    <td><?= $activities[viaHalfDay][minCount] ?> participants </td>
-                    <td><?= $activities[viaHalfDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[viaAllDay][name] ?></td>
-                    <td><?= $activities[viaAllDay][price] ?>€</td>
-                    <td><?= $activities[viaAllDay][minCount] ?> participants </td>
-                    <td><?= $activities[viaAllDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[archery][name] ?></td>
-                    <td><?= $activities[archery][price] ?>€</td>
-                    <td><?= $activities[archery][minCount] ?> participants </td>
-                    <td><?= $activities[archery][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[snowboardRookeasy][name] ?></td>
-                    <td><?= $activities[snowboardRookeasy][price] ?>€</td>
-                    <td><?= $activities[snowboardRookeasy][minCount] ?> participants </td>
-                    <td><?= $activities[snowboardRookeasy][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[snowboardHalfDay][name] ?></td>
-                    <td><?= $activities[snowboardHalfDay][price] ?>€</td>
-                    <td><?= $activities[snowboardHalfDay][minCount] ?> participants </td>
-                    <td><?= $activities[snowboardHalfDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[snowboardAllDay][name] ?></td>
-                    <td><?= $activities[snowboardAllDay][price] ?>€</td>
-                    <td><?= $activities[snowboardAllDay][minCount] ?> participants </td>
-                    <td><?= $activities[snowboardAllDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[splitboardHalfDay][name] ?></td>
-                    <td><?= $activities[splitboardHalfDay][price] ?>€</td>
-                    <td><?= $activities[splitboardHalfDay][minCount] ?> participants </td>
-                    <td><?= $activities[splitboardHalfDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-                <tr>
-                    <td><?= $activities[splitboardAllDay][name] ?></td>
-                    <td><?= $activities[splitboardAllDay][price] ?>€</td>
-                    <td><?= $activities[splitboardAllDay][minCount] ?> participants </td>
-                    <td><?= $activities[splitboardAllDay][maxCount] ?> Participants </td>
-                    <td><button class="action fas fa-pen" onclick='showActivity(this)' ></button></td>
-                </tr>
-            </table>
-            
+            <div id="backActivities-content">
+                <h1>Liste des prestations</h1>
+                <table>
+                    <tr>
+                        <th>Activité</th>
+                        <th>Tarif</th>
+                        <th>Minimum</th>
+                        <th>Maximum</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[bikeHalfDayNoLoc][name] ?></td>
+                        <td><?= $activities[bikeHalfDayNoLoc][price] ?>€</td>
+                        <td><?= $activities[bikeHalfDayNoLoc][minCount] ?> participants </td>
+                        <td><?= $activities[bikeHalfDayNoLoc][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[bikeHalfDayNoLoc][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[bikeAllDayNoLoc][name] ?></td>
+                        <td><?= $activities[bikeAllDayNoLoc][price] ?>€</td>
+                        <td><?= $activities[bikeAllDayNoLoc][minCount] ?> participants </td>
+                        <td><?= $activities[bikeAllDayNoLoc][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[bikeAllDayNoLoc][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[bikeHalfDay][name] ?></td>
+                        <td><?= $activities[bikeHalfDay][price] ?>€</td>
+                        <td><?= $activities[bikeHalfDay][minCount] ?> participants </td>
+                        <td><?= $activities[bikeHalfDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[bikeHalfDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[bikeAllDay][name] ?></td>
+                        <td><?= $activities[bikeAllDay][price] ?>€</td>
+                        <td><?= $activities[bikeAllDay][minCount] ?> participants </td>
+                        <td><?= $activities[bikeAllDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[bikeAllDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[paddleHalfDay][name] ?></td>
+                        <td><?= $activities[paddleHalfDay][price] ?>€</td>
+                        <td><?= $activities[paddleHalfDay][minCount] ?> participants </td>
+                        <td><?= $activities[paddleHalfDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[paddleHalfDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[paddleAllDay][name] ?></td>
+                        <td><?= $activities[paddleAllDay][price] ?>€</td>
+                        <td><?= $activities[paddleAllDay][minCount] ?> participants </td>
+                        <td><?= $activities[paddleAllDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[paddleAllDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[kayak][name] ?></td>
+                        <td><?= $activities[kayak][price] ?>€</td>
+                        <td><?= $activities[kayak][minCount] ?> participants </td>
+                        <td><?= $activities[kayak][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[kayak][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[climbingHalfDay][name] ?></td>
+                        <td><?= $activities[climbingHalfDay][price] ?>€</td>
+                        <td><?= $activities[climbingHalfDay][minCount] ?> participants </td>
+                        <td><?= $activities[climbingHalfDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[climbingHalfDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[climbingAllDay][name] ?></td>
+                        <td><?= $activities[climbingAllDay][price] ?>€</td>
+                        <td><?= $activities[climbingAllDay][minCount] ?> participants </td>
+                        <td><?= $activities[climbingAllDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[climbingAllDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[viaHalfDay][name] ?></td>
+                        <td><?= $activities[viaHalfDay][price] ?>€</td>
+                        <td><?= $activities[viaHalfDay][minCount] ?> participants </td>
+                        <td><?= $activities[viaHalfDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[viaHalfDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[viaAllDay][name] ?></td>
+                        <td><?= $activities[viaAllDay][price] ?>€</td>
+                        <td><?= $activities[viaAllDay][minCount] ?> participants </td>
+                        <td><?= $activities[viaAllDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[viaAllDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[archery][name] ?></td>
+                        <td><?= $activities[archery][price] ?>€</td>
+                        <td><?= $activities[archery][minCount] ?> participants </td>
+                        <td><?= $activities[archery][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[archery][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[snowboardRookeasy][name] ?></td>
+                        <td><?= $activities[snowboardRookeasy][price] ?>€</td>
+                        <td><?= $activities[snowboardRookeasy][minCount] ?> participants </td>
+                        <td><?= $activities[snowboardRookeasy][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[snowboardRookeasy][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[snowboardHalfDay][name] ?></td>
+                        <td><?= $activities[snowboardHalfDay][price] ?>€</td>
+                        <td><?= $activities[snowboardHalfDay][minCount] ?> participants </td>
+                        <td><?= $activities[snowboardHalfDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[snowboardHalfDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[snowboardAllDay][name] ?></td>
+                        <td><?= $activities[snowboardAllDay][price] ?>€</td>
+                        <td><?= $activities[snowboardAllDay][minCount] ?> participants </td>
+                        <td><?= $activities[snowboardAllDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[snowboardAllDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[splitboardHalfDay][name] ?></td>
+                        <td><?= $activities[splitboardHalfDay][price] ?>€</td>
+                        <td><?= $activities[splitboardHalfDay][minCount] ?> participants </td>
+                        <td><?= $activities[splitboardHalfDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[splitboardHalfDay][codeActivity] ?>></button></td>
+                    </tr>
+                    <tr>
+                        <td><?= $activities[splitboardAllDay][name] ?></td>
+                        <td><?= $activities[splitboardAllDay][price] ?>€</td>
+                        <td><?= $activities[splitboardAllDay][minCount] ?> participants </td>
+                        <td><?= $activities[splitboardAllDay][maxCount] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities[splitboardAllDay][codeActivity] ?>></button></td>
+                    </tr>
+                </table>
+            </div>
+                
         <?php else: ?>
             <p class="alert">Vous vous êtes égaré..?</p>
             <p class="alert">Cette page est réservée au employés de ROC Multisport.</p>
@@ -163,9 +165,6 @@
             <p class='alert'><?= $_SESSION['error'][0] ?></p>
         <?php endif; ?>
 
-        <div id="page-content">
-        </div>
-            
         <div class="modale hide">
             <div id="modale-message">
             </div>
@@ -175,7 +174,6 @@
     <footer>
         <?php require("partials/footer.php") ?>
     </footer>
-    <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/backActivities.js"></script>
 </body>
 </html>

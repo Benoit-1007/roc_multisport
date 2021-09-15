@@ -8,17 +8,17 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../config/database.php';
 
 // instantiate all objects
-include_once '../objects/bookingActivity.php';
+include_once '../objects/activity.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$bookingActivity = new bookingActivity($db);
+$activity = new Activity($db);
 
-// get bookingActivity ID from url
-$bookingActivity->idBookingActivity = isset($_GET[idBookingActivity]) ? $_GET[idBookingActivity] : die();
+// get codeActivity from url
+$activity->codeActivity = isset($_GET['codeActivity']) ? $_GET['codeActivity'] : die();
 
-$stmt = $bookingActivity->readOne();
+$stmt = $activity->readOne();
 $num = $stmt->rowCount();
 
 if ($num > 0) {
@@ -26,11 +26,11 @@ if ($num > 0) {
     extract($row);
 
     $activity_item = array(
-        "idBookingActivity" => $idBookingActivity,
         "codeActivity" => $codeActivity,
-        "dateActivity" => $dateActivity,
-        "halfDaySelect" => $halfDaySelect,
-        "nameActivity" => $nameActivity,
+        "name" => $name,
+        "price" => $price,
+        "minCount" => $minCount,
+        "maxCount" => $maxCount
     );
     // set response code - 200 OK
     http_response_code(200);

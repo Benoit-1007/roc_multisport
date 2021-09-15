@@ -15,7 +15,6 @@ include_once 'Session.php';
 
 $database = new Database();
 $db = $database->getConnection();
-var_dump($_SERVER['REQUEST_METHOD']);
 
 // Fill Session
 Session::init();

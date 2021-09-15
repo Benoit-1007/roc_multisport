@@ -15,7 +15,7 @@
         <?php require('partials/header.php') ?> 
     </header>
 
-    <main class="backBooking">
+    <main class="backPage">
         <?php if (array_key_exists('info', $_SESSION) && !empty($_SESSION['info'])): ?>
             <p class="validate"><?= $_SESSION['info']?></p>
         <?php endif; ?>
@@ -48,7 +48,7 @@
             <p class='alert'><?= $_SESSION['error'][0] ?></p>
         <?php endif; ?>
 
-        <div id="page-content">
+        <div id="backBooking-content">
         </div>
             
         <div class="modale hide">

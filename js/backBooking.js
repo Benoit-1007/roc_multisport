@@ -15,33 +15,31 @@ document.addEventListener("DOMContentLoaded", function() {
             showBookings();
         });
     }
-
-    
 });
 
 // Actions on reservation
 
 function showBookings() {
-    
+
     // get data
     fetch('api/booking/readBookingsList.php')
     .then(res => res.json())
     .then((data) => {
         console.log(data);
         if(data.message === "No bookings found.") {
-            let message = `<button class='back' onclick="window.location.href = 'backBooking.php';" >
+            let message = `<button class='backButton' onclick="window.location.href = 'backBooking.php';" >
                                 Dashboard
                             </button>
-                            <h2 class="alert">Pas de réservation à afficher</2>`
+                            <h1 class="alert">Pas de réservation à afficher</h1>`
 
-            // inject to 'page-content' of our app
-        document.querySelector("#page-content").innerHTML = message;
+            // inject to 'backBooking-content' of our app
+        document.querySelector("#backBooking-content").innerHTML = message;
         } else {
             // html for listing products
-            let read_bookings_html = `<button class='back' onclick="window.location.href = 'http://localhost:8888/GitHub/roc_multisport/backBooking.php';" >
+            let read_bookings_html = `<button class='backButton' onclick="window.location.href = 'http://localhost:8888/GitHub/roc_multisport/backBooking.php';" >
                                         Dashboard
                                     </button>
-                                    <h2>Liste des réservations</h2>
+                                    <h1>Liste des réservations</h1>
                                     <!-- start table -->
                                     <table>
                                         <tr>
@@ -78,8 +76,8 @@ function showBookings() {
             // end table
             read_bookings_html += `</table>`;
             
-            // inject to 'page-content' of our app
-            document.querySelector("#page-content").innerHTML = read_bookings_html;
+            // inject to 'backBooking-content' of our app
+            document.querySelector("#backBooking-content").innerHTML = read_bookings_html;
         }
     });
 }
@@ -90,7 +88,7 @@ async function showDetails(identifier) {
     let idBooking = identifier.getAttribute('data-idBooking');
     let typeOfBooking = "";
     let read_activities_html = ""
-    let whereToWrite = document.querySelector("#page-content");
+    let whereToWrite = document.querySelector("#backBooking-content");
 
     // read booking record based on given booking ID
     fetch('api/booking/readOneBookingDetails.php?idBooking=' + idBooking)
@@ -98,11 +96,11 @@ async function showDetails(identifier) {
         .then((dataBooking) => {
             typeOfBooking = dataBooking.typeOfBooking;
 
-            let read_one_booking_html = `<button class='back' onclick='showBookings()' >
+            let read_one_booking_html = `<button class='backButton' onclick='showBookings()' >
                                             Retour
                                         </button>
 
-                                        <h3>Reservation</h3>
+                                        <h2>Reservation</h2>
                                         <!-- booking data will be shown in this table -->
                                         <table>
                                             <!-- Booking Date -->
@@ -125,7 +123,7 @@ async function showDetails(identifier) {
                 .then((dataContact) => {
                     
                     let read_one_contact_html = `
-                        <h3>Contact<button class="action fas fa-pen" onclick='showContact(this)' data-idBooking='`+ idBooking + `' data-idContact='`+ dataContact.idContact +`'</button></h3>
+                        <h2>Contact<button class="action fas fa-pen" onclick='showContact(this)' data-idBooking='`+ idBooking + `' data-idContact='`+ dataContact.idContact +`'</button></h2>
                         <!-- contact data will be shown in this table -->
                         <table>
                             <!-- Contact details -->
@@ -177,7 +175,7 @@ async function showDetails(identifier) {
                                 whereToWrite.innerHTML += read_activities_html;
                             } else {
                                 if (typeOfBooking === "singleActivity") {
-                                    read_activities_html = `<h3>Activité(s)</h3>`;
+                                    read_activities_html = `<h2>Activité(s)</h2>`;
         
                                     // loop through returned list of data
                                     (dataActivities.records.forEach((keyActivity, valActivity) => {
@@ -457,20 +455,20 @@ function showContact(identifier) {
 
     let idBooking = identifier.getAttribute('data-idBooking');
     let idContact = identifier.getAttribute('data-idContact');
-    let whereToWrite = document.querySelector("#page-content");
+    let whereToWrite = document.querySelector("#backBooking-content");
 
     // read contact record based on given contact ID
     fetch('api/contact/readOneContactDetails.php?idContact=' + idContact)
     .then(res => res.json())
     .then((dataContact) => {
-        let update_one_contact_html = `<button class='back' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+        let update_one_contact_html = `<button class='backButton' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
                                             Retour
                                         </button>
                                         <h3>Informations de contact</h3>
                                         <!-- contact data will be shown in this form -->
                                         <form>
-                                            <label>Nom</label>
-                                            <input type="text" name="contact_lastName" value='` + dataContact.lastName + `'>
+                                            <label>Nom
+                                            <input type="text" name="contact_lastName" value='` + dataContact.lastName + `'></label>
                                             <label>Prénom</label>
                                             <input type="text" name="contact_firstName" value='` + dataContact.firstName + `'>
                                             <label>Société</label>
@@ -520,7 +518,12 @@ function updateContact() {
     })
     .then(res => res.json())
     .then(data => {
-        if (data.message === "Unable to update contact."){
+        if (data.message === "Unable to update contact. Technical error.") {
+            let error_message = `<p>Impossible de modifier ce contact.</p><p>Merci de contacter l'administrateur du site.</p>`;
+
+            displayModale(error_message);
+        }
+        else if (data.message === "Unable to update contact."){
             let error_message = `<p>Impossible de modifier ce contact.</p><p>Votre saisie est erronée.</p>`;
 
             displayModale(error_message);
@@ -544,7 +547,7 @@ function showBookingActivities(identifier) {
     let idBookingActivity = identifier.getAttribute('data-idBookingActivity');
     let typeOfBooking = identifier.getAttribute('data-typeOfBooking');
 
-    let whereToWrite = document.querySelector("#page-content");
+    let whereToWrite = document.querySelector("#backBooking-content");
 
     if (typeOfBooking === "singleActivity") {
 
@@ -552,11 +555,11 @@ function showBookingActivities(identifier) {
         fetch('api/bookingActivities/readOneActivity.php?idBookingActivity=' + idBookingActivity)
         .then(res => res.json())
         .then((dataActivity) => {
-            let update_activity_html = `<button class='back' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+            let update_activity_html = `<button class='backButton' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
                                             Retour
                                         </button>
 
-                                        <h3>Activité à modifier</h3>
+                                        <h3>activité sélectionnée</h3>
                                         <!-- activity data will be shown in this form -->
                                         <form>
                                             <div id="activity">
@@ -623,7 +626,7 @@ function showBookingActivities(identifier) {
     fetch('api/bookingActivities/readActivitiesList.php?idBooking=' + idBooking)
         .then(res => res.json())
         .then((dataActivities) => {
-            let update_activities_html = `<button class='back' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+            let update_activities_html = `<button class='backButton' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
                                                 Retour
                                             </button>
                                             
@@ -885,7 +888,7 @@ function removeBookingActivities(identifier) {
                     console.log(data.message);
 
                     if (data.message === "Unable to remove activities.") {
-                        let error_message = `<p>Problème lors de la suppression des activités.</p><p>Merci de contacter l'administrateur du site.</p>`
+                        let error_message = `<p>Impossible de supprimer ce cocktail d'activité (problème lors de la suppression des activités).</p><p>Merci de contacter l'administrateur du site.</p>`
                     
                         displayModale(error_message);
             
@@ -908,7 +911,7 @@ function showOneUser(identifier){
     
     let idBooking = identifier.getAttribute('data-idBooking');
     let idUser = identifier.getAttribute('data-idUser');
-    let whereToWrite = document.querySelector("#page-content");
+    let whereToWrite = document.querySelector("#backBooking-content");
 
     // read user record based on given user ID
     fetch('api/user/readOneUserDetails.php?idUser=' + idUser)
@@ -916,23 +919,21 @@ function showOneUser(identifier){
     .then(dataUser => {
         console.log(dataUser);
 
-        let update_one_user_html =`
+        let update_one_user_html =`<button class='backButton' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+                                        Retour
+                                    </button>
 
-        <button class='back' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
-            Retour
-        </button>
-
-        <h3>Informations du participant</h3>
-        <!-- user data will be shown in this form -->
-        <form>
-            <input type="text" name="participant_lastName" value='` + dataUser.lastName + `'>
-            <input type="text" name="participant_firstName" value='` + dataUser.firstName + `'>
-            <input type="text" name="participant_birthdate" value='` + dataUser.birthdate + `'>
-            <input type="text" name="participant_size" value='` + dataUser.size + `'>
-            <input type="hidden" name="participant_id" value='` + idUser + `'>
-            <input type="hidden" id="idBooking" data-idBooking='` + idBooking + `'>
-            <button type="submit" class="update">Modifier</button> 
-        </form>`;
+                                    <h3>participant sélectionné</h3>
+                                    <!-- user data will be shown in this form -->
+                                    <form>
+                                        <input type="text" name="participant_lastName" value='` + dataUser.lastName + `'>
+                                        <input type="text" name="participant_firstName" value='` + dataUser.firstName + `'>
+                                        <input type="text" name="participant_birthdate" value='` + dataUser.birthdate + `'>
+                                        <input type="text" name="participant_size" value='` + dataUser.size + `'>
+                                        <input type="hidden" name="participant_id" value='` + idUser + `'>
+                                        <input type="hidden" id="idBooking" data-idBooking='` + idBooking + `'>
+                                        <button type="submit" class="update">Modifier</button> 
+                                    </form>`;
 
         whereToWrite.innerHTML = update_one_user_html;
 

@@ -705,15 +705,22 @@ fieldset, .booking textarea{
 } */
 /* #endregion BOOKING */
 
-/* #region BACK BOOKING */
-.backBooking{
+/* #region BACK PAGE */
+.backPage{
     position: relative;
     color:var(--darkColor);
     text-align: center;
-    padding-top: 10rem;
-    padding-bottom: 10rem;
+    padding: 10rem 2rem;
+    margin: 1rem;
 }
-.backBooking form{
+.backPage h2{
+    font-size: 2rem;
+}
+.backPage h3{
+    font-size: 1.8rem; 
+    text-transform: capitalize;
+}
+.backPage form{
     border: 2px solid var(--rocColorO);
     border-radius: 3rem;
     background-color: var(--bookingColor);
@@ -726,6 +733,9 @@ fieldset, .booking textarea{
     flex-direction: row;
     justify-content: space-around;
 }
+.dashboardButton{
+    transition: unset;
+}
 .dashboardAction {
     display: flex;
     flex-direction: column;
@@ -736,7 +746,6 @@ fieldset, .booking textarea{
     border-radius: 3rem;
     width: 25%;
     padding: 1rem;
-
 }
 .connect, .dashboardButton, .update{
     color:var(--clearColor);
@@ -744,28 +753,18 @@ fieldset, .booking textarea{
     background-color: var(--rocColorO);
     margin: 0;
 }
-.backBooking input, .backBooking select{
+.backPage input, .backPage select{
     margin: 1rem 0;
     padding: 0.5rem;
     width: 100%;
     border: 1px solid var(--rocColorO);
 }
-.backBooking p{
+.backPage p{
     font-size: 2rem;
 }
-.dashboardButton{
-    transition: unset;
-}
-.logout, .more, .back{
+.logout, .more, .backButton{
     color:var(--rocColorC);
     text-transform: capitalize;
-}
-.more, .back{
-    width: unset;
-    padding: unset;
-    border: unset;
-    background: unset;
-    text-align: left;
 }
 .logout{
     font-size: 2rem;
@@ -773,32 +772,44 @@ fieldset, .booking textarea{
     top: 1rem;
     right: 1rem;
 }
-.back{
+.more, .backButton{
+    width: unset;
+    padding: unset;
+    border: unset;
+    background: unset;
+    text-align: left;
+}
+.backButton{
     font-family: 'DIN-Regular';
     font-size: 2rem;
     position: absolute;
     top: 1rem;
     left: 1rem;
-}
-.backBooking table{
+} 
+.backPage table{
     color: var(--rocColorR);
-    margin: 1rem;
+    width: 100%;
+    margin: auto;
 }
-.backBooking table a{
+.backPage table a{
     text-transform: unset;
     color:var(--rocColorO);
 }
-.backBooking th, .backBooking td{
+.backPage th, .backPage td{
     padding: 1rem;
 }
-.backBooking th{
+.backPage th{
     background-color: var(--rocColorC);
     color: var(--clearColor);
 }
-.backBooking tr + tr{
+.backActivities tr + tr{
     border-top: 2px solid var(--bookingColor);
 }
-.backBooking .modale{
+.backActivities th + th,
+.backActivities td + td{
+    text-align: right;
+}
+.backPage .modale{
     position: fixed;
     color: var(--darkColor);
     width: 50%;
@@ -840,7 +851,7 @@ fieldset, .booking textarea{
     color: var(--rocColorR);
 }
 
-/* #endregion BACK BOOKING */
+/* #endregion BACK PAGE */
 
 /* #region TEMPORARYBOOKING */
 .temporaryBooking{

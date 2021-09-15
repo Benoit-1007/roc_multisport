@@ -70,17 +70,15 @@ class Booking {
         return $stmt;
     }
 
-    // Read One booking
+    // Read one booking
     public function readOne()
     {
         $query = "SELECT
-                    b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking
+                    idBooking, dateOfBooking, comment, idContact, typeOfBooking
                 FROM
-                    {$this->table_name} b
+                    {$this->table_name}
                 WHERE
-                    b.idBooking = ?
-                ORDER BY
-                    idBooking";
+                    idBooking = ?";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
