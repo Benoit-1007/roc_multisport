@@ -718,7 +718,7 @@ fieldset, .booking textarea{
 }
 .backPage h3{
     font-size: 1.8rem; 
-    text-transform: capitalize;
+    text-transform: unset;
 }
 .backPage form{
     border: 2px solid var(--rocColorO);

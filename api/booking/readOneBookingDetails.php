@@ -15,7 +15,7 @@ $db = $database->getConnection();
 
 $booking = new Booking($db);
 
-// get id from url
+// get booking ID from url
 $booking->idBooking = isset($_GET['idBooking']) ? $_GET['idBooking'] : die();
 
 $booking->readOne();

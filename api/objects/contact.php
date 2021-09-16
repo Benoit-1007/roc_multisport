@@ -21,7 +21,7 @@ class Contact {
         $this->conn = $db;
     }
 
-    // Create booking
+    // Create contact
     public function create()
     {
         // query to insert record
@@ -61,7 +61,7 @@ class Contact {
         return 0;
     }
 
-    // Read all bookings
+    // Read all contacts
     public function readAll()
     {
         //select all data
@@ -81,11 +81,11 @@ class Contact {
         return $stmt;
     }
 
-    // Read one booking with ID
+    // Read one contact details with ID
     public function readOne()
     {
         $query = "SELECT
-                    lastName, firstName, organisation, phoneNumber, mail, adress, postalCode, city
+                    idContact, lastName, firstName, organisation, phoneNumber, mail, adress, postalCode, city
                 FROM
                     {$this->table_name}
                 WHERE
@@ -103,6 +103,7 @@ class Contact {
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // set values to object properties
+        $this->idContact = $row['idContact'];
         $this->lastName = $row['lastName'];
         $this->firstName = $row['firstName'];
         $this->organisation = $row['organisation'];
@@ -173,10 +174,5 @@ class Contact {
             return 1;
         }
         return 0;
-    }
-
-    // Search one booking with keywords
-    function search()
-    {
     }
 }

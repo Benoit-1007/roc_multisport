@@ -76,10 +76,11 @@ class Activity {
     {
         $query = "SELECT * From {$this->table_name}";
 
+        // prepare query
         $stmt = $this->conn->prepare($query);
-        $stmt->execute();
 
-        // var_dump($stmt);
+        //execute query
+        $stmt->execute();
 
         return $stmt;
     }

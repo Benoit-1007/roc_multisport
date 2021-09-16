@@ -200,11 +200,11 @@ if (
                                 if ($typeOfBooking === "cocktailOneDay") {
                                     $bookingActivity->halfDaySelect = "1/2 journée";
                                 } else {
-                                    $bookingActivity->halfDaySelect = "journée";
+                                    $bookingActivity->halfDaySelect = "Journée";
                                 }
                             } else if (count($data->cocktail[0]->activities) === 3) {
                                 if (strpos($activity->activity, 'All') !== false) {
-                                    $bookingActivity->halfDaySelect = "journée";
+                                    $bookingActivity->halfDaySelect = "Journée";
                                 } else {
                                     $bookingActivity->halfDaySelect = "1/2 journée";
                                 }
