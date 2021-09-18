@@ -15,10 +15,9 @@ class Bookingactivityuser {
         $this->conn = $db;
     }
 
-    // Create bookingActivity
+    /** Create bookingActivity */
     public function create()
     {
-        // query to insert record
         $query = "INSERT INTO
                     {$this->table_name} (idBookingActivity, idUser)
                 VALUES 
@@ -43,6 +42,9 @@ class Bookingactivityuser {
         return 0;
     }
 
+    /** Read all users
+     * get all participants of one activity according to one bookingActivity ID
+     */
     public function readAllUsers()
     {
         //select all data
@@ -73,9 +75,11 @@ class Bookingactivityuser {
         return $stmt;
     }
 
+
+    /** Remove all users 
+     * Remove all participants of one activity or cocktail according to one bookingActivity ID */
     public function removeAllUsers()
     {
-        // var_dump($this->idBookingActivity);
         $query = "DELETE 
                     u.*
                 FROM 

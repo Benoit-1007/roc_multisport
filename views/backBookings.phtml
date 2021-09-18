@@ -21,7 +21,10 @@
         <?php endif; ?>
 
         <?php if (array_key_exists('user', $_SESSION) && !empty($_SESSION['user'])): ?>
-            <p class="validate">Salut <?= $_SESSION['user']['firstName'] ?> !</p>
+            <?php if ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+                <p class="validate">Salut <?= $_SESSION['user']['firstName'] ?> !</p>
+            <?php endif; ?>  
+            
             <a href='logout.php' class="logout">Déconnexion</a>
             <div class="dashboard">
                 <div class="dashboardAction">
@@ -32,7 +35,6 @@
                     <p>Consulter, modifier la liste des préstations <em>(tarif, nombre de participants)</em></p>
                     <button type="button" onclick="window.location.href = 'backActivities.php';" class="dashboardButton">acceder</button>
                 </div>
-
             </div>
         <?php else: ?>
             <form action = "backBooking.php" method="post">

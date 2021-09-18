@@ -17,6 +17,7 @@ class Admin {
         $this->conn = $db;
     }
 
+    /** create/add admin in database */
     public function create()
     {
         $query = "INSERT INTO

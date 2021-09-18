@@ -16,14 +16,15 @@ class Activity {
         $this->conn = $db;
     }
 
-    // Create activity (future proof)
+    /** Create activity 
+     * (future proof)*/ 
     public function create()
     {
         // query to insert record
         $query = "INSERT INTO 
-                    {$this->table_name}
-                SET
-                    codeActivity = :codeActivity, name = :name, minCount = :minCount, maxCount = :maxCount";
+                    {$this->table_name} (codeActivity, name, price, minCount, maxCount)
+                VALUES
+                    (:codeActivity, :name, :price, :minCount, :maxCount)";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -31,12 +32,14 @@ class Activity {
         // sanitize
         $this->codeActivity = htmlspecialchars(strip_tags($this->codeActivity));
         $this->name = htmlspecialchars(strip_tags($this->name));
+        $this->price = htmlspecialchars(strip_tags($this->price));
         $this->minCount = htmlspecialchars(strip_tags($this->minCount));
         $this->maxCount = htmlspecialchars(strip_tags($this->maxCount));
 
         // bind values
         $stmt->bindParam(":codeActivity", $this->codeActivity);
         $stmt->bindParam(":name", $this->name);
+        $stmt->bindParam(":price", $this->price);
         $stmt->bindParam(":minCount", $this->minCount);
         $stmt->bindParam(":maxCount", $this->maxCount);
 
@@ -48,8 +51,21 @@ class Activity {
         return 0;
     }
 
+    /** Read all activities Details */
+    public function readAll()
+    {
+        $query = "SELECT * From {$this->table_name}";
 
-    // Read one activity
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        //execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    /** Read one activity Details */ 
     public function readOne()
     {
         $query = "SELECT 
@@ -70,22 +86,8 @@ class Activity {
 
         return $stmt;
     }
-
-    // Read all activities
-    public function readAll()
-    {
-        $query = "SELECT * From {$this->table_name}";
-
-        // prepare query
-        $stmt = $this->conn->prepare($query);
-
-        //execute query
-        $stmt->execute();
-
-        return $stmt;
-    }
     
-    // Update one activity with codeActivity
+    /** Update one activity with codeActivity */
     public function updateOne()
     {
         $query = "UPDATE

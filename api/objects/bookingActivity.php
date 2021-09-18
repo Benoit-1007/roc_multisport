@@ -17,7 +17,7 @@ class BookingActivity {
         $this->conn = $db;
     }
 
-    // Create bookingActivity
+    /** Create bookingActivity */
     public function create()
     {
         // query to insert record
@@ -49,6 +49,43 @@ class BookingActivity {
         return 0;
     }
 
+    /** Read all booking activities
+     * get all activities data according to one booking ID */
+    public function readActivitiesDetails()
+    {
+        //select all data
+        $query = "SELECT
+                        b.idBooking,
+                        ba.codeActivity, ba.dateActivity, ba.halfDaySelect, ba.idBookingActivity,
+                        a.name as nameActivity
+                    FROM
+                        {$this->table_name} ba
+                    INNER JOIN 
+                        bookings b
+                            ON b.idBooking = ba.idBooking
+                    INNER JOIN 
+                        activities a
+                            ON ba.codeActivity = a.codeActivity
+                    WHERE
+                        ba.idBooking = :idBooking
+                    ORDER BY
+                        idBooking";
+
+        //prepare query
+        $stmt = $this->conn->prepare($query);
+
+        // bind param
+        $stmt->bindParam(':idBooking', $this->idBooking);
+
+        // execute query
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    /** Read one booking activity
+     * get one activity data according to its bookingActivity ID
+     * used before update of one bookingActivity */
     public function readOne()
     {
         $query = "SELECT
@@ -73,6 +110,8 @@ class BookingActivity {
         return $stmt;
     }
 
+    /** Update one booking activity
+     * update all datas of one activity according to its bookingActivity ID */
     public function updateOne()
     {
         $query = "UPDATE
@@ -97,18 +136,21 @@ class BookingActivity {
         return 0;
     }
 
+
+    /** Remove one booking activity 
+     * remove one activity according to its bookingActivity ID */
     public function removeOne()
     {
         $query = "DELETE FROM
                     {$this->table_name}
                 WHERE
-                    idBookingActivity = ?";
+                    idBookingActivity = :idBookingActivity";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
 
         // bind value
-        $stmt->bindParam(1, $this->idBookingActivity);
+        $stmt->bindParam(':idBookingActivity', $this->idBookingActivity);
 
         // execute query
         if($stmt->execute()) {
@@ -117,18 +159,20 @@ class BookingActivity {
         return 0;
     }
 
+    /** Remove all booking activities 
+     * remove all activities of one booking according its ID */
     public function removeAll()
     {
         $query = "DELETE FROM
                     {$this->table_name}
                 WHERE
-                    idBooking = ?";
+                    idBooking = :idBooking";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
 
         // bind value
-        $stmt->bindParam(1, $this->idBooking);
+        $stmt->bindParam(':idBooking', $this->idBooking);
 
         // execute query
         if($stmt->execute()) {

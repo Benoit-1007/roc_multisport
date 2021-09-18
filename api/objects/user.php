@@ -18,7 +18,7 @@ class User {
         $this->conn = $db;
     }
 
-    // Create user
+    /** Create user */ 
     public function create()
     {
         // query to insert record
@@ -52,7 +52,8 @@ class User {
         return 0;
     }
 
-    // Read one user with ID
+    /** Read one user 
+     * get one user datas according to his ID*/ 
     public function readOne()
     {
         $query = "SELECT
@@ -82,7 +83,8 @@ class User {
 
     }
 
-    // Update one user with ID
+    /** Update one user
+     * Update all datas of one user according to his ID */ 
     public function updateOne()
     {
         $query = "UPDATE
@@ -116,16 +118,20 @@ class User {
         return 0;
     }
 
-    // Delete one user with ID
+    /** Remove one user 
+     * Remove one participant according to his user ID*/
     public function remove()
     {
         $query = "DELETE FROM 
-                    " . $this->table_name . "
+                    {$this->table_name} 
                 WHERE 
-                    users.idUser = ?";
+                    idUser = :idUser";
 
+        // prepare query
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $this->idUser);
+
+        // bind values
+        $stmt->bindParam(':idUser', $this->idUser);
 
         if($stmt->execute()) {
             return 1;

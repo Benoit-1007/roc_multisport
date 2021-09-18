@@ -16,7 +16,7 @@ class Booking {
         $this->conn = $db;
     }
 
-    // Create booking
+    /** Create booking */
     function create()
     {
         // query to insert record
@@ -43,14 +43,13 @@ class Booking {
             $lastId = $this->conn->lastInsertId();
             return $lastId;
         }
-
         return 0;
     }
 
-    // Read all bookings
+    /** Read all bookings 
+     * get all booking data and contact data for each booking */
     public function readList()
     {
-        //select all data
         $query = "SELECT
                     b.idBooking, b.dateOfBooking, b.comment, b.idContact, b.typeOfBooking,
                     c.idContact, c.lastName, c.firstName, c.organisation, c.phoneNumber, c.mail, c.adress, c.postalCode, c.city
@@ -62,13 +61,17 @@ class Booking {
                 ORDER BY
                     idBooking";
 
+        // prepare query
         $stmt = $this->conn->prepare($query);
+
+        //execute query
         $stmt->execute();
 
         return $stmt;
     }
 
-    // Read one booking
+    /** Read one booking
+     * get one booking's data according to its ID */
     public function readOne()
     {
         $query = "SELECT
@@ -76,13 +79,13 @@ class Booking {
                 FROM
                     {$this->table_name}
                 WHERE
-                    idBooking = ?";
+                    idBooking = :idBooking";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
 
         // bind param
-        $stmt->bindParam(1, $this->idBooking);
+        $stmt->bindParam(':idBooking', $this->idBooking);
 
         //execute query
         $stmt->execute();
@@ -135,55 +138,6 @@ class Booking {
     //     $stmt->bindParam(":idBooking", $this->idBooking);
 
     //     //execute query
-    //     $stmt->execute();
-
-    //     return $stmt;
-    // }
-
-    // Read all bookings
-    public function readActivityDetails()
-    {
-        //select all data
-        $query = "SELECT
-                        b.idBooking,
-                        ba.codeActivity, ba.dateActivity, ba.halfDaySelect, ba.idBookingActivity,
-                        a.name as nameActivity
-                    FROM
-                        {$this->table_name} b
-                    INNER JOIN 
-                        bookingsactivities ba
-                            ON b.idBooking = ba.idBooking
-                    INNER JOIN 
-                        activities a
-                            ON ba.codeActivity = a.codeActivity
-                    WHERE
-                        b.idBooking = :idBooking
-                    ORDER BY
-                        idBooking";
-
-        //prepare query
-        $stmt = $this->conn->prepare($query);
-
-        // bind param
-        $stmt->bindParam(':idBooking', $this->idBooking);
-
-        // execute query
-        $stmt->execute();
-
-        return $stmt;
-    }
-
-    // public function read()
-    // {
-    //     //select all data
-    //     $query = "SELECT
-    //                 idBooking, dateOfBooking, comment, idContact, typeOfBooking
-    //             FROM
-    //                 {$this->table_name}
-    //             ORDER BY
-    //                 idBooking";
-
-    //     $stmt = $this->conn->prepare($query);
     //     $stmt->execute();
 
     //     return $stmt;

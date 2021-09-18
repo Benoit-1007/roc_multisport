@@ -728,11 +728,6 @@ fieldset, .booking textarea{
     width: 70vw;
     margin: 0 auto;
 }
-.dashboard{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
 .dashboardButton{
     transition: unset;
 }
@@ -744,8 +739,8 @@ fieldset, .booking textarea{
     background-color: var(--background);
     border: 2px solid var(--rocColorC);
     border-radius: 3rem;
-    width: 25%;
     padding: 1rem;
+    margin: 2rem 0;
 }
 .connect, .dashboardButton, .update{
     color:var(--clearColor);
@@ -1159,6 +1154,15 @@ footer a{
     }
     .participant + .participant{
         border-top: unset;
+    }
+    .dashboard{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .dashboardAction{
+        margin: 2rem;
+        width: 35%;
     }
 }
 /* #endregion TABLET (min-width: 768px) */

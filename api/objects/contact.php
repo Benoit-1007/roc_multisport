@@ -21,7 +21,7 @@ class Contact {
         $this->conn = $db;
     }
 
-    // Create contact
+    /** Create contact */ 
     public function create()
     {
         // query to insert record
@@ -61,7 +61,8 @@ class Contact {
         return 0;
     }
 
-    // Read all contacts
+    /** Read all contacts 
+     * (future proof)*/ 
     public function readAll()
     {
         //select all data
@@ -81,7 +82,8 @@ class Contact {
         return $stmt;
     }
 
-    // Read one contact details with ID
+    /** Read one contact
+     * get one contact coordinates according to its ID */  
     public function readOne()
     {
         $query = "SELECT
@@ -114,7 +116,8 @@ class Contact {
         $this->city = $row['city'];
     }
 
-    // Update one booking with ID
+    /** Update one contact 
+     * Update all datas of one contact according to its ID */
     public function updateOne()
     {
         $query = "UPDATE
@@ -155,7 +158,8 @@ class Contact {
         return 0;
     }
 
-    // Delete one contact with ID
+    /** Remove one contact
+     * remove one contact(the related booking, bookingActivities, bookingActivitiesUsers) according to its ID */ 
     public function removeOne()
     {
         $query = "DELETE FROM 

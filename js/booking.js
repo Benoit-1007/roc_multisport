@@ -735,7 +735,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // VALIDATION FUNCTIONS
 
-/** check the value all inputs before submit
+/** check the value of all inputs before submit
  * @param {NodeList} all required form inputs
  */
 function checkValues(inputs) {

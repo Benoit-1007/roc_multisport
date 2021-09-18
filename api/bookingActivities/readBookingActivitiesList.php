@@ -8,17 +8,18 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../config/database.php';
 
 // instantiate all objects
-include_once '../objects/booking.php';
+include_once '../objects/bookingActivity.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$booking = new Booking($db);
+// $booking = new Booking($db);
+$bookingActivity = new BookingActivity($db);
 
 // get booking ID from url
-$booking->idBooking = isset($_GET['idBooking']) ? $_GET['idBooking'] : die();
+$bookingActivity->idBooking = isset($_GET['idBooking']) ? $_GET['idBooking'] : die();
 
-$stmt = $booking->readActivityDetails();
+$stmt = $bookingActivity->readActivitiesDetails();
 $num = $stmt->rowCount();
 
 if ($num > 0) {
