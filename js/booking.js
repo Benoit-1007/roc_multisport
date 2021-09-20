@@ -6,21 +6,21 @@ import * as menu from './menu.js';
 
 // use by basket function
 const bookingData = [
-    { 'value': 'bikeAllDayNoLoc', 'name': 'VTTAE sans location VTT - journée', 'price': '80' },
-    { 'value': 'bikeHalfDayNoLoc', 'name': 'VTTAE sans location VTT - 1/2 journée', 'price': '45' },
-    { 'value': 'bikeHalfDay', 'name': 'VTTAE avec location VTT - 1/2 journée', 'price': '80' },
-    { 'value': 'bikeAllDay', 'name': 'VTTAE avec location VTT - journée', 'price': '130' },
-    { 'value': 'paddleHalfDay', 'name': 'Paddle - 1/2 journée', 'price': '55' },
-    { 'value': 'paddleAllDay', 'name': 'Paddle - journée', 'price': '100' },
-    { 'value': 'kayak', 'name': 'Kayak - 1/2 journée', 'price': '50' },
-    { 'value': 'climbingHalfDay', 'name': 'Escalade - 1/2 journée', 'price': '50' },
-    { 'value': 'climbingAllDay', 'name': 'Escalade - journée', 'price': '90' },
+    { 'value': 'bikeHalfDayNoLoc', 'name': 'VTTAE sans location VTT - 1/2 journée', 'price': '50' },
+    { 'value': 'bikeAllDayNoLoc', 'name': 'VTTAE sans location VTT - journée', 'price': '90' },
+    { 'value': 'bikeHalfDay', 'name': 'VTTAE avec location VTT - 1/2 journée', 'price': '90' },
+    { 'value': 'bikeAllDay', 'name': 'VTTAE avec location VTT - journée', 'price': '140' },
+    { 'value': 'paddleHalfDay', 'name': 'Paddle - 1/2 journée', 'price': '60' },
+    { 'value': 'paddleAllDay', 'name': 'Paddle - journée', 'price': '110' },
+    { 'value': 'kayak', 'name': 'Kayak - 1/2 journée', 'price': '55' },
+    { 'value': 'climbingHalfDay', 'name': 'Escalade - 1/2 journée', 'price': '55' },
+    { 'value': 'climbingAllDay', 'name': 'Escalade - journée', 'price': '100' },
     { 'value': 'viaHalfDay', 'name': 'Via Ferrata - 1/2 journée', 'price': '60' },
     { 'value': 'viaAllDay', 'name': 'Via Ferrata - journée (2 via ferrata)', 'price': '110' },
     { 'value': 'archery', 'name': 'Tir à l\'arc - 1/2 journée', 'price': '50' },
     { 'value': 'snowboardRookeasy', 'name': 'Rookeasy - 3 x 1/2 journée (débutant snow)', 'price': '180' },
     { 'value': 'snowboardHalfDay', 'name': 'Snowboard - 1/2 journée', 'price': '160' },
-    { 'value': 'snowboardAllDay', 'name': 'Snowboard - journée', 'price': '330' },
+    { 'value': 'snowboardAllDay', 'name': 'Snowboard - journée', 'price': '300' },
     { 'value': 'splitboardHalfDay', 'name': 'Splitboard - 1/2 journée', 'price': '180' },
     { 'value': 'splitboardAllDay', 'name': 'Splitboard - journée', 'price': '330' },
     { 'value': 'cocktailOneDay', 'name': 'ROC DAY (10% de remise sur vos activités)' },
@@ -378,21 +378,21 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Activité `+ x + `</p>
                 <select class="field singleActivitySelector" name="activity_`+ x + `">
                     <option value="">Séléctionnez votre activité `+ x + `</option>
-                    <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
-                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 80€/pers.</option>
-                    <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
-                    <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée - 130€/pers.</option>
-                    <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée - 55€/pers.</option>
-                    <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée - 100€/pers.</option>
-                    <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée - 50€/pers.</option>
-                    <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée - 50€/pers.</option>
-                    <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée - 90€/pers.</option>
+                    <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october"> <?= $activities[paddle][name] ?> - 50€/pers.</option>
+                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée - 90€/pers.</option>
+                    <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée - 90€/pers.</option>
+                    <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="140" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée - 140€/pers.</option>
+                    <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée - 60€/pers.</option>
+                    <option value="paddleAllDay" name="Paddle - journée" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée - 110€/pers.</option>
+                    <option value="kayak" name="Kayak - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée - 55€/pers.</option>
+                    <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée - 55€/pers.</option>
+                    <option value="climbingAllDay" name="Escalade - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée - 100€/pers.</option>
                     <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Via Ferrata - 1/2 journée - 60€/pers.</option>
                     <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Via Ferrata - journée (2 via ferrata) - 110€/pers.</option>
                     <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay" data-period="may/october">Tir à l'arc - 1/2 journée - 50€/pers.</option>
                     <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="1" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow) - 180€/pers.</option>
                     <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée - 160€/pers.</option>
-                    <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
+                    <option value="snowboardAllDay" name="Snowboard - journée" data-price="300" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée - 300€/pers.</option>
                     <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée - 180€/pers.</option>
                     <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée - 330€/pers.</option>
                 </select>
@@ -495,11 +495,11 @@ document.addEventListener('DOMContentLoaded', function () {
             <p>Activité 1</p>
                     <select class="field rocActivitySelector" name="rocActivity_1" required>
                         <option value="empty">Séléctionnez votre activité 1</option>
-                        <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
-                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
-                        <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée - 55€/pers.</option>
-                        <option value="kayak" name="Kayak - 1/2 journée" data-price="50">Kayak - 1/2 journée - 50€/pers.</option>
-                        <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50">Escalade - 1/2 journée - 50€/pers.</option>
+                        <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="50">VTTAE sans location VTT - 1/2 journée - 50€/pers.</option>
+                        <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="90">VTTAE avec location VTT - 1/2 journée - 90€/pers.</option>
+                        <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="60">Paddle - 1/2 journée - 60€/pers.</option>
+                        <option value="kayak" name="Kayak - 1/2 journée" data-price="55">Kayak - 1/2 journée - 55€/pers.</option>
+                        <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="55">Escalade - 1/2 journée - 55€/pers.</option>
                         <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée - 60€/pers.</option>
                         <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée - 50€/pers.</option>
                     </select>
@@ -513,11 +513,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Activité 2</p>
                         <select class="field rocActivitySelector" name="rocActivity_2" required>
                             <option value="empty">Séléctionnez votre activité 2</option>
-                            <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45">VTTAE sans location VTT - 1/2 journée - 45€/pers.</option>
-                            <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80">VTTAE avec location VTT - 1/2 journée - 80€/pers.</option>
-                            <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55">Paddle - 1/2 journée - 55€/pers.</option>
-                            <option value="kayak" name="Kayak - 1/2 journée" data-price="50">Kayak - 1/2 journée - 50€/pers.</option>
-                            <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50">Escalade - 1/2 journée - 50€/pers.</option>
+                            <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="50">VTTAE sans location VTT - 1/2 journée - 50€/pers.</option>
+                            <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="90">VTTAE avec location VTT - 1/2 journée - 90€/pers.</option>
+                            <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="60">Paddle - 1/2 journée - 60€/pers.</option>
+                            <option value="kayak" name="Kayak - 1/2 journée" data-price="55">Kayak - 1/2 journée - 55€/pers.</option>
+                            <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="55">Escalade - 1/2 journée - 55€/pers.</option>
                             <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60">Via Ferrata - 1/2 journée - 60€/pers.</option>
                             <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50">Tir à l'arc - 1/2 journée - 50€/pers.</option>
                         </select>
@@ -540,15 +540,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p>Activité ` + x + `</p>
                 <select class="field rocActivitySelector" name="rocActivity_` + x + `"required>
                     <option value="empty">Séléctionnez votre activité ` + x + `</option> 
-                    <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-duration="0.5">VTTAE sans location VTT - 1/2 journée</option>
-                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-duration="1">VTTAE sans location VTT - journée</option>
-                    <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-duration="0.5">VTTAE avec location VTT - 1/2 journée</option>
-                    <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-duration="1">VTTAE avec location VTT - journée</option>
-                    <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-duration="0.5">Paddle - 1/2 journée</option>
-                    <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-duration="1">Paddle - journée</option>
-                    <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-duration="0.5">Kayak - 1/2 journée</option>
-                    <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-duration="0.5">Escalade - 1/2 journée</option>
-                    <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-duration="1">Escalade - journée</option>
+                    <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="50" data-duration="0.5">VTTAE sans location VTT - 1/2 journée</option>
+                    <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="90" data-duration="1">VTTAE sans location VTT - journée</option>
+                    <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="90" data-duration="0.5">VTTAE avec location VTT - 1/2 journée</option>
+                    <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="140" data-duration="1">VTTAE avec location VTT - journée</option>
+                    <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="60" data-duration="0.5">Paddle - 1/2 journée</option>
+                    <option value="paddleAllDay" name="Paddle - journée" data-price="110" data-duration="1">Paddle - journée</option>
+                    <option value="kayak" name="Kayak - 1/2 journée" data-price="55" data-duration="0.5">Kayak - 1/2 journée</option>
+                    <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="55" data-duration="0.5">Escalade - 1/2 journée</option>
+                    <option value="climbingAllDay" name="Escalade - journée" data-price="100" data-duration="1">Escalade - journée</option>
                     <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-duration="0.5">Via Ferrata - 1/2 journée</option>
                     <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-duration="1">Via Ferrata - journée (2 via ferrata)</option>
                     <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-duration="0.5">Tir à l'arc - 1/2 journée</option>
