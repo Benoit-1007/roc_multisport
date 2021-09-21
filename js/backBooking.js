@@ -25,7 +25,6 @@ function showBookings() {
     fetch('api/booking/readBookingsList.php')
     .then(res => res.json())
     .then((data) => {
-        console.log(data);
         if(data.message === "No booking found.") {
             let message = `<button class="backButton" onclick="window.location.href = 'backBooking.php';" >
                                 Dashboard
@@ -55,18 +54,18 @@ function showBookings() {
                 // creating new table row per record
                 read_bookings_html += `
                     <tr>
-                        <td>` + convertDate(key.dateOfBooking) + `</td>
-                        <td>` + key.lastName + `</td>
-                        <td>` + key.firstName + `</td>
-                        <td>` + key.comment + `</td>       
+                        <td>${convertDate(key.dateOfBooking)}</td>
+                        <td>${key.lastName}</td>
+                        <td>${key.firstName}</td>
+                        <td>${key.comment}</td>       
                         <!-- 'action' buttons -->
                         <td>
                             <!-- read product button -->
-                            <button type="button" class="more" onclick='showDetails(this)'  data-idBooking='` + key.idBooking + `'>
+                            <button type="button" class="more" onclick='showDetails(this)'  data-idBooking='${key.idBooking}'>
                             consulter
                             </button>
                             <!-- delete product button -->
-                            <button type="button" class="more"  onclick='confirmBookingRemovation(this)' data-idBooking='` + key.idBooking + `' data-idContact='` + key.idContact + `' data-lastName='`+ key.lastName +`' data-firstName='`+ key.firstName + `' data-typeOfBooking='`+ key.typeOfBooking +`'>
+                            <button type="button" class="more"  onclick='confirmBookingRemovation(this)' data-idBooking='${key.idBooking}' data-idContact='${key.idContact}' data-lastName='${key.lastName}' data-firstName='${key.firstName}' data-typeOfBooking='${key.typeOfBooking}'>
                             supprimer
                             </button>
                         </td>
@@ -91,7 +90,7 @@ async function showDetails(identifier) {
     let whereToWrite = document.querySelector('#backBooking-content');
 
     // read booking record based on given booking ID
-    fetch('api/booking/readOneBookingDetails.php?idBooking=' + idBooking)
+    fetch(`api/booking/readOneBookingDetails.php?idBooking=${idBooking}`)
     .then(res => res.json())
     .then((dataBooking) => {
         if(dataBooking.message === "No booking found.") {
@@ -111,19 +110,19 @@ async function showDetails(identifier) {
                                             <!-- Booking Date -->
                                             <tr>
                                                 <td>Date de reservation</td>
-                                                <td>` + convertDate(dataBooking.dateOfBooking) + `</td>
+                                                <td>${convertDate(dataBooking.dateOfBooking)}</td>
                                             </tr>
                                             <!-- Booking Type -->
                                             <tr>
                                                 <td>Type de reservation</td>
-                                                <td>` + dataBooking.typeOfBooking + `</td>
+                                                <td>${dataBooking.typeOfBooking}</td>
                                             </tr>
                                         </table>`;
 
             whereToWrite.innerHTML = read_one_booking_html;
 
             // read contact record based on given contact ID
-            fetch('api/contact/readOneContactDetails.php?idContact=' + dataBooking.idContact)
+            fetch(`api/contact/readOneContactDetails.php?idContact=${dataBooking.idContact}`)
             .then(res => res.json())
             .then((dataContact) => {
                 if (dataContact.message === "No contact found.") {
@@ -133,41 +132,41 @@ async function showDetails(identifier) {
                     whereToWrite.innerHTML += read_one_contact_html;
                 } else {
                     let read_one_contact_html = `
-                        <h2>Contact<button class="action fas fa-pen" onclick='showContact(this)' data-idBooking='`+ idBooking + `' data-idContact='`+ dataContact.idContact +`'</button></h2>
+                        <h2>Contact<button class="action fas fa-pen" onclick='showContact(this)' data-idBooking='${idBooking}' data-idContact='${dataContact.idContact}'</button></h2>
                         <!-- contact data will be shown in this table -->
                         <table>
                         <!-- Contact details -->
                             <tr>
                                 <td>Nom</td>
-                                <td>` + dataContact.lastName + `</td>
+                                <td>${dataContact.lastName}</td>
                             </tr>
                             <tr>
                                 <td>Prénom</td>
-                                <td>` + dataContact.firstName + `</td>
+                                <td>${dataContact.firstName}</td>
                             </tr>
                             <tr>
                                 <td>Société</td>
-                                <td>` + dataContact.organisation + `</td>
+                                <td>${dataContact.organisation}</td>
                             </tr>
                             <tr>
                                 <td>Téléphone</td>
-                                <td><a href="tel:` + dataContact.phoneNumber +`">` + dataContact.phoneNumber + `</a></td>
+                                <td><a href="tel:${dataContact.phoneNumber}">${dataContact.phoneNumber}</a></td>
                             </tr>
                             <tr>
                                 <td>Mail</td>
-                                <td><a href="mailto:` + dataContact.mail + `" target="_blank">` + dataContact.mail + `</a></td>
+                                <td><a href="mailto:${dataContact.mail}" target="_blank">${dataContact.mail}</a></td>
                             </tr>
                             <tr>
                                 <td>Adresse</td>
-                                <td>` + dataContact.adress + `</td>
+                                <td>${dataContact.adress}</td>
                             </tr>
                             <tr>
                                 <td>Code Postal</td>
-                                <td>` + dataContact.postalCode + `</td>
+                                <td>${dataContact.postalCode}</td>
                             </tr>
                             <tr>
                                 <td>Ville</td>
-                                <td>` + dataContact.city + `</td>
+                                <td>${dataContact.city}</td>
                             </tr>  
                         </table>`;
                     
@@ -176,7 +175,7 @@ async function showDetails(identifier) {
                     let crtIdBookingActivity = 0;
                     
                     // read activities record based on given booking ID
-                    fetch('api/bookingActivities/readBookingActivitiesList.php?idBooking=' + idBooking)
+                    fetch(`api/bookingActivities/readBookingActivitiesList.php?idBooking=${idBooking}`)
                     .then(res => res.json())
                     .then((dataActivities) => {
                         if (dataActivities.message === "No activity found.") {
@@ -192,11 +191,11 @@ async function showDetails(identifier) {
                                 (dataActivities.records.forEach((keyActivity, valActivity) => {
                                     // creating new table row per record
                                     read_activities_html += `
-                                        <p>` + keyActivity.nameActivity + ` , ` + convertDate(keyActivity.dateActivity) + ` , ` + keyActivity.halfDaySelect + `
-                                            <button class="action fas fa-pen" onclick='showBookingActivities(this)' data-idBooking='`+ idBooking +`' data-idBookingActivity='` + keyActivity.idBookingActivity +`' data-typeOfBooking='` + typeOfBooking + `'></button>
-                                            <button class="action fas fa-trash" onclick='confirmBookingActivityRemovation(this)' data-idBooking='`+ idBooking +`' data-idBookingActivity='` + keyActivity.idBookingActivity +`' data-typeOfBooking='` + typeOfBooking + `'></button>
+                                        <p>${keyActivity.nameActivity}, ${convertDate(keyActivity.dateActivity)}, ${keyActivity.halfDaySelect}
+                                            <button class="action fas fa-pen" onclick='showBookingActivities(this)' data-idBooking='${idBooking}' data-idBookingActivity='${keyActivity.idBookingActivity}' data-typeOfBooking='${typeOfBooking}'></button>
+                                            <button class="action fas fa-trash" onclick='confirmBookingActivityRemovation(this)' data-idBooking='${idBooking}' data-idBookingActivity='${keyActivity.idBookingActivity}' data-typeOfBooking='${typeOfBooking}'></button>
                                         </p>`;
-                                    read_activities_html += `<div id="usersActivity` + keyActivity.idBookingActivity + `"></div>`;
+                                    read_activities_html += `<div id="usersActivity${keyActivity.idBookingActivity}"></div>`;
                                     
                                     whereToWrite.innerHTML += read_activities_html;
                                     read_activities_html = '';
@@ -206,15 +205,15 @@ async function showDetails(identifier) {
                                     let read_users_html = '';
                                     
                                     //read activities record based on given bookingActivity ID
-                                    fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+                                    fetch(`api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=${crtIdBookingActivity}`)
                                     .then(res => res.json())
                                     .then((dataUsers) => {
                                         if (dataUsers.message === "No user found.") {
                                             read_users_html = `<p class="alert">Aucun participant n'est rattaché à cette activité</p>`;
                                             
-                                            document.querySelector("#usersActivity" + keyActivity.idBookingActivity).innerHTML += read_users_html;
+                                            document.querySelector(`#usersActivity${keyActivity.idBookingActivity}`).innerHTML += read_users_html;
                                         } else {
-                                            read_users_html = `<table class="backParticipantsList`+ keyActivity.idBookingActivity +`">
+                                            read_users_html = `<table class="backParticipantsList${keyActivity.idBookingActivity}">
                                                                     <tr>
                                                                         <th>Nom</th>
                                                                         <th>Prénom</th>
@@ -226,21 +225,21 @@ async function showDetails(identifier) {
                                                                 </table>`;
                                             
                                             (dataUsers.records.forEach((keyUser, valUser) => {
-                                                let user = `<tr id="`+ keyUser.idUser +`">
-                                                                <td>` + keyUser.lastName + `</td>
-                                                                <td>` + keyUser.firstName + `</td>
-                                                                <td>` + keyUser.birthdate + `</td>
-                                                                <td>` + keyUser.size + `</td>
-                                                                <td>` + keyUser.level + `</td>
+                                                let user = `<tr id="${keyUser.idUser}">
+                                                                <td>${keyUser.lastName}</td>
+                                                                <td>${keyUser.firstName}</td>
+                                                                <td>${keyUser.birthdate}</td>
+                                                                <td>${keyUser.size}</td>
+                                                                <td>${keyUser.level}</td>
                                                                 <td>
-                                                                <button class="action fas fa-pen" onclick='showOneUser(this)' data-idBooking='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
-                                                                <button class="action fas fa-trash" onclick='confirmUserRemovation(this)' data-idBooking='` + keyUser.idBooking + `' data-idUser='`+ keyUser.idUser +`' data-lastName='`+ keyUser.lastName +`' data-firstName='`+ keyUser.firstName +`'</button>
+                                                                <button class="action fas fa-pen" onclick='showOneUser(this)' data-idBooking='${keyUser.idBooking}' data-idUser='${keyUser.idUser}'</button>
+                                                                <button class="action fas fa-trash" onclick='confirmUserRemovation(this)' data-idBooking='${keyUser.idBooking}' data-idUser='${keyUser.idUser}' data-lastName='${keyUser.lastName}' data-firstName='${keyUser.firstName}'</button>
                                                                 </td>
                                                             </tr>`;
                                                 
-                                                document.querySelector("#usersActivity"+keyUser.idBookingActivity).innerHTML += read_users_html;
+                                                document.querySelector(`#usersActivity${keyUser.idBookingActivity}`).innerHTML += read_users_html;
                                                 
-                                                let table = document.querySelector('.backParticipantsList'+keyActivity.idBookingActivity);
+                                                let table = document.querySelector(`.backParticipantsList${keyActivity.idBookingActivity}`);
                                                 
                                                 table.innerHTML += user;
                                                 
@@ -254,15 +253,15 @@ async function showDetails(identifier) {
                             if (typeOfBooking !== "singleActivity") {
                                 read_activities_html = `
                                     <h2>Activités
-                                        <button class="action fas fa-pen" onclick='showBookingActivities(this)' data-idBooking='`+ idBooking +`' data-typeOfBooking='` + typeOfBooking + `'></button>
-                                        <button class="action fas fa-trash" onclick='confirmBookingActivityRemovation(this)' data-idBooking='`+ idBooking +`' ' data-typeOfBooking='` + typeOfBooking + `'></button>
+                                        <button class="action fas fa-pen" onclick='showBookingActivities(this)' data-idBooking='${idBooking}' data-typeOfBooking='${typeOfBooking}'></button>
+                                        <button class="action fas fa-trash" onclick='confirmBookingActivityRemovation(this)' data-idBooking='${idBooking}' data-typeOfBooking='${typeOfBooking}'></button>
                                     </h2>`;
                                 
                                 // loop through returned list of data
                                 (dataActivities.records.forEach((keyActivity, valActivity) => {
                                     // creating new table row per record
-                                    read_activities_html += `<p>` + keyActivity.nameActivity + ` , ` + convertDate(keyActivity.dateActivity) + ` , ` + keyActivity.halfDaySelect + `</p>`;
-                                    read_activities_html += `<div id="usersActivity` + keyActivity.idBookingActivity + `"></div>`;
+                                    read_activities_html += `<p>${keyActivity.nameActivity}, ${convertDate(keyActivity.dateActivity)}, ${keyActivity.halfDaySelect}</p>`;
+                                    read_activities_html += `<div id="usersActivity${keyActivity.idBookingActivity}"></div>`;
                                     
                                     whereToWrite.innerHTML += read_activities_html;
                                     read_activities_html = '';
@@ -270,7 +269,7 @@ async function showDetails(identifier) {
                                     crtIdBookingActivity = keyActivity.idBookingActivity;
                                 }))
                                 
-                                fetch('api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+                                fetch(`api/bookingActivitiesUsers/readAllUsers.php?idBookingActivity=${crtIdBookingActivity}`)
                                 .then(res => res.json())
                                 .then((dataUsers) => {
                                     let read_users_html = `<table class="backParticipantsList">
@@ -288,14 +287,14 @@ async function showDetails(identifier) {
                                     let table = document.querySelector('.backParticipantsList');
                                     
                                     (dataUsers.records.forEach((keyUser, valUser) => {
-                                        let user = `<tr id="`+ keyUser.idUser +`">
-                                                        <td>` + keyUser.lastName + `</td>
-                                                        <td>` + keyUser.firstName + `</td>
-                                                        <td>` + keyUser.birthdate + `</td>
-                                                        <td>` + keyUser.size + `</td>
+                                        let user = `<tr id="${keyUser.idUser}">
+                                                        <td>${keyUser.lastName}</td>
+                                                        <td>${keyUser.firstName}</td>
+                                                        <td>${keyUser.birthdate}</td>
+                                                        <td>${keyUser.size}</td>
                                                         <td>
-                                                            <button class="action fas fa-pen" onclick='showOneUser(this)' data-idBooking='`+ keyUser.idBooking +`' data-idUser='`+ keyUser.idUser +`'</button>
-                                                            <button class="action fas fa-trash" onclick='confirmUserRemovation(this)' data-idBooking='` + keyUser.idBooking + `' data-idUser='`+ keyUser.idUser +`' data-lastName='`+ keyUser.lastName +`' data-firstName='`+ keyUser.firstName +`'</button>
+                                                            <button class="action fas fa-pen" onclick='showOneUser(this)' data-idBooking='${keyUser.idBooking}' data-idUser='${keyUser.idUser}'</button>
+                                                            <button class="action fas fa-trash" onclick='confirmUserRemovation(this)' data-idBooking='${keyUser.idBooking}' data-idUser='${keyUser.idUser}' data-lastName='${keyUser.lastName}' data-firstName='${keyUser.firstName}'</button>
                                                         </td>
                                                     </tr>`;
                                         
@@ -324,10 +323,10 @@ function confirmBookingRemovation(identifier){
     let lastName = identifier.getAttribute('data-lastName');
     let firstName = identifier.getAttribute('data-firstName');
 
-    let check_message = `<p>Etes-vous sûr de vouloir supprimer la réservation de ` + firstName + ` ` + lastName + `?</p>
+    let check_message = `<p>Etes-vous sûr de vouloir supprimer la réservation de ${firstName} ${lastName}?</p>
                         <small>Cette action est irréversible.</small>
                         <div>
-                            <button type="button" onclick='removeBooking(this)' class="validateButton" data-idBooking='` + idBooking + `' data-idContact='` + idContact + `' data-typeOfBooking='`+ typeOfBooking +`'>oui</button> 
+                            <button type="button" onclick='removeBooking(this)' class="validateButton" data-idBooking='${idBooking}' data-idContact='${idContact}' data-typeOfBooking=${typeOfBooking}'>oui</button> 
                             <button type="button" onclick="hideModale()" class="cancelButton">non</button> 
                         </div>`;
     displayModale(check_message);
@@ -345,12 +344,12 @@ async function removeBooking(identifier) {
     let idContact = identifier.getAttribute('data-idContact');
 
     // read activities record based on given booking ID
-    fetch('api/bookingActivities/readBookingActivitiesList.php?idBooking=' + idBooking)
+    fetch(`api/bookingActivities/readBookingActivitiesList.php?idBooking=${idBooking}`)
     .then(res => res.json())
     .then((dataActivities) => {
         if (dataActivities.message === "No activity found.") {
             // remove booking record based on given contact ID
-            fetch('api/contact/removeOneContact.php?idContact=' + idContact)
+            fetch(`api/contact/removeOneContact.php?idContact=${idContact}`)
             .then(res => res.json())
             .then(dataContact => {
                 if(dataContact.message === "Unable to remove contact.") {
@@ -379,7 +378,7 @@ async function removeBooking(identifier) {
                 for (let index = 0; index < numberOfActivities; index++) {
                     let activity = dataActivities.records[index];
 
-                    fetch('api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=' + activity.idBookingActivity)
+                    fetch(`api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=${activity.idBookingActivity}`)
                     .then(res =>res.json())
                     .then((dataUsers) => {
                         if (dataUsers.message === "Unable to remove users.") {
@@ -390,7 +389,7 @@ async function removeBooking(identifier) {
                         } else if (dataUsers.message === "users removed.") {
                             if (lastActivityId === activity.idBookingActivity) {
                                 // remove booking record based on given contact ID
-                                fetch('api/contact/removeOneContact.php?idContact=' + idContact)
+                                fetch(`api/contact/removeOneContact.php?idContact=${idContact}`)
                                 .then(res => res.json())
                                 .then(dataContact => {
                                     if(dataContact.message === "Unable to remove contact.") {
@@ -412,7 +411,7 @@ async function removeBooking(identifier) {
             } else {
                 let crtIdBookingActivity = dataActivities.records[0].idBookingActivity;
 
-                fetch('api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+                fetch(`api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=${crtIdBookingActivity}`)
                 .then(res =>res.json())
                 .then((dataUsers) => {
                     if (dataUsers.message === "Unable to remove users.") {
@@ -423,7 +422,7 @@ async function removeBooking(identifier) {
                     } else if (dataUsers.message === "users removed.") {
 
                         // remove booking record based on given contact ID
-                        fetch('api/contact/removeOneContact.php?idContact=' + idContact)
+                        fetch(`api/contact/removeOneContact.php?idContact=${idContact}`)
                         .then(res => res.json())
                         .then(dataContact => {
                             if(dataContact.message === "Unable to remove contact.") {
@@ -454,7 +453,7 @@ function showContact(identifier) {
     let whereToWrite = document.querySelector('#backBooking-content');
 
     // read contact record based on given contact ID
-    fetch('api/contact/readOneContactDetails.php?idContact=' + idContact)
+    fetch(`api/contact/readOneContactDetails.php?idContact=${idContact}`)
     .then(res => res.json())
     .then((dataContact) => {
         if (dataContact.message === "No contact found.") {
@@ -463,29 +462,29 @@ function showContact(identifier) {
             displayModale(error_message);
 
         } else {
-            let update_one_contact_html = `<button class='backButton' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+            let update_one_contact_html = `<button class='backButton' onclick='showDetails(this)' data-idBooking='${idBooking}'>
                                                 Retour
                                             </button>
                                             <h3>Informations de contact</h3>
                                             <!-- contact data will be shown in this form -->
                                             <form>
                                                 <label>Nom
-                                                <input type="text" name="contact_lastName" value='` + dataContact.lastName + `'></label>
+                                                <input type="text" name="contact_lastName" value="${dataContact.lastName}"></label>
                                                 <label>Prénom</label>
-                                                <input type="text" name="contact_firstName" value='` + dataContact.firstName + `'>
+                                                <input type="text" name="contact_firstName" value="${dataContact.firstName}">
                                                 <label>Société</label>
-                                                <input type="text" name="contact_society" value='` + dataContact.organisation + `'>
+                                                <input type="text" name="contact_society" value="${dataContact.organisation}">
                                                 <label>Téléphone</label>
-                                                <input type="tel" name="contact_phone" value='` + dataContact.phoneNumber + `'>
+                                                <input type="tel" name="contact_phone" value="${dataContact.phoneNumber}">
                                                 <label>Mail</label>
-                                                <input type="mail" name="contact_mail" value=` + dataContact.mail + `>
+                                                <input type="mail" name="contact_mail" value="${dataContact.mail}">
                                                 <label>Adresse</label>
-                                                <input type="text" name="contact_adress" value='` + dataContact.adress + `'>
+                                                <input type="text" name="contact_adress" value="${dataContact.adress}">
                                                 <label>Code Postal</label>
-                                                <input type="Number" name="contact_postalCode" value='` + dataContact.postalCode + `'>
+                                                <input type="Number" name="contact_postalCode" value="${dataContact.postalCode}">
                                                 <label>Ville</label>
-                                                <input type="text" name="contact_city" value='` + dataContact.city + `'>
-                                                <input type="hidden" id="idBooking" name="contact_id" data-idBooking='` + idBooking + `' value='` + idBooking + `'>
+                                                <input type="text" name="contact_city" value="${dataContact.city}">
+                                                <input type="hidden" id="idBooking" name="contact_id" data-idBooking='${idBooking}' value="${idBooking}">
                                                 <button type="submit" class="update">Modifier</button> 
                                             </form>`;
             
@@ -551,7 +550,7 @@ function showBookingActivities(identifier) {
     if (typeOfBooking === "singleActivity") {
 
         // read activity record based on given bookingActivity ID
-        fetch('api/bookingActivities/readOneBookingActivity.php?idBookingActivity=' + idBookingActivity)
+        fetch(`api/bookingActivities/readOneBookingActivity.php?idBookingActivity=${idBookingActivity}`)
         .then(res => res.json())
         .then((dataActivity) => {
             if (dataActivity.message === "No activity found."){
@@ -559,7 +558,7 @@ function showBookingActivities(identifier) {
 
                 displayModale(error_message);
             } else {
-                let update_activity_html = `<button class="backButton" onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+                let update_activity_html = `<button class="backButton" onclick='showDetails(this)' data-idBooking='${idBooking}'>
                                                 Retour
                                             </button>
 
@@ -568,7 +567,7 @@ function showBookingActivities(identifier) {
                                             <form>
                                                 <div id="activity">
                                                 </div>
-                                                <input type="hidden" id="idBooking" name="booking_id" data-idBooking=` + idBooking + ` value=` + idBooking + `>
+                                                <input type="hidden" id="idBooking" name="booking_id" data-idBooking='${idBooking}' value="${idBooking}">
                                                 <button type="submit" class="update">Modifier</button> 
                                             </form>`;
 
@@ -578,9 +577,9 @@ function showBookingActivities(identifier) {
 
                 if (dataActivity.halfDaySelect === "Journée") {
                     let activity_html = `
-                        <input type="hidden" name="bookingActivity_id_activity_` + dataActivity.idBookingActivity + `" value=` + dataActivity.idBookingActivity + `>
-                        <select class="field singleActivitySelector" name="activity_` + dataActivity.idBookingActivity + `">
-                            <option value="` + dataActivity.codeActivity + `">` + dataActivity.nameActivity + `</option>
+                        <input type="hidden" name="bookingActivity_id_activity_${dataActivity.idBookingActivity}" value="${dataActivity.idBookingActivity}">
+                        <select class="field singleActivitySelector" name="activity_${dataActivity.idBookingActivity}">
+                            <option value="${dataActivity.codeActivity}">${dataActivity.nameActivity}</option>
                             <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée</option>
                             <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée</option>
                             <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée</option>
@@ -589,14 +588,14 @@ function showBookingActivities(identifier) {
                             <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée</option>
                             <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée</option>
                         </select>
-                        <input class="field singleActivityDate" type="date" name="date_activity_` + dataActivity.idBookingActivity + `" value=` + dataActivity.dateActivity + `>`;
+                        <input class="field singleActivityDate" type="date" name="date_activity_${dataActivity.idBookingActivity}" value=${dataActivity.dateActivity}>`;
 
                     activity.innerHTML += activity_html;
                 } else {
                     let activity_html = `
-                        <input type="hidden" name="bookingActivity_id_activity_` + dataActivity.idBookingActivity + `" value=` + dataActivity.idBookingActivity + `>
-                        <select class="field singleActivitySelector" name="activity_` + dataActivity.idBookingActivity + `">
-                            <option value="` + dataActivity.codeActivity + `">` + dataActivity.nameActivity + `</option>
+                        <input type="hidden" name="bookingActivity_id_activity_${dataActivity.idBookingActivity}" value=${dataActivity.idBookingActivity}>
+                        <select class="field singleActivitySelector" name="activity_${dataActivity.idBookingActivity}">
+                            <option value="${dataActivity.codeActivity}">${dataActivity.nameActivity}</option>
                             <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée</option>
                             <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée</option>
                             <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée</option>
@@ -608,12 +607,12 @@ function showBookingActivities(identifier) {
                             <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée</option>
                             <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée</option>
                         </select>
-                        <select class=field name="halfDaySelector_activity_` + dataActivity.idBookingActivity + `">
-                            <option value="`+ dataActivity.halfDaySelect + `">` + dataActivity.halfDaySelect + `</option>
+                        <select class=field name="halfDaySelector_activity_${dataActivity.idBookingActivity}">
+                            <option value="${dataActivity.halfDaySelect}">${dataActivity.halfDaySelect}</option>
                             <option value='Matinée'>Matin</option>
                             <option value='Après-midi'>Après-midi</option>
                         </select>
-                        <input class="field singleActivityDate" type="date" name="date_activity_` + dataActivity.idBookingActivity + `" value=` + dataActivity.dateActivity + `>`;
+                        <input class="field singleActivityDate" type="date" name="date_activity_${dataActivity.idBookingActivity}" value=${dataActivity.dateActivity}>`;
 
                     activity.innerHTML += activity_html;
                 }
@@ -629,10 +628,10 @@ function showBookingActivities(identifier) {
         })
     } else {
     // read activities record based on given booking ID
-    fetch('api/bookingActivities/readBookingActivitiesList.php?idBooking=' + idBooking)
+    fetch(`api/bookingActivities/readBookingActivitiesList.php?idBooking=${idBooking}`)
         .then(res => res.json())
         .then((dataActivities) => {
-            let update_activities_html = `<button class="backButton" onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+            let update_activities_html = `<button class="backButton" onclick='showDetails(this)' data-idBooking='${idBooking}'>
                                                 Retour
                                             </button>
                                             
@@ -641,7 +640,7 @@ function showBookingActivities(identifier) {
                                             <form>
                                                 <div id="activities">
                                                 </div>
-                                                <input type="hidden" id="idBooking" name="booking_id" data-idBooking=` + idBooking + ` value=` + idBooking + `>
+                                                <input type="hidden" id="idBooking" name="booking_id" data-idBooking='${idBooking}' value="${idBooking}">
                                                 <button type="submit" class="update">Modifier</button> 
                                             </form>`;
 
@@ -650,12 +649,11 @@ function showBookingActivities(identifier) {
             let activities = document.querySelector('#activities');
             
             dataActivities.records.forEach((keyActivity,valActivity) => {
-                console.log(keyActivity.halfDaySelect);
                 if (keyActivity.halfDaySelect === "Journée") {
                     let activity_html = `
-                        <input type="hidden" name="bookingActivity_id_rocCocktail_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.idBookingActivity + `>
-                        <select class="field singleActivitySelector" name="rocCocktail_activity_` + keyActivity.idBookingActivity + `">
-                            <option value="` + keyActivity.codeActivity + `">` + keyActivity.nameActivity + `</option>
+                        <input type="hidden" name="bookingActivity_id_rocCocktail_activity_${keyActivity.idBookingActivity}" value="${keyActivity.idBookingActivity}">
+                        <select class="field singleActivitySelector" name="rocCocktail_activity_${keyActivity.idBookingActivity}">
+                            <option value="${keyActivity.codeActivity}">${keyActivity.nameActivity}</option>
                             <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée</option>
                             <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée</option>
                             <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée</option>
@@ -668,9 +666,9 @@ function showBookingActivities(identifier) {
                     activities.innerHTML += activity_html;
                 } else {
                     let activity_html = `
-                        <input type="hidden" name="bookingActivity_id_rocCocktail_activity_` + keyActivity.idBookingActivity + `" value=` + keyActivity.idBookingActivity + `>
-                        <select class="field singleActivitySelector" name="rocCocktail_activity_` + keyActivity.idBookingActivity + `">
-                            <option value="` + keyActivity.codeActivity + `">` + keyActivity.nameActivity + `</option>
+                        <input type="hidden" name="bookingActivity_id_rocCocktail_activity_${keyActivity.idBookingActivity}" value="${keyActivity.idBookingActivity}">
+                        <select class="field singleActivitySelector" name="rocCocktail_activity_${keyActivity.idBookingActivity}">
+                            <option value="${keyActivity.codeActivity}">${keyActivity.nameActivity}</option>
                             <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée</option>
                             <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée</option>
                             <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée</option>
@@ -682,13 +680,13 @@ function showBookingActivities(identifier) {
                             <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée</option>
                             <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée</option>
                         </select>
-                        <input type="hidden"  name="halfDaySelector_rocCocktail_activity_` + keyActivity.idBookingActivity + `" value="`+ keyActivity.halfDaySelect + `">`;
+                        <input type="hidden"  name="halfDaySelector_rocCocktail_activity_${keyActivity.idBookingActivity}" value="${keyActivity.halfDaySelect}">`;
 
                     activities.innerHTML += activity_html;
                 }
             });
 
-            let date_html =`<input class="field rocDate" type="date" name="date_rocCocktail" value=` + dataActivities.records[0].dateActivity + `>`;
+            let date_html =`<input class="field rocDate" type="date" name="date_rocCocktail" value=${dataActivities.records[0].dateActivity}>`;
             activities.innerHTML += date_html;
 
             let form = document.querySelector('form');
@@ -703,7 +701,6 @@ function showBookingActivities(identifier) {
 }
 
 function updateBookingActivities() {
-    console.log('updateBookingActivities');
 
     let idBooking = document.querySelector('#idBooking');
     let jsondata = JSON.parse('{ }');
@@ -718,13 +715,13 @@ function updateBookingActivities() {
             // get activity name
             jsondata["nameActivity"] = dataActivities.get(key);
             // get activity date 
-            jsondata["dateActivity"] = dataActivities.get("date_" + key);
+            jsondata["dateActivity"] = dataActivities.get(`date_${key}`);
             // get activity half day 
             if (dataActivities.has("halfDaySelector_" + key)) {
-                jsondata["halfDay"] = dataActivities.get("halfDaySelector_" + key);
+                jsondata["halfDay"] = dataActivities.get(`halfDaySelector_${key}`);
             }
             // get activity ID 
-            jsondata["idActivity"] = dataActivities.get("bookingActivity_id_" + key);
+            jsondata["idActivity"] = dataActivities.get(`bookingActivity_id_${key}`);
         }
 
         // Manage RocActivities
@@ -737,11 +734,11 @@ function updateBookingActivities() {
             // get activity date 
             cocktailActivityDetailsJson["dateActivity"] = dataActivities.get("date_rocCocktail");
             // get activity half day 
-            if (dataActivities.has("halfDaySelector_" + key)) {
-                cocktailActivityDetailsJson["halfDay"] = dataActivities.get("halfDaySelector_" + key);
+            if (dataActivities.has(`halfDaySelector_${key}`)) {
+                cocktailActivityDetailsJson["halfDay"] = dataActivities.get(`halfDaySelector_${key}`);
             }
             // get activity ID
-            cocktailActivityDetailsJson["idActivity"] = dataActivities.get("bookingActivity_id_" + key);
+            cocktailActivityDetailsJson["idActivity"] = dataActivities.get(`bookingActivity_id_${key}`);
             
             jsondata["activities"] = activitiesJson;
 
@@ -750,7 +747,6 @@ function updateBookingActivities() {
     }
     
     let crtFormData = JSON.stringify(jsondata);
-    console.log(crtFormData)
     
     // update activities
     fetch('api/bookingActivities/updateBookingActivities.php', {
@@ -763,7 +759,6 @@ function updateBookingActivities() {
     })
     .then(res => res.json())
     .then(data => {
-        console.log(data.message);
         if (data.message === "Unable to update activity."){
             let error_message = `<p>Impossible de modifier cette activité.</p><p>Votre saisie est erronée.</p>`;
 
@@ -818,7 +813,7 @@ function confirmBookingActivityRemovation(identifier) {
         let check_message = `<p>Etes-vous sûr de vouloir supprimer cette activité et tous les participants associés?</p>
                             <small>Cette action est irréversible.</small>
                             <div>
-                                <button type="button" onclick='removeBookingActivity(this)' class="validateButton" data-idBooking='` + idBooking + `' data-idBookingActivity='` + idBookingActivity + `'>oui</button> 
+                                <button type="button" onclick='removeBookingActivity(this)' class="validateButton" data-idBooking='${idBooking}' data-idBookingActivity='${idBookingActivity}'>oui</button> 
                                 <button type="button" onclick="hideModale()" class="cancelButton">non</button> 
                             </div>`;
 
@@ -827,7 +822,7 @@ function confirmBookingActivityRemovation(identifier) {
         let check_message = `<p>Etes-vous sûr de vouloir supprimer ce cocktail d'activités et tous les participants associés?</p>
                             <small>Cette action est irréversible.</small>
                             <div>
-                                <button type="button" onclick='removeBookingActivities(this)' class="validateButton" data-idBooking='` + idBooking + `'>oui</button> 
+                                <button type="button" onclick='removeBookingActivities(this)' class="validateButton" data-idBooking='${idBooking}'>oui</button> 
                                 <button type="button" onclick="hideModale()" class="cancelButton">non</button> 
                             </div>`;
         displayModale(check_message);
@@ -839,7 +834,7 @@ function removeBookingActivity(identifier) {
     //get bookingActivity ID
     let idBookingActivity = identifier.getAttribute('data-idBookingActivity');
 
-    fetch('api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=' + idBookingActivity)
+    fetch(`api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=${idBookingActivity}`)
     .then(res =>res.json())
     .then((dataUsers) => {
         if (dataUsers.message === "Unable to remove users.") {
@@ -850,7 +845,7 @@ function removeBookingActivity(identifier) {
         } else if (dataUsers.message === "users removed.") {
 
             // remove activity record based on given bookingActivity ID
-            fetch('api/bookingActivities/removeOneBookingActivity.php?idBookingActivity=' + idBookingActivity)
+            fetch(`api/bookingActivities/removeOneBookingActivity.php?idBookingActivity=${idBookingActivity}`)
             .then(res => res.json())
             .then(data => {
                 if (data.message === "Unable to remove activity.") {
@@ -878,7 +873,7 @@ function removeBookingActivities(identifier) {
     let crtIdBookingActivity = 0;
 
     // read activities record based on given booking ID
-    fetch('api/bookingActivities/readBookingActivitiesList.php?idBooking=' + idBooking)
+    fetch(`api/bookingActivities/readBookingActivitiesList.php?idBooking=${idBooking}`)
     .then(res => res.json())
     .then((dataActivities) => {
         if (dataActivities.message === "No activity found.") {
@@ -892,7 +887,7 @@ function removeBookingActivities(identifier) {
                 crtIdBookingActivity = keyActivity.idBookingActivity;
             }))
             
-            fetch('api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=' + crtIdBookingActivity)
+            fetch(`api/bookingActivitiesUsers/removeAllUsers.php?idBookingActivity=${crtIdBookingActivity}`)
             .then(res =>res.json())
             .then((dataUsers) => {
                 if (dataUsers.message === "Unable to remove users.") {
@@ -903,7 +898,7 @@ function removeBookingActivities(identifier) {
                 } else if (dataUsers.message === "users removed.") {
                     
                     // remove activity record based on given booking ID
-                    fetch('api/bookingActivities/removeAllBookingActivities.php?idBooking=' + idBooking)
+                    fetch(`api/bookingActivities/removeAllBookingActivities.php?idBooking=${idBooking}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.message === "Unable to remove activities.") {
@@ -934,7 +929,7 @@ function showOneUser(identifier){
     let whereToWrite = document.querySelector("#backBooking-content");
 
     // read user record based on given user ID
-    fetch('api/user/readOneUserDetails.php?idUser=' + idUser)
+    fetch(`api/user/readOneUserDetails.php?idUser=${idUser}`)
     .then(res => res.json())
     .then(dataUser => {
         if(dataUser.message === "No user found.") {
@@ -942,19 +937,19 @@ function showOneUser(identifier){
 
             displayModale(error_message);
         } else {
-            let update_one_user_html =`<button class='backButton' onclick='showDetails(this)' data-idBooking='` + idBooking + `'>
+            let update_one_user_html =`<button class='backButton' onclick='showDetails(this)' data-idBooking='${idBooking}'>
                                             Retour
                                         </button>
 
                                         <h3>Participant sélectionné</h3>
                                         <!-- user data will be shown in this form -->
                                         <form>
-                                            <input type="text" name="participant_lastName" value='` + dataUser.lastName + `'>
-                                            <input type="text" name="participant_firstName" value='` + dataUser.firstName + `'>
-                                            <input type="text" name="participant_birthdate" value='` + dataUser.birthdate + `'>
-                                            <input type="text" name="participant_size" value='` + dataUser.size + `'>
-                                            <input type="hidden" name="participant_id" value='` + idUser + `'>
-                                            <input type="hidden" id="idBooking" data-idBooking='` + idBooking + `'>
+                                            <input type="text" name="participant_lastName" value='${dataUser.lastName}'>
+                                            <input type="text" name="participant_firstName" value='${dataUser.firstName}'>
+                                            <input type="text" name="participant_birthdate" value='${dataUser.birthdate}'>
+                                            <input type="text" name="participant_size" value='${dataUser.size}'>
+                                            <input type="hidden" name="participant_id" value='${idUser}'>
+                                            <input type="hidden" id="idBooking" data-idBooking='${idBooking}'>
                                             <button type="submit" class="update">Modifier</button> 
                                         </form>`;
 
@@ -1009,10 +1004,10 @@ function confirmUserRemovation(identifier){
     let lastName = identifier.getAttribute('data-lastName');
     let firstName = identifier.getAttribute('data-firstName');
 
-    let check_message = `<p>Etes-vous sûr de vouloir supprimer ` + firstName + ` ` + lastName + `?</p>
+    let check_message = `<p>Etes-vous sûr de vouloir supprimer ${firstName} ${lastName}?</p>
                         <small>Cette action est irréversible.</small>
                         <div>
-                            <button type="button" onclick='removeOneUser(this)' class="validateButton" data-idBooking='` + idBooking + `' data-idUser='` + idUser + `'>oui</button> 
+                            <button type="button" onclick='removeOneUser(this)' class="validateButton" data-idBooking='${idBooking}' data-idUser='${idUser}'>oui</button> 
                             <button type="button" onclick="hideModale()" class="cancelButton">non</button> 
                         </div>`;
     displayModale(check_message);
@@ -1023,7 +1018,7 @@ function removeOneUser(identifier) {
     let idUser = identifier.getAttribute('data-idUser');
 
     // remove user record based on given user ID
-    fetch('api/user/removeOneUser.php?idUser=' + idUser)
+    fetch(`api/user/removeOneUser.php?idUser=${idUser}`)
     .then(res => res.json())
     .then(data => {
         if (data.message === "Unable to remove user.") {

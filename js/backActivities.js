@@ -13,7 +13,7 @@ function showActivity(identifier) {
     let whereToWrite = document.querySelector("#backActivities-content");
 
     // read activity record based on given codeActivity
-    fetch('api/activity/readOneActivity.php?codeActivity=' + activity)
+    fetch(`api/activity/readOneActivity.php?codeActivity=${activity}`)
     .then(res => res.json())
     .then(dataActivity => {
         console.log(dataActivity);
@@ -30,15 +30,15 @@ function showActivity(identifier) {
                                             <h3>activité sélectionnée</h3>
                                             <!-- activity data will be shown in this form -->
                                             <form>
-                                                <input type="hidden" name="codeActivity" value="` + dataActivity.codeActivity + `">
+                                                <input type="hidden" name="codeActivity" value="${dataActivity.codeActivity}">
                                                 <label>Nom</label>
-                                                <input type="text" name="name" value="` + dataActivity.name + `">
+                                                <input type="text" name="name" value="${dataActivity.name}">
                                                 <label>Tarif/pers.</label>
-                                                <input type="number" name="price" value="` + dataActivity.price + `">
+                                                <input type="number" name="price" value="${dataActivity.price}">
                                                 <label>Nombre de participants minimum</label>
-                                                <input type="number" name="minCount" value="` + dataActivity.minCount + `">
+                                                <input type="number" name="minCount" value="${dataActivity.minCount}">
                                                 <label>Nombre de participants maximum</label>
-                                                <input type="number" name="maxCount" value="` + dataActivity.maxCount + `">
+                                                <input type="number" name="maxCount" value="${dataActivity.maxCount}">
                                                 <button type="submit" class="update">Modifier</button> 
                                             </form>`;
             
