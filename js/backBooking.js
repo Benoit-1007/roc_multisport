@@ -547,6 +547,11 @@ function showBookingActivities(identifier) {
 
     let whereToWrite = document.querySelector("#backBooking-content");
 
+    fetch('api/activity/readActivitiesList.php')
+    .then(res =>res.json())
+    .then((dataActivities) =>{
+        
+    
     if (typeOfBooking === "singleActivity") {
 
         // read activity record based on given bookingActivity ID
@@ -580,13 +585,13 @@ function showBookingActivities(identifier) {
                         <input type="hidden" name="bookingActivity_id_activity_${dataActivity.idBookingActivity}" value="${dataActivity.idBookingActivity}">
                         <select class="field singleActivitySelector" name="activity_${dataActivity.idBookingActivity}">
                             <option value="${dataActivity.codeActivity}">${dataActivity.nameActivity}</option>
-                            <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée</option>
-                            <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée</option>
-                            <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée</option>
-                            <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée</option>
-                            <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Via Ferrata - journée (2 via ferrata)</option>
-                            <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée</option>
-                            <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée</option>
+                            <option value="bikeAllDayNoLoc" name="${dataActivities.bikeAllDayNoLoc.name}">${dataActivities.bikeAllDayNoLoc.name}</option>
+                            <option value="bikeAllDay" name="${dataActivities.bikeAllDay.name}">${dataActivities.bikeAllDay.name}</option>
+                            <option value="paddleAllDay" name="${dataActivities.paddleAllDay.name}">${dataActivities.paddleAllDay.name}</option>
+                            <option value="climbingAllDay" name="${dataActivities.climbingAllDay.name}">${dataActivities.climbingAllDay.name}</option>
+                            <option value="viaAllDay" name="${dataActivities.viaAllDay.name}">${dataActivities.viaAllDay.name}</option>
+                            <option value="snowboardAllDay" name="${dataActivities.snowboardAllDay.name}">${dataActivities.snowboardAllDay.name}</option>
+                            <option value="splitboardAllDay" name="${dataActivities.splitboardAllDay.name}">${dataActivities.splitboardAllDay.name}</option>
                         </select>
                         <input class="field singleActivityDate" type="date" name="date_activity_${dataActivity.idBookingActivity}" value=${dataActivity.dateActivity}>`;
 
@@ -596,16 +601,16 @@ function showBookingActivities(identifier) {
                         <input type="hidden" name="bookingActivity_id_activity_${dataActivity.idBookingActivity}" value=${dataActivity.idBookingActivity}>
                         <select class="field singleActivitySelector" name="activity_${dataActivity.idBookingActivity}">
                             <option value="${dataActivity.codeActivity}">${dataActivity.nameActivity}</option>
-                            <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée</option>
-                            <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée</option>
-                            <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée</option>
-                            <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée</option>
-                            <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée</option>
-                            <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Via Ferrata - 1/2 journée</option>
-                            <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay" data-period="may/october">Tir à l'arc - 1/2 journée</option>
-                            <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="1" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow)</option>
-                            <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée</option>
-                            <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée</option>
+                            <option value="bikeHalfDayNoLoc" name="${dataActivities.bikeHalfDayNoLoc.name}">${dataActivities.bikeHalfDayNoLoc.name}</option>
+                            <option value="bikeHalfDay" name="${dataActivities.bikeHalfDay.name}">${dataActivities.bikeHalfDay.name}</option>
+                            <option value="paddleHalfDay" name="${dataActivities.paddleHalfDay.name}">${dataActivities.paddleHalfDay.name}</option>
+                            <option value="kayak" name="${dataActivities.kayak.name}">${dataActivities.kayak.name}</option>
+                            <option value="climbingHalfDay" name="${dataActivities.climbingHalfDay.name}">${dataActivities.climbingHalfDay.name}</option>
+                            <option value="viaHalfDay" name="${dataActivities.viaHalfDay.name}">${dataActivities.viaHalfDay.name}</option>
+                            <option value="archery" name="${dataActivities.archery.name}">${dataActivities.archery.name}</option>
+                            <option value="snowboardRookeasy" name="${dataActivities.snowboardRookeasy.name}">${dataActivities.snowboardRookeasy.name}</option>
+                            <option value="snowboardHalfDay" name="${dataActivities.snowboardHalfDay.name}">${dataActivities.snowboardHalfDay.name}</option>
+                            <option value="splitboardHalfDay" name="${dataActivities.splitboardHalfDay.name}">${dataActivities.splitboardHalfDay.name}</option>
                         </select>
                         <select class=field name="halfDaySelector_activity_${dataActivity.idBookingActivity}">
                             <option value="${dataActivity.halfDaySelect}">${dataActivity.halfDaySelect}</option>
@@ -630,7 +635,7 @@ function showBookingActivities(identifier) {
     // read activities record based on given booking ID
     fetch(`api/bookingActivities/readBookingActivitiesList.php?idBooking=${idBooking}`)
         .then(res => res.json())
-        .then((dataActivities) => {
+        .then((dataCocktail) => {
             let update_activities_html = `<button class="backButton" onclick='showDetails(this)' data-idBooking='${idBooking}'>
                                                 Retour
                                             </button>
@@ -648,19 +653,19 @@ function showBookingActivities(identifier) {
 
             let activities = document.querySelector('#activities');
             
-            dataActivities.records.forEach((keyActivity,valActivity) => {
+            dataCocktail.records.forEach((keyActivity,valActivity) => {
                 if (keyActivity.halfDaySelect === "Journée") {
                     let activity_html = `
                         <input type="hidden" name="bookingActivity_id_rocCocktail_activity_${keyActivity.idBookingActivity}" value="${keyActivity.idBookingActivity}">
                         <select class="field singleActivitySelector" name="rocCocktail_activity_${keyActivity.idBookingActivity}">
                             <option value="${keyActivity.codeActivity}">${keyActivity.nameActivity}</option>
-                            <option value="bikeAllDayNoLoc" name="VTTAE sans location VTT - journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE sans location VTT - journée</option>
-                            <option value="bikeAllDay" name="VTTAE avec location VTT - journée" data-price="130" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="april/october">VTTAE avec location VTT - journée</option>
-                            <option value="paddleAllDay" name="Paddle - journée" data-price="100" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Paddle - journée</option>
-                            <option value="climbingAllDay" name="Escalade - journée" data-price="90" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Escalade - journée</option>
-                            <option value="viaAllDay" name="Via Ferrata - journée (2 via ferrata)" data-price="110" data-minParticipants="4" data-maxParticipants="8" data-duration="allDay" data-period="may/october">Via Ferrata - journée (2 via ferrata)</option>
-                            <option value="snowboardAllDay" name="Snowboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="8" data-duration="allDay" data-period="december-april">Snowboard - journée</option>
-                            <option value="splitboardAllDay" name="Splitboard - journée" data-price="330" data-minParticipants="2" data-maxParticipants="6" data-duration="allDay" data-period="december-april">Splitboard - journée</option>
+                            <option value="bikeAllDayNoLoc" name="${dataActivities.bikeAllDayNoLoc.name}">${dataActivities.bikeAllDayNoLoc.name}</option>
+                            <option value="bikeAllDay" name="${dataActivities.bikeAllDay.name}">${dataActivities.bikeAllDay.name}</option>
+                            <option value="paddleAllDay" name="${dataActivities.paddleAllDay.name}">${dataActivities.paddleAllDay.name}</option>
+                            <option value="climbingAllDay" name="${dataActivities.climbingAllDay.name}">${dataActivities.climbingAllDay.name}</option>
+                            <option value="viaAllDay" name="${dataActivities.viaAllDay.name}">${dataActivities.viaAllDay.name}</option>
+                            <option value="snowboardAllDay" name="${dataActivities.snowboardAllDay.name}">${dataActivities.snowboardAllDay.name}</option>
+                            <option value="splitboardAllDay" name="${dataActivities.splitboardAllDay.name}">${dataActivities.splitboardAllDay.name}</option>
                         </select>`;
 
                     activities.innerHTML += activity_html;
@@ -669,16 +674,16 @@ function showBookingActivities(identifier) {
                         <input type="hidden" name="bookingActivity_id_rocCocktail_activity_${keyActivity.idBookingActivity}" value="${keyActivity.idBookingActivity}">
                         <select class="field singleActivitySelector" name="rocCocktail_activity_${keyActivity.idBookingActivity}">
                             <option value="${keyActivity.codeActivity}">${keyActivity.nameActivity}</option>
-                            <option value="bikeHalfDayNoLoc" name="VTTAE sans location VTT - 1/2 journée" data-price="45" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE sans location VTT - 1/2 journée</option>
-                            <option value="bikeHalfDay" name="VTTAE avec location VTT - 1/2 journée" data-price="80" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="april/october">VTTAE avec location VTT - 1/2 journée</option>
-                            <option value="paddleHalfDay" name="Paddle - 1/2 journée" data-price="55" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Paddle - 1/2 journée</option>
-                            <option value="kayak" name="Kayak - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Kayak - 1/2 journée</option>
-                            <option value="climbingHalfDay" name="Escalade - 1/2 journée" data-price="50" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Escalade - 1/2 journée</option>
-                            <option value="viaHalfDay" name="Via Ferrata - 1/2 journée" data-price="60" data-minParticipants="4" data-maxParticipants="8" data-duration="halfDay" data-period="may/october">Via Ferrata - 1/2 journée</option>
-                            <option value="archery" name="Tir à l'arc - 1/2 journée" data-price="50" data-minParticipants="6" data-maxParticipants="12" data-duration="halfDay" data-period="may/october">Tir à l'arc - 1/2 journée</option>
-                            <option value="snowboardRookeasy" name="Rookeasy - 3 x 1/2 journée (débutant snow)" data-price="180" data-minParticipants="1" data-maxParticipants="8" data-duration="threeHalfDay" data-period="december-april">Rookeasy - 3 x 1/2 journée (débutant snow)</option>
-                            <option value="snowboardHalfDay" name="Snowboard - 1/2 journée" data-price="160" data-minParticipants="2" data-maxParticipants="8" data-duration="halfDay" data-period="december-april">Snowboard - 1/2 journée</option>
-                            <option value="splitboardHalfDay" name="Splitboard - 1/2 journée" data-price="180" data-minParticipants="2" data-maxParticipants="6" data-duration="halfDay" data-period="december-april">Splitboard - 1/2 journée</option>
+                            <option value="bikeHalfDayNoLoc" name="${dataActivities.bikeHalfDayNoLoc.name}">${dataActivities.bikeHalfDayNoLoc.name}</option>
+                            <option value="bikeHalfDay" name="${dataActivities.bikeHalfDay.name}">${dataActivities.bikeHalfDay.name}</option>
+                            <option value="paddleHalfDay" name="${dataActivities.paddleHalfDay.name}">${dataActivities.paddleHalfDay.name}</option>
+                            <option value="kayak" name="${dataActivities.kayak.name}">${dataActivities.kayak.name}</option>
+                            <option value="climbingHalfDay" name="${dataActivities.climbingHalfDay.name}">${dataActivities.climbingHalfDay.name}</option>
+                            <option value="viaHalfDay" name="${dataActivities.viaHalfDay.name}">${dataActivities.viaHalfDay.name}</option>
+                            <option value="archery" name="${dataActivities.archery.name}">${dataActivities.archery.name}</option>
+                            <option value="snowboardRookeasy" name="${dataActivities.snowboardRookeasy.name}">${dataActivities.snowboardRookeasy.name}</option>
+                            <option value="snowboardHalfDay" name="${dataActivities.snowboardHalfDay.name}">${dataActivities.snowboardHalfDay.name}</option>
+                            <option value="splitboardHalfDay" name="${dataActivities.splitboardHalfDay.name}">${dataActivities.splitboardHalfDay.name}</option>
                         </select>
                         <input type="hidden"  name="halfDaySelector_rocCocktail_activity_${keyActivity.idBookingActivity}" value="${keyActivity.halfDaySelect}">`;
 
@@ -686,7 +691,7 @@ function showBookingActivities(identifier) {
                 }
             });
 
-            let date_html =`<input class="field rocDate" type="date" name="date_rocCocktail" value=${dataActivities.records[0].dateActivity}>`;
+            let date_html =`<input class="field rocDate" type="date" name="date_rocCocktail" value=${dataCocktail.records[0].dateActivity}>`;
             activities.innerHTML += date_html;
 
             let form = document.querySelector('form');
@@ -698,6 +703,7 @@ function showBookingActivities(identifier) {
             })
         })
     }
+    })
 }
 
 function updateBookingActivities() {
