@@ -31,6 +31,5 @@ if ($num > 0) {
         );
     }
 }
-
 // call dependencies
 require 'views/home.phtml';

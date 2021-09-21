@@ -25,7 +25,8 @@ function showBookings() {
     fetch('api/booking/readBookingsList.php')
     .then(res => res.json())
     .then((data) => {
-        if(data.message === "No bookings found.") {
+        console.log(data);
+        if(data.message === "No booking found.") {
             let message = `<button class="backButton" onclick="window.location.href = 'backBooking.php';" >
                                 Dashboard
                             </button>

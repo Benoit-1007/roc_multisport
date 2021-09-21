@@ -8,7 +8,7 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../config/database.php';
 
 // instantiate all objects
-include_once '../objects/activity.php';
+include_once '../objects/Activity.php';
 
 $database = new Database();
 $db = $database->getConnection();
