@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
             $_SESSION['error'] = $errors;
         } else {
             extract($_POST);
-        
+
             $mail_to = 'benoit@rocmultisport.fr';
             $subject = 'Demande de renseignement de '.$prenom .$nom;
 

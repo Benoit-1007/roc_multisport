@@ -27,7 +27,7 @@ function showActivity(identifier) {
                                                 Retour
                                             </button>
 
-                                            <h3>activité sélectionnée</h3>
+                                            <h3>Activité sélectionnée</h3>
                                             <!-- activity data will be shown in this form -->
                                             <form>
                                                 <input type="hidden" name="codeActivity" value="${dataActivity.codeActivity}">

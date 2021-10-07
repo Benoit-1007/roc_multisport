@@ -26,7 +26,7 @@ function showBookings() {
     .then(res => res.json())
     .then((data) => {
         if(data.message === "No booking found.") {
-            let message = `<button class="backButton" onclick="window.location.href = 'backBooking.php';" >
+            let message = `<button class="backButton" onclick="window.location.href = 'backBookings.php';" >
                                 Dashboard
                             </button>
                             <h1 class="alert">Pas de réservation à afficher</h1>`
@@ -35,7 +35,7 @@ function showBookings() {
         document.querySelector('#backBooking-content').innerHTML = message;
         } else {
             // html for listing products
-            let read_bookings_html = `<button class="backButton" onclick="window.location.href = 'backBooking.php';" >
+            let read_bookings_html = `<button class="backButton" onclick="window.location.href = 'backBookings.php';" >
                                         Dashboard
                                     </button>
                                     <h1>Liste des réservations</h1>

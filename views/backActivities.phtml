@@ -18,7 +18,7 @@
     <main class="backPage backActivities">
 
         <?php if (array_key_exists('user', $_SESSION) && !empty($_SESSION['user'])): ?>
-            <button class='backButton' onclick="window.location.href = 'backBooking.php';" >
+            <button class='backButton' onclick="window.location.href = 'backBookings.php';" >
                 Dashboard
             </button>
             <a href='logout.php' class="logout">Déconnexion</a>
@@ -157,14 +157,14 @@
                         <td><?= $activities['cocktailOneDay']['price'] ?>%</td>
                         <td><?= $activities['cocktailOneDay']['minCount'] ?> participants </td>
                         <td><?= $activities['cocktailOneDay']['maxCount'] ?> Participants </td>
-                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities['splitboardHalfDay']['codeActivity'] ?>></button></td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities['cocktailOneDay']['codeActivity'] ?>></button></td>
                     </tr>
                     <tr>
-                        <td><?= $activities['cocktailTwoDay']['name'] ?></td>
-                        <td><?= $activities['cocktailTwoDay']['price'] ?>%</td>
-                        <td><?= $activities['cocktailTwoDay']['minCount'] ?> participants </td>
-                        <td><?= $activities['cocktailTwoDay']['maxCount'] ?> Participants </td>
-                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities['splitboardAllDay']['codeActivity'] ?>></button></td>
+                        <td><?= $activities['cocktailTwoDays']['name'] ?></td>
+                        <td><?= $activities['cocktailTwoDays']['price'] ?>%</td>
+                        <td><?= $activities['cocktailTwoDays']['minCount'] ?> participants </td>
+                        <td><?= $activities['cocktailTwoDays']['maxCount'] ?> Participants </td>
+                        <td><button class="action fas fa-pen" onclick='showActivity(this)' data-codeActivity=<?= $activities['cocktailTwoDays']['codeActivity'] ?>></button></td>
                     </tr>
                 </table>
             </div>

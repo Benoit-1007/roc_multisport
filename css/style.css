@@ -196,8 +196,8 @@ div.form-error, .emptyField {
     border-radius: 5px;
 }
 .red-border{
-    border: 2px solid var(--require);
-    border-radius: 5px;
+    border: 2px solid var(--require) !important;
+    border-radius: 5px !important;
 }
 /* #endregion COMMUM */
 
@@ -778,8 +778,9 @@ fieldset, .booking textarea{
     font-family: 'DIN-Regular';
     font-size: 2rem;
     position: absolute;
-    top: 1rem;
+    top: 1.5rem;
     left: 1rem;
+    margin: 0;
 } 
 .backPage table{
     color: var(--rocColorR);

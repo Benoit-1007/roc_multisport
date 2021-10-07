@@ -68,7 +68,14 @@ if (
         if (isset($data->activities)) {
             $typeOfBooking = "singleActivity";
 
+            // $mail_recap = 'Type de réservation: Activité simple'."\n";
+
             $booking->comment = $data->comment->comment;
+
+            // $mail_recap .= 'Commentaire: ' . $booking->comment;
+
+            // var_dump($mail_recap);
+
             $booking->idContact = $contactId;
             $booking->typeOfBooking = $typeOfBooking;
 
@@ -165,7 +172,7 @@ if (
                 }
             }
         } else {
-            if ($data->cocktail[0]->formula !== "cocktailOneDay" && $data->cocktail[0]->formula !== "cocktailTwoDay") {
+            if ($data->cocktail[0]->formula !== "cocktailOneDay" && $data->cocktail[0]->formula !== "cocktailTwoDays") {
                 // set response code - 400 bad request
                 http_response_code(400);
                 // tell the user
@@ -227,7 +234,7 @@ if (
                         // set response code - 400 bad request
                         http_response_code(400);
                         // tell the user
-                        echo json_encode(array("message" => "Unable to create booking activity. invalid date")); die;
+                        echo json_encode(array("message" => "Unable to create booking activity. Invalid date")); die;
                     }
                     // Create Users
                     // ============
@@ -256,7 +263,7 @@ if (
                                 // set response code - 400 bad request
                                 http_response_code(400);
                                 // tell the user
-                                echo json_encode(array("message" => "Unable to create participants List.  Technical error.")); die;
+                                echo json_encode(array("message" => "Unable to create participants List. Technical error.")); die;
                             } else {
                                 foreach ($bookingActivitiesId_Array as $bookingActivityId) {
                                     // Create Activities Users
