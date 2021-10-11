@@ -13,7 +13,6 @@ include_once '../objects/bookingActivity.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// $booking = new Booking($db);
 $bookingActivity = new BookingActivity($db);
 
 // get booking ID from url

@@ -59,7 +59,8 @@ body{
 .backBooking,
 .temporaryBooking,
 .contact,
-.policy{
+.policy,
+.print{
     padding: 2rem;
 }
 .activity{
@@ -591,6 +592,25 @@ header{
     width:100%;
 }
 /* #endregion SLIDER */
+
+/* #region PRINT */
+.print{
+    color:var(--darkColor);
+}
+.print h1{
+    text-align: center;
+    color: var(--rocColorC);
+}
+.print p {
+    color: var(--rocColorO);
+}
+.print em {
+    color: var(--darkColor);
+} 
+.print ul em {
+    padding-left: 6rem;
+}
+/* #endregion PRINT */
 
 /* #region BOOKING */
 .booking{

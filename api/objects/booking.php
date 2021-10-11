@@ -46,6 +46,21 @@ class Booking {
         return 0;
     }
 
+    public function readLast()
+    {
+        $query = "SELECT MAX(idBooking) FROM bookings";
+
+        // prepare query
+        $stmt = $this->conn->prepare($query);
+
+        //execute query
+        $stmt->execute();
+
+        $lastId = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->idBooking = $lastId['MAX(idBooking)'];
+    }
+
     /** Read all bookings 
      * get all booking data and contact data for each booking */
     public function readList()

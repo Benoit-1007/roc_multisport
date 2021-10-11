@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROC Multisport - Reservation Page</title>
+    <link rel="icon" href="img/background/logoRocMultisport.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="booking">
+    <header>
+        <?php require('partials/header.php') ?> 
+    </header>
+
+    <main class="print">
+        <h1>Récapitulatif de votre réservation du <?= $booking_item['dateOfBooking'] ?></h1>
+
+        <?php if ($booking_item['typeOfBooking'] = "singleActivity"): ?>
+            <div>
+                <p>Type de réservation: <em>activité(s) simple(s)</em></p>
+                <?php if (!empty($booking_item['comment'])): ?>
+                    <p>Commentaire: 
+                        <em><?= $booking_item['comment']?></em>
+                    </p>
+                <?php endif; ?>
+                <p>Contact: 
+                    <em><?= $contact_item['firstName']?> <?= $contact_item['lastName']?></em>
+                </p>
+                <?php if (!empty($contact_item['organisation'])): ?>
+                    <p>Société: 
+                        <em><?= $contact_item['organisation']?></em>
+                    </p>
+                <?php endif; ?>
+                <?php if ($activities_array['numberOfActivities'] === 1): ?>
+                    <p>Activité: 
+                        <em><?= $activities_array['records'][0]['nameActivity'] ?></em>
+                    </p>
+                    <?php if($activities_array['records'][0]['halfDaySelect'] !== "Journée"): ?>
+                        <p>Date d'activité: 
+                            <em><?= $activities_array['records'][0]['dateActivity'] ?> <?= $activities_array['records'][0]['halfDaySelect']?></em>
+                        </p>
+                    <?php else: ?>
+                        <p>Date d'activité: 
+                            <em><?= $activities_array['records'][0]['dateActivity'] ?></em>
+                        </p>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if($users_array["numberOfParticipants"] === 1): ?>   
+                    <p>Participant: 
+                        <em><?= $activities_array['records'][0]['users'][0]['firstName'] .' '. $activities_array['records'][0]['users'][0]['lastName']?></em>
+                    </p>
+                <?php else: ?>
+                    <p>Participants: </p> 
+                    <ul>
+                        <?php foreach ($activities_array['records'][0]['users'] as $user): ?>
+                            <li><em><?= $user['firstName'] .' '. $user['lastName']?></em></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+            <div class="basket">
+                <table>
+                    <tr>
+                        <th colspan="4">mon panier</th>
+                    </tr>
+                    <?php foreach($activities_array['records'] as $activity): ?>
+                        <tr>
+                            <td><?= $activity['nameActivity']?></td>
+                            <td><?= $users_array["numberOfParticipants"]. x?></td>
+                            <td><?= $activity['price'].€?></td>
+                            <td><?= $activity['totalActivityPrice'].€?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    <tr>
+                        <td colspan="3">total réservation :</td>
+                            <td class="totalPrice"><?= $activities_array["totalPrice"].€ ?></td>
+                    </tr>
+                </table>
+            </div>
+
+
+                
+            <?= $users_array["numberOfParticipants"]?>
+
+            <p><?= $activities_array['records'][0]['dateActivity']?></p>
+            <p><?= $activities_array['records'][0]['halfDaySelect']?></p>
+            <p><?= $activities_array['records'][0]['©']?></p>
+            <p><?= $activities_array['records'][0]['price']?></p>
+            <p><?= $activities_array['numberOfActivities']?></p>
+            <p><?= $users_array['records'][0]['lastName']?></p>
+            <p><?= $users_array['records'][0]['firstName']?></p>
+            <p><?= $users_array["numberOfParticipants"]?></p>
+        <?php endif; ?>
+    </main>
+
+    
+</body>
+</html>

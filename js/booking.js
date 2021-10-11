@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
         checkValues(inputs);
     });
 
-    document.querySelector('#print').addEventListener('click',() => print_page());
+    // document.querySelector('#print').addEventListener('click',() => print_page());
 
     // SELECTION FUNCTIONS
 
@@ -972,6 +972,8 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=> {
         if(data.message === "Job done.") {
+            console.log(data.bookingId);
+            document.querySelector('#print').href = `print.php?idBooking=${data.bookingId}`;
             document.querySelector('#print').classList.remove('hide');
             messageArea.classList.remove('form-error');
             messageArea.classList.add('validate');
