@@ -594,6 +594,9 @@ header{
 /* #endregion SLIDER */
 
 /* #region PRINT */
+.print {
+    background-color: var(--background);
+}
 .print h1{
     text-align: center;
     color: var(--rocColorC);
@@ -729,6 +732,11 @@ fieldset, .booking textarea{
 #deletActivityButton{
     border: 1px solid var(--require);
     color: var(--require);
+}
+#printlink {
+    color: var(--rocColorC);
+    text-transform: none;
+    text-decoration: underline;
 }
 /* .booking .red-border{
     border: 2px solid var(--require);
@@ -1201,7 +1209,7 @@ footer a{
         justify-content: space-around;
         padding: 4rem 0;
     }
-    .print .singleActivity {
+    .print .singleActivity, .print .rocActivities, .print .basket {
         padding: 0 1rem;
     }
 }
@@ -1433,8 +1441,8 @@ footer a{
         text-align: left;
         padding-left: 2rem;
     }
-    .booking, .contact{
-        padding-bottom: 25rem;
+    .booking, .contact, .print{
+        padding-bottom: 20rem;
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */

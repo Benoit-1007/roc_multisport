@@ -971,8 +971,8 @@ function submitform() {
     .then((data)=> {
         if(data.message === "Job done.") {
             console.log(data.bookingId);
-            document.querySelector('#print').href = `print.php?idBooking=${data.bookingId}`;
-            document.querySelector('#print').classList.remove('hide');
+            document.querySelector('#printLink').href = `print.php?idBooking=${data.bookingId}`;
+            document.querySelector('#printLink').classList.remove('hide');
             messageArea.classList.remove('form-error');
             messageArea.classList.add('validate');
             messageArea.innerText = `Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail ${jsondata.contact.contact_mail}. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.`;

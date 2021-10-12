@@ -32,7 +32,7 @@ $activity = new Activity($db);
             extract($row);
             $activities[$codeActivity] = array(
                 // "codeActivity" => $codeActivity,
-                // "name" => $name,
+                "name" => $name,
                 "price" => $price,
                 // "minCount" => $minCount,
                 // "maxCount" => $maxCount
@@ -64,6 +64,8 @@ if ($_SERVER[REQUEST_METHOD] === 'GET')
                 );
             }
 
+            // var_dump($booking_item);
+
             $contact = new Contact($db);
 
             $contact->idContact = $booking->idContact;
@@ -84,79 +86,113 @@ if ($_SERVER[REQUEST_METHOD] === 'GET')
                 );
             }
 
-            $bookingActivity = new BookingActivity($db);
+            // if ($booking->typeOfBooking === "singleActivity") {
 
-            $bookingActivity->idBooking = $booking->idBooking;
+                $bookingActivity = new BookingActivity($db);
 
-            $stmt = $bookingActivity->readActivitiesDetails();
-            $num = $stmt->rowCount();
+                $bookingActivity->idBooking = $booking->idBooking;
 
-            if ($num > 0) {
-                $activities_array = array();
-                $activities_array["records"] = array();
-                $activities_array["totalPrice"] = '';
+                $stmt = $bookingActivity->readActivitiesDetails();
+                $num = $stmt->rowCount();
 
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    
-                    extract($row);
+                if ($num > 0) {
+                    $activities_array = array();
+                    $activities_array["records"] = array();
+                    $activities_array["totalPrice"] = '';
 
-                    $newDate = date('d/m/Y', strtotime($dateActivity));
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        
+                        extract($row);
 
-                    $activity_item = array(
-                        // "codeActivity" => $codeActivity,
-                        "dateActivity" => $newDate,
-                        "halfDaySelect" => $halfDaySelect,
-                        "nameActivity" => $nameActivity,
-                        // "idBookingActivity" => $idBookingActivity
-                        "price" => $activities[$codeActivity]['price'],
-                        "users" => array(),
-                        "totalActivityPrice" => 0
-                    );
+                        $newDate = date('d/m/Y', strtotime($dateActivity));
 
-                    $bookingActivityUser = new Bookingactivityuser($db);
+                        $activity_item = array(
+                            // "codeActivity" => $codeActivity,
+                            "dateActivity" => $newDate,
+                            "halfDaySelect" => $halfDaySelect,
+                            "nameActivity" => $nameActivity,
+                            // "idBookingActivity" => $idBookingActivity
+                            "price" => $activities[$codeActivity]['price'],
+                            "users" => array(),
+                            "totalActivityPrice" => 0
+                        );
 
-                    $bookingActivityUser->idBookingActivity = $idBookingActivity;
+                        $bookingActivityUser = new Bookingactivityuser($db);
 
-                    $stmt2 = $bookingActivityUser->readAllUsers();
-                    $num = $stmt->rowCount();
+                        $bookingActivityUser->idBookingActivity = $idBookingActivity;
 
-                    if ($num > 0) {
-                        $users_array = array();
-                        $users_array["records"] = array();
+                        $stmt2 = $bookingActivityUser->readAllUsers();
+                        $num = $stmt->rowCount();
 
-                        while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
-                            extract($row);
+                        if ($num > 0) {
+                            $users_array = array();
+                            $users_array["records"] = array();
 
-                            $user_item = array(
-                                // "idBookingActivity" => $idBookingActivity,
-                                // "idUser" => $idUser,
-                                "lastName" => $lastName,
-                                "firstName" => $firstName,
-                                // "birthdate" => $birthdate,
-                                // "size" => $size,
-                                // "level" => $level,
-                                // "idBooking" => $idBooking
-                            );
-                            array_push($users_array["records"], $user_item);
-                            $users_array["numberOfParticipants"]++;
+                            while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                                extract($row);
 
+                                $user_item = array(
+                                    // "idBookingActivity" => $idBookingActivity,
+                                    // "idUser" => $idUser,
+                                    "lastName" => $lastName,
+                                    "firstName" => $firstName,
+                                    // "birthdate" => $birthdate,
+                                    // "size" => $size,
+                                    // "level" => $level,
+                                    // "idBooking" => $idBooking
+                                );
+                                array_push($users_array["records"], $user_item);
+                                $users_array["numberOfParticipants"]++;
+
+                                
+                                array_push($activity_item["users"], $user_item);
+                                
+                            };
+
+                            $activity_item["totalActivityPrice"] = ($users_array["numberOfParticipants"] * $activities[$codeActivity]['price']);
                             
-                            array_push($activity_item["users"], $user_item);
-                            
+                            array_push($activities_array[records], $activity_item);
                         };
 
-                        $activity_item["totalActivityPrice"] = ($users_array["numberOfParticipants"] * $activities[$codeActivity]['price']);
+                        $activities_array["numberOfActivities"]++;
                         
-                        array_push($activities_array[records], $activity_item);
-                    };
-
-                    $activities_array["numberOfActivities"]++;
-                    
-                    $activities_array["totalPrice"] += $activity_item["totalActivityPrice"];
+                        $activities_array["totalPrice"] += $activity_item["totalActivityPrice"];
+                    }
                 }
-            }
 
-            // var_dump($activities_array["records"]);
+                // var_dump($activities_array["records"]);
+            // } else {
+            //     $bookingActivity = new BookingActivity($db);
+
+            //     $bookingActivity->idBooking = $booking->idBooking;
+
+            //     $stmt = $bookingActivity->readActivitiesDetails();
+            //     $num = $stmt->rowCount();
+
+            //     if ($num > 0) {
+            //         $activities_array = array();
+            //         $activities_array["records"] = array();
+            //         $activities_array["totalPrice"] = '';
+
+            //         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        
+            //             extract($row);
+
+            //             $newDate = date('d/m/Y', strtotime($dateActivity));
+
+            //             $activity_item = array(
+            //                 // "codeActivity" => $codeActivity,
+            //                 "dateActivity" => $newDate,
+            //                 // "halfDaySelect" => $halfDaySelect,
+            //                 "nameActivity" => $nameActivity,
+            //                 // "idBookingActivity" => $idBookingActivity
+            //                 "price" => $activities[$codeActivity]['price'],
+            //                 "users" => array(),
+            //                 "totalActivityPrice" => 0
+            //             );
+            //         }
+            //     }
+            // }
         }
     } catch (PDOException $e) {
         echo $e->getMessage();
