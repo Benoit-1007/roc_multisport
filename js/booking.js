@@ -4,7 +4,7 @@
 import Errors from './Errors.js';
 import * as menu from './menu.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
 
     // VARIABLES
     let bookingForm = document.querySelector('#bookingForm');
@@ -77,8 +77,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         checkValues(inputs);
     });
-
-    // document.querySelector('#print').addEventListener('click',() => print_page());
 
     // SELECTION FUNCTIONS
 
@@ -1009,11 +1007,6 @@ function submitform() {
     .catch(err => {
         console.log('Error: ', err);
     })
-}
-
-function print_page() {
-    console.log('print');
-    window.print();
 }
 
 /** Send data to server */

@@ -1,7 +1,7 @@
 'use strict';
 
 // We load the resa when the page is ready :
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', function() {
     
     // menu management for mobile phone 
     toggleMenu();

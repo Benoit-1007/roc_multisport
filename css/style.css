@@ -594,21 +594,32 @@ header{
 /* #endregion SLIDER */
 
 /* #region PRINT */
-.print{
-    color:var(--darkColor);
-}
 .print h1{
     text-align: center;
     color: var(--rocColorC);
 }
 .print p {
     color: var(--rocColorO);
+    margin: 0 0 0.5rem
 }
-.print em {
+.print em , .print tbody{
     color: var(--darkColor);
 } 
 .print ul em {
     padding-left: 6rem;
+}
+.activityDetails {
+    border: 1px dotted var(--rocColorO);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+#printButton {
+    background-color: var(--rocColorC);
+    border: var(--rocColorC);
+    color: var(--clearColor);
+    margin: 2rem auto;
+    display: block;
 }
 /* #endregion PRINT */
 
@@ -1185,6 +1196,14 @@ footer a{
         margin: 2rem;
         width: 35%;
     }
+    .print .recap {
+        display: flex;
+        justify-content: space-around;
+        padding: 4rem 0;
+    }
+    .print .singleActivity {
+        padding: 0 1rem;
+    }
 }
 /* #endregion TABLET (min-width: 768px) */
 
@@ -1419,5 +1438,17 @@ footer a{
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */
+
+/* #region MEDIA PRINT */
+@media PRINT {
+    header, #printButton, .network, .bottomBlocFooter {
+        display: none;
+    }
+    .print tfoot {
+        color: var(--darkColor);
+    }
+}
+
+/* #endregion MEDIA PRINT */
 
 /* #endregion MEDIA QUERIES */
