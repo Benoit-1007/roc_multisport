@@ -593,39 +593,6 @@ header{
 }
 /* #endregion SLIDER */
 
-/* #region PRINT */
-.print {
-    background-color: var(--background);
-}
-.print h1{
-    text-align: center;
-    color: var(--rocColorC);
-}
-.print p {
-    color: var(--rocColorO);
-    margin: 0 0 0.5rem
-}
-.print em , .print tbody{
-    color: var(--darkColor);
-} 
-.print ul em {
-    padding-left: 6rem;
-}
-.activityDetails {
-    border: 1px dotted var(--rocColorO);
-    border-radius: 1rem;
-    padding: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-#printButton {
-    background-color: var(--rocColorC);
-    border: var(--rocColorC);
-    color: var(--clearColor);
-    margin: 2rem auto;
-    display: block;
-}
-/* #endregion PRINT */
-
 /* #region BOOKING */
 .booking{
     color:var(--darkColor);
@@ -733,7 +700,7 @@ fieldset, .booking textarea{
     border: 1px solid var(--require);
     color: var(--require);
 }
-#printlink {
+#printLink {
     color: var(--rocColorC);
     text-transform: none;
     text-decoration: underline;
@@ -743,6 +710,184 @@ fieldset, .booking textarea{
     border-radius: 5px;
 } */
 /* #endregion BOOKING */
+
+/* #region PRINT */
+.print {
+    background-color: var(--background);
+}
+.print h1{
+    text-align: center;
+    color: var(--rocColorC);
+}
+.print p {
+    color: var(--rocColorO);
+    margin-top: 0;
+    margin-bottom: 1rem; 
+}
+.activityDetails {
+    border: 1px dotted var(--rocColorO);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}
+.print em , .print tbody{
+    color: var(--darkColor);
+} 
+.print ul {
+    margin: 0 0 0.5rem;
+}
+.print ul em {
+    padding-left: 3rem;
+}
+.user + .user:before {
+    content:'- ';
+}
+.singleActivityRecap, .rocActivitiesRecap, .print .basket{
+    margin: 0.5rem;
+}
+#printButton {
+    background-color: var(--rocColorC);
+    border: var(--rocColorC);
+    color: var(--clearColor);
+    margin: 2rem auto;
+    display: block;
+}
+/* #endregion PRINT */
+
+/* #region TEMPORARYBOOKING */
+.temporaryBooking{
+    text-align: center;
+    color: var(--rocColorR);
+    font-size: 2rem;
+    background: url("../img/mountain3.jpeg")bottom fixed;
+    background-size: cover;
+    height: 70vh;
+}
+.temporaryBooking .message{
+    position: absolute;
+    width: 75vw;
+    border: 2px solid var(--rocColorO);
+    border-radius: 3.5rem;
+    padding: 1rem;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.temporaryBooking .message a{
+    text-transform:capitalize;
+    color: var(--rocColorO);
+}
+
+/* #endregion TEMPORARYBOOKING */
+
+/* #region CONTACT */
+.contact{
+    color: var(--darkColor);
+    text-align: center;
+    background: url("../img/mountain2.jpeg") bottom;
+    background-size: cover;
+}
+.contact h1 span,
+.contact a{
+    color: var(--rocColorC);
+}
+.contact a{
+    font-weight: bolder;
+}
+.contact form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    background-color: var(--background);
+    border: 2px solid var(--rocColorC);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 2rem;
+    height: 50rem;
+}
+.contact label{
+    width: 30%;
+    text-align: left;
+}
+.contact .field{
+    width: 65%;
+    border: 1px solid var(--rocColorC);
+}
+.contact button{
+    color: var(--clearColor);
+    background-color: var(--rocColorC);
+    margin:1rem auto;
+    border: 2px solid var(--rocColorC);
+    border-radius: 3rem;
+}
+.contact span{
+    color: var(--require);
+}
+.contact .validate{
+    width: 100%
+}
+/* .contact .red-border{
+    border: 2px solid var(--require);
+    border-radius: 5px;
+} */
+
+/* #endregion CONTACT */
+
+/* #region LEGAL */
+.policy{
+    color: var(--darkColor);
+    text-align: justify;
+    padding: 2rem;
+}
+.policy h1{
+    text-align: center;
+}
+.policy h2{
+    font-size: 2rem;
+}
+.policy h3{
+    font-size: 1.8rem;
+    text-transform: unset;
+    margin-top: 2rem;
+}
+.policy span{
+    font-family: DIN-Medium;
+}
+/* #endregion LEGAL */
+
+/* #region FOOTER */
+footer{
+    color: var(--rocColorR);
+    text-align: center;
+    background: url("../img/background/bgFooter.png") bottom no-repeat;
+    background-size: 100%;
+    background-color: var(--clearColor);
+    padding-top: 2rem;
+}
+footer a{
+    color: var(--rocColorR);
+    text-decoration: none;
+}
+.contactInfo a{
+    text-transform: lowercase;
+    font-family: DIN-Bold;
+}
+.network a{
+    font-size: 5rem;
+    margin:0 2rem;
+}
+.bottomBlocFooter{
+    margin-top: 3rem;
+    padding: 0 2rem 8rem 2rem;
+}
+.bottomBlocFooter a{
+    text-transform: none;
+    font-size: 1.2rem;
+}
+.bottomBlocFooter span{
+    font-family: DIN-Bold;
+}
+/* #endregion FOOTER */
 
 /* #region BACK PAGE */
 .backPage{
@@ -887,142 +1032,6 @@ fieldset, .booking textarea{
 }
 
 /* #endregion BACK PAGE */
-
-/* #region TEMPORARYBOOKING */
-.temporaryBooking{
-    text-align: center;
-    color: var(--rocColorR);
-    font-size: 2rem;
-    background: url("../img/mountain3.jpeg")bottom fixed;
-    background-size: cover;
-    height: 70vh;
-}
-.temporaryBooking .message{
-    position: absolute;
-    width: 75vw;
-    border: 2px solid var(--rocColorO);
-    border-radius: 3.5rem;
-    padding: 1rem;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.temporaryBooking .message a{
-    text-transform:capitalize;
-    color: var(--rocColorO);
-}
-
-/* #endregion TEMPORARYBOOKING */
-
-/* #region CONTACT */
-.contact{
-    color: var(--darkColor);
-    text-align: center;
-    background: url("../img/mountain2.jpeg") bottom;
-    background-size: cover;
-}
-.contact h1 span,
-.contact a{
-    color: var(--rocColorC);
-}
-.contact a{
-    font-weight: bolder;
-}
-.contact form{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-between;
-    background-color: var(--background);
-    border: 2px solid var(--rocColorC);
-    border-radius: 1rem;
-    padding: 1rem;
-    margin-top: 2rem;
-    height: 50rem;
-}
-.contact label{
-    width: 30%;
-    text-align: left;
-}
-.contact .field{
-    width: 65%;
-    border: 1px solid var(--rocColorC);
-}
-.contact button{
-    color: var(--clearColor);
-    background-color: var(--rocColorC);
-    margin:1rem auto;
-    border: 2px solid var(--rocColorC);
-    border-radius: 3rem;
-}
-.contact span{
-    color: var(--require);
-}
-.contact .validate{
-    width: 100%
-}
-/* .contact .red-border{
-    border: 2px solid var(--require);
-    border-radius: 5px;
-} */
-
-/* #endregion CONTACT */
-
-/* #region LEGAL */
-.policy{
-    color: var(--darkColor);
-    text-align: justify;
-    padding: 2rem;
-}
-.policy h1{
-    text-align: center;
-}
-.policy h2{
-    font-size: 2rem;
-}
-.policy h3{
-    font-size: 1.8rem;
-    text-transform: unset;
-    margin-top: 2rem;
-}
-.policy span{
-    font-family: DIN-Medium;
-}
-/* #endregion LEGAL */
-
-/* #region FOOTER */
-footer{
-    color: var(--rocColorR);
-    text-align: center;
-    background: url("../img/background/bgFooter.png") bottom no-repeat;
-    background-size: 100%;
-    background-color: var(--clearColor);
-    padding-top: 2rem;
-}
-footer a{
-    color: var(--rocColorR);
-    text-decoration: none;
-}
-.contactInfo a{
-    text-transform: lowercase;
-    font-family: DIN-Bold;
-}
-.network a{
-    font-size: 5rem;
-    margin:0 2rem;
-}
-.bottomBlocFooter{
-    margin-top: 3rem;
-    padding: 0 2rem 8rem 2rem;
-}
-.bottomBlocFooter a{
-    text-transform: none;
-    font-size: 1.2rem;
-}
-.bottomBlocFooter span{
-    font-family: DIN-Bold;
-}
-/* #endregion FOOTER */
 
 /* #region MEDIA QUERIES */
 
@@ -1452,11 +1461,22 @@ footer a{
     header, #printButton, .network, .bottomBlocFooter {
         display: none;
     }
-    .print tfoot {
+    body { 
+        background-color :#fff;
+        font-size :15pt;
+    }
+    td {
         color: var(--darkColor);
     }
+    .contactInfo{
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 10pt;;
+    }
+    .logo {
+        max-height: 90pt;
+    }
 }
-
 /* #endregion MEDIA PRINT */
 
 /* #endregion MEDIA QUERIES */
