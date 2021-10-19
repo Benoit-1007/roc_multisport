@@ -970,7 +970,6 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=> {
         if(data.message === "Job done.") {
-            console.log(data.bookingId);
             document.querySelector('#printLink').href=`print.php?idBooking=${data.bookingId}`;
             document.querySelector('#printLink').classList.remove('hide');
             messageArea.classList.remove('form-error');
