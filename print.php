@@ -7,15 +7,14 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // get database connection
-include_once 'api/config/database.php';
+include_once 'api/config/Database.php';
 
 //imports
 include_once 'api/objects/Activity.php';
-include_once 'api/objects/booking.php';
-include_once 'api/objects/contact.php';
-include_once 'api/objects/bookingActivity.php';
-include_once 'api/objects/bookingactivityuser.php';
-// include_once 'api/objects/user.php';
+include_once 'api/objects/Booking.php';
+include_once 'api/objects/Contact.php';
+include_once 'api/objects/BookingActivity.php';
+include_once 'api/objects/Bookingactivityuser.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -55,7 +54,7 @@ if ($_SERVER[REQUEST_METHOD] === 'GET')
             $newDate = date('d/m/Y', strtotime($booking->dateOfBooking));
 
             $booking_item = array(
-                // "idBooking" => $booking->idBooking,
+                "idBooking" => $booking->idBooking,
                 "dateOfBooking" => $newDate,
                 "comment" => $booking->comment,
                 // "idContact" => $booking->idContact,
@@ -75,11 +74,11 @@ if ($_SERVER[REQUEST_METHOD] === 'GET')
                 "lastName" => $contact->lastName,
                 "firstName" => $contact->firstName,
                 "organisation" => $contact->organisation,
-                // "phoneNumber" => $contact->phoneNumber,
-                // "mail" => $contact->mail,
-                // "adress" => $contact->adress,
-                // "postalCode" => $contact->postalCode,
-                // "city" => $contact->city
+                "phoneNumber" => $contact->phoneNumber,
+                "mail" => $contact->mail,
+                "address" => $contact->address,
+                "postalCode" => $contact->postalCode,
+                "city" => $contact->city
             );
         }
 

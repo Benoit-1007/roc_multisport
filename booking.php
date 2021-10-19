@@ -4,7 +4,7 @@
 header("Access-Control-Allow-Origin: *");
 
 // get database connection
-include_once 'api/config/database.php';
+include_once 'api/config/Database.php';
 
 // instantiate all objects
 include_once 'api/objects/Activity.php';

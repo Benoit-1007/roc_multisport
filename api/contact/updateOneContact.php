@@ -5,10 +5,10 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // get database connection
-include_once '../config/database.php';
+include_once '../config/Database.php';
 
 // instantiate all objects
-include_once '../objects/contact.php';
+include_once '../objects/Contact.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -20,14 +20,14 @@ extract($_POST);
 if (
     !empty($contact_id) &&
     !empty($contact_lastName) && 
-    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $contact_lastName) &&
+    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $contact_lastName) &&
     !empty($contact_firstName) &&
-    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $contact_firstName) &&
+    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $contact_firstName) &&
     !empty($contact_phone) &&
     preg_match("/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/", $contact_phone) &&
     !empty($contact_mail) &&
     filter_var($contact_mail, FILTER_VALIDATE_EMAIL) &&
-    !empty($contact_adress) &&
+    !empty($contact_address) &&
     !empty($contact_postalCode) &&
     !empty($contact_city)
 ) {
@@ -39,7 +39,7 @@ if (
     $contact->organisation = $contact_society;
     $contact->phoneNumber = $contact_phone;
     $contact->mail = $contact_mail;
-    $contact->adress = $contact_adress;
+    $contact->address = $contact_address;
     $contact->postalCode = $contact_postalCode;
     $contact->city = $contact_city;
 

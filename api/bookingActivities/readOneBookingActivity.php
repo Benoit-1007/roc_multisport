@@ -5,10 +5,10 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // get database connection
-include_once '../config/database.php';
+include_once '../config/Database.php';
 
 // instantiate all objects
-include_once '../objects/bookingActivity.php';
+include_once '../objects/BookingActivity.php';
 
 $database = new Database();
 $db = $database->getConnection();

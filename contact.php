@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 }
                 // //check Lastname
                 else if($key === "nom"){
-                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $input) === 0){
+                    if(preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $input) === 0){
                         array_push($errors, "Le nom est incorrect. Merci de ne saisir que des lettres, espaces ou tirets");
                     } else {
                         $body_message .= 'Nom: '.$input."\n";
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD']=== 'POST'){
                 }
                 // check Firstname
                 else if($key === "prenom"){
-                    if(preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $input) === 0){
+                    if(preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $input) === 0){
                         array_push($errors, "Le prénom est incorrect. Merci de ne saisir que des lettres, espaces ou tirets");
                     } else {
                         $body_message .= 'Prénom: '.$input."\n";

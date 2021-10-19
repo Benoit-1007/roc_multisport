@@ -80,7 +80,7 @@ class Contact {
     }
     
     validateName(string) {
-        const reg = /^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/;
+        const reg = /^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/;
         return reg.test(string)
     }
 

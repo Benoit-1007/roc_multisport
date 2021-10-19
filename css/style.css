@@ -713,21 +713,35 @@ fieldset, .booking textarea{
 
 /* #region PRINT */
 .print {
-    background-color: var(--background);
+    background-color: #f5f6f4;
+    color: var(--darkColor);
+    font-size: 1.5rem;
 }
-.print h1{
+.headerItems img {
+    width: 25rem;
+    margin-bottom: 2rem;
+    display: none;
+}
+.headerItems h1{
     text-align: center;
+    text-transform: none;
     color: var(--rocColorC);
+    font-size: 2.2rem;
 }
-.print p {
-    color: var(--rocColorO);
-    margin-top: 0;
-    margin-bottom: 1rem; 
+.rocItems {
+    display: none;
+}
+.activitiesItems {
+    margin-top: 2rem;
 }
 .activityDetails {
     border: 1px dotted var(--rocColorO);
     border-radius: 1rem;
-    padding: 0.5rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.print p {
+    margin: 0;
 }
 .print em , .print tbody{
     color: var(--darkColor);
@@ -741,8 +755,12 @@ fieldset, .booking textarea{
 .user + .user:before {
     content:'- ';
 }
-.singleActivityRecap, .rocActivitiesRecap, .print .basket{
-    margin: 0.5rem;
+.print .basket {
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.print .basket tbody {
+    text-transform: initial;
 }
 #printButton {
     background-color: var(--rocColorC);
@@ -1204,6 +1222,7 @@ footer a{
     .participant + .participant{
         border-top: unset;
     }
+    /* BACK */
     .dashboard{
         display: flex;
         flex-direction: row;
@@ -1213,13 +1232,41 @@ footer a{
         margin: 2rem;
         width: 35%;
     }
-    .print .recap {
+    /* PRINT */
+    .print {
         display: flex;
-        justify-content: space-around;
-        padding: 4rem 0;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 2rem;
+        font-size: 1.8rem;
     }
-    .print .singleActivity, .print .rocActivities, .print .basket {
-        padding: 0 1rem;
+    .print img, .rocItems {
+        display: unset;
+    }
+    .headerItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .contactItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .rocItems {
+        padding-left: 1.5rem;
+    }
+    .rocItems h2 {
+        font-size: 1.8rem;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+    }
+    .activitiesItems {
+        width: 100%;
     }
 }
 /* #endregion TABLET (min-width: 768px) */
@@ -1450,31 +1497,54 @@ footer a{
         text-align: left;
         padding-left: 2rem;
     }
-    .booking, .contact, .print{
+    .booking, .contact{
         padding-bottom: 20rem;
+    }
+    .print{
+        font-size: 2.2rem;
+        padding: 5rem 5rem 20rem;
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */
 
 /* #region MEDIA PRINT */
 @media PRINT {
-    header, #printButton, .network, .bottomBlocFooter {
+    .print { 
+        font-size :15pt;
+    }
+    header, #printButton, footer {
         display: none;
     }
-    body { 
-        background-color :#fff;
-        font-size :15pt;
+    .print img, .rocItems {
+        display: unset;
+    }
+    .headerItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .rocItems {
+        padding-left: 1.5rem;
+    }
+    .contactItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .rocItems h2 {
+        font-size: 1.8rem;
+        text-align: left;
+        margin: 0;
+        padding: 0;
     }
     td {
         color: var(--darkColor);
     }
-    .contactInfo{
-        display: flex;
-        justify-content: space-evenly;
-        font-size: 10pt;;
-    }
-    .logo {
-        max-height: 90pt;
+    .tfoot tr td{
+        background-color: var(--rocColorC);
     }
 }
 /* #endregion MEDIA PRINT */

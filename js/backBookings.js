@@ -158,7 +158,7 @@ async function showDetails(identifier) {
                             </tr>
                             <tr>
                                 <td>Adresse</td>
-                                <td>${dataContact.adress}</td>
+                                <td>${dataContact.address}</td>
                             </tr>
                             <tr>
                                 <td>Code Postal</td>
@@ -479,7 +479,7 @@ function showContact(identifier) {
                                                 <label>Mail</label>
                                                 <input type="mail" name="contact_mail" value="${dataContact.mail}">
                                                 <label>Adresse</label>
-                                                <input type="text" name="contact_adress" value="${dataContact.adress}">
+                                                <input type="text" name="contact_address" value="${dataContact.address}">
                                                 <label>Code Postal</label>
                                                 <input type="Number" name="contact_postalCode" value="${dataContact.postalCode}">
                                                 <label>Ville</label>

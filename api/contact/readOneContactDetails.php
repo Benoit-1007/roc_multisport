@@ -5,10 +5,10 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // get database connection
-include_once '../config/database.php';
+include_once '../config/Database.php';
 
 // instantiate all objects
-include_once '../objects/contact.php';
+include_once '../objects/Contact.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -28,7 +28,7 @@ if ($contact->idContact > 0) {
         "organisation" => $contact->organisation,
         "phoneNumber" => $contact->phoneNumber,
         "mail" => $contact->mail,
-        "adress" => $contact->adress,
+        "address" => $contact->address,
         "postalCode" => $contact->postalCode,
         "city" => $contact->city
     );

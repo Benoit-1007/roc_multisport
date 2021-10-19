@@ -12,7 +12,7 @@ class Contact {
     public $organisation;
     public $phoneNumber;
     public $mail;
-    public $adress;
+    public $address;
     public $postalCode;
     public $city;
 
@@ -26,9 +26,9 @@ class Contact {
     {
         // query to insert record
         $query = "INSERT INTO 
-                    {$this->table_name} (lastName, firstName, organisation, phoneNumber, mail, adress, postalCode, city)
+                    {$this->table_name} (lastName, firstName, organisation, phoneNumber, mail, address, postalCode, city)
                 VALUES 
-                    (:lastName, :firstName, :organisation, :phoneNumber, :mail, :adress, :postalCode, :city)";
+                    (:lastName, :firstName, :organisation, :phoneNumber, :mail, :address, :postalCode, :city)";
 
         // prepare query
         $stmt = $this->conn->prepare($query);
@@ -39,7 +39,7 @@ class Contact {
         $this->organisation = htmlspecialchars(strip_tags($this->organisation));
         $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
         $this->mail = htmlspecialchars(strip_tags($this->mail));
-        $this->adress = htmlspecialchars(strip_tags($this->adress));
+        $this->address = htmlspecialchars(strip_tags($this->address));
         $this->postalCode = htmlspecialchars(strip_tags($this->postalCode));
         $this->city = htmlspecialchars(strip_tags($this->city));
 
@@ -49,7 +49,7 @@ class Contact {
         $stmt->bindParam(":organisation", $this->organisation);
         $stmt->bindParam(":phoneNumber", $this->phoneNumber);
         $stmt->bindParam(":mail", $this->mail);
-        $stmt->bindParam(":adress", $this->adress);
+        $stmt->bindParam(":address", $this->address);
         $stmt->bindParam(":postalCode", $this->postalCode);
         $stmt->bindParam(":city", $this->city);
 
@@ -67,7 +67,7 @@ class Contact {
     {
         //select all data
         $query = "SELECT
-                    idContact, firstName, lastName, organisation, phoneNumber, mail, adress, postalCode, city
+                    idContact, firstName, lastName, organisation, phoneNumber, mail, address, postalCode, city
                 FROM
                     {$this->table_name}
                 ORDER BY
@@ -87,7 +87,7 @@ class Contact {
     public function readOne()
     {
         $query = "SELECT
-                    idContact, lastName, firstName, organisation, phoneNumber, mail, adress, postalCode, city
+                    idContact, lastName, firstName, organisation, phoneNumber, mail, address, postalCode, city
                 FROM
                     {$this->table_name}
                 WHERE
@@ -111,7 +111,7 @@ class Contact {
         $this->organisation = $row['organisation'];
         $this->phoneNumber = $row['phoneNumber'];
         $this->mail = $row['mail'];
-        $this->adress = $row['adress'];
+        $this->address = $row['address'];
         $this->postalCode = $row['postalCode'];
         $this->city = $row['city'];
     }
@@ -123,7 +123,7 @@ class Contact {
         $query = "UPDATE
                     {$this->table_name}
                 SET
-                    lastName = :lastName, firstName = :firstName, organisation = :organisation, phoneNumber = :phoneNumber, mail = :mail, adress = :adress, postalCode = :postalCode, city = :city
+                    lastName = :lastName, firstName = :firstName, organisation = :organisation, phoneNumber = :phoneNumber, mail = :mail, address = :address, postalCode = :postalCode, city = :city
                 WHERE 
                     idContact = :id";
 
@@ -136,7 +136,7 @@ class Contact {
         $this->organisation = htmlspecialchars(strip_tags($this->organisation));
         $this->phoneNumber = htmlspecialchars(strip_tags($this->phoneNumber));
         $this->mail = htmlspecialchars(strip_tags($this->mail));
-        $this->adress = htmlspecialchars(strip_tags($this->adress));
+        $this->address = htmlspecialchars(strip_tags($this->address));
         $this->postalCode = htmlspecialchars(strip_tags($this->postalCode));
         $this->city = htmlspecialchars(strip_tags($this->city));
         
@@ -147,7 +147,7 @@ class Contact {
         $stmt->bindParam(":organisation", $this->organisation);
         $stmt->bindParam(":phoneNumber", $this->phoneNumber);
         $stmt->bindParam(":mail", $this->mail);
-        $stmt->bindParam(":adress", $this->adress);
+        $stmt->bindParam(":address", $this->address);
         $stmt->bindParam(":postalCode", $this->postalCode);
         $stmt->bindParam(":city", $this->city);
 

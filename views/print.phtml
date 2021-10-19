@@ -16,53 +16,67 @@
     </header>
 
     <main class="print">
-        <h1>Récapitulatif de votre réservation du <?= $booking_item['dateOfBooking'] ?></h1>
-        <div class="recap">
+        <div class="headerItems">
+            <img src="img/logoRocPrint.png" class="img" alt="Logo ROC Multisport">
+            <h1>Récapitulatif réservation N°<?= $booking_item['idBooking'] ?></h1>
+        </div>
+        <div class="contactItems">
+            <div class="rocItems">
+                <h2>roc multisport sas</h2>
+                <p>Monsieur Rémi SPERA</p>
+                <p>165 Route des Tappes</p>
+                <p>74230 DINGY-SAINT-CLAIR</p>
+                <p>Port. : 06 58 35 51 66</p>
+                <p>remi@rocmultisport.com</p>
+            </div>
+            <div>
+                <p><?= $contact_item['firstName']?> <?= $contact_item['lastName']?></p>
+                <?php if (!empty($contact_item['organisation'])): ?>
+                    <p><?= $contact_item['organisation']?></p>
+                <?php endif; ?>
+                <p><?= $contact_item['address']?></p>
+                <p><?= $contact_item['postalCode']?> <?= $contact_item['city']?></p>
+                <p><?= $contact_item['phoneNumber']?></p>
+                <p><?= $contact_item['mail']?></p>
+            </div>
+        </div>
+        <div class="activitiesItems">   
             <?php if ($booking_item['typeOfBooking'] === "singleActivity"): ?>
-                <div class="singleActivityRecap">
-                    <p>Type de réservation: <em>activité(s) simple(s)</em></p>
-                    <?php if (!empty($booking_item['comment'])): ?>
-                        <p>Commentaire: 
-                            <em><?= $booking_item['comment']?></em>
-                        </p>
-                    <?php endif; ?>
-                    <p>Contact: 
-                        <em><?= $contact_item['firstName']?> <?= $contact_item['lastName']?></em>
+                <p>Date de réservation: <em><?= $booking_item['dateOfBooking'] ?></em></p>
+                <p>Type de réservation: <em>activité(s) simple(s)</em></p>
+                <?php if (!empty($booking_item['comment'])): ?>
+                    <p>Commentaire: 
+                        <em><?= $booking_item['comment']?></em>
                     </p>
-                    <?php if (!empty($contact_item['organisation'])): ?>
-                        <p>Société: 
-                            <em><?= $contact_item['organisation']?></em>
+                <?php endif; ?>
+                <?php foreach ($activities_array["records"] as $activity): ?>
+                    <div class="activityDetails">
+                        <p>Activité: 
+                            <em><?= $activity['nameActivity'] ?></em>
                         </p>
-                    <?php endif; ?>
-                    <?php foreach ($activities_array["records"] as $activity): ?>
-                        <div class="activityDetails">
-                            <p>Activité: 
-                                <em><?= $activity['nameActivity'] ?></em>
+                        <?php if ($activity['halfDaySelect'] !== "Journée"): ?>
+                            <p>Date d'activité: 
+                                <em><?= $activity['dateActivity'] ?> <?= $activity['halfDaySelect']?></em>
                             </p>
-                            <?php if ($activity['halfDaySelect'] !== "Journée"): ?>
-                                <p>Date d'activité: 
-                                    <em><?= $activity['dateActivity'] ?> <?= $activity['halfDaySelect']?></em>
-                                </p>
-                            <?php else: ?>
-                                <p>Date d'activité: 
-                                    <em><?= $activity['dateActivity'] ?></em>
-                                </p>
-                            <?php endif; ?>
-                        
-                            <?php if ($activity["numberOfParticipants"] === 1): ?>   
-                                <p>Participant: 
-                                    <em><?= $activity['users'][0]['firstName'] .' '. $activity['users'][0]['lastName']?></em>
-                                </p>
-                            <?php else: ?>
-                                <p>Participants: 
-                                    <?php foreach ($activity['users'] as $user): ?>
-                                        <em class="user"><?= $user['firstName'] .' '. $user['lastName']?></em>
-                                    <?php endforeach; ?>
-                                </p>
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                        <?php else: ?>
+                            <p>Date d'activité: 
+                                <em><?= $activity['dateActivity'] ?></em>
+                            </p>
+                        <?php endif; ?>
+                    
+                        <?php if ($activity["numberOfParticipants"] === 1): ?>   
+                            <p>Participant: 
+                                <em><?= $activity['users'][0]['firstName'] .' '. $activity['users'][0]['lastName']?></em>
+                            </p>
+                        <?php else: ?>
+                            <p>Participants: 
+                                <?php foreach ($activity['users'] as $user): ?>
+                                    <em class="user"><?= $user['firstName'] .' '. $user['lastName']?></em>
+                                <?php endforeach; ?>
+                            </p>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
                 <div class="basket">
                     <table>
                         <thead>
@@ -89,50 +103,41 @@
                     </table>
                 </div>
             <?php else: ?>
-                <div class="rocActivitiesRecap">
-                    <p>Type de réservation:
-                        <?php if ($booking_item['typeOfBooking'] === "cocktailOneDay"): ?>
-                            <em>Cocktail Roc Day</em>
-                        <?php else: ?>
-                            <em>Cocktail Roc Week-end</em>
-                        <?php endif; ?>
+                <p>Date de réservation: <em><?= $booking_item['dateOfBooking'] ?></em></p>
+                <p>Type de réservation:
+                    <?php if ($booking_item['typeOfBooking'] === "cocktailOneDay"): ?>
+                        <em>Cocktail Roc Day</em>
+                    <?php else: ?>
+                        <em>Cocktail Roc Week-end</em>
+                    <?php endif; ?>
+                </p>
+                <?php if (!empty($booking_item['comment'])): ?>
+                    <p>Commentaire: 
+                        <em><?= $booking_item['comment']?></em>
                     </p>
-                    <?php if (!empty($booking_item['comment'])): ?>
-                        <p>Commentaire: 
-                            <em><?= $booking_item['comment']?></em>
+                <?php endif; ?>
+                <div class="activityDetails">
+                    <p>Activités:</p>
+                    <ul>
+                        <?php foreach ($activities_array['records'] as $activity): ?>
+                            <li><em><?= $activity['nameActivity'] ?></em></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php if ($booking_item['typeOfBooking'] === "cocktailOneDay"): ?>
+                        <p>Date d'activités: 
+                            <em><?= $activities_array['records'][0]['dateActivity'] ?></em>
+                        </p>
+                    <?php else: ?>
+                        <p>Dates d'activités: 
+                            <em>Week-end du <?= $activities_array['records'][0]['dateActivity'] ?></em>
                         </p>
                     <?php endif; ?>
-                    <p>Contact: 
-                        <em><?= $contact_item['firstName']?> <?= $contact_item['lastName']?></em>
-                    </p>
-                    <?php if (!empty($contact_item['organisation'])): ?>
-                        <p>Société: 
-                            <em><?= $contact_item['organisation']?></em>
-                        </p>
-                    <?php endif; ?>
-                    <div class="activityDetails">
-                        <p>Activités:</p>
-                        <ul>
-                            <?php foreach ($activities_array['records'] as $activity): ?>
-                                <li><em><?= $activity['nameActivity'] ?></em></li>
-                            <?php endforeach; ?>
-                        </ul>
-                        <?php if ($booking_item['typeOfBooking'] === "cocktailOneDay"): ?>
-                            <p>Date d'activités: 
-                                <em><?= $activities_array['records'][0]['dateActivity'] ?></em>
-                            </p>
-                        <?php else: ?>
-                            <p>Dates d'activités: 
-                                <em>Week-end du <?= $activities_array['records'][0]['dateActivity'] ?></em>
-                            </p>
-                        <?php endif; ?>
-                        <p>Participants:
-                            <?php foreach ($activities_array['records'][0]['users'] as $user): ?>
-                                <em class="user"><?= $user['firstName'] .' '. $user['lastName']?></em>
-                            <?php endforeach; ?>
-                        </p> 
-                        </ul>
-                    </div>
+                    <p>Participants:
+                        <?php foreach ($activities_array['records'][0]['users'] as $user): ?>
+                            <em class="user"><?= $user['firstName'] .' '. $user['lastName']?></em>
+                        <?php endforeach; ?>
+                    </p> 
+                    </ul>
                 </div>
                 <div class="basket">
                     <table>
@@ -158,7 +163,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="3">total réservation :</td>
-                                <td class="totalPrice"><?= $activities_array['totalPrice']-$activities_array['totalPrice']*$activities[$booking_item['typeOfBooking']]['price']/100 .€ ?></td>
+                                <td><?= $activities_array['totalPrice']-$activities_array['totalPrice']*$activities[$booking_item['typeOfBooking']]['price']/100 .€ ?></td>
                             </tr>
                         </tfoot>
                     </table>
@@ -168,7 +173,6 @@
 
         <button type="button" id="printButton">Imprimer ma réservation</button>
 
-        
     </main>
     <footer>
         <?php require("partials/footer.php") ?>

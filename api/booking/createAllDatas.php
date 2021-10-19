@@ -8,14 +8,14 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // get database connection
-include_once '../config/database.php';
+include_once '../config/Database.php';
 
 // instantiate all object
-include_once '../objects/booking.php';
-include_once '../objects/contact.php';
-include_once '../objects/bookingActivity.php';
-include_once '../objects/bookingactivityuser.php';
-include_once '../objects/user.php';
+include_once '../objects/Booking.php';
+include_once '../objects/Contact.php';
+include_once '../objects/BookingActivity.php';
+include_once '../objects/Bookingactivityuser.php';
+include_once '../objects/User.php';
 include_once '../objects/Mail.php';
 
 
@@ -31,14 +31,14 @@ $data = json_decode(file_get_contents("php://input"));
 // make sure data is not empty
 if (
     !empty($data->contact->contact_lastName) && 
-    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $data->contact->contact_lastName) &&
+    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $data->contact->contact_lastName) &&
     !empty($data->contact->contact_firstName) &&
-    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $data->contact->contact_firstName) &&
+    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $data->contact->contact_firstName) &&
     !empty($data->contact->contact_phone) &&
     preg_match("/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/", $data->contact->contact_phone) &&
     !empty($data->contact->contact_mail) &&
     filter_var($data->contact->contact_mail, FILTER_VALIDATE_EMAIL) &&
-    !empty($data->contact->contact_adress) &&
+    !empty($data->contact->contact_address) &&
     !empty($data->contact->contact_postalCode) &&
     !empty($data->contact->contact_city)
 ) {
@@ -49,7 +49,7 @@ if (
     $contact->organisation = $data->contact->contact_society;
     $contact->phoneNumber = $data->contact->contact_phone;
     $contact->mail = $data->contact->contact_mail;
-    $contact->adress = $data->contact->contact_adress;
+    $contact->address = $data->contact->contact_address;
     $contact->postalCode = $data->contact->contact_postalCode;
     $contact->city = $data->contact->contact_city;
 
@@ -68,13 +68,7 @@ if (
         if (isset($data->activities)) {
             $typeOfBooking = "singleActivity";
 
-            // $mail_recap = 'Type de réservation: Activité simple'."\n";
-
             $booking->comment = $data->comment->comment;
-
-            // $mail_recap .= 'Commentaire: ' . $booking->comment;
-
-            // var_dump($mail_recap);
 
             $booking->idContact = $contactId;
             $booking->typeOfBooking = $typeOfBooking;
@@ -114,9 +108,9 @@ if (
                             foreach ($activity->participants as $participant) {
                                 if(
                                     !empty($participant->lastName) && 
-                                    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->lastName) &&
+                                    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->lastName) &&
                                     !empty($participant->firstName) &&
-                                    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->firstName) &&
+                                    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->firstName) &&
                                     !empty($participant->birthdate) &&
                                     isValid($participant->birthdate,'d/m/Y') &&
                                     !empty($participant->size) &&
@@ -241,9 +235,9 @@ if (
                     foreach ($data->cocktail[0]->participants as $participant) {
                         if(
                             !empty($participant->lastName) && 
-                            preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->lastName) &&
+                            preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->lastName) &&
                             !empty($participant->firstName) &&
-                            preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->firstName) &&
+                            preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant->firstName) &&
                             !empty($participant->birthdate) &&
                             isValid($participant->birthdate,'d/m/Y') &&
                             !empty($participant->size) &&

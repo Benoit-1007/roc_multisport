@@ -971,7 +971,7 @@ function submitform() {
     .then((data)=> {
         if(data.message === "Job done.") {
             console.log(data.bookingId);
-            document.querySelector('#printLink').href = `print.php?idBooking=${data.bookingId}`;
+            document.querySelector('#printLink').href=`print.php?idBooking=${data.bookingId}`;
             document.querySelector('#printLink').classList.remove('hide');
             messageArea.classList.remove('form-error');
             messageArea.classList.add('validate');
@@ -1032,7 +1032,7 @@ function refresh(){
  * @param {string} name to check 
  */
 function validateName(string) {
-    const stringRegex = /^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/;
+    const stringRegex = /^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/;
     return stringRegex.test(string)
 }
 

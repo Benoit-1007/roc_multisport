@@ -5,10 +5,10 @@ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // get database connection
-include_once '../config/database.php';
+include_once '../config/Database.php';
 
 // instantiate all objects
-include_once '../objects/user.php';
+include_once '../objects/User.php';
 
 $database = new Database();
 $db = $database->getConnection();
@@ -19,9 +19,9 @@ extract($_POST);
 
 if (
     !empty($participant_lastName) && 
-    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant_lastName) &&
+    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant_lastName) &&
     !empty($participant_firstName) &&
-    preg_match("/^[A-Za-z\à\â\ä\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant_firstName) &&
+    preg_match("/^[A-Za-z\à\â\ä\ç\é\è\ê\ë\ö\ô\î\ï\ù\û\ü\ -]+$/", $participant_firstName) &&
     !empty($participant_birthdate) &&
     isValid($participant_birthdate,'d/m/Y') &&
     !empty($participant_size) &&

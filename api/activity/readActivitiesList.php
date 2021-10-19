@@ -5,7 +5,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 // get database connection
-include_once '../config/database.php';
+include_once '../config/Database.php';
 
 //imports
 include_once '../objects/Activity.php';
