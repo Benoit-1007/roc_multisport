@@ -21,9 +21,9 @@ class Booking {
     {
         // query to insert record
         $query = "INSERT INTO 
-                    {$this->table_name} (comment, idContact, typeOfBooking)
+                    {$this->table_name} (dateOfBooking, comment, idContact, typeOfBooking)
                 VALUES 
-                    (:comment, :idContact, :typeOfBooking)";
+                    (NOW(), :comment, :idContact, :typeOfBooking)";
 
         // prepare query
         $stmt = $this->conn->prepare($query);

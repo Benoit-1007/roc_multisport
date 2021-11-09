@@ -69,7 +69,6 @@ if (
             $typeOfBooking = "singleActivity";
 
             $booking->comment = $data->comment->comment;
-
             $booking->idContact = $contactId;
             $booking->typeOfBooking = $typeOfBooking;
 

@@ -762,7 +762,7 @@ fieldset, .booking textarea{
 .print .basket tbody {
     text-transform: initial;
 }
-#printButton {
+#printButton, #pdfButton {
     background-color: var(--rocColorC);
     border: var(--rocColorC);
     color: var(--clearColor);
@@ -993,12 +993,15 @@ footer a{
     text-transform: unset;
     color:var(--rocColorO);
 }
-.backPage th, .backPage td{
-    padding: 1rem;
-}
 .backPage th{
     background-color: var(--rocColorC);
     color: var(--clearColor);
+}
+.backPage th, .backPage td{
+    padding: 1rem;
+}
+#backBooking-content th, #backBooking-content td {
+    width: 20%;
 }
 .backActivities tr + tr{
     border-top: 2px solid var(--bookingColor);
