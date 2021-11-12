@@ -717,7 +717,7 @@ fieldset, .booking textarea{
     color: var(--darkColor);
     font-size: 1.5rem;
 }
-.headerItems img {
+.headerItems img{
     width: 25rem;
     margin-bottom: 2rem;
     display: none;

@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('#printButton').addEventListener('click',() => print_page());
     document.querySelector('#pdfButton').addEventListener('click',() => pdf_page());
-
+    
 });
 
 function print_page() {
+    console.log('print');
     window.print();
 }
 

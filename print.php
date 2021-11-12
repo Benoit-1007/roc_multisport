@@ -16,6 +16,7 @@ include_once 'api/objects/Contact.php';
 include_once 'api/objects/BookingActivity.php';
 include_once 'api/objects/Bookingactivityuser.php';
 
+
 $database = new Database();
 $db = $database->getConnection();
 
