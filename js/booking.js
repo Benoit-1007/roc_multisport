@@ -970,8 +970,8 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=> {
         if(data.message === "Job done.") {
-            document.querySelector('#printLink').href=`print.php?idBooking=${data.bookingId}`;
-            document.querySelector('#printLink').classList.remove('hide');
+            document.querySelector('#pdfLink').href=`pdf.php?idBooking=${data.bookingId}`;
+            document.querySelector('#pdfLink').classList.remove('hide');
             messageArea.classList.remove('form-error');
             messageArea.classList.add('validate');
             messageArea.innerText = `Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail ${jsondata.contact.contact_mail}. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.`;

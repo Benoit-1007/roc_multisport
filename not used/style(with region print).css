@@ -700,13 +700,76 @@ fieldset, .booking textarea{
     border: 1px solid var(--require);
     color: var(--require);
 }
-#pdfLink {
+#printLink {
     color: var(--rocColorC);
     text-transform: none;
     text-decoration: underline;
 }
-
+/* .booking .red-border{
+    border: 2px solid var(--require);
+    border-radius: 5px;
+} */
 /* #endregion BOOKING */
+
+/* #region PRINT */
+.print {
+    background-color: #f5f6f4;
+    color: var(--darkColor);
+    font-size: 1.5rem;
+}
+.headerItems img{
+    width: 25rem;
+    margin-bottom: 2rem;
+    display: none;
+}
+.headerItems h1{
+    text-align: center;
+    text-transform: none;
+    color: var(--rocColorC);
+    font-size: 2.2rem;
+}
+.rocItems {
+    display: none;
+}
+.activitiesItems {
+    margin-top: 2rem;
+}
+.activityDetails {
+    border: 1px dotted var(--rocColorO);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.print p {
+    margin: 0;
+}
+.print em , .print tbody{
+    color: var(--darkColor);
+} 
+.print ul {
+    margin: 0 0 0.5rem;
+}
+.print ul em {
+    padding-left: 3rem;
+}
+.user + .user:before {
+    content:'- ';
+}
+.print .basket {
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.print .basket tbody {
+    text-transform: initial;
+}
+#printButton, #pdfButton {
+    background-color: var(--rocColorC);
+    border: var(--rocColorC);
+    color: var(--clearColor);
+    margin: 2rem auto;
+    display: block;
+}
+/* #endregion PRINT */
 
 /* #region TEMPORARYBOOKING */
 .temporaryBooking{
@@ -1449,5 +1512,47 @@ footer a{
     }
 }
 /* #endregion DESKTOP (min-width: 980px) */
+
+/* #region MEDIA PRINT */
+@media PRINT {
+    .print { 
+        font-size :15pt;
+    }
+    header, #printButton, footer {
+        display: none;
+    }
+    .print img, .rocItems {
+        display: unset;
+    }
+    .headerItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .rocItems {
+        padding-left: 1.5rem;
+    }
+    .contactItems {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 2rem;
+    }
+    .rocItems h2 {
+        font-size: 15pt;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+    }
+    td {
+        color: var(--darkColor);
+    }
+    .tfoot tr td{
+        background-color: var(--rocColorC);
+    }
+}
+/* #endregion MEDIA PRINT */
 
 /* #endregion MEDIA QUERIES */
