@@ -970,11 +970,12 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=> {
         if(data.message === "Job done.") {
-            document.querySelector('#pdfLink').href=`pdf.php?idBooking=${data.bookingId}`;
-            document.querySelector('#pdfLink').classList.remove('hide');
-            messageArea.classList.remove('form-error');
-            messageArea.classList.add('validate');
-            messageArea.innerText = `Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail ${jsondata.contact.contact_mail}. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.`;
+            window.location.href="index.php";
+            // document.querySelector('#pdfLink').href=`pdf.php?idBooking=${data.bookingId}`;
+            // document.querySelector('#pdfLink').classList.remove('hide');
+            // messageArea.classList.remove('form-error');
+            // messageArea.classList.add('validate');
+            // messageArea.innerText = `Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail ${jsondata.contact.contact_mail}. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.`;
         } else if(data.message === "Job done. No mail.") {
             messageArea.classList.remove('form-error');
             messageArea.classList.add('validate');
@@ -1024,7 +1025,7 @@ async function fetchBookingJson(formData) {
 
 /** redirection to home page after validation of the form */
 function refresh(){
-    window.location.href="index.php";
+    window.location.href=`index.php?idBooking=${data.bookingId}`;
 }
 
 /**check name of participant

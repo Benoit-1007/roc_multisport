@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function(){
     // menu management for mobile phone 
     menu.toggleMenu();
             
-    let form = document.querySelector('form')
-    
+    let form = document.querySelector('form');
+
     if(form !== null){
 
         const inputs = form.querySelectorAll('.field');
@@ -30,5 +30,19 @@ document.addEventListener("DOMContentLoaded", function(){
             });
         })
     }
+
+    let modaleButton = document.querySelector('.modaleButton');
+
+    modaleButton.addEventListener('click', hideModale);
 })
+
+function hideModale() {
+    let modale = document.querySelector(".modale");
+    modale.classList.add('hide');
+    if (modale.classList.contains('red-border')){
+        modale.classList.remove('red-border');
+    } else {
+        modale.classList.remove('green-border');
+    }
+}
 

@@ -20,6 +20,16 @@
     </header>
 
     <main class="index">
+
+        <?php if (array_key_exists('idBooking', $_SESSION) && !empty($_SESSION['idBooking'])): ?>
+            <div class="modale green-border">    
+                <p>Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail <?= $_SESSION["mail"] ?>. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.</p>
+                <a href="pdf.php?idBooking=<?= $_SESSION["idBooking"] ?>" id="pdfLink" target="_blank">Pour imprimer le récapitulatif de votre réservation ou le télécharger au format pdf, cliquez sur ce lien.</a>
+                <p class="no_margin"><i class="fas fa-exclamation-triangle"></i>  <small>Vous n'aurez plus la possibilité de le faire par la suite</small></p>
+                <i class="modaleButton fas fa-times"></i>
+            </div>
+        <?php endif; ?>
+        
         <div id="home" class="home anchor">
             <div class="background">
                 <h1>UN ENCADREMENT <span>MULTISPORT</span><br>ENTRE LAC ET MONTAGNE</h1>

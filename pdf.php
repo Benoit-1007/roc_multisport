@@ -20,6 +20,14 @@ include_once 'api/objects/Contact.php';
 include_once 'api/objects/BookingActivity.php';
 include_once 'api/objects/Bookingactivityuser.php';
 
+include_once 'Session.php';
+
+Session::init();
+
+// unset($_SESSION);
+unset($_SESSION['idBooking']);
+unset($_SESSION['mail']);
+
 $database = new Database();
 $db = $database->getConnection();
 

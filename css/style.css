@@ -947,7 +947,18 @@ footer a{
 .backActivities td + td{
     text-align: right;
 }
-.backPage .modale{
+/* .backPage .modale{ */
+.index .modale{
+    z-index: 100;
+    text-align: center;
+}
+.no_margin{
+    margin: 0;
+}
+.fa-exclamation-triangle{
+    color: #565656;
+}
+.modale{
     position: fixed;
     color: var(--darkColor);
     width: 50%;
@@ -959,18 +970,20 @@ footer a{
     box-shadow: 1px 1px 1px grey;
 }
 .modaleButton{
-    color: var(--clearColor);
-    background-color: var(--rocColorR);
-    border: 2px solid var(--rocColorR);
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    padding: 0;
-    line-height: 0;
+    /* color: var(--clearColor); */
+    /* background-color: var(--rocColorR); */
+    /* border: 2px solid var(--rocColorR); */
+    /* border-radius: 50%; */
+    /* width: 3rem; */
+    /* height: 3rem; */
+    /* padding: 0; */
+    /* line-height: 0; */
     position: absolute;
-    top: 0;
-    right: 0;
-    transition: unset;
+    top: 1rem;
+    right: 1rem;
+    /* transition: unset; */
+    color: #565656;
+    font-size: larger;
 }
 .validateButton{
     color: var(--clearColor);

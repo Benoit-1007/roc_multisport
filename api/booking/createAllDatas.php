@@ -18,6 +18,10 @@ include_once '../objects/Bookingactivityuser.php';
 include_once '../objects/User.php';
 include_once '../objects/Mail.php';
 
+include_once '../../Session.php';
+
+Session::init();
+
 
 $database = new Database();
 $db = $database->getConnection();
@@ -284,6 +288,9 @@ if (
             }
         }
     }
+
+    $_SESSION['idBooking'] = $bookingId;
+    $_SESSION['mail'] = $data->contact->contact_mail;
 
     $email = new Mail($data->contact->contact_lastName, $data->contact->contact_firstName, $data->contact->contact_mail, $bookingId);
 

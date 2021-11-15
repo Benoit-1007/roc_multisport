@@ -9,6 +9,11 @@ include_once 'api/config/Database.php';
 // instantiate all objects
 include_once 'api/objects/Activity.php';
 
+include_once 'Session.php';
+
+Session::init();
+unset($_SESSION['info']);
+
 $database = new Database();
 $db = $database->getConnection();
 
