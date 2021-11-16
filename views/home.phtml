@@ -22,8 +22,12 @@
     <main class="index">
 
         <?php if (array_key_exists('idBooking', $_SESSION) && !empty($_SESSION['idBooking'])): ?>
-            <div class="modale green-border">    
-                <p>Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail <?= $_SESSION["mail"] ?>. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.</p>
+            <div class="modale green-border"> 
+                <?php if ($_GET['mail']=== 'ok'): ?>  
+                    <p>Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail <?= $_SESSION["mail"] ?>. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.</p>
+                <?php else: ?>
+                    <p>Votre demande a bien été enregistrée <em class="alert">mais nous rencontrons un problème lors de l'envoi du mail récapitulatif</em>. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.</p>
+                <?php endif; ?>
                 <a href="pdf.php?idBooking=<?= $_SESSION["idBooking"] ?>" id="pdfLink" target="_blank">Pour imprimer le récapitulatif de votre réservation ou le télécharger au format pdf, cliquez sur ce lien.</a>
                 <p class="no_margin"><i class="fas fa-exclamation-triangle"></i>  <small>Vous n'aurez plus la possibilité de le faire par la suite</small></p>
                 <i class="modaleButton fas fa-times"></i>

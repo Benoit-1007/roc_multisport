@@ -970,16 +970,9 @@ function submitform() {
     fetchBookingJson(crtFormData)
     .then((data)=> {
         if(data.message === "Job done.") {
-            window.location.href="index.php";
-            // document.querySelector('#pdfLink').href=`pdf.php?idBooking=${data.bookingId}`;
-            // document.querySelector('#pdfLink').classList.remove('hide');
-            // messageArea.classList.remove('form-error');
-            // messageArea.classList.add('validate');
-            // messageArea.innerText = `Votre demande a bien été enregistrée. Un mail récapitulatif vous a été envoyé à l'adresse mail ${jsondata.contact.contact_mail}. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.`;
+            window.location.href="index.php?mail=ok";
         } else if(data.message === "Job done. No mail.") {
-            messageArea.classList.remove('form-error');
-            messageArea.classList.add('validate');
-            messageArea.innerText = "Votre demande a bien été enregistrée mais nous rencontrons un problème lors de l'envoi du mail récapitulatif. Nos équipes vous recontactent au plus vite pour finaliser votre réservation.";
+            window.location.href="index.php?mail=ko";
         } else {
             messageArea.classList.add('form-error');
             if (data.message === "Unable to create contact.") {
@@ -1002,7 +995,6 @@ function submitform() {
                     messageArea.innerText = "Impossible d'enregistrer votre réservation. Merci de nous contacter par mail ou téléphone.";
             }
         } 
-        // setTimeout(refresh, 8000);
     })
     .catch(err => {
         console.log('Error: ', err);
@@ -1021,11 +1013,6 @@ async function fetchBookingJson(formData) {
     let reponse = await response.json();
 
     return reponse;
-}
-
-/** redirection to home page after validation of the form */
-function refresh(){
-    window.location.href=`index.php?idBooking=${data.bookingId}`;
 }
 
 /**check name of participant

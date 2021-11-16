@@ -24,7 +24,6 @@ include_once 'Session.php';
 
 Session::init();
 
-// unset($_SESSION);
 unset($_SESSION['idBooking']);
 unset($_SESSION['mail']);
 

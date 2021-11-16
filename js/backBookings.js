@@ -1071,14 +1071,6 @@ function hideModale() {
 }
 
 function convertDate(date) {
-    // console.log(date)
-    // let reverse = date.split("-").reverse().join("/")
-    // console.log("🚀 ~ file: backBookings.js ~ line 1076 ~ convertDate ~ reverse", reverse)
-    // let dateToConvert = new Date(date);
-    // let test = dateToConvert.toLocaleString();
-    // console.log("🚀 ~ file: backBookings.js ~ line 1077 ~ convertDate ~ test", test)
-    // let split = dateToConvert.toLocaleString().split(' ');
-    // let myDate = split[0];
     let myDate = date.split("-").reverse().join("/");
 
     return myDate;

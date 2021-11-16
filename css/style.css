@@ -200,6 +200,47 @@ div.form-error, .emptyField {
     border: 2px solid var(--require) !important;
     border-radius: 5px !important;
 }
+
+/*.modale{ */
+.index .modale{
+    z-index: 100;
+    text-align: center;
+}
+.no_margin{
+    margin: 0;
+}
+.fa-exclamation-triangle{
+    color: #565656;
+}
+.modale{
+    position: fixed;
+    color: var(--darkColor);
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    top: 30%;
+    left: 10%;
+    background: var(--bookingColor);
+    box-shadow: 6px 6px 6px grey;
+}
+.modaleButton{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #565656;
+    font-size: larger;
+}
+.validateButton{
+    color: var(--clearColor);
+    background-color: var(--rocColorO);
+    border: 2px solid var(--rocColorO);
+}
+.cancelButton{
+    color: var(--clearColor);
+    background-color: var(--require);
+    border: 2px solid var(--require);
+}
+
 /* #endregion COMMUM */
 
 /* #region HEADER */
@@ -947,54 +988,6 @@ footer a{
 .backActivities td + td{
     text-align: right;
 }
-/* .backPage .modale{ */
-.index .modale{
-    z-index: 100;
-    text-align: center;
-}
-.no_margin{
-    margin: 0;
-}
-.fa-exclamation-triangle{
-    color: #565656;
-}
-.modale{
-    position: fixed;
-    color: var(--darkColor);
-    width: 50%;
-    margin: 0 auto;
-    padding: 2rem;
-    top: 40%;
-    left: 25%;
-    background: var(--bookingColor);
-    box-shadow: 1px 1px 1px grey;
-}
-.modaleButton{
-    /* color: var(--clearColor); */
-    /* background-color: var(--rocColorR); */
-    /* border: 2px solid var(--rocColorR); */
-    /* border-radius: 50%; */
-    /* width: 3rem; */
-    /* height: 3rem; */
-    /* padding: 0; */
-    /* line-height: 0; */
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    /* transition: unset; */
-    color: #565656;
-    font-size: larger;
-}
-.validateButton{
-    color: var(--clearColor);
-    background-color: var(--rocColorO);
-    border: 2px solid var(--rocColorO);
-}
-.cancelButton{
-    color: var(--clearColor);
-    background-color: var(--require);
-    border: 2px solid var(--require);
-}
 .action{
     border: none;
     width: unset;
@@ -1174,6 +1167,11 @@ footer a{
     }
     .participant + .participant{
         border-top: unset;
+    }
+    .modale{
+        width:50%;
+        top:40%;
+        left:25%;
     }
     /* BACK */
     .dashboard{
