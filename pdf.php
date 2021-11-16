@@ -183,10 +183,10 @@ ob_start();
     .right{text-align:right;}
 </style>
 
-<page backcolor="#f5f6f4" backtop="5mm" backleft="5mm" backright="5mm" backbottom=5mm footer="page; date">  
+<page backtop="5mm" backleft="5mm" backright="5mm" backbottom=5mm footer="page; date">  
     <table>
         <tr>
-            <td style="width:50%"><img src="img/logoRocPrint.png" class="img" alt="Logo ROC Multisport"></td>
+            <td style="width:50%; padding-left:-5mm;"><img src="img/logo.png" class="img" alt="Logo ROC Multisport"></td>
             <td style="width:50%; color:#0375be;"><h1 style="font-size:18px">Récapitulatif réservation N°<?= $booking_item['idBooking'] ?></h1></td>
         </tr> 
     </table>
