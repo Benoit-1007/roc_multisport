@@ -352,15 +352,46 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {*} inputDateSelectorCurrentActivity input date selector of current activity
      */
     function displayAvailableDates(periodCurrentActivity, inputDateSelectorCurrentActivity) {
+        let date = new Date();
+        let beginningOfApril = new Date(date.getFullYear()+'/4/01');
+        let endOfApril = new Date(date.getFullYear()+'10/31');
+        let beginningOfMai = new Date(date.getFullYear()+'/5/01');
+        let endOfOctobre = new Date(date.getFullYear()+'/10/31');
+        let halfDecember = new Date(date.getFullYear()+'/12/15');
+
         if (periodCurrentActivity === "april/october") {
-            inputDateSelectorCurrentActivity.setAttribute('min', new Date().getFullYear() + '-04-01');
-            inputDateSelectorCurrentActivity.setAttribute('max', new Date().getFullYear() + '-10-31');
+            if (date < beginningOfApril) {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + '-04-01');
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + '-10-31');
+            } else if (beginningOfApril <= date && date < endOfOctobre) {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + '-' + (date.getMonth()+1)+ '-' + date.getDate());
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + '-10-31');
+            } else {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + 1 + '-04-01');
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + 1 + '-10-31');
+            }
         } else if (periodCurrentActivity === "may/october") {
-            inputDateSelectorCurrentActivity.setAttribute('min', new Date().getFullYear() + '-05-01');
-            inputDateSelectorCurrentActivity.setAttribute('max', new Date().getFullYear() + '-10-31');
+            if (date < beginningOfMai) {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + '-05-01');
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + '-10-31');
+            } else if (beginningOfMai <= date && date < endOfOctobre) {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + '-' + (date.getMonth()+1)+ '-' + date.getDate());
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + '-10-31');
+            } else {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + 1 + '-05-01');
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + 1 + '-10-31');
+            }
         } else {
-            inputDateSelectorCurrentActivity.setAttribute('min', new Date().getFullYear() + '-12-15');
-            inputDateSelectorCurrentActivity.setAttribute('max', new Date().getFullYear() + 1 + '-04-30');
+            if (date < endOfApril) {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + '-' + (date.getMonth()+1)+ '-' + date.getDate());
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + '-04-30');
+            } else if (endOfApril <= date && date < halfDecember) {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + '-12-15');
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + 1 + '-04-30');
+            } else {
+                inputDateSelectorCurrentActivity.setAttribute('min', date.getFullYear() + '-' + (date.getMonth()+1)+ '-' + date.getDate());
+                inputDateSelectorCurrentActivity.setAttribute('max', date.getFullYear() + 1 + '-04-30');
+            }
         }
     };
 
