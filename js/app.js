@@ -31,9 +31,12 @@ document.addEventListener("DOMContentLoaded", function(){
         })
     }
 
+    
     let modaleButton = document.querySelector('.modaleButton');
 
-    modaleButton.addEventListener('click', hideModale);
+    if (modaleButton !== null) {
+        modaleButton.addEventListener('click', hideModale);
+    }
 })
 
 function hideModale() {

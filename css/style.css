@@ -1299,6 +1299,7 @@ footer a{
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
         width: auto;
+        z-index: 100;
     }
     .vttaeBloc img, .archeryBloc img{
         position: absolute;
@@ -1323,6 +1324,7 @@ footer a{
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
         width: auto;
+        z-index: 100;
     }
     .paddleBloc img, .snowboardBloc img{
         position: absolute;
@@ -1346,6 +1348,7 @@ footer a{
         background: var(--clearColor);
         border: 1px solid var(--clearColor);
         width: auto;
+        z-index: 100;
     }
     .climbingBloc img{
         position: absolute;
