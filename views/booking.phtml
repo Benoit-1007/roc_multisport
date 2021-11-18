@@ -91,7 +91,13 @@
                                 <option value="cocktailTwoDays" name="<?= $activities['cocktailTwoDays']['name'] ?>" data-price="<?= $activities['cocktailTwoDays']['price']/100 ?>" data-minParticipants="<?= $activities['cocktailTwoDays']['minCount'] ?>" data-maxParticipants="<?= $activities['cocktailTwoDays']['maxCount'] ?>">Cocktail ROC WEEK-END - à partir de <?= ((($activities['bikeHalfDayNoLoc']['price'] + $activities['archery']['price'])*2)*(1- $activities['cocktailTwoDays']['price']/100)) ?>€/pers.</option>
                             </select>
                             <p class="rocWeekend hide">Dans le cadre du ROC Week-end, merci de choisir un samedi parmi les dates proposées, le dimanche suivant lui sera associé. Si vous souhaitez pratiquer les activités dans un ordre spécifique, merci de le préciser en commentaire à la fin du formulaire.</p>
-                            <input class="field rocDate" type="date" name="date_rocCocktail" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
+                            <?php if (time() < strtotime(date("Y").'-05-01')): ?>
+                                <input class="field rocDate" type="date" name="date_rocCocktail" min="<?= date("Y") ?>-05-01" max="<?= date("Y") ?>-10-31">
+                            <?php elseif (strtotime(date("Y").'-05-01') <= time() && time() < strtotime(date("Y").'-10-31')): ?>
+                                <input class="field rocDate" type="date" name="date_rocCocktail" min="<?= date("Y-m-d") ?>" max="<?= date("Y") ?>-10-31">
+                                <?php else: ?>
+                                <input class="field rocDate" type="date" name="date_rocCocktail" min="<?= date("Y")+1 ?>-05-01" max="<?= date("Y")+1 ?>-10-31">
+                            <?php endif; ?>
                             <input class="field rocParticipantsCount" type="number" name="participantsCount_rocCocktail" min="<?= $activities['cocktailOneDay']['minCount'] ?>" max="<?= $activities['cocktailOneDay']['maxCount'] ?>" placeholder="Nombre de participants">
                         </div>
                         <div class="myRocActivities">

@@ -459,7 +459,6 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {*} field input ROC formula selector
      */
     function chooseRocFormula(selector) {
-        console.log(selector)
         fetch('api/activity/readActivitiesList.php')
         .then (res => res.json())
         .then((data) => {
