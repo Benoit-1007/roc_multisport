@@ -157,7 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
      * @param {HTMLElement} 
      */
     function reset(HTMLElement) {
-        console.log("reset")
         HTMLElement.innerHTML = '';
     }
 
@@ -354,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function displayAvailableDates(periodCurrentActivity, inputDateSelectorCurrentActivity) {
         let date = new Date();
         let beginningOfApril = new Date(date.getFullYear()+'/4/01');
-        let endOfApril = new Date(date.getFullYear()+'10/31');
+        let endOfApril = new Date(date.getFullYear()+'/10/31');
         let beginningOfMai = new Date(date.getFullYear()+'/5/01');
         let endOfOctobre = new Date(date.getFullYear()+'/10/31');
         let halfDecember = new Date(date.getFullYear()+'/12/15');
@@ -657,7 +656,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateBasket() {
-        console.log("basket")
         // Get data from form
         let formData = document.querySelector('#bookingForm');
         let data = new FormData(formData);
