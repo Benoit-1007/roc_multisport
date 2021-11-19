@@ -203,7 +203,7 @@ div.form-error, .emptyField {
 
 /*.modale{ */
 .index .modale{
-    z-index: 100;
+    z-index: 200;
     text-align: center;
 }
 .no_margin{
@@ -695,7 +695,7 @@ fieldset, .booking textarea{
     color: var(--darkColor);
     border: 1px solid var(--rocColorR);
 }
-.rookeasy, .rocWeekend{
+.rookeasyMessage, .rocWeekendMessage{
     color:var(--rocColorC);
 }
 .participantsList{

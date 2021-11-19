@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 //get input numberparticipants
                 let participantsNumberSelector = document.querySelector(`input[name="participantsCount_activity_${activityNumber}"]`);
                 //get rookeasy message
-                let rookeasyMessage = document.querySelector('.rookeasy');
+                let rookeasyMessage = document.querySelector('.rookeasyMessage');
                 //get div current activity
                 let currentActivity = document.querySelector(`.activity_${activityNumber}`);
 
@@ -462,7 +462,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .then (res => res.json())
         .then((data) => {
             selector.addEventListener('change', function () {
-            console.log("choose")
             //get activity (for display participants)
             let activity = document.querySelector('#rocCocktail').id;
             //get formula value (day or week-end)
@@ -475,15 +474,23 @@ document.addEventListener('DOMContentLoaded', function() {
             let myRocActivities = document.querySelector('.myRocActivities');
             //get input date
             let dateSelector = document.querySelector(`input[name="date_rocCocktail"]`);
+            let rocDayDate =document.querySelector('.rocDayDate');
+            let rocWeekendDate =document.querySelector('.rocWeekendDate');
             //get roc week-end message
-            let rocmessage = document.querySelector('.rocWeekend')
+            let rocmessage = document.querySelector('.rocWeekendMessage')
+
             participantsNumberSelector.value = numberMinParticipants;
 
             switch (formulaValue) {
                 case "cocktailOneDay":
-                    console.log("one")
                     reset(myRocActivities);
-                    dateSelector.removeAttribute('step');
+                    // dateSelector.removeAttribute('step');
+                    if (rocDayDate.classList.contains('hide')) {
+                        rocDayDate.classList.remove('hide');
+                    }
+                    if (!rocWeekendDate.classList.contains('hide')) {
+                        rocWeekendDate.classList.add('hide');
+                    }
                     rocmessage.classList.add('hide');
                     
                     let newRocActivity = document.createElement('div');
@@ -536,11 +543,9 @@ document.addEventListener('DOMContentLoaded', function() {
                             activity2.addEventListener('change', updateBasket);
                         })
                     })
-                    console.log("break")
                     break;
                 default:
 
-                    console.log("weekend")
                     reset(myRocActivities);
 
                     for (let i = 0; i < 4; i++) {
@@ -572,7 +577,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     };
     
                     chooseRocWeekEndActivities(myRocActivities)
-                    dateSelector.setAttribute('step', '7');
+                    // dateSelector.setAttribute('step', '7');
+                    if (rocWeekendDate.classList.contains('hide')) {
+                        rocWeekendDate.classList.remove('hide');
+                    }
+                    if (!rocDayDate.classList.contains('hide')) {
+                        rocDayDate.classList.add('hide');
+                    }
+
                     rocmessage.classList.remove('hide');
                 break;
             }

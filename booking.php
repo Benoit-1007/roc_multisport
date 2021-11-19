@@ -32,5 +32,9 @@ if ($num > 0) {
     }
 }
 
+$nextSaturday = date("Y-m-d", strtotime("next Saturday"));
+$year = date("Y");
+$nextYear = $year + 1;
+
 // Appels de dépendances
 require 'views/booking.phtml';
