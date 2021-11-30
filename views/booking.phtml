@@ -67,7 +67,7 @@
                                     <option value="splitboardAllDay" name="<?= $activities['splitboardAllDay']['name'] ?>" data-price="<?= $activities['splitboardAllDay']['price'] ?>" data-minParticipants="<?= $activities['splitboardAllDay']['minCount'] ?>" data-maxParticipants="<?= $activities['splitboardAllDay']['maxCount'] ?>" data-duration="allDay" data-period="december-april"><?= $activities['splitboardAllDay']['name'] ?> - <?= $activities['splitboardAllDay']['price'] ?>€/pers.</option>
                                 </select>
                                 <p class="rookeasyMessage hide">Dans le cadre du rookeasy, merci de sélectionner votre 1ère 1/2 journée, nous vous contacterons rapidement pour valider cette date et choisir ensemble les deux 1/2 journées suivantes.</p>
-                                <input class="field singleActivityDate" type="date" name="date_activity_1">
+                                <input class="field singleActivityDate" type="date" name="date_activity_1" placeholder="jj/mm/aaaa">
                                 <input class="field singleActivityParticipantsCount" type="number" name="participantsCount_activity_1" placeholder="Nombre de participants" min="2" max="12">
                             </div>
                             <p>Participants activité 1</p>
@@ -93,14 +93,14 @@
                             </select>
                             <p class="rocWeekendMessage hide">Dans le cadre du ROC Week-end, merci de choisir un samedi parmi les dates proposées, le dimanche suivant lui sera associé. Si vous souhaitez pratiquer les activités dans un ordre spécifique, merci de le préciser en commentaire à la fin du formulaire.</p>
                             <?php if (time() < strtotime($year.'-05-01')): ?>
-                                <input class="field rocDate rocDayDate hide" type="date" name="date_rocCocktail" min="<?= $year ?>-05-01" max="<?= $year ?>-10-31">
-                                <input class="field rocDate rocWeekendDate hide" type="date" name="date_rocCocktail" min="<?= date("Y-m-d", strtotime("first saturday $nextYear-05")) ?>" max="<?= $year ?>-10-31" step="7">
+                                <input class="field rocDate rocDayDate hide" type="date" name="date_rocCocktail" min="<?= $year ?>-05-01" max="<?= $year ?>-10-31" placeholder="jj/mm/aaaa">
+                                <input class="field rocDate rocWeekendDate hide" type="date" name="date_rocCocktail" min="<?= date("Y-m-d", strtotime("first saturday $nextYear-05")) ?>" max="<?= $year ?>-10-31" step="7" placeholder="jj/mm/aaaa">
                             <?php elseif (strtotime($year.'-05-01') <= time() && time() < strtotime($year.'-10-31')): ?>
-                                <input class="field rocDate rocDayDate hide" type="date" name="date_rocCocktail" min="<?= date("Y-m-d") ?>" max="<?= $year ?>-10-31">
-                                <input class="field rocDate rocWeekendDate hide" type="date" name="date_rocCocktail" min="<?= $nextSaturday ?>" max="<?= $year ?>-10-31">
+                                <input class="field rocDate rocDayDate hide" type="date" name="date_rocCocktail" min="<?= date("Y-m-d") ?>" max="<?= $year ?>-10-31" placeholder="jj/mm/aaaa">
+                                <input class="field rocDate rocWeekendDate hide" type="date" name="date_rocCocktail" min="<?= $nextSaturday ?>" max="<?= $year ?>-10-31" placeholder="jj/mm/aaaa">
                             <?php else: ?>
-                                <input class="field rocDate rocDayDate hide" type="date" name="date_rocCocktail" min="<?= $nextYear ?>-05-01" max="<?= $nextYear ?>-10-31">
-                                <input class="field rocDate rocWeekendDate hide" type="date" name="date_rocCocktail" min="<?= date("Y-m-d", strtotime("first saturday $nextYear-05")) ?>" max="<?= $nextYear ?>-10-31" step="7">
+                                <input class="field rocDate rocDayDate hide" type="date" name="date_rocCocktail" min="<?= $nextYear ?>-05-01" max="<?= $nextYear ?>-10-31" placeholder="jj/mm/aaaa">
+                                <input class="field rocDate rocWeekendDate hide" type="date" name="date_rocCocktail" min="<?= date("Y-m-d", strtotime("first saturday $nextYear-05")) ?>" max="<?= $nextYear ?>-10-31" step="7" placeholder="jj/mm/aaaa">
                             <?php endif; ?>
                             <input class="field rocParticipantsCount" type="number" name="participantsCount_rocCocktail" min="<?= $activities['cocktailOneDay']['minCount'] ?>" max="<?= $activities['cocktailOneDay']['maxCount'] ?>" placeholder="Nombre de participants">
                         </div>

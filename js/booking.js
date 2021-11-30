@@ -822,13 +822,13 @@ function checkValues(inputs) {
             if (input.name.includes('lastName_activity') || input.name.includes('lastName_rocCocktail')) {
                 if(!validateName(input.value)) {
                     input.classList.add('red-border');
-                    error.record({validateReservation: 'Nom invalide'});
+                    error.record({validateReservation: 'Nom invalide pour l\'un des participants'});
                 }
             }
             if (input.name.includes('firstName_activity') || input.name.includes('firstName_rocCocktail')) {
                 if(!validateName(input.value)) {
                     input.classList.add('red-border');
-                    error.record({validateReservation: 'Prénom invalide'});
+                    error.record({validateReservation: 'Prénom invalide pour l\'un des participants'});
                 }
             }
             if (input.name.includes('birthdate') && validatedate(input.value) === false) {
